@@ -19,9 +19,10 @@
  
 ### Association
 
-- has_many :comments
-- has_many :items
-- has_many :likes
+- has_many :comments ,dependent: :destroy
+- has_many :items, dependent: :destory
+- has_many :likes, dependent: :destroy
+- has_many :addresses, dependent: :destroy
  
 ## Address テーブル
  
@@ -32,12 +33,12 @@
 | city          | string  | null: false, default""   |
 | address       | string  | null: false, default""   |
 | build_name    | string  |                          |
+| user_id       | integer | foreign_key: true        |
  
 ### Association
  
 - belongs_to :user
 - belongs_to :prefecture
- 
  
 ## items テーブル
  
@@ -46,20 +47,21 @@
 | name          | string  | null: false                    |
 | detail        | text    | null: false                    |
 | price         | integer | null: false                    |
-| brand_id      | integer | null:false,foreign_key: true              |
-| pay_side	    | integer | enum,null: false 				|
-| post_date     | integer | enum,null: false				|
+| brand_id      | integer | null:false,foreign_key: true   |
+| pay_side	    | integer | enum,null: false 		       		|
+| post_date     | integer | enum,null: false			      	|
 | status        | integer | enum,null: false			      |
 | prefecture_id | integer | null: false, foreign_key: true |
 | category_id   | integer | null: false, foreign_key: true |
 | user_id       | integer | null: false, foreign_key: true |
- 
+
 ### Association
  
-- has_many :likes
-- has_many :images
-- has_many :comments
+- has_many :likes,dependent: :destroy
+- has_many :images, dependent: :destroy
+- has_many :comments, dependent: :destroy
 - has_many :categories through: :item_categories
+- has_many :item_categories , dependent: :destroy
 - belongs_to :user
 - belongs_to :prefecture
 - belongs_to :brand
@@ -85,7 +87,7 @@
  
 ### Association
  
-- has_many :items
+- has_many :items 
  
  
 ## images テーブル
@@ -108,8 +110,8 @@
  
 ### Association
  
-- has_many :items
-- has_many :categories
+- has_many :items 
+- has_many :categories 
  
 ## prefectures テーブル
  
@@ -119,7 +121,8 @@
  
 ### Association
  
-- has_many :users
+- has_many :addresses
+- has_many :items
  
 ## likes テーブル
  
@@ -142,5 +145,6 @@
  
 ### Association
  
-- has_many :items through: :item_categories
+- has_many :items , through: :item_categories
+- has_many :item_categories
  
