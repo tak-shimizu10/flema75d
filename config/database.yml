@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: flema75d_production
-  username: flema75d
-  password: <%= ENV['FLEMA75D_DATABASE_PASSWORD'] %>
+  username: root            #rootに変更
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
