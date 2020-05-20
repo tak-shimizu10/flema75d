@@ -13,9 +13,6 @@
 |last_kana|string|null:false,default""|
 |birthday|date|null:false|
 |tel|string||
-|good|integer|null: false, default: 0|
-|normal|integer|null: false, default: 0|
-|bad|integer|null: false, default: 0|
 |image|text||
 |profile|text||
 ### Association
