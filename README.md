@@ -29,7 +29,7 @@
 | Column        | Type    | Options                  |
 | ------------- | ------- | ------------------------ |
 | post_number   | string  | null: false, default""   |
-| prefecture_id | integer | null: false, foreign_key |
+| prefecture_id | integer | null: false              |
 | city          | string  | null: false, default""   |
 | address       | string  | null: false, default""   |
 | build_name    | string  |                          |
@@ -38,7 +38,6 @@
 ### Association
  
 - belongs_to :user
-- belongs_to :prefecture
  
 ## items テーブル
  
@@ -51,9 +50,9 @@
 | pay_side	    | integer | enum,null: false 		       		|
 | post_date     | integer | enum,null: false			      	|
 | status        | integer | enum,null: false			      |
-| prefecture_id | integer | null: false, foreign_key: true |
-| category_id   | integer | null: false, foreign_key: true |
-| user_id       | integer | null: false, foreign_key: true |
+| prefecture_id | integer | null_false |
+| category_id   | integer | foreign_key: true |
+| user_id       | integer | foreign_key: true |
 
 ### Association
  
@@ -63,16 +62,15 @@
 - has_many :categories through: :item_categories
 - has_many :item_categories , dependent: :destroy
 - belongs_to :user
-- belongs_to :prefecture
 - belongs_to :brand
  
 ## comments テーブル
  
-| Column  | Type    | Options                        |
-| ------- | ------- | ------------------------------ |
-| comment | text    | null: false                    |
-| user_id | integer | null: false, foreign_key: true |
-| item_id | integer | null: false, foreign_key: true |
+| Column  | Type    | Options           |
+| ------- | ------- | ----------------- |
+| comment | text    | null: false       |
+| user_id | integer | foreign_key: true |
+| item_id | integer | foreign_key: true |
  
 ### Association
  
@@ -92,44 +90,21 @@
  
 ## images テーブル
  
-| Column  | Type    | Options                        |
-| ------- | ------- | ------------------------------ |
-| url     | text    | null: false                    |
-| item_id | integer | null: false, foreign_key: true |
+| Column  | Type    | Options           |
+| ------- | ------- | ----------------- |
+| url     | text    | null: false       |
+| item_id | integer | foreign_key: true |
  
 ### Association
  
 - belongs_to :item
  
-## item_categories テーブル
- 
-| Column        | Type    | Options                        |
-| ------------- | ------- | ------------------------------ |
-| item_id       | integer | null: false, foreign_key: true |
-| categories_id | integer | null: false, foreign_key: true |
- 
-### Association
- 
-- has_many :items 
-- has_many :categories 
- 
-## prefectures テーブル
- 
-| Column | Type   | Options              |
-| ------ | ------ | -------------------- |
-| name   | string | null:false,default"" |
- 
-### Association
- 
-- has_many :addresses
-- has_many :items
- 
 ## likes テーブル
  
-| Column  | Type    | Options                       |
-| ------- | ------- | ----------------------------- |
-| user_id | integer | null: false,foreign_key: true |
-| item_id | integer | null: false,foreign_key: true |
+| Column  | Type    | Options           |
+| ------- | ------- | ----------------- |
+| user_id | integer | foreign_key: true |
+| item_id | integer | foreign_key: true |
  
 ### Association
  
@@ -145,6 +120,4 @@
  
 ### Association
  
-- has_many :items , through: :item_categories
-- has_many :item_categories
- 
+- has_many :items
