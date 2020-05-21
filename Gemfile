@@ -83,3 +83,4 @@ gem 'font-awesome-sass'
 gem "ancestry"
 gem "payjp"
 gem "carrierwave"
+gem "active_hash"
