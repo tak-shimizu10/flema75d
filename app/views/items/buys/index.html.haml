@@ -1,0 +1,41 @@
+
+.items_buys_index
+  = image_tag "logo/logo.png"
+  .items_buys_index-contents
+    %h2 購入内容の確認
+    .items_buys_index-contents-product
+      .items_buys_index-contents-product-img
+      .items-index-contents-product-sentence
+        %p 商品名
+        %p 商品の状態
+        %p 発送の日時
+    .items_buys_index-contents-price
+      .items_buys_index-contents-price-top
+        %p 支払い金額
+        %p ポイント使用（所持ポイント：P0）
+      %p 600円 
+    .items_buys_index-contents-method
+      .items_buys_index-contents-method-top
+        %p 支払い方法
+        %p クレジットカード
+        %p **********999
+        %p 有効期限 09/20
+        .items_buys_index-contents-method-img
+      %p= link_to "変更する", "#"
+    .items_buys_index-contents-post
+      .items_buys_index-contents-post-top
+        %p 配送先
+        %p 〒910-0315
+        %p 詳しい住所
+        %p 辻村　真琴
+      %p= link_to "変更する", "#"
+    = button_to "購入する" 
+  .items_buys_index-fotter
+    .items_buys_index-fotter-lists
+      %p プライバシーポリシー
+      %p 利用企画
+      %p 特定商取引に関する表記
+    = image_tag "logo/logo.png"
+    
+
+
