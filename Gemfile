@@ -46,6 +46,10 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
   gem 'capistrano-rails-console'
+  gem 'rspec-rails'
+  gem 'rails-controller-testing'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do
@@ -65,9 +69,17 @@ group :test do
   gem 'chromedriver-helper'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
 group :production do
   gem 'unicorn'
 end
+
+gem "devise"
+gem 'mini_magick'
+gem 'haml-rails'
+gem "jquery-rails"
+gem "kaminari"
+gem "fog-aws"
+gem 'font-awesome-sass'
+gem "ancestry"
+gem "payjp"
+gem "carrierwave"
