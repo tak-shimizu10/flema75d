@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  
   root 'items#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
+  # 購入確認ページに飛ぶ
+  namespace :items do 
+    resources :buys, only: [:index]
+  end
+
 end
