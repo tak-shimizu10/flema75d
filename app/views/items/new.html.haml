@@ -1,0 +1,149 @@
+.items_new
+  .new
+    .header
+      = link_to image_tag("logo/logo.png", class: "header_logo to_index_btn"), root_path
+    .main
+      .form_list
+
+        .form.form_photos
+          .form_style
+            %label 出品画像
+            %p.mandatory_fields 必須
+          %p 最大10枚までアップロードできます
+          .photos_input
+            %label
+              %input.input_photo_upload{:multipletype => "file"}/
+              %i.fas.fa-camera
+              %p.photos_input_text
+                ドラッグアンドドロップ
+                %br>/
+                またはクリックしてファイルをアップロード
+          .caution.photos_caution 画像がありません
+        .form.form_item
+          .name
+            .form_style
+              %label 商品名
+              %p.mandatory_fields 必須
+            %input.form_input.form_name_input{:placeholder => "４０文字まで"}/
+            .caution.name_caution 入力してください
+          .describe
+            .form_style
+              %label 商品の説明
+              %p.mandatory_fields 必須
+            %input.form_text_area.form_describe_text_area{:cols => "40", :placeholder => "商品の説明(1000文字以内)\r\n(色、素材、重さ、定価、注意点...)\r\n例)", :type => "text_area"}/
+            .notice_text
+              .caution.describe_caution 入力してください
+              .input_text_length 0/1000
+        .form.form_detail
+          .category
+            .form_style
+              %label カテゴリー
+              %p.mandatory_fields 必須
+            %div
+              %select
+                %option{:value => ""} 選択してください
+                %option メンズ
+                %option レディース
+                %option あ
+                %option その他
+              %div{:hidden => "", "visibility:" => ""} 選択してください
+          .brand
+            .form_style
+              %label ブランド
+              %p.option_fields 任意
+            %div
+              %input.form_input.form_brand_input{:placeholder => "例）シャネル"}/
+          .status
+            .form_style
+              %label 商品の状態
+              %p.mandatory_fields 必須
+            %select
+              %option{:value => ""} 選択してください
+              %option 新品・未使用品
+              %option 未使用に近い
+              %option 目立った汚れや傷はなし
+              %option やや傷や汚れあり
+              %option 傷や汚れあり
+              %option 全体的に状態が悪い
+            %div{:hidden => "", "visibility:" => ""} 選択してください
+        .form.form_post
+          配送について
+          .post.pay_side
+            .form_style
+              %label 配送料の負担
+              %p.mandatory_fields 必須
+            %select
+              %option{:value => ""} 選択してください
+              %option 送料込み(出品者負担)
+              %option 着払い(購入者負担)
+            %div{:hidden => "", "visibility:" => ""} 選択してください
+          .post.post_way
+            .form_style
+              %label 配送の方法
+              %p.mandatory_fields 必須
+            %select
+              %option{:value => ""} 選択してください
+              %option 未定
+              %option ゆうちょ
+              %option クロネコ
+              %option レターパック
+            %div{:hidden => "", "visibility:" => ""} 選択してください
+          .post.post_prefecture
+            .form_style
+              %label 発送元の地域
+              %p.mandatory_fields 必須
+            %select
+              %option{:value => ""} 選択してください
+              %option 北海道
+              %option 東京
+              %option 大阪
+              %option 沖縄
+              %option 未定
+            %div{:hidden => "", "visibility:" => ""} 選択してください
+          .post.post_date
+            .form_style
+              %label 発送までの日数
+              %p.mandatory_fields 必須
+            %select
+              %option{:value => ""} 選択してください
+              %option １〜2日
+              %option 2〜3日
+              %option 4〜7日
+            %div{:hidden => "", "visibility:" => ""} 選択してください
+        .form_price
+          .rate_show
+            %p.price_rate 価格（¥300〜9,999,999)
+            %label
+              %i.fas.fa-question-circle
+              -# = link_to guide_path
+          .input_selling_price
+            .form_style.price_form_style
+              %label 販売価格
+              %p.mandatory_fields 必須
+              %p{:class => "¥mark"} ¥
+              %input.price_input{:placeholder => "0", :type => "number"}/
+          .price_display.display_fee
+            %div 販売手数料(10%)
+            %span.display_value.display_fee_value ¥1,000
+          .price_display.display_profit
+            %div 販売利益
+            %span.display_value.display_fee_value ¥19,000
+        .form.form_submit
+          .form_btn.form_submit_btn
+            %button.btn_submit 出品する
+          .from_btn.form_save_btn
+            %button.btn_save 下書きに保存
+          .btn_back
+            = link_to "もどる", root_path
+        .form_notice
+          %p.notice_text
+            禁止されている"行為"および"出品物"を必ずご確認ください。
+            偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。
+            また、出品をもちまして加盟店規約に同意したことになります。
+    .footer
+      .privacy_policy.footer_link プライバシーポリシー
+      .terms_of_service.footer_link 利用規約
+      .notation.footer_link 特定商取引に関する表記
+      .footer_logo_to_index 
+        = link_to image_tag("logo/logo.png", class: "footer_logo to_index_btn"), root_path
+      .c_inc @Mercari, Inc
