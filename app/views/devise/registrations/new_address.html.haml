@@ -1,0 +1,51 @@
+.main
+  .header
+    %a{ href: '/' }
+      = image_tag 'logo/logo.png', size: "185x49", class: "header__logo"
+  .main__container
+    .main__container__head
+      %h2 住所情報入力
+    .main__container__form
+      .content-wrap
+        = form_for @address do |f|
+          = render "devise/shared/error_messages", resource: @address
+          .field
+            .field-label
+              = f.label :zipcode, "郵便番号"
+              %span.form-term.form-term__require 必須
+            .field-input
+              = f.text_field :zipcode, autofocus: true, class: 'input-default', placeholder: '例)123-4567'
+          .field
+            .field-label
+              = f.label :prefecture, "都道府県"
+              %span.form-term.form-term__require 必須
+            .field-select
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, autofocus: true, class: 'select-default'
+          .field
+            .field-label
+              = f.label :city, "市町村区"
+              %span.form-term.form-term__require 必須
+            .field-input
+              = f.text_field :city, autofocus: true, class: 'input-default', placeholder: '例)大阪市北区'
+          .field
+            .field-label
+              = f.label :address, "番地"
+              %span.form-term.form-term__require 必須
+            .field-input
+              = f.text_field :address, autofocus: true, class: 'input-default', placeholder: '例)中崎3-1'
+          .field
+            .field-label
+              = f.label :build_name, "建物名"
+              %span.form-term.form-term__any 任意
+            .field-input
+              = f.text_field :build_name, autofocus: true, class: 'input-default', placeholder: '例)キタノハイツ202'
+          %p.field-info-text ※本人情報は正しく入力してください。会員登録後、修正するにはお時間をいただく場合があります。
+          %button{ type: "sign_up", class:'btn' } 登録する
+  .footer
+    .footer__lists
+      %a{ href: '#' } プライバシーポリシー
+      %a{ href: '#' } 利用規約
+      %a{ href: '#' } 特定商取引に関する表記
+    %a{ href: '/' }
+      = image_tag 'logo/logo.png', size: "185x49", class: "footer__logo"
+    %p ©FURIMA
