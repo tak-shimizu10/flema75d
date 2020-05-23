@@ -11,6 +11,18 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2020_05_22_235138) do
+
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "zipcode", default: "", null: false
+    t.integer "prefecture_id", null: false
+    t.string "city", default: "", null: false
+    t.string "address", default: "", null: false
+    t.string "build_name"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -28,15 +40,6 @@ ActiveRecord::Schema.define(version: 2020_05_22_235138) do
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "image", null: false
     t.integer "item_id"
-  end
-
-  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "zipcode", default: "", null: false
-    t.integer "prefecture_id", null: false
-    t.string "city", default: "", null: false
-    t.string "address", default: "", null: false
-    t.string "build_name"
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -76,4 +79,5 @@ ActiveRecord::Schema.define(version: 2020_05_22_235138) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
 end
