@@ -40,18 +40,18 @@
 
 ## items テーブル
 
-| Column        | Type    | Options                      |
-| ------------- | ------- | ---------------------------- |
-| name          | string  | null: false                  |
-| detail        | text    | null: false                  |
-| price         | integer | null: false                  |
-| brand_id      | integer | null:false,foreign_key: true |
-| pay_side      | integer | enum,null: false             |
-| post_date     | integer | enum,null: false             |
-| status        | integer | enum,null: false             |
-| prefecture_id | integer | null_false                   |
-| category_id   | integer | foreign_key: true            |
-| user_id       | integer | foreign_key: true            |
+| Column        | Type    | Options           |
+| ------------- | ------- | ----------------- |
+| name          | string  | null: false       |
+| detail        | text    | null: false       |
+| price         | integer | null: false       |
+| pay_side      | integer | enum,null: false  |
+| post_date     | integer | enum,null: false  |
+| status        | integer | enum,null: false  |
+| prefecture_id | integer | null_false        |
+| brand_id      | integer | foreign_key: true |
+| category_id   | integer | foreign_key: true |
+| user_id       | integer | foreign_key: true |
 
 ### Association
 
