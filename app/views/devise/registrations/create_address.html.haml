@@ -1,0 +1,22 @@
+.main
+  .header
+    %a{ href: '/' }
+      = image_tag 'logo/logo.png', size: "185x49", class: "header__logo"
+  .main__container
+    .main__container__head
+      %h2 会員登録完了
+    .main__container__form
+      .content-wrap
+        .complete-text
+          %pありがとうございます。
+          %p会員登録が完了しました。
+        %button{ type: "submit", class:'btn btn__complete' } フリマをはじめる
+    .image-box
+  .footer
+    .footer__lists
+      %a{ href: '#' } プライバシーポリシー
+      %a{ href: '#' } 利用規約
+      %a{ href: '#' } 特定商取引に関する表記
+    %a{ href: '/' }
+      = image_tag 'logo/logo.png', size: "185x49", class: "footer__logo"
+    %p ©FURIMA

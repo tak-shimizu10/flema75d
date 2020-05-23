@@ -1,0 +1,179 @@
+* {
+  box-sizing: border-box;
+}
+
+h2 {
+  display: block;
+  font-weight: bold;
+}
+
+.main {
+  display: block;
+  background: whitesmoke;
+  position: relative;
+  padding: 0 0 220px;
+}
+
+.header {
+  height: 128px;
+  text-align: center;
+  background-color: whitesmoke;
+  &__logo {
+    margin: 40px 0 0;
+  }
+}
+
+.main__container {
+  width: 700px;
+  margin: 0 auto;
+  background-color: white;
+  &__head {
+    font-size: 22px;
+    padding: 32px;
+    text-align: center;
+    border-bottom: 1px solid whitesmoke;
+  }
+  &__form {
+    padding: 40px 40px 64px;
+  }
+}
+
+.content-wrap {
+  max-width: 343px;
+  margin: 0 auto;
+}
+
+.field {
+  margin: 24px 0 0;
+}
+
+.field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: black;
+}
+
+.input-default,.select-default {
+  height: 48px;
+  width: 100%;
+  margin: 8px 0 0;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid lightgray;
+  background-color: white;
+  font-size: 16px;
+}
+
+.form-term {
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: white;
+  font-size: 12px;
+  &__require {
+    background-color: red;
+  }
+  &__any {
+    background-color: lightgray;
+  }
+}
+
+.field-info-text {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: gray;
+}
+
+.confirmation-text-head {
+  font-weight: 600;
+  color: black;
+}
+
+.confirmation-text {
+  margin: 8px 0 0;
+  font-size: 14px;
+}
+
+.field-birthday_select {
+  display: flex;
+  line-height: 64px;
+}
+
+.input-field-multiple__separate-text {
+  margin: 0 8px;
+}
+
+.year,.month,.day {
+  height: 48px;
+  width: 76px;
+  position: relative;
+  z-index: 2;
+  padding: 0 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: white;
+  font-size: 16px;
+  margin: 8px 0 0;
+  cursor: pointer;
+}
+
+.complete-text {
+  font-size: 18px;
+  text-align: center;
+}
+
+.image-box {
+  height: 300px;
+  width: 100%;
+  background-image: url(http://furima.tokyo/assets/bg-topMiddleDl-pict-5042a3aa7eef6dd93330080028e3a781daf47c390c00a4fb5d7e7b06caae68c9.jpg);
+  background-size: cover;
+}
+
+.btn {
+  margin: 24px 0 0;
+  display: block;
+  width: 100%;
+  line-height: 48px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  background-color: #3CCACE;
+  border: 1px solid #3CCACE;
+  color: #fff;
+  &__complete {
+    font-size: 18px;
+  }
+}
+
+.footer {
+  width: 456px;
+  height: 220px;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  height: 250px;
+  padding: 40px 0;
+  text-align: center;
+  &__lists {
+    margin-top: 10px;
+    a {
+      text-decoration: none;
+      font-size: 12px;
+      color: black;
+      margin: 0 0 0 18px;
+      &:hover {
+        text-decoration:underline;
+      }
+    }
+  }
+  &__logo {
+    margin: 40px auto 0;
+  }
+  p {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+}
