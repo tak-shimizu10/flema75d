@@ -1,0 +1,180 @@
+.mains_index
+  .mains_index__header
+    .contents
+      .contents__top
+        %h1.contents__top__left
+          = link_to "/", class: "top_logo"  do
+            = image_tag src="logo/logo.png",class:"top_logo__img"
+        .contents__top__right
+          = form_for "#" do |f|
+            = f.text_field :search,placeholder:"キーワードから探す",class:"search_box"
+            %button
+              .btn
+                = image_tag src="icon/icon-search 1.png",class:"search_icon"
+      .contents__bottom
+        %ul.contents__bottom__left
+          %li.category
+            %p カテゴリー
+          %li.brand
+            %p ブランド
+        %ul.contents__bottom__right
+          %li.login
+            %p ログイン
+          %li.signup
+            %p 新規会員登録
+
+  .top_visual
+    .content
+      %h2.content__title 人生を変えるフリマアプリ
+      %p.content__text
+        FURIMAはだれでもかんたんに出品・購入できる 
+        %br
+        フリマアプリです
+
+  .top_intro
+    %h2.title FURIMAが選ばれる3つの理由
+    %ul.top_pops
+      %li.top_pop
+        .top_pop__pic
+          .number 1
+          = image_tag src="pict/pict-reason-01.jpg",class:"top_pic"
+        %h3.top_subtitle 3分 ですぐに出品
+        %p スマホで入力するだけで簡単に出品できる！
+      %li.top_pop
+        .top_pop__pic
+          .number 2
+          = image_tag src="pict/pict-reason-02.jpg",class:"top_pic"
+        %h3.top_subtitle シンプル で使いやすい
+        %p めんどくさい入力は必要なく、検索も購入もスムーズ！
+      %li.top_pop
+        .top_pop__pic
+          .number 3
+          = image_tag src="pict/pict-reason-03.jpg",class:"top_pic"
+        %h3.top_subtitle 手数料 業界最安
+        %p.top_text 最大3%でお得に出品&購入！
+
+  .middle_visual
+    .content
+      %h2.content__title 会員数日本一位
+      %p.content__text
+        FURIMAは、フリマアプリで最も人気。
+        %br
+        出品・購入回数も業界最多です！
+        %br
+        ほしかったあの商品に出会えるかもしれません。
+    
+
+
+  .middle_intro
+    %h2.mid_title FURIMAの特徴
+    .mid_pops
+      .mid_pop
+        = image_tag src="icon/icon-01.png",class:"mid_pic"
+        %h3.mid_subtitle 簡単に売り買いできる
+        %p スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
+      .mid_pop
+        = image_tag src="icon/icon-03.png",class:"mid_pic"
+        %h3.mid_subtitle 売上金は即日振込みに対応
+        %p 午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします!
+      .mid_pop
+        = image_tag src="icon/icon-04.png",class:"mid_pic"
+        %h3.mid_subtitle 様々な支払いに対応
+        %p お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。  
+  
+  .mains_index__body
+    %h2.head ピックアップカテゴリー
+    .look
+      %h3.title 新規投稿商品
+      %ul.items
+        %li.item
+          = image_tag src="pict/gyouza.jpeg",class:"item_pic"
+          .item__info
+            %h3.name 普通の餃子
+            .details
+              .price
+                1,000円
+              .good            
+              %p (税込)
+        %li.item
+          = image_tag src="pict/gyouza.jpeg",class:"item_pic"
+          .item__info
+            %h3.name 良い餃子
+            .details
+              .price
+                10,000円
+              .good             
+              %p (税込)
+        %li.item
+          = image_tag src="pict/gyouza.jpeg",class:"item_pic"
+          .item__info
+            %h3.name すごい餃子
+            .details
+              .price
+                100,000円
+              .good            
+              %p.tax (税込) 
+  .mains_index__body
+    %h2.head ピックアップブランド
+    .look
+      %h3.title アーカイブ
+      %ul.items
+        %li.item
+          = image_tag src="pict/gyouza.jpeg",class:"item_pic"
+          .item__info
+            %h3.name 普通の餃子
+            .details
+              .price
+                1,000円
+              .good            
+              %p (税込)
+        %li.item
+          = image_tag src="pict/gyouza.jpeg",class:"item_pic"
+          .item__info
+            %h3.name 良い餃子
+            .details
+              .price
+                10,000円
+              .good             
+              %p (税込)
+        %li.item
+          = image_tag src="pict/gyouza.jpeg",class:"item_pic"
+          .item__info
+            %h3.name すごい餃子
+            .details
+              .price
+                100,000円
+              .good            
+              %p.tax (税込)
+  .bottom_visual
+    .content
+      %h2.content__title だれでもかんたん、人生を変えるフリマアプリ
+      %p.content__text 今すぐ無料ダウンロード！
+  .mains_index__footer
+    %ul.contents
+      %li.content
+        %h2.content__head FURIMAについて
+        %ul.lists
+          %li 会社概要（運営会社）
+          %li プライバシーポリシー
+          %li FURIMA利用規約
+          %li ポイントに関する特約
+
+      %li.content
+        %h2.content__head FURIMAを見る
+        %ul
+          %li カテゴリー一覧
+          %li ブランド一覧
+
+      %li.content
+        %h2.content__head ヘルプ＆ガイド
+        %ul
+          %li FURIMAガイド
+          %li FURIMAロゴ利用ガイドライン
+          %li お知らせ
+    .footer__logo
+      = image_tag src="logo/logo-white.png",class:"logo_img"
+    %p © FURIMA
+  =link_to "/",class:"purchase" do
+    .purchase__btn
+      .text 出品する
+      = image_tag src="icon/icon_camera.png",class:"image"
