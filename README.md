@@ -49,7 +49,7 @@
 | post_date     | integer | enum,null: false  |
 | status        | integer | enum,null: false  |
 | prefecture_id | integer | null_false        |
-| brand_id      | integer | foreign_key: true |
+| brand_id      | integer |                   |
 | category_id   | integer | foreign_key: true |
 | user_id       | integer | foreign_key: true |
 

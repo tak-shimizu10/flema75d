@@ -8,7 +8,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.integer :post_date, null: false, default: 0
       t.integer :status, null: false, default: 0
       t.integer :prefecture_id, null: false, default: 0
-      t.integer :brand_id, foreign_key: true
+      t.integer :brand_id
       t.integer :category_id, foreign_key: true
       t.integer :user_id, foreign_key: true
       t.timestamps
