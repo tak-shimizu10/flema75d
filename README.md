@@ -2,19 +2,19 @@
 
 ## Users テーブル
 
-| Column     | Type   | Options                  |
-| ---------- | ------ | ------------------------ |
-| nickname   | string | null: false, unique:true |
-| email      | string | null: false, unique:true |
-| password   | string | null: false, default""   |
-| first_name | string | null: false, default""   |
-| last_name  | string | null: false, default""   |
-| first_kana | string | null: false, default""   |
-| last_kana  | string | null: false, default""   |
-| birthday   | date   | null: false              |
-| tel        | string |                          |
-| image      | text   |                          |
-| profile    | text   |                          |
+| Column       | Type   | Options                  |
+| ------------ | ------ | ------------------------ |
+| nickname     | string | null: false, unique:true |
+| email        | string | null: false, unique:true |
+| password     | string | null: false, default""   |
+| first_name   | string | null: false, default""   |
+| last_name    | string | null: false, default""   |
+| first_kana   | string | null: false, default""   |
+| last_kana    | string | null: false, default""   |
+| birthday     | date   | null: false              |
+| phone_number | string |                          |
+| image        | text   |                          |
+| profile      | text   |                          |
 
 ### Association
 
@@ -27,7 +27,7 @@
 
 | Column        | Type    | Options                |
 | ------------- | ------- | ---------------------- |
-| post_number   | string  | null: false, default"" |
+| zipcode       | string  | null: false, default"" |
 | prefecture_id | integer | null: false            |
 | city          | string  | null: false, default"" |
 | address       | string  | null: false, default"" |
@@ -110,10 +110,10 @@
 
 ## categories テーブル
 
-| Column | Type         | Options     |
-| ------ | ------------ | ----------- |
-| name   | string       | null: false |
-| path   | string:index |             |
+| Column   | Type         | Options     |
+| -------- | ------------ | ----------- |
+| name     | string       | null: false |
+| ancestry | string:index |             |
 
 ### Association
 
