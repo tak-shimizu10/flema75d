@@ -1,0 +1,17 @@
+ja:
+  enums:
+    Item:
+      status:
+        brand_new: 新品、未使用
+        like_new: 未使用に近い
+        invisible_dirt: 目立った傷や汚れなし
+        a_little_dirt: やや傷や汚れあり
+        dirt_condition: 傷や汚れあり
+        bad_condition: 全体的に状態が悪い
+      pay_side:
+        seller: 送料込み(出品者負担)
+        buyer: 着払い(購入者負担)
+      post_date:
+        shortest: 1~2日で発送
+        normal: 2~3日で発送
+        longest: 4~7日で発送
