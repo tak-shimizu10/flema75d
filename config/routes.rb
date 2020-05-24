@@ -18,5 +18,7 @@ Rails.application.routes.draw do
     resources :selects, only: [:index]
   end
 
-  resources :items
+  resources :items do
+    resources :images
+  end
 end
