@@ -39,14 +39,8 @@
             .items_new_form_style
               %label カテゴリー
               %p.items_new_mandatory_fields 必須
-            %div
-              %select
-                %option{:value => ""} 選択してください
-                %option メンズ
-                %option レディース
-                %option あ
-                %option その他
-              %div{:hidden => "", "visibility:" => ""} 選択してください
+            .category_form
+              = select_tag :category_id , options_for_select(@categories) ,{ include_blank: "選択してください", class: "category_list" }
           .items_new_brand
             .items_new_form_style
               %label ブランド
