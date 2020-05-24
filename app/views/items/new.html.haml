@@ -11,10 +11,20 @@
               %label 出品画像
               %p.items_new_mandatory_fields 必須
             %p 最大10枚までアップロードできます
-            .photos_input
-              %label
+            .photos_input#photos_input
+              %label.label_photos_input
+                #input_photo_previews
+                  -if @item.persisted?
+                    = @item.images.each_with_index do |image, i|
+                      = image_tag image.image.url, data: { index: i }, height: '100', width: '100'
                 = f.fields_for :images do |image|
-                  = image.file_field :image, class: "input_photo_upload"
+                  %div#input_photos_field{data: {index: "<%= image.index %>"}}
+                    = image.file_field :image, class: "input_photo_upload"
+                    - if @item.persisted?
+                      =image.check_box :_destroy, data: { index: image.index }, class: "items_hidden-destroy"
+                    - if @item.persisted?
+                      .input_photo_upload_group{data: {index: "<%= @item.images.count %>"}}
+                        %button.input_photo_remove 削除
                 %p.photos_input_text
                   ドラッグアンドドロップ
                   %br>/
