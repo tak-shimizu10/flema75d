@@ -11,4 +11,5 @@ Rails.application.routes.draw do
     resources :buys, only: [:index]
   end
   resources :items, only: [:index, :new]
+  resources :users, only: :show
 end

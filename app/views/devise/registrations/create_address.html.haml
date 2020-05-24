@@ -10,7 +10,7 @@
         .complete-text
           %pありがとうございます。
           %p会員登録が完了しました。
-        %button{ type: "submit", class:'btn btn__complete' } フリマをはじめる
+        %a{ href: user_path(current_user), class: "btn" } フリマをはじめる
     .image-box
   .footer
     .footer__lists
