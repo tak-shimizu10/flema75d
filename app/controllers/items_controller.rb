@@ -10,6 +10,5 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Items.find(params[:id])
   end
 end
