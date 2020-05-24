@@ -93,9 +93,7 @@
                 %label 販売価格
                 %p.items_new_mandatory_fields 必須
                 %p{:class => "¥mark"} ¥
-                -# = f.text_area method, class: "price_input"
-                %input.price_input{:placeholder => "0", :type => "number"}/
-
+                = f.number_field :price, class: "price_input", min: "300", placeholder: "0"
             .price_display.display_fee
               %div 販売手数料(10%)
               %span.display_value.display_fee_value ¥1,000
