@@ -8,11 +8,12 @@ Rails.application.routes.draw do
     post "addresses", to: "users/registrations#create_address"
   end
 
+  resources :users, only: [:show]
+
   # 購入確認ページに飛ぶ
   namespace :items do
     resources :buys, only: [:index]
   end 
-  resources :users, only: :show
 
   # カテゴリ機能に使用
   namespace :api do
