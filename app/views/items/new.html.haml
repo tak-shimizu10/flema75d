@@ -4,16 +4,16 @@
       = link_to image_tag("logo/logo.png", class: "items_new_header_logo to_index_btn"), root_path
     .items_new_main
       .items_new_form_list
-
         .items_new_form.items_new_form_photos
           .items_new_form_style
             %label 出品画像
             %p.items_new_mandatory_fields 必須
           %p 最大10枚までアップロードできます
           .photos_input
+            -# = render partial: "items/items_new/photos_form"
             %label
               %input.input_photo_upload{:multipletype => "file"}/
-              %i.fas.fa-camera
+              = image_tag("icon/icon_camera.png", class: "fas fa-camera")
               %p.photos_input_text
                 ドラッグアンドドロップ
                 %br>/
@@ -24,28 +24,33 @@
             .items_new_form_style
               %label 商品名
               %p.items_new_mandatory_fields 必須
+            -# = f.text_field :name, class: "items_new_form_input items_new_form_name_input", placeholder: "４０文字まで"
             %input.items_new_form_input.items_new_form_name_input{:placeholder => "４０文字まで"}/
             .items_new_caution.name_caution 入力してください
-          .items_new_describe
+          .items_new_detail
             .items_new_form_style
               %label 商品の説明
               %p.items_new_mandatory_fields 必須
-            %input.items_new_form_text_area.items_new_form_describe_text_area{:cols => "40", :placeholder => "商品の説明(1000文字以内)\r\n(色、素材、重さ、定価、注意点...)\r\n例)", :type => "text_area"}/
+            -# = f.text_area :detail, class: "items_new_form_text_area items_new_form_detail_text_area", placeholder: "商品の説明(1000文字以内)\r\n(色、素材、重さ、定価、注意点...)\r\n例)", maxlength: "1000", cols: "40"
+            %input.items_new_form_text_area.items_new_form_detail_text_area{:cols => "40", :placeholder => "商品の説明(1000文字以内)\r\n(色、素材、重さ、定価、注意点...)\r\n例)", :type => "text_area"}/
             .notice_text
-              .items_new_caution.describe_caution 入力してください
+              .items_new_caution.detail_caution 入力してください
               .input_text_length 0/1000
-        .items_new_form.items_new_form_detail
+        .items_new_form.items_new_form_info
           .items_new_category
             .items_new_form_style
               %label カテゴリー
               %p.items_new_mandatory_fields 必須
-            .category_form
-              = select_tag :category_id , options_for_select(@categories) ,{ include_blank: "選択してください", class: "category_list" }
+            %div
+              -# = f.select :category_id, Category.all.map { |category| [category.id, category.name], { class: "items_new_category_select" }}
+              .category_form
+                = select_tag :category_id , options_for_select(@categories) ,{ include_blank: "選択してください", class: "category_list" }
           .items_new_brand
             .items_new_form_style
               %label ブランド
               %p.items_new_option_fields 任意
             %div
+              -# = f.text_field :brand, {}
               %input.items_new_form_input.items_new_form_brand_input{:placeholder => "例）シャネル"}/
           .items_new_status
             .items_new_form_style

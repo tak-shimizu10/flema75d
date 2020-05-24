@@ -1,6 +1,8 @@
 // 画面サイズ 共通
 .items_new {
+    height: 100%;
     .items_new_body {
+        height: 100%;
         display: grid;
         .items_new_header {
             grid-area: header;
@@ -20,7 +22,7 @@
                 "....."3px
                 "item "
                 "....."3px
-                "detail"
+                "info"
                 "....."3px
                 "post "
                 "....."3px
@@ -35,8 +37,8 @@
                 .items_new_form_item {
                     grid-area: item;
                 }
-                .items_new_form_detail {
-                    grid-area: detail;
+                .items_new_form_info {
+                    grid-area: info;
                 }
                 .items_new_form_post {
                     grid-area: post;
@@ -71,15 +73,21 @@
                             "..... text  ....."
                             "..... ..... ....."/
                             auto  auto auto;
-                            .input_photo_upload {
-                                display: none;
-                            }
-                            .fa-camera {
-                                grid-area: fas;
-                                font-size: 24px;
+                            .fa-camera{
+                                grid-area:  fas;
                             }
                             .photos_input_text {
                                 grid-area: text;
+                            }
+                            .input_photo_upload {
+                                display: none;
+                            }
+                            img.fa-camera{
+                                background-color: black;
+                                margin:  auto;
+                                width:   24px;
+                            }
+                            .photos_input_text {
                                 text-align: center;
                                 font-size: 12px;
                             }
@@ -93,13 +101,13 @@
                     "...... ...... ......"
                     "name   name   name  "
                     "...... ...... ......"10px
-                    "describe describe describe"
+                    "detail detail detail"
                     "...... ...... ......";
                     .items_new_name {
                         grid-area: name;
                     }
-                    .items_new_describe {
-                        grid-area: describe;
+                    .items_new_detail {
+                        grid-area: detail;
                     }
                     .items_new_name {
                         .items_new_form_input {
@@ -109,7 +117,7 @@
                             height: 48px;
                         }
                     }
-                    .items_new_describe {
+                    .items_new_detail {
                         .items_new_form_text_area {
                             resize:       vertical;
                             vertical-align: middle;
@@ -128,7 +136,7 @@
                     }
                 }
 
-                .items_new_form_detail {
+                .items_new_form_info {
                     display: grid;
                     grid-template:
                     "...... ...... ......"
