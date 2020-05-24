@@ -1,0 +1,8 @@
+
+<label>
+    <%= f.fields_for :images do |image| %>
+    <%= image.file_field :src, class: "input_photo_upload" %>
+    <p class="photos_input_text">
+    ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
+    </p>
+</label>
