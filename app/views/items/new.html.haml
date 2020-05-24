@@ -4,141 +4,116 @@
       = link_to image_tag("logo/logo.png", class: "items_new_header_logo to_index_btn"), root_path
     .items_new_main
       .items_new_form_list
-        .items_new_form.items_new_form_photos
-          .items_new_form_style
-            %label 出品画像
-            %p.items_new_mandatory_fields 必須
-          %p 最大10枚までアップロードできます
-          .photos_input
-            -# = render partial: "items/items_new/photos_form"
-            %label
-              %input.input_photo_upload{:multipletype => "file"}/
-              = image_tag("icon/icon_camera.png", class: "fas fa-camera")
-              %p.photos_input_text
-                ドラッグアンドドロップ
-                %br>/
-                またはクリックしてファイルをアップロード
-          .items_new_caution.photos_caution 画像がありません
-        .items_new_form.items_new_form_item
-          .items_new_name
+        = form_with(model: @item) do |f|
+          .items_new_form.items_new_form_photos
             .items_new_form_style
-              %label 商品名
+              %label 出品画像
               %p.items_new_mandatory_fields 必須
-            -# = f.text_field :name, class: "items_new_form_input items_new_form_name_input", placeholder: "４０文字まで"
-            %input.items_new_form_input.items_new_form_name_input{:placeholder => "４０文字まで"}/
-            .items_new_caution.name_caution 入力してください
-          .items_new_detail
-            .items_new_form_style
-              %label 商品の説明
-              %p.items_new_mandatory_fields 必須
-            -# = f.text_area :detail, class: "items_new_form_text_area items_new_form_detail_text_area", placeholder: "商品の説明(1000文字以内)\r\n(色、素材、重さ、定価、注意点...)\r\n例)", maxlength: "1000", cols: "40"
-            %input.items_new_form_text_area.items_new_form_detail_text_area{:cols => "40", :placeholder => "商品の説明(1000文字以内)\r\n(色、素材、重さ、定価、注意点...)\r\n例)", :type => "text_area"}/
-            .notice_text
-              .items_new_caution.detail_caution 入力してください
-              .input_text_length 0/1000
-        .items_new_form.items_new_form_info
-          .items_new_category
-            .items_new_form_style
-              %label カテゴリー
-              %p.items_new_mandatory_fields 必須
-            %div
-              -# = f.select :category_id, Category.all.map { |category| [category.id, category.name], { class: "items_new_category_select" }}
-              .category_form
-                = select_tag :category_id , options_for_select(@categories) ,{ include_blank: "選択してください", class: "category_list" }
-          .items_new_brand
-            .items_new_form_style
-              %label ブランド
-              %p.items_new_option_fields 任意
-            %div
-              -# = f.text_field :brand, {}
-              %input.items_new_form_input.items_new_form_brand_input{:placeholder => "例）シャネル"}/
-          .items_new_status
-            .items_new_form_style
-              %label 商品の状態
-              %p.items_new_mandatory_fields 必須
-            %select
-              %option{:value => ""} 選択してください
-              %option 新品・未使用品
-              %option 未使用に近い
-              %option 目立った汚れや傷はなし
-              %option やや傷や汚れあり
-              %option 傷や汚れあり
-              %option 全体的に状態が悪い
-            %div{:hidden => "", "visibility:" => ""} 選択してください
-        .items_new_form.items_new_form_post
-          配送について
-          .items_new_post.items_new_pay_side
-            .items_new_form_style
-              %label 配送料の負担
-              %p.items_new_mandatory_fields 必須
-            %select
-              %option{:value => ""} 選択してください
-              %option 送料込み(出品者負担)
-              %option 着払い(購入者負担)
-            %div{:hidden => "", "visibility:" => ""} 選択してください
-          .items_new_post.items_new_post_way
-            .items_new_form_style
-              %label 配送の方法
-              %p.items_new_mandatory_fields 必須
-            %select
-              %option{:value => ""} 選択してください
-              %option 未定
-              %option ゆうちょ
-              %option クロネコ
-              %option レターパック
-            %div{:hidden => "", "visibility:" => ""} 選択してください
-          .items_new_post.items_new_post_prefecture
-            .items_new_form_style
-              %label 発送元の地域
-              %p.items_new_mandatory_fields 必須
-            %select
-              %option{:value => ""} 選択してください
-              %option 北海道
-              %option 東京
-              %option 大阪
-              %option 沖縄
-              %option 未定
-            %div{:hidden => "", "visibility:" => ""} 選択してください
-          .items_new_post.items_new_post_date
-            .items_new_form_style
-              %label 発送までの日数
-              %p.items_new_mandatory_fields 必須
-            %select
-              %option{:value => ""} 選択してください
-              %option １〜2日
-              %option 2〜3日
-              %option 4〜7日
-            %div{:hidden => "", "visibility:" => ""} 選択してください
-        .items_new_form_price
-          .rate_show
-            %p.price_rate 価格（¥300〜9,999,999)
-            %label
-              %i.fas.fa-question-circle
-              -# = link_to guide_path
-          .input_selling_price
-            .items_new_form_style.price_items_new_form_style
-              %label 販売価格
-              %p.items_new_mandatory_fields 必須
-              %p{:class => "¥mark"} ¥
-              %input.price_input{:placeholder => "0", :type => "number"}/
-          .price_display.display_fee
-            %div 販売手数料(10%)
-            %span.display_value.display_fee_value ¥1,000
-          .price_display.display_profit
-            %div 販売利益
-            %span.display_value.display_fee_value ¥19,000
-        .items_new_form.items_new_form_submit
-          .items_new_form_btn.items_new_form_submit_btn
-            %button.items_new_btn_submit 出品する
-          .items_new_from_btn.items_new_form_save_btn
-            %button.items_new_btn_save 下書きに保存
-          .items_new_btn_back
-            = link_to "もどる", root_path
-        .items_new_form_notice
-          %p.notice_text
-            禁止されている"行為"および"出品物"を必ずご確認ください。
-            偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。
-            また、出品をもちまして加盟店規約に同意したことになります。
+            %p 最大10枚までアップロードできます
+            .photos_input
+              -# = render partial: "items/items_form/photos_form"
+              %label
+                = f.fields_for :images do |image|
+                  -# = image.field :src, class: "input_photo_upload"
+                %p.photos_input_text
+                  ドラッグアンドドロップ
+                  %br>/
+                  またはクリックしてファイルをアップロード
+              -#   %input.input_photo_upload{:multipletype => "file"}
+              -#   = image_tag("icon/icon_camera.png", class: "fas fa-camera")
+            .items_new_caution.photos_caution 画像がありません
+
+          .items_new_form.items_new_form_item
+            .items_new_name
+              .items_new_form_style
+                %label 商品名
+                %p.items_new_mandatory_fields 必須
+              = f.text_field :name, class: "items_new_form_input items_new_form_name_input", placeholder: "４０文字まで"
+              .items_new_caution.name_caution 入力してください
+            .items_new_detail
+              .items_new_form_style
+                %label 商品の説明
+                %p.items_new_mandatory_fields 必須
+              = f.text_area :detail, class: "items_new_form_text_area detail_text_area", placeholder: "商品の説明(1000文字以内)\r\n(色、素材、重さ、定価、注意点...)\r\n例)", maxlength: "1000", cols: "40"
+              .notice_text
+                .items_new_caution.detail_caution 入力してください
+                .input_text_length 0/1000
+                
+          .items_new_form.items_new_form_info
+            .items_new_category
+              .items_new_form_style
+                %label カテゴリー
+                %p.items_new_mandatory_fields 必須
+              %div.category_form
+                = f.select :category_id, options_for_select(@categories) ,{ include_blank: "選択してください", class: "category_list" }              
+            .items_new_brand
+              .items_new_form_style
+                %label ブランド
+                %p.items_new_option_fields 任意
+              %div
+                = f.text_field :brand, class: "items_new_form_input brand_input", placeholder: "例）シャネル"
+            .items_new_status
+              .items_new_form_style
+                %label 商品の状態
+                %p.items_new_mandatory_fields 必須
+              = f.select :status, Item.localed_statuses, { include_blank: "選択してください" }, class: "status_select"
+
+          .items_new_form.items_new_form_post
+            配送について
+            .items_new_post.items_new_pay_side
+              .items_new_form_style
+                %label 配送料の負担
+                %p.items_new_mandatory_fields 必須
+              = f.select :pay_side, Item.localed_pay_sides, { include_blank: "選択してください" }, class: "pay_side_select"
+            .items_new_post.items_new_post_way
+              .items_new_form_style
+                %label 配送の方法
+                %p.items_new_mandatory_fields 必須
+              -# = f.select :post_way_id, options_for_select(@post_ways) ,{ include_blank: "選択してください", class: "post_way_setlect" }              
+
+            .items_new_post.items_new_post_prefecture
+              .items_new_form_style
+                %label 発送元の地域
+                %p.items_new_mandatory_fields 必須
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, autofocus: true, class: "items_prefecture_select", include_blank: "選択してください" 
+            .items_new_post.items_new_post_date
+              .items_new_form_style
+                %label 発送までの日数
+                %p.items_new_mandatory_fields 必須
+              = f.select :post_dates, Item.localed_post_dates, { include_blank: "選択してください" }, class: "post_dates_select"
+
+          .items_new_form_price
+            .rate_show
+              %p.price_rate 価格（¥300〜9,999,999)
+              %label
+                %i.fas.fa-question-circle
+                -# = link_to guide_path
+            .input_selling_price
+              .items_new_form_style.price_items_new_form_style
+                %label 販売価格
+                %p.items_new_mandatory_fields 必須
+                %p{:class => "¥mark"} ¥
+                -# = f.text_area method, class: "price_input"
+                %input.price_input{:placeholder => "0", :type => "number"}/
+
+            .price_display.display_fee
+              %div 販売手数料(10%)
+              %span.display_value.display_fee_value ¥1,000
+            .price_display.display_profit
+              %div 販売利益
+              %span.display_value.display_fee_value ¥19,000
+          .items_new_form.items_new_form_submit
+            .items_new_form_btn.items_new_form_submit_btn
+              %button.items_new_btn_submit 出品する
+            .items_new_from_btn.items_new_form_save_btn
+              %button.items_new_btn_save 下書きに保存
+            .items_new_btn_back
+              = link_to "もどる", root_path
+          .items_new_form_notice
+            %p.notice_text
+              禁止されている"行為"および"出品物"を必ずご確認ください。
+              偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。
+              また、出品をもちまして加盟店規約に同意したことになります。
     .items_new_footer
       .items_new_privacy_policy.items_new_footer_link プライバシーポリシー
       .items_new_terms_of_service.items_new_footer_link 利用規約
