@@ -1,5 +1,6 @@
 // 画面サイズ 共通
 .items_new {
+    background-color: lightgray;
     height: 100%;
     .items_new_body {
         height: 100%;
@@ -366,7 +367,6 @@
 // 画面サイズ 大
 @media screen and (min-width: 767px) {
     .items_new {
-        background-color: lightgray;
         .items_new_body {
             margin:  auto;
             width:  700px;
@@ -375,7 +375,7 @@
             "....." 43px
             "header"43px
             "....." 43px
-            "main " 
+            "main " min(2000px)
             "....." 0
             "footer" 220px
             "....." 0;
@@ -387,7 +387,6 @@
                 }
             }
             .items_new_main {
-                background-color: lightgray;
                 height:100%;
                 width: 100%;
                 .items_new_form_list {
@@ -440,14 +439,13 @@
 // 画面サイズ 小
 @media screen and (max-width: 766px) {
     .items_new{
-        background-color: lightgray;
         .items_new_body{
             width:   100%;
             grid-template:
             "....." 10px
             "header"
             "....." 10px
-            "main " 
+            "main " min(1800px)
             "....." 
             "footer" 
             "....."0;
