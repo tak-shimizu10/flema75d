@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   # 購入確認ページに飛ぶ
   namespace :items do
     resources :buys, only: [:index]
-  end
+  end 
+  resources :users, only: :show
 
   # カテゴリ機能に使用
   namespace :api do

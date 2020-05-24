@@ -41,6 +41,29 @@ h2 {
 .content-wrap {
   max-width: 343px;
   margin: 0 auto;
+  a {
+    display: block;
+    text-decoration: none;
+    margin-top: 40px;
+  }
+}
+.no_account-wrap {
+  max-width: 343px;
+  margin: 0 auto;
+  font-size: 14px;
+  a {
+    display: block;
+    width: 100%;
+    line-height: 48px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    background-color: red;
+    border: 1px solid red;
+    text-decoration: none;
+    color: #fff;
+    margin-top: 10px;
+  }
 }
 
 .field {
@@ -139,6 +162,7 @@ h2 {
   text-align: center;
   background-color: #3CCACE;
   border: 1px solid #3CCACE;
+  text-decoration: none;
   color: #fff;
   &__complete {
     font-size: 18px;
