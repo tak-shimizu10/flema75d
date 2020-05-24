@@ -5,24 +5,23 @@
     .items_new_main
       .items_new_form_list
         = form_with(model: @item) do |f|
+
           .items_new_form.items_new_form_photos
             .items_new_form_style
               %label 出品画像
               %p.items_new_mandatory_fields 必須
             %p 最大10枚までアップロードできます
             .photos_input
-              -# = render partial: "items/items_form/photos_form"
               %label
                 = f.fields_for :images do |image|
-                  -# = image.field :src, class: "input_photo_upload"
+                  = image.file_field :image, class: "input_photo_upload"
                 %p.photos_input_text
                   ドラッグアンドドロップ
                   %br>/
                   またはクリックしてファイルをアップロード
-              -#   %input.input_photo_upload{:multipletype => "file"}
-              -#   = image_tag("icon/icon_camera.png", class: "fas fa-camera")
+                = image_tag("icon/icon_camera.png", class: "fas fa-camera")
             .items_new_caution.photos_caution 画像がありません
-
+            
           .items_new_form.items_new_form_item
             .items_new_name
               .items_new_form_style
@@ -44,8 +43,8 @@
               .items_new_form_style
                 %label カテゴリー
                 %p.items_new_mandatory_fields 必須
-              %div.category_form
-                = f.select :category_id, options_for_select(@categories) ,{ include_blank: "選択してください", class: "category_list" }              
+              .category_form
+                = f.select :category_id, options_for_select(@categories) ,{ include_blank: "選択してください" }, class: "category_list"
             .items_new_brand
               .items_new_form_style
                 %label ブランド
@@ -69,8 +68,7 @@
               .items_new_form_style
                 %label 配送の方法
                 %p.items_new_mandatory_fields 必須
-              -# = f.select :post_way_id, options_for_select(@post_ways) ,{ include_blank: "選択してください", class: "post_way_setlect" }              
-
+              -# = f.select :post_way_id, options_for_select(@post_ways) ,{ include_blank: "選択してください", class: "post_way_setlect" }
             .items_new_post.items_new_post_prefecture
               .items_new_form_style
                 %label 発送元の地域
@@ -100,6 +98,7 @@
             .price_display.display_profit
               %div 販売利益
               %span.display_value.display_fee_value ¥19,000
+
           .items_new_form.items_new_form_submit
             .items_new_form_btn.items_new_form_submit_btn
               %button.items_new_btn_submit 出品する
@@ -107,11 +106,13 @@
               %button.items_new_btn_save 下書きに保存
             .items_new_btn_back
               = link_to "もどる", root_path
+
           .items_new_form_notice
             %p.notice_text
               禁止されている"行為"および"出品物"を必ずご確認ください。
               偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。
               また、出品をもちまして加盟店規約に同意したことになります。
+
     .items_new_footer
       .items_new_privacy_policy.items_new_footer_link プライバシーポリシー
       .items_new_terms_of_service.items_new_footer_link 利用規約
