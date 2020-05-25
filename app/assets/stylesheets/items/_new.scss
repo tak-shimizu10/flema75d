@@ -64,18 +64,37 @@
 
                     .items_new_form_photos {
                         .photos_input {
-                            display:   flex;
-                            flex-wrap: wrap;
+                            display: flex;
                             width:     100%;
                             min-height: 200px;
-                            max-height: 300px;
+                            max-height:  auto;
                             #input_photos_field {
+                                display:   flex;
+                                flex-wrap: wrap;
                                 width: 100%;
-                                label {
+                                #input_photo_preview {
+                                    height: 200px;
+                                    display: grid;
+                                    grid-template:
+                                    "...... ......  ......"
+                                    "...... preview ......"100px
+                                    "...... ......  ......"
+                                    "...... remove  ......"20px
+                                    "...... ......  ......"/
+                                        10px auto 10px;
+                                    img{
+                                        grid-area: preview;
+                                    }
+                                    .input_photo_remove{
+                                        grid-area:  remove;
+                                        text-align: center;
+                                    }
+                                }
+                                #input_photo_field {
                                     border: 1px dashed gray;
                                     text-align:        center;
-                                    width:     100%;
-                                    height:    100%;
+                                    cursor: pointer;
+                                    height:   200px;
                                     display:   grid;
                                     grid-template: 
                                     "..... ..... ....."
@@ -88,7 +107,7 @@
                                     .photos_input_text {
                                         grid-area: text;
                                     }
-                                    .input_photo_upload {
+                                    .input_photo_file {
                                         display:   none;
                                     }
                                     img.fa-camera {
@@ -99,20 +118,8 @@
                                     .photos_input_text {
                                         font-size: 12px;
                                     }
-                                    .input_photo_upload {
-                                    }
                                 }
-                            }
-                            .upload_photo {
-                                .input_photo_remove{
-                                    cursor: pointer;
-                                }
-                            }
-                            // #input_photo_file{
-                            //         display: none;
-                            // }
-                            .input_photo_remove{
-                                cursor: pointer;
+                                
                             }
                         }
                     }
