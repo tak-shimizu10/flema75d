@@ -20,4 +20,5 @@ class User < ApplicationRecord
             format: { with: /\A([ァ-ン]|ー)+\z/, message: "全角カナで入力してください" }
 
   has_one :address, dependent: :destroy
+  has_many :cards, dependent: :destroy
 end

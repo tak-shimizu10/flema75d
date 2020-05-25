@@ -15,3 +15,7 @@ ja:
         shortest: 1~2日で発送
         normal: 2~3日で発送
         longest: 4~7日で発送
+      situation:
+        exhibition: 出品中
+        transaction: 取引中
+        purchase: 売却済み

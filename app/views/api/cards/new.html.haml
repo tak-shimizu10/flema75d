@@ -1,0 +1,38 @@
+
+
+.api_cards_new
+  %h2 クレジットカード登録
+  - unless @error.blank?
+    %h2= @error[:message]
+  = form_with url: api_cards_path, method: :post,local: true do |f|
+    %div
+      %h3 カード番号
+      %p 必須
+    = f.text_field :card_id ,placeholder: "14〜16桁の半角数字" , maxlength: 16
+    %ul
+      %li= image_tag 'card_logo/visa.svg'
+      %li= image_tag 'card_logo/jcb.svg'
+      %li= image_tag 'card_logo/master-card.svg'
+      %li= image_tag 'card_logo/saison-card.svg'
+      %li= image_tag 'card_logo/american_express.svg'
+      %li= image_tag 'card_logo/dinersclub.svg'
+      %li= image_tag 'card_logo/discover.svg'
+    %div
+      %h3 有効期限
+      %p 必須
+    != sprintf(f.date_select(:exp_date, order:[:month,:year], 
+                                        use_month_numbers:true, 
+                                        discard_day:true, 
+                                        start_year:Time.now.year-2000, 
+                                        end_year:Time.now.year-2000+10, 
+                                        date_separator:'%s'),'月') + '年'
+    %div
+      %h3 セキュリティコード
+      %p 必須
+    = f.text_field :cvc ,placeholder: "3〜4桁の半角数字" , maxlength: 4
+    = f.submit "追加する"
+
+    %h2 登録済みのカード
+    - current_user.cards.each do |card|
+      = card.card_id
+      = link_to "削除する" , api_card_path(card.id), method: :delete
