@@ -66,7 +66,8 @@
             .field-input
               = f.text_field :phone_number, autofocus: true, class: 'input-default', placeholder: '例)09012345678'
           %p.field-info-text ※本人情報は正しく入力してください。会員登録後、修正するにはお時間をいただく場合があります。
-          %button{ type: "next", class:'btn' } 次へ進む
+          .actions
+            = f.submit "次へ進む", class:'btn'
   .footer
     .footer__lists
       %a{ href: '#' } プライバシーポリシー

@@ -17,12 +17,16 @@
             %p カテゴリー
           %li.brand
             %p ブランド
-        %ul.contents__bottom__right
-          %li.login
-            %p ログイン
-          %li.signup
-            %p 新規会員登録
-
+        - if user_signed_in?
+          %ul.contents__bottom__right
+            %li
+              = link_to "ログアウト", destroy_user_session_path, method: :delete
+              = link_to "マイページ", user_path(current_user)
+        -else
+          %ul.contents__bottom__right
+            %li
+              = link_to "ログイン", new_user_session_path
+              = link_to "新規会員登録", new_user_registration_path
   .top_visual
     .content
       %h2.content__title 人生を変えるフリマアプリ

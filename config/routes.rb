@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     post "addresses", to: "users/registrations#create_address"
   end
 
+  resources :users, only: [:show]
+
   # 購入確認ページに飛ぶ
   namespace :items do
     resources :buys, only: [:new,:create]
