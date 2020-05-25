@@ -90,7 +90,7 @@
               .items_new_form_style
                 %label 発送までの日数
                 %p.items_new_mandatory_fields 必須
-              = f.select :post_dates, Item.localed_post_dates, { include_blank: "選択してください" }, class: "post_dates_select"
+              = f.select :post_date, Item.localed_post_dates, { include_blank: "選択してください" }, class: "post_date_select"
 
           .items_new_form_price
             .rate_show

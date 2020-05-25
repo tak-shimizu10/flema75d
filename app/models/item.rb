@@ -6,8 +6,9 @@ class Item < ApplicationRecord
   has_one :brand
   enum status: { brand_new: 1, like_new: 2, invisible_dirt: 3, a_little_dirt: 4, dirt_condition: 5, bad_condition: 6 }
   enum pay_side: { seller: 1, buyer: 2 }
-  enum post_dates: { shortest: 1, normal: 2, longest: 3 }
-  validates :name, :detail, :status, :pay_side, :prefecture_id, :post_dates, :price, :category_id, presence: true
+  enum post_date: { shortest: 1, normal: 2, longest: 3 }
+  enum situation: { exhibit: 0, during_trading: 1, sold: 2 }
+  validates :name, :detail, :status, :pay_side, :prefecture_id, :post_date, :price, :category_id, presence: true
   class << self
     def localed_statuses
       statuses.keys.map do |k|

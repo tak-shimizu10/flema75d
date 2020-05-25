@@ -49,12 +49,13 @@ ActiveRecord::Schema.define(version: 2020_05_22_235138) do
     t.text "detail", null: false
     t.integer "price", null: false
     t.integer "pay_side", default: 0, null: false
-    t.integer "post_dates", default: 0, null: false
+    t.integer "post_date", default: 0, null: false
     t.integer "status", default: 0, null: false
     t.integer "prefecture_id", default: 0, null: false
     t.integer "brand_id"
     t.integer "category_id"
     t.integer "user_id"
+    t.integer "situation", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
