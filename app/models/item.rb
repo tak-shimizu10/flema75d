@@ -3,12 +3,16 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :images, allow_destroy: true
   belongs_to :user
   belongs_to :category
-  has_one :brand
+  belongs_to :brand, optional: true
+
   enum status: { brand_new: 1, like_new: 2, invisible_dirt: 3, a_little_dirt: 4, dirt_condition: 5, bad_condition: 6 }
   enum pay_side: { seller: 1, buyer: 2 }
   enum post_date: { shortest: 1, normal: 2, longest: 3 }
-  enum situation: { exhibit: 0, during_trading: 1, sold: 2 }
-  validates :name, :detail, :status, :pay_side, :prefecture_id, :post_date, :price, :category_id, presence: true
+  enum situation: { exhibition: 0, transaction: 1, purchase: 2 }, _prefix: true
+
+  validates :images, associated: true
+  validates :name, :detail, :status, :pay_side, :post_date, :price, presence: true
+  validates :prefecture_id, :category_id, numericality: { other_than: 0 }
   class << self
     def localed_statuses
       statuses.keys.map do |k|

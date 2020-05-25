@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   # 購入確認ページに飛ぶ
   namespace :items do
-    resources :buys, only: [:index]
+    resources :buys, only: [:new, :create]
   end
 
   # カテゴリ機能に使用
