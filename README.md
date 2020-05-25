@@ -22,6 +22,7 @@
 - has_many :items, dependent: :destory
 - has_many :likes, dependent: :destroy
 - has_many :addresses, dependent: :destroy
+- has_many :cards, dependent: :destroy
 
 ## Address テーブル
 
@@ -40,18 +41,19 @@
 
 ## items テーブル
 
-| Column        | Type    | Options           |
-| ------------- | ------- | ----------------- |
-| name          | string  | null: false       |
-| detail        | text    | null: false       |
-| price         | integer | null: false       |
-| pay_side      | integer | enum,null: false  |
-| post_date     | integer | enum,null: false  |
-| status        | integer | enum,null: false  |
-| prefecture_id | integer | null_false        |
-| brand_id      | integer |                   |
-| category_id   | integer | foreign_key: true |
-| user_id       | integer | foreign_key: true |
+| Column        | Type    | Options                      |
+| ------------- | ------- | ---------------------------- |
+| name          | string  | null: false                  |
+| detail        | text    | null: false                  |
+| price         | integer | null: false                  |
+| pay_side      | integer | enum,null: false             |
+| post_date     | integer | enum,null: false             |
+| status        | integer | enum,null: false             |
+| prefecture_id | integer | null_false                   |
+| brand_id      | integer |                              |
+| category_id   | integer | foreign_key: true            |
+| user_id       | integer | foreign_key: true            |
+| situation     | integer | enum, null:false, default: 0 |
 
 ### Association
 
@@ -60,7 +62,7 @@
 - has_many :comments, dependent: :destroy
 - belongs_to :category
 - belongs_to :user
-- belongs_to :brand
+- belongs_to :brand, optional:true
 
 ## comments テーブル
 
@@ -118,3 +120,15 @@
 ### Association
 
 - has_many :items
+
+## cards テーブル
+
+| Column      | Type         | Options                  |
+| ----------- | ------------ | ------------------------ |
+| customer_id | string       | null: false              |
+| card_id     | string       | null: false, unique:true |
+| user_id     | integer      | foreign_key:true         |
+
+### Association
+
+- belongs_to :user
