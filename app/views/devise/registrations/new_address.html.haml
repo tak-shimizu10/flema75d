@@ -20,7 +20,7 @@
               = f.label :prefecture, "都道府県"
               %span.form-term.form-term__require 必須
             .field-select
-              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, autofocus: true, class: 'select-default'
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {autofocus: true, include_blank: " 選択してください"}, {class: 'select-default'}
           .field
             .field-label
               = f.label :city, "市町村区"
