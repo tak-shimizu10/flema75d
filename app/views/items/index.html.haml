@@ -1,27 +1,5 @@
 .mains_index
-  .mains_index__header
-    .contents
-      .contents__top
-        %h1.contents__top__left
-          = link_to "/", class: "top_logo"  do
-            = image_tag src="logo/logo.png",class:"top_logo__img"
-        .contents__top__right
-          = form_for "#" do |f|
-            = f.text_field :search,placeholder:"キーワードから探す",class:"search_box"
-            %button
-              .btn
-                = image_tag src="icon/icon-search 1.png",class:"search_icon"
-      .contents__bottom
-        %ul.contents__bottom__left
-          %li.category
-            %p カテゴリー
-          %li.brand
-            %p ブランド
-        %ul.contents__bottom__right
-          %li.login
-            %p ログイン
-          %li.signup
-            %p 新規会員登録
+  = render partial: 'header'
 
   .top_visual
     .content
@@ -149,35 +127,7 @@
     .content
       %h2.content__title だれでもかんたん、人生を変えるフリマアプリ
       %p.content__text 今すぐ無料ダウンロード！
-  .mains_index__footer
-    %ul.contents
-      %li.content
-        %h2.content__head FURIMAについて
-        %ul.lists
-          %li 会社概要（運営会社）
-          %li プライバシーポリシー
-          %li FURIMA利用規約
-          %li ポイントに関する特約
 
-      %li.content
-        %h2.content__head FURIMAを見る
-        %ul
-          %li カテゴリー一覧
-          %li ブランド一覧
+  = render partial: 'items/purchase'
+  = render partial: 'footer'
 
-      %li.content
-        %h2.content__head ヘルプ＆ガイド
-        %ul
-          %li FURIMAガイド
-          %li FURIMAロゴ利用ガイドライン
-          %li お知らせ
-    .footer__logo
-      = image_tag src="logo/logo-white.png",class:"logo_img"
-    %p © FURIMA
-  =link_to "/",class:"purchase" do
-    .purchase__btn
-      .text 出品する
-      = image_tag src="icon/icon_camera.png",class:"image"
-
-%h3
-  %a{ href: '/users/sign_up/' } サインアップ

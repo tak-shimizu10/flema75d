@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root "items#index"
   devise_for :users, controllers: {
             registrations: "users/registrations",
@@ -8,7 +9,17 @@ Rails.application.routes.draw do
     post "addresses", to: "users/registrations#create_address"
   end
   namespace :items do
-    resources :buys, only: [:index]
+    resources :buys, only: [:new,:create]
   end
   resources :items, only: [:index, :new]
+
+ # namespace :api do
+ #   resources :selects,only: [:index]
+ #   resources :cards,only: [:new,:create, :destroy]
+ # end
+
+  resources :accounts, only:[:index,:edit,:show] do
+    get 'logout'
+  end
 end
+
