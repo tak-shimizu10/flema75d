@@ -64,15 +64,16 @@
 
                     .items_new_form_photos {
                         .photos_input {
-                            display: flex;
-                            width:     100%;
+                            width:       100%;
                             min-height: 200px;
                             max-height:  auto;
+                            display:     flex;
                             #input_photos_field {
+                                width:     100%;
                                 display:   flex;
                                 flex-wrap: wrap;
-                                width: 100%;
                                 #input_photo_preview {
+                                    width:    20%;
                                     height: 200px;
                                     display: grid;
                                     grid-template:
@@ -87,14 +88,19 @@
                                     }
                                     .input_photo_remove{
                                         grid-area:  remove;
+                                    }
+                                    .input_photo_remove{
                                         text-align: center;
+                                        cursor:    pointer;
+                                        color:      blue;
                                     }
                                 }
-                                #input_photo_field {
+                                label#input_photo_field {
                                     border: 1px dashed gray;
                                     text-align:        center;
                                     cursor: pointer;
                                     height:   200px;
+                                    flex:    1 1 0%;
                                     display:   grid;
                                     grid-template: 
                                     "..... ..... ....."
