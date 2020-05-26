@@ -2,7 +2,7 @@
   .mypage-nav
     %ul
       %li 
-        = link_to " /accounts",class:"link_page" do
+        = link_to accounts_path,class:"link_page" do
           %p マイページ
       %li 
         %p お知らせ
@@ -40,7 +40,7 @@
       %li 
         %p 発送元・お届け先住所変更
       %li 
-        = link_to "/api/cards/new",class:"link_page" do
+        = link_to new_api_card_path,class:"link_page" do
           %p 支払い方法管理
           
       %li 
@@ -50,5 +50,5 @@
       %li  
         %p 電話番号の確認
       %li  
-        = link_to "/accounts/:account_id/logout",class:"link_page" do
+        = link_to account_logout_path,class:"link_page" do
           %p ログアウト
