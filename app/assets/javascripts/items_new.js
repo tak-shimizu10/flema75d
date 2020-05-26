@@ -60,12 +60,12 @@ $(function () {
         if (countPreview <= 9) (lastFileField).show();
         if ($(".input_photo_file").length == 0) $("#input_photos_field").append(buildFileField(fileIndex[0]));
     });
-    //ドラッグ＆ドロップ
-    // $("#input_photo_field").droppable({
-    //    hoverClass: "hover_photo_file"
-    //     drop: function (e, ui) {
-    //         ui.draggable.clone.appendTo(this);
-    //     },
-
-    // });
+    //価格の表示(販売手数料、販売利益)
+    $("#item_price").keyup( function () {
+        let targetPrice = $(this).val();
+        let calculateFee = Math.floor(targetPrice * 0.1);
+        let calculateProfit = targetPrice - calculateFee;
+        $(".display_fee_value").html(`¥${calculateFee.toLocaleString()}`);
+        $(".display_profit_value").html(`¥${calculateProfit.toLocaleString()}`);
+    });
 });

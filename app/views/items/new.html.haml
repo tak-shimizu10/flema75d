@@ -5,7 +5,6 @@
     .items_new_main
       .items_new_form_list
         = form_with(model: @item) do |f|
-
           .items_new_form.items_new_form_photos
             .items_new_form_style
               %label 出品画像
@@ -17,11 +16,10 @@
                   = @item.images.each_with_in do |image, num|
                     = img_tag image.src.url, data: { index: num }, withd: "100", height: "100"
                 = f.fields_for :images do |image|
-                  %label#input_photo_field{data: {index: "#{image.index}"}}
+                  %label#input_photo_field{data: {index: "#{image.index}"}, accept: ".jpeg jpg .png"}
                     = image.file_field :image, class: "input_photo_file", id: "photo_file_#{image.index}"
                     = image_tag "icon/icon_camera.png", class: "fas fa-camera"
-                    %p.photos_input_text 
-                      ドラッグ＆ドロップ<br>またはクリックしてファイルをアップロード
+                    %p.photos_input_text クリックしてファイルをアップロード
                     - if @item.persisted?
                       = image.check_box :_destroy, data:{ index: image.index }, class: "hidden_destroy"
                 -if @item.persisted?
@@ -104,16 +102,15 @@
                 = f.number_field :price, class: "price_input", min: "300", placeholder: "0"
             .price_display.display_fee
               %div 販売手数料(10%)
-              %span.display_value.display_fee_value ¥1,000
+              %span.display_value.display_fee_value 
             .price_display.display_profit
               %div 販売利益
-              %span.display_value.display_fee_value ¥19,000
-
+              %span.display_value.display_profit_value
           .items_new_form.items_new_form_submit
             .items_new_form_btn.items_new_form_submit_btn
               %button{type: "submit", class: "items_new_btn_submit"} 出品する
-            .items_new_from_btn.items_new_form_save_btn
-              %button.items_new_btn_save 下書きに保存
+            -# .items_new_from_btn.items_new_form_save_btn
+            -#   %button.items_new_btn_save 下書きに保存
             .items_new_btn_back
               = link_to "もどる", root_path
 
