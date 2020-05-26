@@ -43,7 +43,9 @@ $(function () {
             $("#input_photos_field").append(buildFileField(fileIndex[0]));
             fileIndex.shift();
             fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
-            if ($(".input_photo_file").length == 11) $("#input_photo_field").hide();
+            const countPreview = $("#input_photos_field #input_photo_preview").length;
+            
+            if (countPreview >= 10) $("label").hide();
         }
     });
     //削除ボタンクリックで選択されたpreviewとfilefieldの削除
@@ -51,9 +53,12 @@ $(function () {
 
         const targetIndex = $(this).parent().data("index");
         const hiddenCheckbox = $(`input[data-index= "${targetIndex}"].hidden_destroy`);
+        const countPreview = $("#input_photos_field #input_photo_preview").length - 1;
+        const lastFileField = $("#input_photos_field #input_photo_field").last();
         $(this).parent().remove();
         $(`label[data-index= "${targetIndex}"]`).remove();
-
+        console.log(lastFileField);
+        if (countPreview <= 9) (lastFileField).show();
         if ($(".input_photo_file").length == 0) $("#input_photos_field").append(buildFileField(fileIndex[0]));
     });
 });
