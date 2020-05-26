@@ -22,10 +22,8 @@ $(function () {
     }
 
     let fileIndex = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
     lastIndex = $(".input_photo_file_group:last").data("index");
     fileIndex.splice(0, lastIndex);
-
     $(".hidden_destroy").hide();
 
     //ファイル選択時新しいpreview, file_fieldを生成
@@ -49,16 +47,25 @@ $(function () {
         }
     });
     //削除ボタンクリックで選択されたpreviewとfilefieldの削除
-    $("#input_photos_field").on("click", ".input_photo_remove", function () {
-
+    $("#input_photos_field").on("click", ".input_photo_remove", function (e) {
+        console.log(e);
         const targetIndex = $(this).parent().data("index");
         const hiddenCheckbox = $(`input[data-index= "${targetIndex}"].hidden_destroy`);
         const countPreview = $("#input_photos_field #input_photo_preview").length - 1;
         const lastFileField = $("#input_photos_field #input_photo_field").last();
+
         $(this).parent().remove();
         $(`label[data-index= "${targetIndex}"]`).remove();
-        console.log(lastFileField);
+
         if (countPreview <= 9) (lastFileField).show();
         if ($(".input_photo_file").length == 0) $("#input_photos_field").append(buildFileField(fileIndex[0]));
     });
+    //ドラッグ＆ドロップ
+    // $("#input_photo_field").droppable({
+    //    hoverClass: "hover_photo_file"
+    //     drop: function (e, ui) {
+    //         ui.draggable.clone.appendTo(this);
+    //     },
+
+    // });
 });

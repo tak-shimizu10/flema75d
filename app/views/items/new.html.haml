@@ -22,7 +22,6 @@
                     = image_tag "icon/icon_camera.png", class: "fas fa-camera"
                     %p.photos_input_text 
                       ドラッグ＆ドロップ<br>またはクリックしてファイルをアップロード
-                    -# %span.input_photo_remove{id: "photo_remove_#{image.index}"} 削除
                     - if @item.persisted?
                       = image.check_box :_destroy, data:{ index: image.index }, class: "hidden_destroy"
                 -if @item.persisted?
@@ -112,7 +111,7 @@
 
           .items_new_form.items_new_form_submit
             .items_new_form_btn.items_new_form_submit_btn
-              %button.items_new_btn_submit 出品する
+              %button{type: "submit", class: "items_new_btn_submit"} 出品する
             .items_new_from_btn.items_new_form_save_btn
               %button.items_new_btn_save 下書きに保存
             .items_new_btn_back

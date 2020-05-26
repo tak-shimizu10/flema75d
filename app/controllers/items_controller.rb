@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, except: [:index, :new, :create]
+  include ItemsHelper
 
   def index
   end
@@ -11,15 +11,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    # binding.pry
-    @item = Item.new(item_params)
-    brands = Brand.find_or_create_by(name: params[:item][:brand])
-    @item.update!(brand_id: brands.id)
-    if @item.save
-      redirect_to root_path
-    else
-      render :new
-    end
+    item_params_present_create
   end
 
   def show
@@ -27,7 +19,6 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to root_path
     else
       render :edit
     end
@@ -39,7 +30,20 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:id, :name, :detail, :price, :status, :pay_side, :post_date, :brand_id, :category_id, :prefecture_id, images_attributes: [:image]).merge(user_id: current_user.id)
   end
 
-  def set_item
-    @item = Item.find(params[:id])
+  def item_params_present_create
+    if item_params.require(:images_attributes).present?
+      @item = Item.new(item_params)
+      brands = Brand.find_or_create_by(name: params[:item][:brand])
+      @item.update!(brand_id: brands.id)
+      if @item.save
+        respond_to do |format|
+          format.js { render ajax_redirect_to(root_path) }
+        end
+      else
+        render :new
+      end
+    else
+      render :new
+    end
   end
 end

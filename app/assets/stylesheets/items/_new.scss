@@ -125,6 +125,10 @@
                                         font-size: 12px;
                                     }
                                 }
+                                .hover_photo_file{
+                                    background-color: blue;
+                                    opacity:             0.5;
+                                }
                                 
                             }
                         }
@@ -372,6 +376,7 @@
                         height: 48px;
                     }
                     button {
+                        cursor:    pointer;
                         text-align: center;
                         font-weight:  bold;
                         font-size:    17px;
