@@ -68,4 +68,24 @@ $(function () {
         $(".display_fee_value").html(`¥${calculateFee.toLocaleString()}`);
         $(".display_profit_value").html(`¥${calculateProfit.toLocaleString()}`);
     });
+    //
+    //ドラッグ＆ドロップ操作
+    $("#input_photo_field").on("dragover", function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+        $(this).addClass("hover_photo_file");
+    });
+    $("#input_photo_field").on("dragleave", function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+        $(this).removeClass("hover_photo_file");
+    });
+    $(document).on("dragover", function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+    });
+    $(document).on("drop", function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+    });
 });
