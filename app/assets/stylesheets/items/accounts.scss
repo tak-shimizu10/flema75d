@@ -101,6 +101,7 @@
             &__left{
               display: inline-block;
               font-size: 14px;
+              
             }
             &__right{
               margin: 0 0 0 16px;
@@ -126,6 +127,9 @@
           background: #eee;
           font-size: 0;
           display: flex;
+          &__left{
+            background: #fff;
+          }
           li{
             width: 50%;
             height: 72px;
@@ -146,7 +150,6 @@
         }
         .tab-contents{
           display: block;
-
           &__left{
             li{
               padding: 100px 0;
@@ -158,21 +161,6 @@
               color: #ccc;
             
             }
-
-          }
-        }
-      }
-      .tab_contents{
-        .list{
-          li{
-            padding: 160px 0 60px;
-            background: url(/jp/assets/img/common/common/logo-gray-icon.svg?36683326);
-            background-repeat: no-repeat;
-            background-position: center 40px;
-            background-size: 78px 85px;
-            text-align: center;
-            font-size: 16px;
-            color: #ccc;
           }
         }
       }
