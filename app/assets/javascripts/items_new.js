@@ -85,12 +85,12 @@ $(function () {
     });
 
     //ドラッグ＆ドロップ操作
-    $("#input_photo_field").on("dragover", function (e) {
+    $(".photos_input").on("dragover", "#input_photos_field", function (e) {
         e.stopPropagation();
         e.preventDefault();
         $(this).addClass("hover_photo_file");
     });
-    $("#input_photo_field").on("dragleave", function (e) {
+    $(".photos_input").on("dragleave", "#input_photos_field", function (e) {
         e.stopPropagation();
         e.preventDefault();
         $(this).removeClass("hover_photo_file");
