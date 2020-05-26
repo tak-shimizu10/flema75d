@@ -34,6 +34,7 @@
                 %label 商品名
                 %p.items_new_mandatory_fields 必須
               = f.text_field :name, class: "items_new_form_input items_new_form_name_input", placeholder: "４０文字まで", maxlength: "40", required: true
+              .items_new_caution.name_caution 入力してください
             .items_new_detail
               .items_new_form_style
                 %label 商品の説明
@@ -42,8 +43,8 @@
                 placeholder: "商品の説明(1000文字以内)\r\n(色、素材、重さ、定価、注意点...)\r\n例)2010年ごろに１万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", 
                 maxlength: "1000", cols: "40", required: true
               .notice_text
-                .items_new_caution#detail_caution 入力してください
                 .input_text_length 0/1000
+              .items_new_caution#detail_caution 入力してください
                 
           .items_new_form.items_new_form_info
             .items_new_category
@@ -101,7 +102,7 @@
               .items_new_form_style.price_items_new_form_style
                 %label 販売価格
                 %p.items_new_mandatory_fields 必須
-                %p{:class => "¥mark"} ¥
+                %p{ class: "¥mark" } ¥
                 = f.number_field :price, class: "price_input", min: "300", max: "9999999", placeholder: "0", required: true
               .items_new_caution#input_price_caution 入力してください
             .price_display.display_fee

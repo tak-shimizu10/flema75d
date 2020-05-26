@@ -370,11 +370,9 @@
                         }
                     }
                     .items_new_caution {
+                        text-align: end;
                         display:   none;
                         color:    red;
-                    }
-                    #input_price_caution{
-                        text-align: end;
                     }
                     select {
                         background-color: white;

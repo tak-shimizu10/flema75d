@@ -16,9 +16,17 @@ $(function () {
                 name= "item[images_attributes][${index}][image]"
                 id= "item_images_attributes_${index}_image photo_file_${index}"><br>
                 <img class= "fas fa-camera" src= "/assets/icon/icon_camera-24c5a3dec3f777b383180b053077a49d0416a4137a1c541d7dd3f5ce93194dee.png">
-                <p class= "photos_input_text">ドラッグ＆ドロップ<br>またはクリックしてファイルをアップロード</p>
+                <p class= "photos_input_text">クリックしてファイルをアップロード</p>
             </label>`;
         return html;
+    }
+
+    //エラーメッセージの表示・非表示の関数宣言
+    function showCautionMessage(scopeClass) {
+        scopeClass.find(".items_new_caution").show();
+    }
+    function hideCautionMessage(scopeClass) {
+        scopeClass.find(".items_new_caution").hide();
     }
 
     let fileIndex = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -44,11 +52,13 @@ $(function () {
             const countPreview = $("#input_photos_field #input_photo_preview").length;
             
             if (countPreview >= 10) $("label").hide();
+            if (countPreview >= 1) hideCautionMessage($(".items_new_form_photos"));
         }
     });
+
     //削除ボタンクリックで選択されたpreviewとfilefieldの削除
     $("#input_photos_field").on("click", ".input_photo_remove", function (e) {
-        console.log(e);
+
         const targetIndex = $(this).parent().data("index");
         const hiddenCheckbox = $(`input[data-index= "${targetIndex}"].hidden_destroy`);
         const countPreview = $("#input_photos_field #input_photo_preview").length - 1;
@@ -57,18 +67,23 @@ $(function () {
         $(this).parent().remove();
         $(`label[data-index= "${targetIndex}"]`).remove();
 
+        if (countPreview == 0) showCautionMessage($(".items_new_form_photos"));
         if (countPreview <= 9) (lastFileField).show();
-        if ($(".input_photo_file").length == 0) $("#input_photos_field").append(buildFileField(fileIndex[0]));
+        if ($(".input_photo_file").length == 0)
+            $("#input_photos_field").append(buildFileField(fileIndex[0]));
+        numPreview($("#input_photos_field #input_photo_preview"));
     });
+
     //価格の表示(販売手数料、販売利益)
-    $("#item_price").keyup( function () {
+    $("#item_price").on("keyup change", function () {
         let targetPrice = $(this).val();
+        if (targetPrice >= 10000000) $(this).val(9999999);
         let calculateFee = Math.floor(targetPrice * 0.1);
         let calculateProfit = targetPrice - calculateFee;
         $(".display_fee_value").html(`¥${calculateFee.toLocaleString()}`);
         $(".display_profit_value").html(`¥${calculateProfit.toLocaleString()}`);
     });
-    //
+
     //ドラッグ＆ドロップ操作
     $("#input_photo_field").on("dragover", function (e) {
         e.stopPropagation();
@@ -80,12 +95,66 @@ $(function () {
         e.preventDefault();
         $(this).removeClass("hover_photo_file");
     });
-    $(document).on("dragover", function (e) {
+    $(document).on("dragover drop", function (e) {
         e.stopPropagation();
         e.preventDefault();
     });
-    $(document).on("drop", function (e) {
-        e.stopPropagation();
-        e.preventDefault();
+
+    //エラーメッセージ表示・非表示
+    $("form").on("keyup", "#item_name", function () {
+        let inputNameLength = $(this).context.value.length;
+        if (inputNameLength > 0) {
+            hideCautionMessage($(".items_new_name"));
+        } else {
+            showCautionMessage($(".items_new_name"));
+        };
+    });
+    $("form").on("keyup", "#item_detail", function () {
+        let inputDetailLength = $(this).context.value.length;
+        if (inputDetailLength > 0) {
+            hideCautionMessage($(".items_new_detail"));
+        } else {
+            showCautionMessage($(".items_new_detail"));
+        };
+    });
+    $("form").on("change", "#item_status", function () {
+        let selectStatus = this.selectedIndex;
+        if (selectStatus > 0) {
+            hideCautionMessage($(".items_new_status"));
+        } else {
+            showCautionMessage($(".items_new_status"));
+        };
+    });
+    $("form").on("change", "#item_pay_side", function () {
+        let selectPaySide = this.selectedIndex;
+        if (selectPaySide > 0) {
+            hideCautionMessage($(".items_new_pay_side"));
+        } else {
+            showCautionMessage($(".items_new_pay_side"));
+        };
+    });
+    $("form").on("change", "#item_prefecture_id", function () {
+        let selectPrefecture = this.selectedIndex;
+        if (selectPrefecture > 0) {
+            hideCautionMessage($(".items_new_post_prefecture"));
+        } else {
+            showCautionMessage($(".items_new_post_prefecture"));
+        };
+    });
+    $("form").on("change", "#item_post_date", function () {
+        let selectPostDate = this.selectedIndex;
+        if (selectPostDate > 0) {
+            hideCautionMessage($(".items_new_post_date"));
+        } else {
+            showCautionMessage($(".items_new_post_date"));
+        };
+    });
+    $("form").on("keyup", "#item_price", function () {
+        let inputPriceLength = $(this).context.value.length;
+        if (inputPriceLength > 0) {
+            hideCautionMessage($(".items_new_form_price"));
+        } else {
+            showCautionMessage($(".items_new_form_price"));
+        };
     });
 });
