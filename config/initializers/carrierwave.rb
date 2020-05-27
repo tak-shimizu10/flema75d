@@ -1,3 +1,4 @@
+
 require "carrierwave/storage/abstract"
 require "carrierwave/storage/file"
 require "carrierwave/storage/fog"
@@ -14,7 +15,7 @@ CarrierWave.configure do |config|
       aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
       region: "ap-northeast-1",
     }
-    config.fog_directory = "flema75d_bucket"
-    config.asset_host = "https://s3-ap-northeast-1.amazonaws.com/flema75d_bucket"
+    config.fog_directory = "flema75d"
+    config.asset_host = "https://s3-ap-northeast-1.amazonaws.com/flema75d"
   end
 end
