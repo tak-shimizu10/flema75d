@@ -108,56 +108,49 @@ $(function () {
 
     //エラーメッセージ表示・非表示
     $("form").on("keyup", "#item_name", function () {
-        let inputNameLength = $(this).context.value.length;
-        if (inputNameLength > 0) {
+        if ($(this).context.value.length > 0) {
             hideCautionMessage($(".items_new_name"));
         } else {
             showCautionMessage($(".items_new_name"));
         };
     });
     $("form").on("keyup", "#item_detail", function () {
-        let inputDetailLength = $(this).context.value.length;
-        if (inputDetailLength > 0) {
+        if ($(this).context.value.length > 0) {
             hideCautionMessage($(".items_new_detail"));
         } else {
             showCautionMessage($(".items_new_detail"));
         };
     });
     $("form").on("change", "#item_status", function () {
-        let selectStatus = this.selectedIndex;
-        if (selectStatus > 0) {
+        if (this.selectedIndex > 0) {
             hideCautionMessage($(".items_new_status"));
         } else {
             showCautionMessage($(".items_new_status"));
         };
     });
     $("form").on("change", "#item_pay_side", function () {
-        let selectPaySide = this.selectedIndex;
-        if (selectPaySide > 0) {
+        if (this.selectedIndex > 0) {
             hideCautionMessage($(".items_new_pay_side"));
         } else {
             showCautionMessage($(".items_new_pay_side"));
         };
     });
     $("form").on("change", "#item_prefecture_id", function () {
-        let selectPrefecture = this.selectedIndex;
-        if (selectPrefecture > 0) {
+        if (this.selectedIndex > 0) {
             hideCautionMessage($(".items_new_post_prefecture"));
         } else {
             showCautionMessage($(".items_new_post_prefecture"));
         };
     });
     $("form").on("change", "#item_post_date", function () {
-        let selectPostDate = this.selectedIndex;
-        if (selectPostDate > 0) {
+        if (this.selectedIndex > 0) {
             hideCautionMessage($(".items_new_post_date"));
         } else {
             showCautionMessage($(".items_new_post_date"));
         };
     });
     $("form").on("keyup", "#item_price", function () {
-        let inputPriceLength = $(this).context.value.length;
-        if (inputPriceLength > 0) {
+        if ($(this).context.value.length > 0) {
             hideCautionMessage($(".items_new_form_price"));
         } else {
             showCautionMessage($(".items_new_form_price"));
