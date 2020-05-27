@@ -1,7 +1,13 @@
 // 画面サイズ 共通
 .items_new {
+    background-color: lightgray;
+    display: grid;
+    grid-template:
+    "body"1fr;
     .items_new_body {
-        display: grid;
+        grid-area: body;
+        height:    100%;
+        display:   grid;
         .items_new_header {
             grid-area: header;
         }
@@ -12,344 +18,394 @@
             grid-area: footer;
         }
         .items_new_main {
+            display: grid;
+            grid-template:
+                "list"1fr;
             .items_new_form_list {
-                display: grid;
-                grid-template: 
-                "....."3px
-                "photos"
-                "....."3px
-                "item "
-                "....."3px
-                "detail"
-                "....."3px
-                "post "
-                "....."3px
-                "price"
-                "....."3px
-                "submit"
-                "notice"
-                ".....";
-                .items_new_form_photos {
-                    grid-area: photos;
-                }
-                .items_new_form_item {
-                    grid-area: item;
-                }
-                .items_new_form_detail {
-                    grid-area: detail;
-                }
-                .items_new_form_post {
-                    grid-area: post;
-                }
-                .items_new_form_price {
-                    grid-area: price;
-                }
-                .items_new_form_submit {
-                    grid-area: submit;
-                }
-                .items_new_form_notice {
-                    grid-area: notice;
-                }
-
-                .items_new_form_photos {
-                    .photos_input {
-                        border: 1px dashed gray;
-                        display:   flex;
-                        flex-wrap: wrap;
-                        justify-content:   center;
-                        text-align:        center;
-                        width:   100%;
-                        height: 250px;
-                        label {
-                            cursor: pointer;
-                            width:   100%;
-                            height:  100%;
-                            display: grid;
-                            grid-template: 
-                            "..... ..... ....."
-                            "..... fas   ....."
-                            "..... text  ....."
-                            "..... ..... ....."/
-                            auto  auto auto;
-                            .input_photo_upload {
-                                display: none;
-                            }
-                            .fa-camera {
-                                grid-area: fas;
-                                font-size: 24px;
-                            }
-                            .photos_input_text {
-                                grid-area: text;
-                                text-align: center;
-                                font-size: 12px;
-                            }
-                        }
-                    }
-                }
-
-                .items_new_form_item {
-                    display: grid;
-                    grid-template:
-                    "...... ...... ......"
-                    "name   name   name  "
-                    "...... ...... ......"10px
-                    "describe describe describe"
-                    "...... ...... ......";
-                    .items_new_name {
-                        grid-area: name;
-                    }
-                    .items_new_describe {
-                        grid-area: describe;
-                    }
-                    .items_new_name {
-                        .items_new_form_input {
-                            border-radius: 5px;
-                            padding: 0 16px;
-                            width:  calc(100% - 32px);
-                            height: 48px;
-                        }
-                    }
-                    .items_new_describe {
-                        .items_new_form_text_area {
-                            resize:       vertical;
-                            vertical-align: middle;
-                            overflow:       scroll;
-                            width:   100%;
-                            height: 250px;
-                        }
-                        .notice_text {
-                            display: flex;
-                            text-align: right;
-                            .input_text_length{
-                                font-size:    12px;
-                                color: lightgray;
-                            }
-                        }
-                    }
-                }
-
-                .items_new_form_detail {
-                    display: grid;
-                    grid-template:
-                    "...... ...... ......"
-                    "category category category"
-                    "...... ...... ......"20px
-                    "brand  brand  brand "
-                    "...... ...... ......"20px
-                    "status status status"
-                    "...... ...... ......";
-                    .items_new_category {
-                        grid-area: category;
-                    }
-                    .items_new_brand {
-                        grid-area: brand;
-                    }
-                    .items_new_status {
-                        grid-area: status;
-                    }
-                    .items_new_brand {
-                        .items_new_form_input {
-                            border-radius: 5px;
-                            padding: 0 16px;
-                            width:  calc(100% - 32px);
-                            height: 48px;
-                        }
-                    }
-                }
-
-                .items_new_form_post {
-                    display: grid;
-                    grid-template:
-                    "..... ..... ....."
-                    "pay   pay   pay  "
-                    "..... ..... ....."20px
-                    "way   way   way  "
-                    "..... ..... ....."
-                    "pref  pref  pref "
-                    "..... ..... ....."20px
-                    "date  date  date "
-                    "..... ..... .....";
-                    .items_new_pay_side {
-                        grid-area: pay;
-                    }
-                    .items_new_post_way {
-                        grid-area: way;
-                        margin:10px 0 0 10px;
-                        display:  none;
-                    }
-                    .items_new_post_prefecture {
-                        grid-area: pref;
-                    }
-                    .items_new_post_date {
-                        grid-area: date;
-                    }
-                }
-
-                .items_new_form_price {
+                grid-area:   list;
+                form {
                     display: grid;
                     grid-template: 
-                    "..... ..... ....."
-                    "rate  rate  rate "
-                    "..... ..... ....."20px
-                    "form  form  form "
-                    "..... ..... ....."20px
-                    "fee   fee   fee  "
-                    "..... ..... ....."
-                    "profit profit profit";
-                    .rate_show {
-                        grid-area: rate;
+                    "....."3px
+                    "photos"minmax(300px, auto)
+                    "....."3px
+                    "item "minmax(300px, auto)
+                    "....."3px
+                    "info "minmax(300px, auto)
+                    "....."3px
+                    "post "minmax(300px, auto)
+                    "....."3px
+                    "price"min(300px)
+                    "....."3px
+                    "submit"200px
+                    "notice"50px
+                    ".....";
+                    .items_new_form_photos {
+                        grid-area: photos;
                     }
-                    .display_fee {
-                        grid-area: fee;
+                    .items_new_form_item {
+                        grid-area:   item;
                     }
-                    .display_profit {
-                        grid-area: profit;
+                    .items_new_form_info {
+                        grid-area:   info;
                     }
-                    .input_selling_price {
-                        grid-area: form;
+                    .items_new_form_post {
+                        grid-area:   post;
                     }
-                    .rate_show {
-                        text-align: center;
-                        display: flex;
-                        .price_rate {
-                            color:   gray;
-                            font-size: 12px;
-                            margin:0 5px 0 0;
-                        }
-                        label {
-                            .fas {
-                                color:lightblue;
-                            }
-                            a {
-                                display: none;
-                            }
-                        }
+                    .items_new_form_price {
+                        grid-area:  price;
                     }
-                    .input_selling_price {
-                        .price_items_new_form_style{
-                            display: grid;
-                            grid-template: 
-                            "label fields ..... mark input"/
-                            auto auto 1fr auto 285px;
-                            label {
-                                grid-area:  label;
-                            }
-                            .mandatory_fields {
-                                grid-area: fields;
-                            }
-                            .¥mark {
-                                grid-area:  mark;
-                            }
-                            .price_input {
-                                grid-area: input;
-                                text-align:  end;
-                            }
-                        }
-                    }
-                    .price_display {
-                        display: flex;
-                        justify-content: space-between;
-                        line-height: 40px;
-                        height: 40px;
-                    }
-                    .display_profit {
-                        border-top: 1px solid lightgray;
-                    }
-                }
-
-                .items_new_form_submit {
-                    display: grid;
-                    .items_new_form_submit_btn {
+                    .items_new_form_submit {
                         grid-area: submit;
                     }
-                    .items_new_form_save_btn {
-                        grid-area: save;
+                    .items_new_form_notice {
+                        grid-area: notice;
                     }
-                    .items_new_btn_back {
-                        grid-area: back;
-                    }
-                    .items_new_btn_submit {
-                        background-color: red;
-                        color: white;
-                    }
-                    .items_new_btn_save {
-                        background-color: lightgray;
-                    }
-                    .items_new_btn_back {
-                        text-align: center;
-                        a{
-                            color: blue;
-                            text-decoration: none;
+
+                    .items_new_form_photos {
+                        .photos_input {
+                            width:       100%;
+                            min-height: 200px;
+                            max-height:  auto;
+                            #input_photos_field {
+                                width:     100%;
+                                display:   flex;
+                                flex-wrap: wrap;
+                                #input_photo_preview {
+                                    width:    20%;
+                                    height: 200px;
+                                    display: grid;
+                                    grid-template:
+                                    "...... ......  ......"
+                                    "...... preview ......"100px
+                                    "...... ......  ......"
+                                    "...... remove  ......"20px
+                                    "...... ......  ......"/
+                                        10px auto 10px;
+                                    img{
+                                        grid-area: preview;
+                                    }
+                                    .input_photo_remove{
+                                        grid-area:  remove;
+                                    }
+                                    .input_photo_remove{
+                                        text-align: center;
+                                        cursor:    pointer;
+                                        color:      blue;
+                                    }
+                                }
+                                label#input_photo_field {
+                                    border: 1px dashed gray;
+                                    text-align:        center;
+                                    cursor: pointer;
+                                    height:   200px;
+                                    flex:    1 1 0%;
+                                    display:   grid;
+                                    grid-template: 
+                                    "..... ..... ....."
+                                    "..... fas   ....."
+                                    "..... text  ....."
+                                    "..... ..... .....";
+                                    .fa-camera {
+                                        grid-area:  fas;
+                                    }
+                                    .photos_input_text {
+                                        grid-area: text;
+                                    }
+                                    .input_photo_file {
+                                        display:   none;
+                                    }
+                                    img.fa-camera {
+                                        background-color: black;
+                                        margin:  auto;
+                                        width:   24px;
+                                    }
+                                    .photos_input_text {
+                                        font-size: 12px;
+                                    }
+                                    &:hover{
+                                        background-color: lightgray;
+                                        opacity:                  0.5;
+                                    }
+                                }
+                                .hover_photo_file{
+                                    background-color: gray;
+                                    opacity:             0.5;
+                                }
+                                
+                            }
                         }
                     }
-                }
 
-                .items_new_form_notice {
-                    background-color: white;
-                    .notice_text{
-                        margin:0 40px 64px;
-                        font-size: 12px;
+                    .items_new_form_item {
+                        display: grid;
+                        grid-template:
+                        "...... ...... ......"
+                        "name   name   name  "
+                        "...... ...... ......"10px
+                        "detail detail detail"
+                        "...... ...... ......";
+                        .items_new_name {
+                            grid-area: name;
+                        }
+                        .items_new_detail {
+                            grid-area: detail;
+                        }
+                        .items_new_name {
+                            .items_new_form_input {
+                                border-radius: 5px;
+                                padding:    0 16px;
+                                width:  100%;
+                                height: 48px;
+                            }
+                        }
+                        .items_new_detail {
+                            .items_new_form_text_area {
+                                resize:       vertical;
+                                vertical-align: middle;
+                                overflow:       scroll;
+                                width:   100%;
+                                min-height: 250px;
+                            }
+                            .notice_text {
+                                display: flex;
+                                text-align: right;
+                                .input_text_length{
+                                    font-size:    12px;
+                                    color: lightgray;
+                                }
+                            }
+                        }
                     }
-                }
 
-                .items_new_form {
-                    background-color: white;
-                }
-                .items_new_form_price {
-                    background-color: white;
-                    padding: 40px 40px 0;
-                }
-                .items_new_form_style {
-                    display: flex;
-                    label {
-                        font-weight: bold;
-                        margin: 0 5px 0 0;
+                    .items_new_form_info {
+                        display: grid;
+                        grid-template:
+                        "...... ...... ......"
+                        "category category category"
+                        "...... ...... ......"20px
+                        "brand  brand  brand "
+                        "...... ...... ......"20px
+                        "status status status"
+                        "...... ...... ......";
+                        .items_new_category {
+                            grid-area: category;
+                        }
+                        .items_new_brand {
+                            grid-area: brand;
+                        }
+                        .items_new_status {
+                            grid-area: status;
+                        }
+                        .items_new_brand {
+                            .items_new_form_input {
+                                border-radius: 5px;
+                                padding:    0 16px;
+                                width:  100%;
+                                height: 48px;
+                            }
+                        }
                     }
-                    .items_new_mandatory_fields {
-                        background-color: red;
-                        border-radius: 5px;
-                        flex-wrap:  nowrap;
-                        color:     white;
+
+                    .items_new_form_post {
+                        display: grid;
+                        grid-template:
+                        "..... ..... ....."
+                        "pay   pay   pay  "
+                        "..... ..... ....."20px
+                        "way   way   way  "
+                        "..... ..... ....."
+                        "pref  pref  pref "
+                        "..... ..... ....."20px
+                        "date  date  date "
+                        "..... ..... .....";
+                        .items_new_pay_side {
+                            grid-area: pay;
+                        }
+                        .items_new_post_way {
+                            grid-area: way;
+                            margin:10px 0 0 10px;
+                            display:  none;
+                        }
+                        .items_new_post_prefecture {
+                            grid-area: pref;
+                        }
+                        .items_new_post_date {
+                            grid-area: date;
+                        }
                     }
-                    .items_new_option_fields {
-                        background-color: lightgray;
-                        color: white;
+
+                    .items_new_form_price {
+                        display: grid;
+                        grid-template: 
+                        "..... ..... ....."
+                        "rate  rate  rate "
+                        "..... ..... ....."20px
+                        "form  form  form "
+                        "..... ..... ....."20px
+                        "fee   fee   fee  "
+                        "..... ..... ....."
+                        "profit profit profit";
+                        .rate_show {
+                            grid-area: rate;
+                        }
+                        .display_fee {
+                            grid-area: fee;
+                        }
+                        .display_profit {
+                            grid-area: profit;
+                        }
+                        .input_selling_price {
+                            grid-area: form;
+                        }
+                        .rate_show {
+                            text-align: center;
+                            display: flex;
+                            .price_rate {
+                                color:   gray;
+                                font-size: 12px;
+                                margin:0 5px 0 0;
+                            }
+                            label {
+                                .fas {
+                                    color:lightblue;
+                                }
+                                a {
+                                    display: none;
+                                }
+                            }
+                        }
+                        .input_selling_price {
+                            .price_items_new_form_style{
+                                display: grid;
+                                grid-template: 
+                                "label fields ..... mark input"/
+                                auto auto 1fr auto 285px;
+                                label {
+                                    grid-area:  label;
+                                }
+                                .mandatory_fields {
+                                    grid-area: fields;
+                                }
+                                .¥mark {
+                                    grid-area:  mark;
+                                }
+                                .price_input {
+                                    grid-area: input;
+                                    text-align:  end;
+                                    height: 30px;
+                                }
+                            }
+                        }
+                        .price_display {
+                            display: flex;
+                            justify-content: space-between;
+                            line-height: 40px;
+                            height: 40px;
+                        }
+                        .display_profit {
+                            border-top: 1px solid lightgray;
+                        }
                     }
-                }
-                .items_new_caution {
-                    display: none;
-                    color:  red;
-                }
-                select {
-                    background-color: white;
-                    width:  100%;
-                    height: 48px;
-                }
-                button {
-                    text-align: center;
-                    font-weight:  bold;
-                    font-size:    17px;
-                    width:  100%;
-                    height: 48px;
+
+                    .items_new_form_submit {
+                        display: grid;
+                        .items_new_form_submit_btn {
+                            grid-area: submit;
+                        }
+                        .items_new_form_save_btn {
+                            grid-area: save;
+                        }
+                        .items_new_btn_back {
+                            grid-area: back;
+                        }
+                        .items_new_btn_submit {
+                            background-color: red;
+                            color: white;
+                        }
+                        .items_new_btn_save {
+                            background-color: lightgray;
+                        }
+                        .items_new_btn_back {
+                            text-align: center;
+                            a{
+                                color: blue;
+                                text-decoration: none;
+                            }
+                        }
+                    }
+
+                    .items_new_form_notice {
+                        background-color: white;
+                        .notice_text{
+                            margin:0 40px 64px;
+                            font-size: 12px;
+                        }
+                    }
+
+                    .items_new_form {
+                        background-color: white;
+                    }
+                    .items_new_form_price {
+                        background-color: white;
+                        padding: 40px 40px 0;
+                    }
+                    .items_new_form_style {
+                        display: flex;
+                        label {
+                            font-weight: bold;
+                            margin: 0 5px 0 0;
+                            flex-wrap: nowrap;
+                        }
+                        .items_new_mandatory_fields {
+                            background-color: red;
+                            border-radius: 5px;
+                            flex-wrap:  nowrap;
+                            color:     white;
+                            max-width: 50px;
+                        }
+                        .items_new_option_fields {
+                            background-color: lightgray;
+                            color: white;
+                        }
+                    }
+                    .items_new_caution {
+                        text-align: end;
+                        display:   none;
+                        color:    red;
+                    }
+                    select {
+                        background-color: white;
+                        width:  100%;
+                        height: 48px;
+                    }
+                    button {
+                        cursor:    pointer;
+                        text-align: center;
+                        font-weight:  bold;
+                        font-size:    17px;
+                        width:  100%;
+                        height: 48px;
+                    }
                 }
             }
         }
         .items_new_footer {
-            display: grid;
+            display:           grid;
             .items_new_privacy_policy  {
-                grid-area: privacy;
+                grid-area:  privacy;
             }
             .items_new_terms_of_service {
-                grid-area: terms;
+                grid-area:    terms;
             }
             .items_new_notation {
                 grid-area: notation;
             }
             .items_new_footer_logo_to_index {
-                grid-area: logo;
+                grid-area:     logo;
             }
             .items_new_c_inc {
-                grid-area: c_inc;
+                grid-area:    c_inc;
             }
         }
     }
@@ -358,7 +414,6 @@
 // 画面サイズ 大
 @media screen and (min-width: 767px) {
     .items_new {
-        background-color: lightgray;
         .items_new_body {
             margin:  auto;
             width:  700px;
@@ -367,19 +422,17 @@
             "....." 43px
             "header"43px
             "....." 43px
-            "main " 
+            "main " 1fr
             "....." 0
-            "footer" 220px
+            "footer"220px
             "....." 0;
             .items_new_header {
                 text-align: center;
                 .items_new_header_logo {
-                    width:    185px;
-                    height:    100%;
+                    width:   185px;
                 }
             }
             .items_new_main {
-                background-color: lightgray;
                 height:100%;
                 width: 100%;
                 .items_new_form_list {
@@ -412,14 +465,13 @@
                 .items_new_footer_logo_to_index {
                     .items_new_footer_logo {
                         width:  100%;
-                        height: 50px;
                     }
                 }
                 .items_new_footer_link{
-                    font-size: 12px;
+                    font-size:  12px;
                 }
                 .items_new_c_inc {
-                    font-size: 9px;
+                    font-size:   9px;
                 }
             }
             .items_new_form {
@@ -432,14 +484,13 @@
 // 画面サイズ 小
 @media screen and (max-width: 766px) {
     .items_new{
-        background-color: lightgray;
         .items_new_body{
             width:   100%;
             grid-template:
             "....." 10px
             "header"
             "....." 10px
-            "main " 
+            "main " 1fr
             "....." 
             "footer" 
             "....."0;
@@ -447,7 +498,6 @@
                 text-align: center;
                 .items_new_header_logo {
                     width:   120px;
-                    height:   33px;
                 }
             }
             .items_new_main {
@@ -474,14 +524,14 @@
                     "...... ...... ......"0/
                     0 auto 0;
                     .btn_back {
-                        grid-area: back;
+                        grid-area:    back;
                         text-align: center;
                     }
                 }
             }
             .items_new_footer {
-                width:   100%;
-                height: 220px;
+                width:        100%;
+                height:      220px;
                 text-align: center;
                 grid-template: 
                 "......  ......   ......"
@@ -493,16 +543,15 @@
                 "......  ......   ......" 10px/
                 auto 150px auto;
                 .items_new_footer_link{
-                    font-size: 12px;
+                    font-size:  12px;
                 }
                 .items_new_footer_logo_to_index {
                     .items_new_footer_logo {
                         width:  100%;
-                        height: 50px;
                     }
                 }
                 .items_new_c_inc {
-                    font-size: 9px;
+                    font-size:   9px;
                 }
             }
             .items_new_form {
