@@ -1,0 +1,11 @@
+.account_show
+  = render partial: 'items/header'
+  .body
+    = render partial: 'side_bar'
+    .body__logout
+      .content
+        %form 
+          .logout_btn
+            %button ログアウト
+  = render partial: 'items/purchase'
+  = render partial: 'items/footer'
