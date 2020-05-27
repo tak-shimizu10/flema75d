@@ -391,12 +391,12 @@
             }
         }
         .items_new_footer {
-            display:          grid;
+            display:           grid;
             .items_new_privacy_policy  {
-                grid-area: privacy;
+                grid-area:  privacy;
             }
             .items_new_terms_of_service {
-                grid-area:   terms;
+                grid-area:    terms;
             }
             .items_new_notation {
                 grid-area: notation;
