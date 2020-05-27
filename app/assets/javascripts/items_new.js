@@ -71,7 +71,13 @@ $(function () {
         if (countPreview <= 9) (lastFileField).show();
         if ($(".input_photo_file").length == 0)
             $("#input_photos_field").append(buildFileField(fileIndex[0]));
-        numPreview($("#input_photos_field #input_photo_preview"));
+    });
+
+    //商品説明の文字数表示
+    $(".items_new_detail").on("keyup change", "#item_detail", function () {
+        let targetWordCount = $(this).val().length;
+        $(".input_text_length").html(`${targetWordCount}`);
+
     });
 
     //価格の表示(販売手数料、販売利益)

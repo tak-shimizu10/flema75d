@@ -5,6 +5,7 @@
     .items_new_main
       .items_new_form_list
         = form_with(model: @item, local: true) do |f|
+
           .items_new_form.items_new_form_photos
             .items_new_form_style
               %label 出品画像
@@ -34,7 +35,8 @@
                 placeholder: "商品の説明(1000文字以内)\r\n(色、素材、重さ、定価、注意点...)\r\n例)2010年ごろに１万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", 
                 maxlength: "1000", cols: "40", required: true
               .notice_text
-                .input_text_length 0/1000
+                .input_text_length 0
+                .max_text_length / 1000
               .items_new_caution#detail_caution 入力してください
                 
           .items_new_form.items_new_form_info
@@ -57,6 +59,7 @@
                 %p.items_new_mandatory_fields 必須
               = f.select :status, Item.localed_statuses, { include_blank: "選択してください" }, class: "status_select", required: true
               .items_new_caution#brand_caution 選択してください
+
           .items_new_form.items_new_form_post
             配送について
             .items_new_post.items_new_pay_side
@@ -81,6 +84,7 @@
                 %p.items_new_mandatory_fields 必須
               = f.select :post_date, Item.localed_post_dates, { include_blank: "選択してください" }, class: "post_date_select", required: true
               .items_new_caution#post_date_caution 選択してください
+
           .items_new_form_price
             .rate_show
               %p.price_rate 価格（¥300〜9,999,999)
@@ -99,6 +103,7 @@
             .price_display.display_profit
               %div 販売利益
               %span.display_value.display_profit_value
+
           .items_new_form.items_new_form_submit
             .items_new_form_btn.items_new_form_submit_btn
               %button{type: "submit", class: "items_new_btn_submit"} 出品する

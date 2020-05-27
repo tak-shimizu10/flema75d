@@ -168,12 +168,20 @@
                                 min-height: 250px;
                             }
                             .notice_text {
-                                display: flex;
-                                text-align: right;
-                                .input_text_length{
-                                    font-size:    12px;
-                                    color: lightgray;
+                                text-align:    end;
+                                color: lightgray;
+                                font-size:    12px;
+                                display:      grid;
+                                grid-template:
+                                "..... now max"/
+                                1fr 50px 50px;
+                                .input_text_length {
+                                    grid-area: now;
                                 }
+                                .max_text_length {
+                                    grid-area: max;
+                                }
+                                
                             }
                         }
                     }
