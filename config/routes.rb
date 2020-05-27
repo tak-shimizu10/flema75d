@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root "items#index"
   devise_for :users, controllers: {
                        registrations: "users/registrations",
@@ -15,6 +16,10 @@ Rails.application.routes.draw do
     resources :buys, only: [:new,:create]
   end
 
+  resources :accounts, only:[:index,:edit,:show] do
+    get 'logout'
+  end
+  
   # カテゴリ機能に使用
   namespace :api do
     resources :selects, only: [:index]
@@ -22,4 +27,6 @@ Rails.application.routes.draw do
   end
 
   resources :items
+
 end
+
