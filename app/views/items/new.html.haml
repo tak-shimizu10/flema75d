@@ -12,20 +12,11 @@
             %p 最大10枚までアップロードできます
             .photos_input#photos_input
               #input_photos_field
-                -if @item.persisted?
-                  = @item.images.each_with_in do |image, num|
-                    = img_tag image.src.url, data: { index: num }, withd: "100", height: "100"
                 = f.fields_for :images do |image|
                   %label#input_photo_field{data: {index: "#{image.index}"}, accept: ".jpeg jpg .png"}
                     = image.file_field :image, class: "input_photo_file", id: "photo_file_#{image.index}"
                     = image_tag "icon/icon_camera.png", class: "fas fa-camera"
                     %p.photos_input_text クリックしてファイルをアップロード
-                    - if @item.persisted?
-                      = image.check_box :_destroy, data:{ index: image.index }, class: "hidden_destroy"
-                -if @item.persisted?
-                  .input_photo_file_group{data: { index: "#{@item.images.count}" }}
-                    = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][image]", class: "input_photo_file_group", required: true
-                    .input_photo_remove 削除  
             .items_new_caution.photos_caution 画像がありません
             
           .items_new_form.items_new_form_item
@@ -78,8 +69,6 @@
               .items_new_form_style
                 %label 配送の方法
                 %p.items_new_mandatory_fields 必須
-              -# = f.select :post_way_id, options_for_select(@post_ways) ,{ include_blank: "選択してください", class: "post_way_setlect" }, required: true
-              -# .items_new_caution#post_way_caution 選択してください
             .items_new_post.items_new_post_prefecture
               .items_new_form_style
                 %label 発送元の地域
@@ -97,7 +86,6 @@
               %p.price_rate 価格（¥300〜9,999,999)
               %label
                 %i.fas.fa-question-circle
-                -# = link_to guide_path
             .input_selling_price
               .items_new_form_style.price_items_new_form_style
                 %label 販売価格
@@ -114,8 +102,6 @@
           .items_new_form.items_new_form_submit
             .items_new_form_btn.items_new_form_submit_btn
               %button{type: "submit", class: "items_new_btn_submit"} 出品する
-            -# .items_new_from_btn.items_new_form_save_btn
-            -#   %button.items_new_btn_save 下書きに保存
             .items_new_btn_back
               = link_to "もどる", root_path
 
