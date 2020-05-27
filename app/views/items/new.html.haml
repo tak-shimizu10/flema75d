@@ -4,7 +4,7 @@
       = link_to image_tag("logo/logo.png", class: "items_new_header_logo to_index_btn"), root_path
     .items_new_main
       .items_new_form_list
-        = form_with(model: @item) do |f|
+        = form_with(model: @item, local: true) do |f|
           .items_new_form.items_new_form_photos
             .items_new_form_style
               %label 出品画像

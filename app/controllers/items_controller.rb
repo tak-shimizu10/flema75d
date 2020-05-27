@@ -28,13 +28,7 @@ class ItemsController < ApplicationController
       @item = Item.new(item_params)
       brands = Brand.find_or_create_by(name: params[:item][:brand])
       @item.update!(brand_id: brands.id)
-      if @item.save
-        respond_to do |format|
-          format.js { render ajax_redirect_to(root_path) }
-        end
-      else
-        render :new
-      end
+      redirect_to root_path
     else
       render :new
     end
