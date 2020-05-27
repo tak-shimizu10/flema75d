@@ -2,7 +2,7 @@ class ImagesController < ApplicationController
   def create
     @item = Item.find(params[:item_id])
     @image = @item.images.new(image_params)
-    @image.create
+    @image.save
   end
 
   private

@@ -17,13 +17,6 @@ class ItemsController < ApplicationController
   def show
   end
 
-  def update
-    if @item.update(item_params)
-    else
-      render :edit
-    end
-  end
-
   private
 
   def item_params
