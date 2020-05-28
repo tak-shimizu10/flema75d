@@ -6,7 +6,7 @@ $(function(){
     var html = `<div class="categories_nav category-child">\n`
 
     data.forEach(function(value){
-      html += `  <a class="category_name" data-category-id="${value.id}" href="#"><p>${value.name}</p></a>\n`
+      html += `  <a class="category_name" data-category-id="${value.id}" href="/categories/${value.id}"><p>${value.name}</p></a>\n`
     })
     html += `</div>`
     return html
