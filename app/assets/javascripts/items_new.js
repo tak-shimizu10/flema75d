@@ -12,7 +12,7 @@ $(function () {
     const buildFileField = (index) => {
         const html =
             `<label id= "input_photo_field" data-index= "${index}">
-                <input class= "input_photo_file" type= "file"
+                <input class= "input_photo_file" type= "file", required= "false"
                 name= "item[images_attributes][${index}][image]"
                 id= "item_images_attributes_${index}_image photo_file_${index}"><br>
                 <img class= "fas fa-camera" src= "/assets/icon/icon_camera-24c5a3dec3f777b383180b053077a49d0416a4137a1c541d7dd3f5ce93194dee.png">
@@ -28,7 +28,7 @@ $(function () {
     function hideCautionMessage(scopeClass) {
         scopeClass.find(".items_new_caution").hide();
     }
-
+    
     let fileIndex = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     lastIndex = $(".input_photo_file_group:last").data("index");
     fileIndex.splice(0, lastIndex);
@@ -52,7 +52,8 @@ $(function () {
             const countPreview = $("#input_photos_field #input_photo_preview").length;
             
             if (countPreview >= 10) $("label").hide();
-            if (countPreview >= 1) hideCautionMessage($(".items_new_form_photos"));
+            if (countPreview >= 1) hideCautionMessage($(".items_new_form_photos"))
+            $(".input_photo_file").attr("required", false);
         }
     });
 
@@ -70,14 +71,14 @@ $(function () {
         if (countPreview == 0) showCautionMessage($(".items_new_form_photos"));
         if (countPreview <= 9) (lastFileField).show();
         if ($(".input_photo_file").length == 0)
-            $("#input_photos_field").append(buildFileField(fileIndex[0]));
+            $("#input_photos_field").append(buildFileField(fileIndex[0]))
+            $(".input_photo_file").attr("required", true);
     });
 
     //商品説明の文字数表示
     $(".items_new_detail").on("keyup change", "#item_detail", function () {
         let targetWordCount = $(this).val().length;
         $(".input_text_length").html(`${targetWordCount}`);
-
     });
 
     //価格の表示(販売手数料、販売利益)
@@ -162,5 +163,8 @@ $(function () {
         } else {
             showCautionMessage($(".items_new_form_price"));
         };
+    });
+    $("form").on("click", "button", function () {
+        if ($("#input_photos_field #input_photo_preview").length == 0) showCautionMessage($(".items_new_form_photos"));
     });
 });

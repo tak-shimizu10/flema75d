@@ -15,7 +15,7 @@
               #input_photos_field
                 = f.fields_for :images do |image|
                   %label#input_photo_field{data: {index: "#{image.index}"}, accept: ".jpeg jpg .png"}
-                    = image.file_field :image, class: "input_photo_file", id: "photo_file_#{image.index}"
+                    = image.file_field :image, class: "input_photo_file", id: "photo_file_#{image.index}", required: true
                     = image_tag "icon/icon_camera.png", class: "fas fa-camera"
                     %p.photos_input_text クリックしてファイルをアップロード
             .items_new_caution.photos_caution 画像がありません
