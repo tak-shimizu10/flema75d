@@ -81,6 +81,16 @@ $(function () {
         $(".input_text_length").html(`${targetWordCount}`);
     });
 
+    //配送の方法表示・非表示
+    $("form").on("change", "#item_pay_side", function (e) {
+        if (e.target.selectedIndex == 0) {
+            $(".items_new_post_way").hide();
+            $("#item_post_way_id").val("");
+        } else {
+            $(".items_new_post_way").show();
+        };
+    })
+
     //価格の表示(販売手数料、販売利益)
     $("#item_price").on("keyup change", function () {
         let targetPrice = $(this).val();
@@ -162,6 +172,14 @@ $(function () {
             hideCautionMessage($(".items_new_form_price"));
         } else {
             showCautionMessage($(".items_new_form_price"));
+        };
+    });
+    $("form").on("change", "#item_post_way_id", function () {
+        let inputPostWayLength = $(this).context.value.length;
+        if (inputPostWayLength > 0) {
+            hideCautionMessage($(".items_new_post_way"));
+        } else {
+            showCautionMessage($(".items_new_post_way"));
         };
     });
     $("form").on("click", "button", function () {
