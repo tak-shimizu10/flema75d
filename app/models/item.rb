@@ -8,9 +8,9 @@ class Item < ApplicationRecord
   enum pay_side: { seller: 1, buyer: 2 }
   enum post_date: { shortest: 1, normal: 2, longest: 3 }
   enum situation: { exhibition: 0, transaction: 1, purchase: 2 }, _prefix: true
-  validates_associated :images
+  validates_associated :images, presence: true
   validates :name, :detail, :status, :pay_side, :post_date, :price, presence: true
-  validates :prefecture_id, :category_id, numericality: { greater_than: 0 }
+  validates :prefecture_id, :post_way_id, :category_id, numericality: { greater_than: 0 }
 
   class << self
     def localed_statuses
