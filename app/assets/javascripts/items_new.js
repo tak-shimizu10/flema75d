@@ -100,7 +100,7 @@ $(function () {
         $(".display_fee_value").html(`¥${calculateFee.toLocaleString()}`);
         $(".display_profit_value").html(`¥${calculateProfit.toLocaleString()}`);
     });
-
+    
     //ドラッグ＆ドロップ操作
     $(".photos_input").on("dragover", "#input_photos_field", function (e) {
         e.stopPropagation();
@@ -134,6 +134,14 @@ $(function () {
             showCautionMessage($(".items_new_detail"));
         };
     });
+    $("form").on("change", "#item_category_id", function () {
+        let selectCategory = $(this).val();
+        if ( selectCategory > 0) {
+            hideCautionMessage($(".items_new_category"));
+        } else {
+            showCautionMessage($(".items_new_category"));
+        };
+    })
     $("form").on("change", "#item_status", function () {
         let selectStatus = this.selectedIndex;
         if (selectStatus > 0) {
@@ -207,5 +215,6 @@ $(function () {
             showCautionMessage($(".items_new_post_date"));
         if ($("#item_price").val() == 0)
             showCautionMessage($(".items_new_form_price"));
+        
     });
 });
