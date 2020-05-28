@@ -17,6 +17,7 @@ class Item < ApplicationRecord
   validates :prefecture_id, :category_id, numericality: { greater_than: 0 }
   validates :price, numericality: { greater_than_or_equal_to: 300, less_than: 10000000 }
   validates :brand_id, numericality: { greater_than: 0 }, allow_blank: true
+
   class << self
     def localed_statuses
       statuses.keys.map do |k|

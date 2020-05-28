@@ -41,19 +41,20 @@
 
 ## items テーブル
 
-| Column        | Type    | Options                      |
-| ------------- | ------- | ---------------------------- |
-| name          | string  | null: false                  |
-| detail        | text    | null: false                  |
-| price         | integer | null: false                  |
-| pay_side      | integer | enum,null: false             |
-| post_date     | integer | enum,null: false             |
-| status        | integer | enum,null: false             |
-| prefecture_id | integer | null_false                   |
-| brand_id      | integer |                              |
-| category_id   | integer | foreign_key: true            |
-| user_id       | integer | foreign_key: true            |
-| situation     | integer | enum, null:false, default: 0 |
+| Column        | Type    | Options                       |
+| ------------- | ------- | ----------------------------- |
+| name          | string  | null: false                   |
+| detail        | text    | null: false                   |
+| price         | integer | null: false                   |
+| pay_side      | integer | enum, null: false             |
+| post_date     | integer | enum, null: false             |
+| status        | integer | enum, null: false             |
+| situation     | integer | enum, null: false, default: 0 |
+| post_way_id   | integer | null: false, default: 0       |
+| prefecture_id | integer | null: false                   |
+| category_id   | integer | foreign_key: true             |
+| brand_id      | integer |                               |
+| user_id       | integer | foreign_key: true             |
 
 ### Association
 
@@ -123,11 +124,11 @@
 
 ## cards テーブル
 
-| Column      | Type         | Options                  |
-| ----------- | ------------ | ------------------------ |
-| customer_id | string       | null: false              |
-| card_id     | string       | null: false, unique:true |
-| user_id     | integer      | foreign_key:true         |
+| Column      | Type    | Options                  |
+| ----------- | ------- | ------------------------ |
+| customer_id | string  | null: false              |
+| card_id     | string  | null: false, unique:true |
+| user_id     | integer | foreign_key:true         |
 
 ### Association
 
