@@ -24,16 +24,14 @@ class BuysController < ApplicationController
   # 商品の購入
   def create
 
-    # Payjp::Charge.create(
-    #   amount: @item[:price],
-    #   customer: @customer_id,
-    #   currency: 'jpy'
-    # )
+    Payjp::Charge.create(
+       amount: @item[:price],
+       customer: @customer_id,
+       currency: 'jpy'
+    )
 
-    # # 出品中（0）を取引中（1）に変更
-    # # ActiveRecord::RecordInvalid: translation missing: ja.activerecord.errors.messages.record_invalid
-    # # というのが出たら日本語でないとエラー内容がわからないので、rails-i18nをインストールする
-    # @item.situation_transaction!
+    # 出品中（0）を取引中（1）に変更
+    @item.situation_transaction!
 
   end
 
