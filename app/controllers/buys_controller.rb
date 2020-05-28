@@ -27,7 +27,7 @@ class BuysController < ApplicationController
   # 商品の購入
   def create
 
-    @customer_id = @user_cards .first[:customer_id]
+    @customer_id = @user_cards.first[:customer_id]
 
     Payjp::Charge.create(
       amount: @item[:price],
