@@ -25,9 +25,9 @@ class BuysController < ApplicationController
   def create
 
     Payjp::Charge.create(
-       amount: @item[:price],
-       customer: @customer_id,
-       currency: 'jpy'
+      amount: @item[:price],
+      customer: @customer_id,
+      currency: 'jpy'
     )
 
     # 出品中（0）を取引中（1）に変更
