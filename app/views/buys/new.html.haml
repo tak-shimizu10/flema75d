@@ -18,11 +18,15 @@
     .buys_new-contents-block
       .buys_new-contents-method
         .buys_new-contents-method-top
-          %p 支払い方法
-          %p クレジットカード
-          %p="**********#{@card_data.last4}"
-          %p="有効期限 #{@card_data.exp_month}/#{@card_data.exp_year}"
-          =image_tag "card_logo/#{@card_data.brand}.svg"
+          - unless @card_data.blank?
+            %p 支払い方法
+            %p クレジットカード
+            %p="**********#{@card_data.last4}"
+            %p="有効期限 #{@card_data.exp_month}/#{@card_data.exp_year}"
+            =image_tag "card_logo/#{@card_data.brand}.svg"
+          - else
+            %p カードが登録されていません。
+            = link_to "カードを登録する", new_api_card_path
     .buys_new-contents-block
       .buys_new-contents-post
         .buys_new-contents-post-top

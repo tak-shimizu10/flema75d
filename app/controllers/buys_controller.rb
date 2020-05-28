@@ -16,13 +16,18 @@ class BuysController < ApplicationController
  
   # 商品の購入確認
   def new
-    customer = Payjp::Customer.retrieve(@customer_id)
-    @card_data = customer.cards.retrieve(customer.default_card)
     @address = current_user.address
+    unless @user_cards .blank?
+      @customer_id = @user_cards .first[:customer_id]
+      customer = Payjp::Customer.retrieve(@customer_id)
+      @card_data = customer.cards.retrieve(customer.default_card)
+    end
   end
 
   # 商品の購入
   def create
+
+    @customer_id = @user_cards.first[:customer_id]
 
     Payjp::Charge.create(
       amount: @item[:price],
@@ -39,7 +44,7 @@ class BuysController < ApplicationController
 
   def find_buys_info
     @item = Item.find(params[:item_id])
-    @customer_id = current_user.cards.first[:customer_id]
+    @user_cards = current_user.cards
   end
 
   def payjp_sertification   
