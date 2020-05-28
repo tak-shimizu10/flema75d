@@ -15,7 +15,7 @@ class Api::CardsController < ApplicationController
     @user_cards = current_user.cards
     unless @user_cards.blank?
       customer_id = @user_cards.first[:customer_id]
-      @customer_cards = Payjp::Customer.retrieve(customer_id).cards
+      @customer = Payjp::Customer.retrieve(customer_id)
     end
   end
 

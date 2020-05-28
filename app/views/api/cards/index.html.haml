@@ -1,7 +1,7 @@
 
 .api_cards_index{class:"api_cards_new"}
   %h2 登録カード一覧
-  - @customer_cards&.each do |card|
+  - @customer&.cards&.each do |card|
     .buys_new-contents-block
       .buys_new-contents-method
         .buys_new-contents-method-top
