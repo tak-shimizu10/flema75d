@@ -5,7 +5,7 @@
     %h2= "#{@category.name}の商品一覧"
     .children
       - @category.children.each do |child|
-        %span= child.name
+        = link_to child.name, category_path(child.id)
   .contents
     - @category.items.each do |item|
       .item

@@ -17,10 +17,14 @@
       }
       > .children {
         padding:20px 30px;
-        > span{
+        > a{
           display: inline-block;
           margin:10px;
           color:orange;
+          text-decoration: none;
+          &:hover {
+            text-decoration:underline;
+          }
         }
       }
     } 
