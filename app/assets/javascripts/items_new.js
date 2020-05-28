@@ -183,7 +183,7 @@ $(function () {
         };
     });
 
-    //送信ボタンクリック時、空のフォームにメッセージ表示
+    //送信ボタンクリック時、空のフォームにエラーメッセージ表示
     $("form").on("click", "button", function () {
 
         if ($("#input_photos_field #input_photo_preview").length == 0)
@@ -193,19 +193,19 @@ $(function () {
             showCautionMessage($(".items_new_name"));
         if ($("#item_detail").val().length == 0)
             showCautionMessage($(".items_new_detail"));
-        if ($("#item_category_id").val().length == "")
-        //     showCautionMessage($(".items_new_category"));
-        // if ($("#item_status").val().length == 0)
-        //     showCautionMessage($(".items_new_status"));
-        // if ($("#item_pay_side").val().length == 0)
-        //     showCautionMessage($(".items_new_pay_side"));
-        // if ($("#item_post_way_id").val().length == 0)
-        //     showCautionMessage($(".items_new_post_way"));
-        // if ($("#item_prefecture").val().length == 0)
-        //     showCautionMessage($(".items_new_prefecture"));
-        // if ($("#item_post_date").val().length == 0)
-        //     showCautionMessage($(".items_new_post_date"));
-        if ($("#item_price").val().length == 0)
-            showCautionMessage($(".items_new_price"));
+        if ($("#item_category_id").val().length == 0)
+            showCautionMessage($(".items_new_category"));
+        if ($("#item_status").val().length == 0)
+            showCautionMessage($(".items_new_status"));
+        if ($("#item_pay_side").val().length == 0)
+            showCautionMessage($(".items_new_pay_side"));
+        if ($("#item_post_way_id").val().length == 0)
+            showCautionMessage($(".items_new_post_way"));
+        if ($("#item_prefecture_id").val().length == 0)
+            showCautionMessage($(".items_new_post_prefecture"));
+        if ($("#item_post_date").val().length == 0)
+            showCautionMessage($(".items_new_post_date"));
+        if ($("#item_price").val() == 0)
+            showCautionMessage($(".items_new_form_price"));
     });
 });
