@@ -11,11 +11,15 @@
             .search_btn
               = image_tag src="icon/icon-search 1.png",class:"search_icon"
     .contents__bottom
-      %ul.contents__bottom__left
-        %li.category
-          %p カテゴリー
-        %li.brand
-          %p ブランド
+      .contents__bottom__left
+        %p{class:"category_name category_name_tab"} カテゴリー
+        %br
+        .category_lists
+          .categories_nav
+            - @categories.each do |category|
+              = link_to "#", class:"category_name", data:{category_id: "#{category.id}"} do
+                %p= category.name
+        %p ブランド
       - if user_signed_in?
         %ul.contents__bottom__right
           %li
