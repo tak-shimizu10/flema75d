@@ -26,5 +26,7 @@ Rails.application.routes.draw do
     resources :cards, only: [:index,:new,:create,:destroy]
   end
 
+  resources :categories, only: [:show]
+
 end
 

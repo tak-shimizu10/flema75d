@@ -1,0 +1,39 @@
+
+= render partial: 'items/header'
+.categories_show
+  .detail
+    %h2= "#{@category.name}の商品一覧"
+    .children
+      - @category.children.each do |child|
+        %span= child.name
+  .contents
+    - @category.items.each do |item|
+      .item
+        = link_to "#" do
+          .image
+            = image_tag item.images.first.image.url
+          .sentence
+            %p= item.name
+            %p= "#{item.price} 円"
+      .item
+        = link_to "#" do
+          .image
+            = image_tag item.images.first.image.url
+          .sentence
+            %p= item.name
+            %p= "#{item.price} 円"
+      .item
+        = link_to "#" do
+          .image
+            = image_tag item.images.first.image.url
+          .sentence
+            %p= item.name
+            %p= "#{item.price} 円"
+      .item
+        = link_to "#" do
+          .image
+            = image_tag item.images.first.image.url
+          .sentence
+            %p= item.name
+            %p= "#{item.price} 円"
+= render partial: 'items/footer'

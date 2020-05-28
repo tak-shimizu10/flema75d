@@ -17,7 +17,7 @@
         .category_lists
           .categories_nav
             - @categories.each do |category|
-              = link_to "#", class:"category_name", data:{category_id: "#{category.id}"} do
+              = link_to category_path(category.id), class:"category_name", data:{category_id: "#{category.id}"} do
                 %p= category.name
         %p ブランド
       - if user_signed_in?
