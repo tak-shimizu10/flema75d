@@ -12,8 +12,11 @@ class Api::CardsController < ApplicationController
   rescue_from  Payjp::CardError, with: :payjp_error
 
   def index
-    customer_id = current_user.cards.first[:customer_id]
-    @customer = Payjp::Customer.retrieve(customer_id)
+    @user_cards = current_user.cards
+    unless @user_cards.blank?
+      customer_id = @user_cards.first[:customer_id]
+      @customer_cards = Payjp::Customer.retrieve(customer_id).cards
+    end
   end
 
   def new

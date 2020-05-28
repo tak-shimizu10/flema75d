@@ -1,8 +1,16 @@
 class ApplicationController < ActionController::Base
  
   before_action :basic_auth , if: :production?
+  # before_action :authenticate_user!, unless: :free_access?
 
-  private
+  # private
+  # def free_access?
+  #   if params[:controller] == "items" && params[:action].in?(["index","show"])
+  #     return true
+  #   else
+  #     return false
+  #   end
+  # end
   def production?
     Rails.env.production?
   end
