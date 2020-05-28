@@ -72,13 +72,13 @@
               .items_new_form_style
                 %label 配送の方法
                 %p.items_new_mandatory_fields 必須
-              = f.collection_select :post_way_id, PostWay.all, :id, :name, autofocus: true, include_blank: "選択してください", class: "post_way_setlect", required: true
+              = f.collection_select :post_way_id, PostWay.all, :id, :name,{ autofocus: true, include_blank: "選択してください"}, { class: "post_way_setlect", required: true}
               .items_new_caution.post_way_caution 選択してください
             .items_new_post.items_new_post_prefecture
               .items_new_form_style
                 %label 発送元の地域
                 %p.items_new_mandatory_fields 必須
-              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, autofocus: true, class: "items_prefecture_select", include_blank: "選択してください", required: true
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name,{ autofocus: true, include_blank: "選択してください"}, { class: "post_way_setlect", required: true}
               .items_new_caution#prefecture_caution 選択してください
             .items_new_post.items_new_post_date
               .items_new_form_style

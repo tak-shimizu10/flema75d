@@ -182,7 +182,9 @@ $(function () {
             showCautionMessage($(".items_new_post_way"));
         };
     });
+    //送信ボタンクリック時空のフォームにメッセージ表示
     $("form").on("click", "button", function () {
-        if ($("#input_photos_field #input_photo_preview").length == 0) showCautionMessage($(".items_new_form_photos"));
+        if ($("#input_photos_field #input_photo_preview").length == 0)
+            showCautionMessage($(".items_new_form_photos"));
     });
 });

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_24_054849) do
+ActiveRecord::Schema.define(version: 2020_05_28_044447) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "zipcode", default: "", null: false
@@ -18,9 +18,10 @@ ActiveRecord::Schema.define(version: 2020_05_24_054849) do
     t.string "city", default: "", null: false
     t.string "address", default: "", null: false
     t.string "build_name"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -61,10 +62,16 @@ ActiveRecord::Schema.define(version: 2020_05_24_054849) do
     t.integer "post_date", default: 0, null: false
     t.integer "status", default: 0, null: false
     t.integer "prefecture_id", default: 0, null: false
+    t.integer "post_way_id", default: 0, null: false
     t.integer "brand_id"
     t.integer "category_id"
     t.integer "user_id"
     t.integer "situation", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "post_ways", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
