@@ -68,12 +68,6 @@ RSpec.describe User, type: :model do
       expect(user.errors[:password]).to include("半角英数字で入力してください")
     end
 
-    it "password_confirmationがない場合は登録できないこと" do
-      user = build(:user, password_confirmation: nil)
-      user.valid?
-      expect(user.errors[:password_confirmation]).to include("can't be blank")
-    end
-
     it "passwordとpassword_confirmationが一致していない場合は登録できないこと" do
       user = build(:user, password: "abcd123", password_confirmation: "1234abc")
       user.valid?
