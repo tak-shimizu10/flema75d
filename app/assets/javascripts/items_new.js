@@ -100,7 +100,7 @@ $(function () {
         $(".display_fee_value").html(`¥${calculateFee.toLocaleString()}`);
         $(".display_profit_value").html(`¥${calculateProfit.toLocaleString()}`);
     });
-    
+
     //ドラッグ＆ドロップ操作
     $(".photos_input").on("dragover", "#input_photos_field", function (e) {
         e.stopPropagation();
@@ -192,7 +192,7 @@ $(function () {
     });
 
     //送信ボタンクリック時、空のフォームにエラーメッセージ表示
-    $("form").on("click", "button", function () {
+    $("form").on("click", "item_submit", function () {
 
         if ($("#input_photos_field #input_photo_preview").length == 0)
             showCautionMessage($(".items_new_form_photos"))
