@@ -149,14 +149,6 @@ RSpec.describe Item, type: :model do
       expect(item.errors[:category_id]).to include("を入力してください")
     end
 
-    # it "user_id(ログイン状態)が存在していなければ登録できないこと" do
-    #   user = create(:user)
-    #   category = create(:category)
-    #   item = build(:item, category_id: category.id, user_id: nil)
-    #   item.valid?
-    #   expect(item.errors[:user_id]).to include("を入力してください")
-    # end
-
     it "situation(商品の出品状態)が存在しなければ登録できないこと" do
       user = create(:user)
       category = create(:category)
@@ -166,5 +158,5 @@ RSpec.describe Item, type: :model do
     end
 
   end
-  
+
 end

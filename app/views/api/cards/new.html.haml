@@ -32,7 +32,7 @@
     = f.text_field :cvc ,placeholder: "3〜4桁の半角数字" , maxlength: 4
     = f.submit "追加する"
 
-    %h2 登録済みのカード
-    - current_user.cards.each do |card|
-      = card.card_id
-      = link_to "削除する" , api_card_path(card.id), method: :delete
+    -# %h2 登録済みのカード
+    -# - current_user.cards.each do |card|
+    -#   = card.card_id
+    -#   = link_to "削除する" , api_card_path(card.id), method: :delete
