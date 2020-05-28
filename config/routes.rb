@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
   # 購入確認ページに飛ぶ
-  namespace :items do
+  resources :items do
     resources :buys, only: [:new,:create]
   end
 
@@ -23,11 +23,8 @@ Rails.application.routes.draw do
   # カテゴリ機能に使用
   namespace :api do
     resources :selects, only: [:index]
-    resources :cards, only: [:new,:create,:destroy]
+    resources :cards, only: [:index,:new,:create,:destroy]
   end
 
-  resources :items do
-    resources :images
-  end
 end
 
