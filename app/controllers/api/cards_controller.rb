@@ -1,7 +1,7 @@
 class Api::CardsController < ApplicationController
 
   # payjpを使用するための認証を行う
-  before_action :payjp_sertification , only:[:create,:destroy]
+  before_action :payjp_sertification , only:[:index,:create,:destroy]
 
   # payjpに関連するエラーが発生した際に例外処理を行う
   rescue_from  Payjp::PayjpError, with: :payjp_error
@@ -10,6 +10,11 @@ class Api::CardsController < ApplicationController
   rescue_from  Payjp::AuthenticationError, with: :payjp_error
   rescue_from  Payjp::InvalidRequestError, with: :payjp_error
   rescue_from  Payjp::CardError, with: :payjp_error
+
+  def index
+    customer_id = current_user.cards.first[:customer_id]
+    @customer = Payjp::Customer.retrieve(customer_id)
+  end
 
   def new
   end
@@ -60,6 +65,7 @@ class Api::CardsController < ApplicationController
     # payjp上とデータベースのカード情報を削除する
     card.delete
     card_info.destroy
+
   end
 
   private
