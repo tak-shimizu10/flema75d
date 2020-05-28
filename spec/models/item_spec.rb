@@ -19,7 +19,7 @@ RSpec.describe Item, type: :model do
       expect(item.errors[:name]).to include("を入力してください")
     end
 
-    it "name(商品名)が４0文字だと登録できること" do
+    it "name(商品名)が４0文字以内だと登録できること" do
       user = create(:user)
       category = create(:category)
       item = build(:item, name: "a" * 40, category_id: category.id, user_id: user.id)
@@ -42,7 +42,7 @@ RSpec.describe Item, type: :model do
       expect(item.errors[:detail]).to include("を入力してください")
     end
 
-    it "detail(商品説明)が1000文字だと登録できること" do
+    it "detail(商品説明)が1000文字以内だと登録できること" do
       user = create(:user)
       category = create(:category)
       item = build(:item, detail: "a" * 1000, category_id: category.id, user_id: user.id)
@@ -103,13 +103,6 @@ RSpec.describe Item, type: :model do
       expect(item.errors[:pay_side]).to include("を入力してください")
     end
 
-    # it "pay_side(送料負担)が存在しなければ登録できないこと" do
-    #   user = create(:user)
-    #   category = create(:category)
-    #   item = build(:item, pay_side: 1, category_id: category.id, user_id: user.id)
-    #   expect(item[:pay_side]).to eq()
-    # end
-
     it "post_date(発送までの日数)が存在しなければ登録できないこと" do
       user = create(:user)
       category = create(:category)
@@ -138,6 +131,13 @@ RSpec.describe Item, type: :model do
       user = create(:user)
       category = create(:category)
       item = build(:item, brand_id: "", category_id: category.id, user_id: user.id)
+      expect(item).to be_valid
+    end
+
+    it "brand_id(ブランド)が存在しても登録できること" do
+      user = create(:user)
+      category = create(:category)
+      item = build(:item, brand_id: 1, category_id: category.id, user_id: user.id)
       expect(item).to be_valid
     end
 

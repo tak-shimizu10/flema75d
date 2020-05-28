@@ -12,11 +12,11 @@ class Item < ApplicationRecord
 
   validates_associated :images
   validates :name, :detail, :price, :pay_side, :post_date, :status, :prefecture_id, :post_way_id, :category_id, :situation, presence: true
-  validates :name, length: { in: 1..40 }
-  validates :detail, length: { in: 1..1000 }
+  validates :name, length: { maximum: 40 }
+  validates :detail, length: { maximum: 1000 }
   validates :prefecture_id, :category_id, numericality: { greater_than: 0 }
   validates :price, numericality: { greater_than_or_equal_to: 300, less_than: 10000000 }
-
+  validates :brand_id, numericality: { greater_than: 0 }, allow_blank: true
   class << self
     def localed_statuses
       statuses.keys.map do |k|
