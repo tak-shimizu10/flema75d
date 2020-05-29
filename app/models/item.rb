@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   enum status: { brand_new: 1, like_new: 2, invisible_dirt: 3, a_little_dirt: 4, dirt_condition: 5, bad_condition: 6 }
   enum situation: { exhibition: 0, transaction: 1, purchase: 2 }, _prefix: true
 
-  validates_associated :images
+  validates :images, length: { minimum: 1, maximum: 10 }
   validates :name, :detail, :price, :pay_side, :post_date, :status, :prefecture_id, :post_way_id, :category_id, :situation, presence: true
   validates :name, length: { maximum: 40 }
   validates :detail, length: { maximum: 1000 }

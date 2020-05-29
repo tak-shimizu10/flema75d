@@ -11,9 +11,14 @@ class ItemsController < ApplicationController
   def create
     if item_params[:images_attributes].present?
       @item = Item.new(item_params)
-      brands = Brand.find_or_create_by(name: params[:item][:brand])
-      @item.update!(brand_id: brands.id)
-      redirect_to root_path
+      if @item.save
+        brands = Brand.find_or_create_by(name: params[:item][:brand])
+        @item.update!(brand_id: brands.id)
+        redirect_to root_path
+      else
+        @categories = Category.where(ancestry: nil).pluck(:name, :id)
+        render :new
+      end
     else
       @categories = Category.where(ancestry: nil).pluck(:name, :id)
       render :new
