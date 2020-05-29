@@ -1,6 +1,6 @@
 ja:
   enums:
-    Item:
+    item:
       status:
         brand_new: 新品、未使用
         like_new: 未使用に近い

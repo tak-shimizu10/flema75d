@@ -15,19 +15,19 @@ class Item < ApplicationRecord
   class << self
     def localed_statuses
       statuses.keys.map do |k|
-        [I18n.t("enums.Item.status.#{k}"), k]
+        [I18n.t("enums.item.status.#{k}"), k]
       end
     end
 
     def localed_pay_sides
       pay_sides.keys.map do |k|
-        [I18n.t("enums.Item.pay_side.#{k}"), k]
+        [I18n.t("enums.item.pay_side.#{k}"), k]
       end
     end
 
     def localed_post_dates
       post_dates.keys.map do |k|
-        [I18n.t("enums.Item.post_date.#{k}"), k]
+        [I18n.t("enums.item.post_date.#{k}"), k]
       end
     end
   end
