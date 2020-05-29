@@ -1,0 +1,283 @@
+* {
+  box-sizing: border-box;
+}
+
+@mixin lu_style{
+  margin: 8px 0 0;
+  height: 100%;
+  width: 100%;
+}
+
+@mixin li_style{
+  border-top: 1px solid #eee;
+  display: list-item;
+  height: 48px;
+  width: 280px;
+  background-color: #fff;
+  padding: 16px;
+  
+  p{
+    font-size: 14px;
+  }
+  .link_page{
+
+    text-decoration: none;
+    color: black;
+  }
+}
+.account_show{
+  
+  width: 100vw;
+  background-color: #f5f5f5;
+  .body{
+
+    margin: 40px auto 0;
+    width: 1020px;
+    padding: 0 0 40px;
+
+    display: flex;
+    &__side{
+      float: left;
+      width: 280px;
+      margin: 0 40px 0 0;
+      .mypage-nav{
+        border-style: solid;
+        border-width: 0;
+        width: 100%;
+        h3{
+          margin: 40px 0 0;
+          font-size: 16px;
+        }
+        ul{
+          @include lu_style;
+          li{
+            @include li_style;
+          }
+        }
+      }
+    }
+    &__main{
+      margin: 8px 0 0;
+      float: right;
+      width: 700px;
+      .user-icon{
+        background-image: url("pict/空.jpg");
+        background-size: cover;
+        height: 200px;
+        position: relative;
+        text-align: center;
+        padding: 20px;
+        &__top{
+          display: block;
+          position: absolute;
+          top: 50%;
+          left: 0;
+          right: 0;
+          transform: translate(0, -50%);
+          color: #333;
+          .figre{
+            overflow: hidden;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto;
+            border-radius: 50%;
+            &__img{
+              vertical-align: middle;
+              width: 60px;
+              height: 60px;
+          
+            }
+          }
+          .name{
+            display: block;
+            margin-block-start: 0.83em;
+            margin-block-end: 0.83em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+          }
+          .number{
+            margin: 8px 0 0;
+            font-size: 0;
+            &__left{
+              display: inline-block;
+              font-size: 14px;
+              
+            }
+            &__right{
+              margin: 0 0 0 16px;
+              display: inline-block;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+      .user-notice{
+        margin: 0;
+        background: #fff;
+        margin-bottom: 60px;
+        &__title{
+          padding: 0 16px;
+          background: #fafafa;
+          font-size: 16px;
+          line-height: 72px;
+
+        }
+        &__tab{
+          border: 0;
+          background: #eee;
+          font-size: 0;
+          display: flex;
+          &__left{
+            background: #fff;
+          }
+          li{
+            width: 50%;
+            height: 72px;
+            h3{
+              font-size: 22px;
+              font-weight: bold;
+              line-height: 72px;
+              p{
+                position: relative;
+                display: block;
+                color: #333;
+                font-size: 16px;
+                line-height: 72px;
+                text-align: center;
+              }
+            }
+          }
+        }
+        .tab-contents{
+          display: block;
+          &__left{
+            li{
+              padding: 100px 0;
+              font-weight: 600;
+              background-position: center 40px;
+              background-size: 78px 85px;
+              text-align: center;
+              font-size: 16px;
+              color: #ccc;
+            
+            }
+          }
+        }
+      }
+    }
+    &__edit{
+      margin: 0;
+      background: #fff;
+      width: 700px;
+      h2{
+        font-size: 24px;
+        padding: 8px 24px;
+        border-bottom: 1px solid #f5f5f5;
+        text-align: center;
+      }
+      .card_edit{
+        padding: 64px;
+        border-top: 1px solid #f5f5f5;
+       
+        &__head{
+          max-width: 320px;
+          margin: 0 auto;
+          h3{
+            font-size: 16px;
+          }
+        }
+        .card_lists{
+          position: relative;
+          margin: 0 auto;
+          li{
+            padding: 24px 0;
+            border-bottom: 1px solid #eee;
+            .card_info{
+              position: relative;
+              max-width: 320px;
+              margin: 0 126px;
+              &__logo{
+                height: 16px;
+                .card-logo{
+                  height: 15px;
+                  width: 45px;
+                }
+
+              }
+              &__number{
+                margin: 8px 0 0;
+                font-size: 16px;
+
+              }
+              &__period{
+                margin: 8px 0 0;
+                font-size: 16px;
+
+              }
+              &__delete{
+                position: absolute;
+                top: 0;
+                right: 0;
+                padding: 4px 6px;
+                background: #fff;
+                border-radius: 3px;
+                border: 1px solid #ea352d;
+                color: #ea352d;
+              }
+            }
+          }   
+        }
+      }
+    }
+    &__logout{
+      float: right;
+      width: 700px;
+      .content{
+        margin: 0;
+        background: #fff;
+        form{
+          padding: 64px;
+          border-top: 1px solid #f5f5f5;
+          .logout_btn{
+            max-width: 320px;
+            margin: 0 auto;
+            button{
+              margin: 0;
+              background: #3CCACE;
+              border: 1px solid #3CCACE;
+              color: #fff;
+              display: block;
+              width: 100%;
+              line-height: 48px;
+              font-size: 14px;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }    
+  }
+  .purchase{
+    &__btn{
+      width: 120px;
+      background: #3CCACE;
+      text-align: center;
+      border-radius: 4%;
+      bottom: 32px;
+      right: 32px;
+      position: fixed;
+      padding: 15px;
+      .text{
+        color: #fff;
+        display: block;
+        font-size: 18px;
+        text-decoration: none;
+        margin-bottom: 5px;
+      }
+      .image{
+        width: 60%;
+        vertical-align: bottom;
+      }
+    }
+  }
+}

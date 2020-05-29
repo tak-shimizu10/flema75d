@@ -1,0 +1,32 @@
+.mains_index__header
+  .contents
+    .contents__top
+      %h1.contents__top__left
+        = link_to "/", class: "top_logo"  do
+          = image_tag src="logo/logo.png",class:"top_logo__img"
+      .contents__top__right
+        = form_for "#" do |f|
+          = f.text_field :search,placeholder:"キーワードから探す",class:"search_box"
+          %button
+            .search_btn
+              = image_tag src="icon/icon-search 1.png",class:"search_icon"
+    .contents__bottom
+      .contents__bottom__left
+        %p{class:"category_name category_name_tab"} カテゴリー
+        %br
+        .category_lists
+          .categories_nav
+            - @categories.each do |category|
+              = link_to category_path(category.id), class:"category_name", data:{category_id: "#{category.id}"} do
+                %p= category.name
+        %p ブランド
+      - if user_signed_in?
+        %ul.contents__bottom__right
+          %li
+            = link_to "ログアウト", destroy_user_session_path, method: :delete
+            = link_to "マイページ", accounts_path(current_user)
+      -else
+        %ul.contents__bottom__right
+          %li
+            = link_to "ログイン", new_user_session_path
+            = link_to "新規会員登録", new_user_registration_path

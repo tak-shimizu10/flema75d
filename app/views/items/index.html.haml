@@ -1,32 +1,5 @@
 .mains_index
-  .mains_index__header
-    .contents
-      .contents__top
-        %h1.contents__top__left
-          = link_to "/", class: "top_logo"  do
-            = image_tag src="logo/logo.png",class:"top_logo__img"
-        .contents__top__right
-          = form_for "#" do |f|
-            = f.text_field :search,placeholder:"キーワードから探す",class:"search_box"
-            %button
-              .btn
-                = image_tag src="icon/icon-search 1.png",class:"search_icon"
-      .contents__bottom
-        %ul.contents__bottom__left
-          %li.category
-            %p カテゴリー
-          %li.brand
-            %p ブランド
-        - if user_signed_in?
-          %ul.contents__bottom__right
-            %li
-              = link_to "ログアウト", destroy_user_session_path, method: :delete
-              = link_to "マイページ", user_path(current_user)
-        -else
-          %ul.contents__bottom__right
-            %li
-              = link_to "ログイン", new_user_session_path
-              = link_to "新規会員登録", new_user_registration_path
+  = render partial: 'header'
   .top_visual
     .content
       %h2.content__title 人生を変えるフリマアプリ
@@ -34,7 +7,6 @@
         FURIMAはだれでもかんたんに出品・購入できる 
         %br
         フリマアプリです
-
   .top_intro
     %h2.title FURIMAが選ばれる3つの理由
     %ul.top_pops
@@ -56,7 +28,6 @@
           = image_tag src="pict/pict-reason-03.jpg",class:"top_pic"
         %h3.top_subtitle 手数料 業界最安
         %p.top_text 最大3%でお得に出品&購入！
-
   .middle_visual
     .content
       %h2.content__title 会員数日本一位
@@ -66,9 +37,6 @@
         出品・購入回数も業界最多です！
         %br
         ほしかったあの商品に出会えるかもしれません。
-    
-
-
   .middle_intro
     %h2.mid_title FURIMAの特徴
     .mid_pops
@@ -83,8 +51,7 @@
       .mid_pop
         = image_tag src="icon/icon-04.png",class:"mid_pic"
         %h3.mid_subtitle 様々な支払いに対応
-        %p お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。  
-  
+        %p お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
   .mains_index__body
     %h2.head ピックアップカテゴリー
     .look
@@ -153,35 +120,6 @@
     .content
       %h2.content__title だれでもかんたん、人生を変えるフリマアプリ
       %p.content__text 今すぐ無料ダウンロード！
-  .mains_index__footer
-    %ul.contents
-      %li.content
-        %h2.content__head FURIMAについて
-        %ul.lists
-          %li 会社概要（運営会社）
-          %li プライバシーポリシー
-          %li FURIMA利用規約
-          %li ポイントに関する特約
+  = render partial: 'items/purchase'
+  = render partial: 'footer'
 
-      %li.content
-        %h2.content__head FURIMAを見る
-        %ul
-          %li カテゴリー一覧
-          %li ブランド一覧
-
-      %li.content
-        %h2.content__head ヘルプ＆ガイド
-        %ul
-          %li FURIMAガイド
-          %li FURIMAロゴ利用ガイドライン
-          %li お知らせ
-    .footer__logo
-      = image_tag src="logo/logo-white.png",class:"logo_img"
-    %p © FURIMA
-  =link_to "/",class:"purchase" do
-    .purchase__btn
-      .text 出品する
-      = image_tag src="icon/icon_camera.png",class:"image"
-
-%h3
-  %a{ href: '/users/sign_up/' } サインアップ
