@@ -192,7 +192,7 @@ $(function () {
     });
 
     //送信ボタンクリック時、空のフォームにエラーメッセージ表示
-    $("form").on("click", "item_submit", function () {
+    $("form").on("click", ".item_submit", function () {
 
         if ($("#input_photos_field #input_photo_preview").length == 0)
             showCautionMessage($(".items_new_form_photos"))

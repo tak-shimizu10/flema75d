@@ -92,6 +92,9 @@
                                         text-align: center;
                                         cursor:    pointer;
                                         color:      blue;
+                                        &:hover{
+                                            color:   red;
+                                        }
                                     }
                                 }
                                 label#input_photo_field {
@@ -321,8 +324,8 @@
                         .items_new_form_submit_btn {
                             grid-area: submit;
                         }
-                        .items_new_form_save_btn {
-                            grid-area: save;
+                        .items_new_form_draft_btn {
+                            grid-area: draft;
                         }
                         .items_new_btn_back {
                             grid-area: back;
@@ -331,8 +334,11 @@
                             background-color: red;
                             color: white;
                         }
-                        .items_new_btn_save {
+                        .items_new_btn_draft {
                             background-color: lightgray;
+                        }
+                        #item_situation {
+                            display: none;
                         }
                         .items_new_btn_back {
                             text-align: center;
@@ -452,7 +458,7 @@
                         "...... ...... ......"
                         "...... submit ......"
                         "...... ...... ......"15px
-                        "...... save   ......"
+                        "...... draft  ......"
                         "...... ...... ......"15px
                         "...... back   ......"
                         "...... ...... ......"0/
@@ -526,7 +532,7 @@
                     "...... ...... ......"
                     "...... submit ......"
                     "...... ...... ......"15px
-                    "...... save   ......"
+                    "...... draft  ......"
                     "...... ...... ......"15px
                     "...... back   ......"
                     "...... ...... ......"0/
