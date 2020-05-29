@@ -74,20 +74,31 @@
         &__left{
           position: relative;
           display: flex;
-          .category{
-            text-decoration: none;
-            padding: 0;
-            line-height: 38px;
-            display: flex;
-            p{
-              color: #333;
-              text-decoration: none;
-              line-height: 32px;
-              background-position: center right;
-              background-repeat: no-repeat;
-              background-size: 18px;
-              padding-right: 30px;
+          > .category_lists {
+            & p {
+              padding:10px;
+              border:1px solid whitesmoke;
+              &:hover {
+                color:orange;
+              }
             }
+            > .category_fields{ 
+              display: flex; 
+                top: 40px;
+                width:1000px;
+                position: absolute;
+              > .categories_nav{
+                background-color: white;
+                display:none;
+                z-index:3;
+                width:250px;
+                > a {
+                  text-decoration: none;
+                  color:black;
+                }
+            }
+          }
+          
           }
           .brand{
             display: flex;

@@ -1,4 +1,7 @@
 class AccountsController < ApplicationController
+
+  before_action :parent_category
+
   def index
     
   end
@@ -13,5 +16,9 @@ class AccountsController < ApplicationController
     
   end
 
+  private
+  def parent_category
+    @categories = Category.where(ancestry: nil)
+  end
 
 end

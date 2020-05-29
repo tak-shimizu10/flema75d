@@ -10,13 +10,8 @@
       %p 必須
     = f.text_field :card_id ,placeholder: "14〜16桁の半角数字" , maxlength: 16
     %ul
-      %li= image_tag 'card_logo/visa.svg'
-      %li= image_tag 'card_logo/jcb.svg'
-      %li= image_tag 'card_logo/master-card.svg'
-      %li= image_tag 'card_logo/saison-card.svg'
-      %li= image_tag 'card_logo/american_express.svg'
-      %li= image_tag 'card_logo/dinersclub.svg'
-      %li= image_tag 'card_logo/discover.svg'
+      - Dir.glob("#{Rails.root}/app/assets/images/card_logo/*").each do |image|
+        %li= image_tag "card_logo/#{image.split('/').last}"
     %div
       %h3 有効期限
       %p 必須
@@ -31,8 +26,4 @@
       %p 必須
     = f.text_field :cvc ,placeholder: "3〜4桁の半角数字" , maxlength: 4
     = f.submit "追加する"
-
-    -# %h2 登録済みのカード
-    -# - current_user.cards.each do |card|
-    -#   = card.card_id
-    -#   = link_to "削除する" , api_card_path(card.id), method: :delete
+    
