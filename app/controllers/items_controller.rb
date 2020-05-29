@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
-
-  before_action :parent_category, only: [:index,:new,:create,:show]
+  before_action :parent_category, only: [:index, :new, :create, :show]
 
   def index
   end
@@ -36,6 +35,7 @@ class ItemsController < ApplicationController
   def parent_category
     @categories = Category.where(ancestry: nil)
   end
+
   def item_params
     params.require(:item).permit(:id, :name, :detail, :price, :status, :pay_side, :post_date, :brand_id, :category_id, :prefecture_id, :post_way_id, images_attributes: [:image]).merge(user_id: current_user.id)
   end

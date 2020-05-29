@@ -51,7 +51,7 @@ $(function () {
             fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
             const countPreview = $("#input_photos_field #input_photo_preview").length;
 
-            if (countPreview >= 10) $("label").hide();
+            if (countPreview >= 10) $("#photos_input label").hide();
             if (countPreview >= 1) {
                 hideCautionMessage($(".items_new_form_photos"))
                 $(".photos_input_text").html(``)
