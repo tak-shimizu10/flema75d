@@ -1,6 +1,6 @@
 
 
-.items_buys {
+.buys {
 
   &_new {
       font-size:15px;
@@ -34,10 +34,9 @@
         display:flex;
         justify-content: space-between;   
         text-align: left;
-        &-img {
-          border:1px solid;
-          height:50px;
-          width:100px;
+        & img {
+          width:60px;
+          margin:5px;
         }
       }
       &-product {
@@ -79,7 +78,7 @@
 }
 
 @media screen and (max-width: 600px) {
-  .items_buys_new-contents {
+  .buys_new-contents {
     width:100%;
   }
 }
