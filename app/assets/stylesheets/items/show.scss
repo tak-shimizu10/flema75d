@@ -1,0 +1,369 @@
+* {
+  box-sizing: border-box;
+}
+
+.clearfix::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.main {
+  background: whitesmoke;
+  padding: 0 0 220px;
+  &__container {
+    width: 700px;
+    margin: 0 auto;
+    background-color: white;
+    &__item {
+      padding: 25px 40px 40px;
+      h1 {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.item-content {
+  margin-top: 20px;
+}
+
+.item-photo {
+  float: left;
+  width: 300px;
+  height: 420px;
+  &__top {
+    width: 100%;
+    margin: auto;
+  }
+  &__sub-box {
+    width: 300px;
+    height: 120px;
+    background-color: whitesmoke;
+    &__photo {
+      width: 60px;
+      height: 60px;
+      float: left;
+      position: relative;
+      overflow: hidden;
+      .item-other-photo {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: auto;
+      }
+    }
+  }
+}
+
+.item-detail-table {
+  float: right;
+  width: 100%;
+  max-width: 300px;
+  height: 420px;
+  margin: 0 auto;
+  font-size: 14px;
+  tr {
+    th {
+      width: 40%;
+      background-color: whitesmoke;
+      border: 1px solid lightgray;
+      padding: 8px;
+    }
+    td {
+      background-color: white;
+      text-align: left;
+      border: 1px solid lightgray;
+      padding: 8px;
+      a {
+        display: block;
+        text-decoration: none;
+        color: #3CCACE;
+        &:hover {
+          text-decoration: underline;  
+        }
+      }
+      .evaluation {
+        margin-top: 6px;
+        display: flex;
+        .eva-box {
+          margin-right: 12px;
+          .fas.fa-smile-beam.fa-lg {
+            color: hotpink;
+          }
+          .fas.fa-meh.fa-lg {
+            color: orange;
+          }
+          .fas.fa-sad-tear.fa-lg {
+            color: skyblue;
+          }
+        }
+      }
+    }
+  }
+}
+
+.item-price-box {
+  margin-top: 24px;
+  text-align: center;
+  .item-price {
+    font-size: 50px;
+    margin-right: 10px;
+  }
+  .item-tax {
+    font-size: 12px;
+  }
+  .item-shipping-fee {
+    font-size: 16px;
+  }
+}
+
+.item-buy-btn {
+  margin: 16px 0 0;
+  display: block;
+  width: 100%;
+  line-height: 56px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  background-color: #3CCACE;
+  border: 1px solid #3CCACE;
+  text-decoration: none;
+  color: #fff;
+}
+
+.item-explanation {
+  padding-top: 16px;
+  &__box {
+    font-size: 18px;
+    white-space: pre-wrap;
+  }
+}
+
+.item-btn-container {
+  margin-top: 16px;
+  .like-btn {
+    width: 150px;
+    font-size: 14px;
+    border: 1px solid whitesmoke;
+    border-radius: 40px;
+    background-color: whitesmoke;
+    padding: 8px 16px;
+    text-align: center;
+    i {
+      color: gray;
+    }
+    span {
+      margin-left: 4px;
+    }
+  }
+}
+
+.item-detail-message {
+  width: 700px;
+  margin: 8px auto;
+  background-color: white;
+  .message-content {
+    padding: 20px;
+    .guest-message-box {
+      .message-user{
+        text-decoration: none;
+        float: left;
+        position: relative;
+        top: -20px;
+        &__thumbnail {
+          width: 40px;
+          height: 40px;
+          overflow: hidden;
+          border-radius: 50%;
+          img {
+            width: 100%;
+          }
+        }
+        .user_name {
+          font-size: 14px;
+          font-weight: 600;
+          color: black;
+          position: absolute;
+          top: 0;
+          left: 60px;
+        }
+      }
+      .guest-message-item {
+        margin-top: 60px;
+        .message-box {
+          float: right;
+          position: relative;
+          width: calc(100% - 60px);
+          padding: 16px;
+          background: #eef0f4;
+          border-radius: 15px;
+          &__text {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+    p {
+      padding: 8px;
+      font-size: 14px;
+      background: lightyellow;
+    }
+    .message-btn {
+      margin-top: 8px;
+      display: block;
+      width: 100%;
+      line-height: 48px;
+      font-size: 14px;
+      cursor: pointer;
+      text-align: center;
+      background-color: darkgray;
+      border: 1px solid darkgray;
+      text-decoration: none;
+      color: #fff;
+    }
+  }
+}
+
+.message_text_area {
+  width: 100%;
+  height: 100px;
+  margin-top: 8px;
+  padding: 10px;
+}
+
+.nav-prev-next-box {
+  width: 700px;
+  margin: 16px auto 0;
+  a {
+    text-decoration: none;
+    color: #3CCACE;
+    &:hover {
+      text-decoration: underline;  
+    }
+  }
+  li {
+    width: 45%;
+  }
+  &__left {
+    float: left;
+    .fa.fa-angle-left {
+    }
+  }
+  &__right {
+    float: right;
+    text-align: right;
+    .fa.fa-angle-right {
+    }
+  }
+}
+
+.sns-content {
+  width: 700px;
+  margin: 16px auto;
+  &__icon-box {
+    background-color: white;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    .icon-btn {
+      text-decoration: none;
+      font-size: 40px;
+      background-color: white;
+      &__facebook {
+        color: #4169e1;
+        margin-right: 20px;
+      }
+      &__twitter {
+        color: #00bfff;
+        margin-right: 20px;
+      }
+      &__line {
+        color: #00b900;
+        margin-right: 20px;
+      }
+      &__pinterest {
+        color: #bd081c;
+      }
+    }
+  }
+}
+
+.items-container{
+  width: 700px;
+  margin: 0 auto;
+  .item-box-head {
+    margin: 24px 0 8px;
+    font-size: 22px;
+    font-weight: bold;
+    a {
+      text-decoration: none;
+      color: #3CCACE;
+      &:hover {
+        text-decoration: underline;  
+      }
+    }
+  }
+  .items-box-content {
+    width: auto;
+    margin-bottom: 40px;
+    .item-box {
+      width: 220px;
+      background-color: white;
+      margin: 0 20px 20px 0;
+      float: left;
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+      a {
+        text-decoration: none;
+        .item-image {
+          width: 220px;
+          height: 220px;
+          position: relative;
+          overflow: hidden;
+          .item-other-photo {
+            position: absolute;
+            // top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+          }
+        }
+        .item-body {
+          padding: 16px;
+          height: 110px;
+          color: black;
+          .item-name {
+            overflow: hidden;
+            position: relative;
+            font-weight: 400;
+            height: 3em;
+          }
+          .item-num {
+            margin: 8px 0 0;
+            display: flex;
+            justify-content: space-between;
+            .item-price {
+              font-size: 14px;
+              font-weight: 600;
+            }
+            .item-like {
+              font-size: 14px;
+              font-weight: 400;
+              i {
+                color: gray;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

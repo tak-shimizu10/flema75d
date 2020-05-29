@@ -14,25 +14,25 @@
               = f.label :zipcode, "郵便番号"
               %span.form-term.form-term__require 必須
             .field-input
-              = f.text_field :zipcode, autofocus: true, class: 'input-default', placeholder: '例)123-4567'
+              = f.text_field :zipcode, autofocus: true, class: 'input-default', placeholder: '例)123-4567', required: true
           .field
             .field-label
               = f.label :prefecture, "都道府県"
               %span.form-term.form-term__require 必須
             .field-select
-              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {autofocus: true, include_blank: " 選択してください"}, {class: 'select-default'}
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {autofocus: true, include_blank: "選択してください"}, {class: 'select-default', required: true}
           .field
             .field-label
               = f.label :city, "市町村区"
               %span.form-term.form-term__require 必須
             .field-input
-              = f.text_field :city, autofocus: true, class: 'input-default', placeholder: '例)大阪市北区'
+              = f.text_field :city, autofocus: true, class: 'input-default', placeholder: '例)大阪市北区', required: true
           .field
             .field-label
               = f.label :address, "番地"
               %span.form-term.form-term__require 必須
             .field-input
-              = f.text_field :address, autofocus: true, class: 'input-default', placeholder: '例)中崎3-1'
+              = f.text_field :address, autofocus: true, class: 'input-default', placeholder: '例)中崎3-1', required: true
           .field
             .field-label
               = f.label :build_name, "建物名"
