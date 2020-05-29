@@ -74,35 +74,31 @@
         &__left{
           position: relative;
           display: flex;
-
-          & .category_lists {
-            display:flex;
-            z-index:3;
-            position: absolute;
-            top: 20px;
-            width:1000px;
-          }
-          & .category_name_tab {
-            margin-right:30px;
-            &:hover {
-              color:orange;
-            }
-          }
-          & .categories_nav{
-            display:none;
-            background-color: white;
-            width:250px;
-            > a {
-              text-decoration: none;
-              color:black;
-              > p {
-                padding:10px;
-                border:1px solid whitesmoke;
-                &:hover {
-                  color:orange;
-                }
+          > .category_lists {
+            & p {
+              padding:10px;
+              border:1px solid whitesmoke;
+              &:hover {
+                color:orange;
               }
             }
+            > .category_fields{ 
+              display: flex; 
+                top: 40px;
+                width:1000px;
+                position: absolute;
+              > .categories_nav{
+                background-color: white;
+                display:none;
+                z-index:3;
+                width:250px;
+                > a {
+                  text-decoration: none;
+                  color:black;
+                }
+            }
+          }
+          
           }
           .brand{
             display: flex;
