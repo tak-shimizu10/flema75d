@@ -235,7 +235,7 @@ $(function () {
         fileIndex.push(fileIndex[fileIndex.length - 1] + 1);;
     }
     //画面読み込み時の処理
-    $(window).on("load", function (e) {
+    $(window).on("load", function () {
         if ($("#input_photos_field #input_photo_preview").length == 0 && $("#input_photos_field #input_photo_field").length > 1)
             reloadWindowPhotosField();
     });
