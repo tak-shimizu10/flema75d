@@ -86,6 +86,7 @@ $(function () {
         if (e.target.selectedIndex == 0) {
             $(".items_new_post_way").hide();
             $("#item_post_way_id").val("");
+            hideCautionMessage($(".items_new_post_way"));
         } else {
             $(".items_new_post_way").show();
         };
