@@ -30,7 +30,7 @@
           %tr
             %th 出品者
             %td
-              %a{ href: "#" }
+              = link_to "#" do
                 Taro
               .evaluation
                 .eva-box
@@ -45,18 +45,18 @@
           %tr
             %th カテゴリー
             %td
-              %a{ href: "#" }
+              = link_to "#" do
                 メンズ
-              %a{ href: "#" }
+              = link_to "#" do
                 %i.fa.fa-angle-right
                 靴
-              %a{ href: "#" }
+              = link_to "#" do
                 %i.fa.fa-angle-right
                 スニーカー
           %tr
             %th ブランド
             %td
-              %a{ href: "#" }
+              = link_to "#" do
                 NIKE
           %tr
             %th 商品のサイズ
@@ -83,7 +83,7 @@
           (税込)
         %span.item-shipping-fee
           (送料込み)
-      %a{ href: "#", class: "item-buy-btn" }
+      = link_to "#", class: "item-buy-btn" do
         購入画面に進む
       .item-explanation
         %p.item-explanation__box
@@ -98,7 +98,7 @@
     .message-container
       .message-content
         %ul.guest-message-box
-          %a{ href: "#", class: "message-user" }
+          = link_to "#", class: "message-user" do
             .message-user__thumbnail
               =image_tag 'https://static.mercdn.net/images/member_photo_noimage_thumb.png'
             .user_name
@@ -108,7 +108,7 @@
               .message-box__text
                 めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！
         %ul.guest-message-box
-          %a{ href: "#", class: "message-user" }
+          = link_to "#", class: "message-user" do
             .message-user__thumbnail
               =image_tag 'https://static.mercdn.net/images/member_photo_noimage_thumb.png'
             .user_name
@@ -118,7 +118,7 @@
               .message-box__text
                 めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！
         %ul.guest-message-box
-          %a{ href: "#", class: "message-user" }
+          = link_to "#", class: "message-user" do
             .message-user__thumbnail
               =image_tag 'https://static.mercdn.net/images/member_photo_noimage_thumb.png'
             .user_name
@@ -128,7 +128,7 @@
               .message-box__text
                 めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！
         %ul.guest-message-box
-          %a{ href: "#", class: "message-user" }
+          = link_to "#", class: "message-user" do
             .message-user__thumbnail
               =image_tag 'https://static.mercdn.net/images/member_photo_noimage_thumb.png'
             .user_name
@@ -144,30 +144,30 @@
           = f.submit "コメントする", class: "message-btn"
   %ul.nav-prev-next-box.clearfix
     %li.nav-prev-next-box__left
-      %a{ href: "#" }
+      = link_to "#" do
         %i.fa.fa-angle-left
         '前の商品名'
     %li.nav-prev-next-box__right
-      %a{ href: "#" }
+      = link_to "#" do
         '次の商品'
         %i.fa.fa-angle-right
   .sns-content
     .sns-content__icon-box
-      %a{ href: "#", class: "icon-btn icon-btn__facebook" }
+      = link_to "#", class: "icon-btn icon-btn__facebook" do
         %i.fab.fa-facebook-square
-      %a{ href: "#", class: "icon-btn icon-btn__twitter" }
+      = link_to "#", class: "icon-btn icon-btn__twitter" do
         %i.fab.fa-twitter-square
-      %a{ href: "#", class: "icon-btn icon-btn__line" }
+      = link_to "#", class: "icon-btn icon-btn__line" do
         %i.fab.fa-line
-      %a{ href: "#", class: "icon-btn icon-btn__pinterest" }
+      = link_to "#", class: "icon-btn icon-btn__pinterest" do
         %i.fab.fa-pinterest-square
   .items-container
     %h2.item-box-head
-      %a{ href: "#" }
+      = link_to "#" do
         Taroさんのその他の出品
     .items-box-content.clearfix
       .item-box
-        %a{ href: "#" }
+        = link_to "#" do
           .item-image
             =image_tag 'https://d6vlq12fn2gvh.cloudfront.net/uploads/item_image/image/1892/Nike-Air-Jordan-5-Retro-OG-Fire-Red.jpg', class: "item-other-photo"
           .item-body
@@ -180,7 +180,7 @@
                 %i.far.fa-heart
                 %span 10
       .item-box
-        %a{ href: "#" }
+        = link_to "#" do
           .item-image
             =image_tag 'https://cdn-images.farfetch-contents.com/13/12/32/45/13123245_21511207_1000.jpg', class: "item-other-photo"
           .item-body
@@ -193,7 +193,7 @@
                 %i.far.fa-heart
                 %span 20
       .item-box
-        %a{ href: "#" }
+        = link_to "#" do
           .item-image
             =image_tag 'https://ic4-a.wowma.net/mis/gr/114/image.wowma.jp/46769741/ltd-online/wowma1/bv6281-006_2.jpg', class: "item-other-photo"
           .item-body
@@ -206,7 +206,7 @@
                 %i.far.fa-heart
                 %span 30
       .item-box
-        %a{ href: "#" }
+        = link_to "#" do
           .item-image
             =image_tag 'https://item-shopping.c.yimg.jp/i/l/lowtex_384664-123', class: "item-other-photo"
           .item-body
@@ -219,7 +219,7 @@
                 %i.far.fa-heart
                 %span 5
       .item-box
-        %a{ href: "#" }
+        = link_to "#" do
           .item-image
             =image_tag 'https://cdn.flightclub.com/1800/TEMPLATE/139813/2.jpg', class: "item-other-photo"
           .item-body
@@ -232,7 +232,7 @@
                 %i.far.fa-heart
                 %span 50
       .item-box
-        %a{ href: "#" }
+        = link_to "#" do
           .item-image
             =image_tag 'https://uptodate.tokyo/wp-content/uploads/2020/04/BCD682E2-B5C0-4933-A420-38CD361B0197.jpeg', class: "item-other-photo"
           .item-body
@@ -245,7 +245,7 @@
                 %i.far.fa-heart
                 %span 4
       .item-box
-        %a{ href: "#" }
+        = link_to "#" do
           .item-image
             =image_tag 'https://image.vector-park.jp/images/item/original2/047/2016/10/21/047-201610214238_1.jpg?t=1572379896', class: "item-other-photo"
           .item-body
@@ -258,7 +258,7 @@
                 %i.far.fa-heart
                 %span 65
       .item-box
-        %a{ href: "#" }
+        = link_to "#" do
           .item-image
             =image_tag 'http://sneaker-baka.com/wp-content/uploads/2016/12/air-jordan9-white-e1480653783934-580x319.jpg', class: "item-other-photo"
           .item-body
@@ -271,7 +271,7 @@
                 %i.far.fa-heart
                 %span 18
       .item-box
-        %a{ href: "#" }
+        = link_to "#" do
           .item-image
             =image_tag 'https://www.modescape.com/wp-content/uploads/JORDAN8_AJ8.jpg', class: "item-other-photo"
           .item-body
