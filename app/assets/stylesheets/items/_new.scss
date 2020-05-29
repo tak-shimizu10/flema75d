@@ -88,6 +88,9 @@
                                     .input_photo_remove{
                                         grid-area:  remove;
                                     }
+                                    img{
+                                        margin:       auto;
+                                    }
                                     .input_photo_remove{
                                         text-align: center;
                                         cursor:    pointer;
@@ -519,7 +522,6 @@
                 width:     100%;
                 .items_new_form_photos {
                     .photos_input {
-                        height: 150px;
                         label {
                             .photos_input_text {
                                 display: none;

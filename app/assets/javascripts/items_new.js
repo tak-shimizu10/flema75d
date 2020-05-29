@@ -28,7 +28,7 @@ $(function () {
     function hideCautionMessage(scopeClass) {
         scopeClass.find(".items_new_caution").hide();
     }
-    
+
     let fileIndex = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     lastIndex = $(".input_photo_file_group:last").data("index");
     fileIndex.splice(0, lastIndex);
@@ -50,10 +50,13 @@ $(function () {
             fileIndex.shift();
             fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
             const countPreview = $("#input_photos_field #input_photo_preview").length;
-            
+
             if (countPreview >= 10) $("label").hide();
-            if (countPreview >= 1) hideCautionMessage($(".items_new_form_photos"))
-            $(".input_photo_file").attr("required", false);
+            if (countPreview >= 1) {
+                hideCautionMessage($(".items_new_form_photos"))
+                $(".photos_input_text").html(``)
+                $(".input_photo_file").attr("required", false);
+            }
         }
     });
 
@@ -61,15 +64,18 @@ $(function () {
     $("#input_photos_field").on("click", ".input_photo_remove", function (e) {
 
         const targetIndex = $(this).parent().data("index");
+        const countPreview = $("#input_photos_field #input_photo_preview").length - 1
         const hiddenCheckbox = $(`input[data-index= "${targetIndex}"].hidden_destroy`);
-        const countPreview = $("#input_photos_field #input_photo_preview").length - 1;
         const lastFileField = $("#input_photos_field #input_photo_field").last();
 
         $(this).parent().remove();
         $(`label[data-index= "${targetIndex}"]`).remove();
 
-        if (countPreview == 0) showCautionMessage($(".items_new_form_photos"));
-        if (countPreview <= 9) (lastFileField).show();
+        if (countPreview == 0) {
+            showCautionMessage($(".items_new_form_photos"))
+            $(".photos_input_text").html(`クリックしてファイルをアップロード`)
+        }
+        if (countPreview <= 10) (lastFileField).show();
         if ($(".input_photo_file").length == 0)
             $("#input_photos_field").append(buildFileField(fileIndex[0]))
             $(".input_photo_file").attr("required", true);
@@ -217,5 +223,20 @@ $(function () {
         if ($("#item_price").val() == 0)
             showCautionMessage($(".items_new_form_price"));
         
+    });
+
+    //11枚以上登録時のnewアクションをrenderしたときfile_fieldが1つになるように
+    function reloadWindowPhotosField() {
+        do { $("#input_photo_field").remove(); }
+        while ($("#input_photos_field #input_photo_field").length >= 1 );
+        $("#input_photos_field").append(buildFileField(fileIndex[0]));
+        $(".input_photo_file").attr("required", true)
+        fileIndex.shift();
+        fileIndex.push(fileIndex[fileIndex.length - 1] + 1);;
+    }
+    //画面読み込み時の処理
+    $(window).on("load", function (e) {
+        if ($("#input_photos_field #input_photo_preview").length == 0 && $("#input_photos_field #input_photo_field").length > 1)
+            reloadWindowPhotosField();
     });
 });
