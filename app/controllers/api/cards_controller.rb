@@ -12,6 +12,7 @@ class Api::CardsController < ApplicationController
   rescue_from  Payjp::CardError, with: :payjp_error
 
   def index
+    @categories = Category.where(ancestry: nil)
     @user_cards = current_user.cards
     unless @user_cards.blank?
       customer_id = @user_cards.first[:customer_id]
