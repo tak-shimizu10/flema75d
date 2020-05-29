@@ -1,0 +1,22 @@
+.account_show
+  = render partial: 'items/header'
+  .body
+    = render partial: 'side_bar'
+    .body__edit
+      %h2 支払い方法
+      .card_edit
+        .card_edit__head
+          %h3 クレジットカード一覧
+        %ul.card_lists
+          %li
+            %form.card_info
+              .card_info__logo
+                =image_tag src="card_logo/visa.gif",class:"card-logo"
+              .card_info__number
+                **************
+              .card_info__period
+                03/21
+              %button.card_info__delete
+                削除する
+  = render partial: 'items/footer'
+
