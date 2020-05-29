@@ -3,7 +3,9 @@ $(function(){
 
   function buildHTML(data){
 
-    var html = `<div class="category_form">\n  <select name="category_id" class="category_list">\n`
+    var html = `<div class="category_form">\n`
+    
+    html += `  <p>　</p>\n  <select name="category_id" class="category_list">\n`
 
     html += `    <option value="">選択してください</option>\n`  
     data.forEach(function(value){
