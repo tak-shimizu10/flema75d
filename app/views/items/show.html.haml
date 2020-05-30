@@ -183,7 +183,7 @@
   .items-container
     %h2.item-box-head
       = link_to @item.user do
-        = link_to "#{@item.user.nickname}さんのその他の出品"
+        = link_to "#{@item.user.nickname}さんのその他の出品", @item.user
     .items-box-content.clearfix
       - @items.each do |item|
         .item-box
