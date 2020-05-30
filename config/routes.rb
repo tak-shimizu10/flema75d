@@ -16,14 +16,15 @@ Rails.application.routes.draw do
     resources :buys, only: [:new,:create]
   end
 
-  resources :accounts, only:[:index,:edit,:show] do
-    get 'logout'
-  end
-  
   # カテゴリ機能に使用
   namespace :api do
     resources :selects, only: [:index]
     resources :cards, only: [:index,:new,:create,:destroy]
+    resource :templates, only: [] do
+      member do
+        get 'logout'
+      end
+    end
   end
 
   resources :categories, only: [:show]
