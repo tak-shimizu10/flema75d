@@ -28,5 +28,7 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:show]
 
+  resources :all_items, only: [:index]
+
 end
 
