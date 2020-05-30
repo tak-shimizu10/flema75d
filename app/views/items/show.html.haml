@@ -30,7 +30,7 @@
           %tr
             %th カテゴリー
             %td
-              = link_to @item.category.name do
+              = link_to category_all_items_path do
                 = @item.category.name
               -# .sub-category
               -#   = link_to @item.category_child_category do
