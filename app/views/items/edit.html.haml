@@ -44,14 +44,14 @@
                 %label カテゴリー
                 %p.items_mandatory_fields 必須
               .category_form#category_base
-                = f.select :category_id, options_for_select(@categories) ,{ include_blank: "選択してください" }, class: "category_list", required: true
+                = f.select :category_id, options_for_select(@categories), { include_blank: "選択してください" }, class: "category_list", required: true
               .items_caution#category_caution 選択してください
             .items_brand
               .items_form_style
                 %label ブランド
                 %p.items_option_fields 任意
               %div
-                = f.text_field :brand, class: "items_form_input brand_input", placeholder: "例）シャネル"
+                = f.text_field :brand, value: "#{@brand.name}", class: "items_form_input brand_input", placeholder: "例）シャネル"
             .items_status
               .items_form_style
                 %label 商品の状態

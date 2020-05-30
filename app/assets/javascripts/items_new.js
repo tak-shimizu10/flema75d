@@ -44,11 +44,12 @@ $(function () {
         if (img = $(`img[data-index= "${targetIndex}"]`)[0]) {
             img.setAttribute("src", blobUrl);
         } else {
-            $(`label[data-index= "${targetIndex}"]`).hide();
+            $("#photos_input #input_photo_field").hide();
             $("#input_photos_field").append(buildPhotoPreview(targetIndex, blobUrl));
             $("#input_photos_field").append(buildFileField(fileIndex[0]));
             fileIndex.shift();
             fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+            $("#photos_input #input_photo_field").last().show();
             const countPreview = $("#input_photos_field #input_photo_preview").length;
 
             if (countPreview >= 10) $("#photos_input label").hide();
@@ -228,15 +229,17 @@ $(function () {
     //11枚以上登録時のnewアクションをrenderしたときfile_fieldが1つになるように
     function reloadWindowPhotosField() {
         do { $("#input_photo_field").remove(); }
-        while ($("#input_photos_field #input_photo_field").length >= 1 );
-        $("#input_photos_field").append(buildFileField(fileIndex[0]));
-        $(".input_photo_file").attr("required", true)
-        fileIndex.shift();
-        fileIndex.push(fileIndex[fileIndex.length - 1] + 1);;
+        while ($("#input_photos_field #input_photo_field").length >= 11);
+        $("#input_photos_field #input_photo_field").hide();
+        if ($("#input_photos_field #input_photo_field").length < 10)
+            $("#input_photos_field #input_photo_field").last().show();
     }
     //画面読み込み時の処理
     $(window).on("load", function () {
         if ($("#input_photos_field #input_photo_preview").length == 0 && $("#input_photos_field #input_photo_field").length > 1)
             reloadWindowPhotosField();
     });
+    function reloadExistPreview() {
+        $("#input_photos_field input_photo_field").data
+    }
 });

@@ -31,7 +31,14 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @categories = Category.where(ancestry: nil).pluck(:name, :id)
+    @item = Item.find(params[:id])
+    @brand = Brand.find(@item[:brand_id])
+    @images = Image.where(item_id: params[:id])
+    # binding.pry
+    @categories = Category.where(id: Item.find(params[:id])[:category_id]).pluck(:name, :id)
+  end
+
+  def update
   end
 
   private

@@ -3,7 +3,7 @@
     background-color: lightgray;
     display: grid;
     grid-template:
-    "body"1fr;
+    "body" 1fr;
     .items_body {
         grid-area: body;
         height:    100%;
@@ -82,16 +82,16 @@
                                     "...... remove  ......"20px
                                     "...... ......  ......"/
                                         10px auto 10px;
-                                    img{
+                                    img {
                                         grid-area: preview;
                                     }
-                                    .input_photo_remove{
+                                    .input_photo_remove {
                                         grid-area:  remove;
                                     }
-                                    img{
+                                    img {
                                         margin:       auto;
                                     }
-                                    .input_photo_remove{
+                                    .input_photo_remove {
                                         text-align: center;
                                         cursor:    pointer;
                                         color:      blue;
@@ -129,12 +129,12 @@
                                     .photos_input_text {
                                         font-size: 12px;
                                     }
-                                    &:hover{
+                                    &:hover {
                                         background-color: lightgray;
                                         opacity:                  0.5;
                                     }
                                 }
-                                .hover_photo_file{
+                                .hover_photo_file {
                                     background-color: gray;
                                     opacity:             0.5;
                                 }
@@ -354,7 +354,7 @@
 
                     .items_form_notice {
                         background-color: white;
-                        .notice_text{
+                        .notice_text {
                             margin:0 40px 64px;
                             font-size: 12px;
                         }
@@ -409,7 +409,7 @@
         }
         .items_footer {
             display:           grid;
-            .items_privacy_policy  {
+            .items_privacy_policy {
                 grid-area:  privacy;
             }
             .items_terms_of_service {
@@ -484,7 +484,7 @@
                         width:  100%;
                     }
                 }
-                .items_footer_link{
+                .items_footer_link {
                     font-size:  12px;
                 }
                 .items_c_inc {
@@ -500,8 +500,8 @@
 
 // 画面サイズ 小
 @media screen and (max-width: 766px) {
-    .items{
-        .items_body{
+    .items {
+        .items_body {
             width:   100%;
             grid-template:
             "....." 10px
@@ -558,7 +558,7 @@
                 "......  c_inc    ......" 
                 "......  ......   ......" 10px/
                 auto 150px auto;
-                .items_footer_link{
+                .items_footer_link {
                     font-size:  12px;
                 }
                 .items_footer_logo_to_index {
