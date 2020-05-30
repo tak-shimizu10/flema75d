@@ -1,9 +1,8 @@
-.items#items_new
+.items#items_edit
   .items_body
     = render "items/form/header"
     .items_main
       .items_form_list
-        -# = render "items/form/form", items: @item
         = form_with(model: @item, local: true) do |f|
 
           .items_form.items_form_photos

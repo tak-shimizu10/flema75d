@@ -23,10 +23,10 @@ $(function () {
 
     //エラーメッセージの表示・非表示の関数宣言
     function showCautionMessage(scopeClass) {
-        scopeClass.find(".items_new_caution").show();
+        scopeClass.find(".items_caution").show();
     }
     function hideCautionMessage(scopeClass) {
-        scopeClass.find(".items_new_caution").hide();
+        scopeClass.find(".items_caution").hide();
     }
 
     let fileIndex = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -53,7 +53,7 @@ $(function () {
 
             if (countPreview >= 10) $("#photos_input label").hide();
             if (countPreview >= 1) {
-                hideCautionMessage($(".items_new_form_photos"))
+                hideCautionMessage($(".items_form_photos"))
                 $(".photos_input_text").html(``)
                 $(".input_photo_file").attr("required", false);
             }
@@ -72,7 +72,7 @@ $(function () {
         $(`label[data-index= "${targetIndex}"]`).remove();
 
         if (countPreview == 0) {
-            showCautionMessage($(".items_new_form_photos"))
+            showCautionMessage($(".items_form_photos"))
             $(".photos_input_text").html(`クリックしてファイルをアップロード`)
         }
         if (countPreview <= 10) (lastFileField).show();
@@ -82,7 +82,7 @@ $(function () {
     });
 
     //商品説明の文字数表示
-    $(".items_new_detail").on("keyup change", "#item_detail", function () {
+    $(".items_detail").on("keyup change", "#item_detail", function () {
         let targetWordCount = $(this).val().length;
         $(".input_text_length").html(`${targetWordCount}`);
     });
@@ -90,11 +90,11 @@ $(function () {
     //配送の方法表示・非表示
     $("form").on("change", "#item_pay_side", function (e) {
         if (e.target.selectedIndex == 0) {
-            $(".items_new_post_way").hide();
+            $(".items_post_way").hide();
             $("#item_post_way_id").val("");
-            hideCautionMessage($(".items_new_post_way"));
+            hideCautionMessage($(".items_post_way"));
         } else {
-            $(".items_new_post_way").show();
+            $(".items_post_way").show();
         };
     })
 
@@ -128,73 +128,73 @@ $(function () {
     $("form").on("keyup", "#item_name", function () {
         let inputNameLength = $(this).context.value.length;
         if (inputNameLength > 0) {
-            hideCautionMessage($(".items_new_name"));
+            hideCautionMessage($(".items_name"));
         } else {
-            showCautionMessage($(".items_new_name"));
+            showCautionMessage($(".items_name"));
         };
     });
     $("form").on("keyup", "#item_detail", function () {
         let inputDetailLength = $(this).context.value.length;
         if (inputDetailLength > 0) {
-            hideCautionMessage($(".items_new_detail"));
+            hideCautionMessage($(".items_detail"));
         } else {
-            showCautionMessage($(".items_new_detail"));
+            showCautionMessage($(".items_detail"));
         };
     });
     $("form").on("change", "#item_category_id", function () {
         let selectCategory = $(this).val();
         if ( selectCategory > 0) {
-            hideCautionMessage($(".items_new_category"));
+            hideCautionMessage($(".items_category"));
         } else {
-            showCautionMessage($(".items_new_category"));
+            showCautionMessage($(".items_category"));
         };
     })
     $("form").on("change", "#item_status", function () {
         let selectStatus = this.selectedIndex;
         if (selectStatus > 0) {
-            hideCautionMessage($(".items_new_status"));
+            hideCautionMessage($(".items_status"));
         } else {
-            showCautionMessage($(".items_new_status"));
+            showCautionMessage($(".items_status"));
         };
     });
     $("form").on("change", "#item_pay_side", function () {
         let selectPaySide = this.selectedIndex;
         if (selectPaySide > 0) {
-            hideCautionMessage($(".items_new_pay_side"));
+            hideCautionMessage($(".items_pay_side"));
         } else {
-            showCautionMessage($(".items_new_pay_side"));
+            showCautionMessage($(".items_pay_side"));
         };
     });
     $("form").on("change", "#item_prefecture_id", function () {
         let selectPrefecture = this.selectedIndex;
         if (selectPrefecture > 0) {
-            hideCautionMessage($(".items_new_post_prefecture"));
+            hideCautionMessage($(".items_post_prefecture"));
         } else {
-            showCautionMessage($(".items_new_post_prefecture"));
+            showCautionMessage($(".items_post_prefecture"));
         };
     });
     $("form").on("change", "#item_post_date", function () {
         let selectPostDate = this.selectedIndex;
         if (selectPostDate > 0) {
-            hideCautionMessage($(".items_new_post_date"));
+            hideCautionMessage($(".items_post_date"));
         } else {
-            showCautionMessage($(".items_new_post_date"));
+            showCautionMessage($(".items_post_date"));
         };
     });
     $("form").on("keyup", "#item_price", function () {
         let inputPriceLength = $(this).context.value.length;
         if (inputPriceLength > 0) {
-            hideCautionMessage($(".items_new_form_price"));
+            hideCautionMessage($(".items_form_price"));
         } else {
-            showCautionMessage($(".items_new_form_price"));
+            showCautionMessage($(".items_form_price"));
         };
     });
     $("form").on("change", "#item_post_way_id", function () {
         let inputPostWayLength = $(this).context.value.length;
         if (inputPostWayLength > 0) {
-            hideCautionMessage($(".items_new_post_way"));
+            hideCautionMessage($(".items_post_way"));
         } else {
-            showCautionMessage($(".items_new_post_way"));
+            showCautionMessage($(".items_post_way"));
         };
     });
 
@@ -202,26 +202,26 @@ $(function () {
     $("form").on("click", ".item_submit", function () {
 
         if ($("#input_photos_field #input_photo_preview").length == 0)
-            showCautionMessage($(".items_new_form_photos"))
+            showCautionMessage($(".items_form_photos"))
             $(window).scrollTop($("#photos_input").offset().top);
         if ($("#item_name").val().length == 0)
-            showCautionMessage($(".items_new_name"));
+            showCautionMessage($(".items_name"));
         if ($("#item_detail").val().length == 0)
-            showCautionMessage($(".items_new_detail"));
+            showCautionMessage($(".items_detail"));
         if ($("#item_category_id").val().length == 0)
-            showCautionMessage($(".items_new_category"));
+            showCautionMessage($(".items_category"));
         if ($("#item_status").val().length == 0)
-            showCautionMessage($(".items_new_status"));
+            showCautionMessage($(".items_status"));
         if ($("#item_pay_side").val().length == 0)
-            showCautionMessage($(".items_new_pay_side"));
+            showCautionMessage($(".items_pay_side"));
         if ($("#item_post_way_id").val().length == 0)
-            showCautionMessage($(".items_new_post_way"));
+            showCautionMessage($(".items_post_way"));
         if ($("#item_prefecture_id").val().length == 0)
-            showCautionMessage($(".items_new_post_prefecture"));
+            showCautionMessage($(".items_post_prefecture"));
         if ($("#item_post_date").val().length == 0)
-            showCautionMessage($(".items_new_post_date"));
+            showCautionMessage($(".items_post_date"));
         if ($("#item_price").val() == 0)
-            showCautionMessage($(".items_new_form_price"));
+            showCautionMessage($(".items_form_price"));
         
     });
 

@@ -31,6 +31,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @categories = Category.where(ancestry: nil).pluck(:name, :id)
   end
 
   private
