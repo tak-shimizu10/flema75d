@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     @categories = Category.where(ancestry: nil)
     respond_to do |format|
       format.html 
-      format.js {
+      format.json {
         partial = render_to_string(partial:"templates/top", locals: { categories: @categories })
         render json:{html:partial}
        }
