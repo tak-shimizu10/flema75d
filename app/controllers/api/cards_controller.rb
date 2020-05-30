@@ -57,7 +57,10 @@ class Api::CardsController < ApplicationController
     end
 
     # データーベース上にpayjp上のカード情報を読み取るためのデータを保存
-    Card.create( customer_id: customer.id, card_id: card_id, user_id: card_info[:user_id])
+    card = Card.new( customer_id: customer.id, card_id: card_id, user_id: card_info[:user_id])
+    unless card.save
+      render "new"
+    end
   
   end
 
