@@ -24,6 +24,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
+    @items = Item.where(user_id: @item.user_id).order('created_at DESC').limit(6)
   end
 
   private
