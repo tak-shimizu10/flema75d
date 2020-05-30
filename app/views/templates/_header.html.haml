@@ -16,14 +16,14 @@
           %p{class:"category_name"} カテゴリー
           .category_fields
             .categories_nav
-              - @categories.each do |category|
+              - categories.each do |category|
                 = link_to category_path(category.id), class:"category_name", data:{category_id: "#{category.id}"} do
                   %p= category.name
       - if user_signed_in?
         %ul.contents__bottom__right
           %li
             = link_to "ログアウト", destroy_user_session_path, method: :delete
-            = link_to "マイページ", accounts_path(current_user)
+            = link_to "マイページ", user_path(current_user.id)
       -else
         %ul.contents__bottom__right
           %li

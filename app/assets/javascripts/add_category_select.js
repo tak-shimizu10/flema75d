@@ -27,8 +27,6 @@ $(function(){
     if(category_id == null){
       return true;
     }
-     
-    console.log($(this).val())
 
     $.ajax({
       url: "/api/selects",
