@@ -30,6 +30,9 @@ class ItemsController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
   private
 
   def parent_category
