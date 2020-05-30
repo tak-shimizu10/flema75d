@@ -12,7 +12,7 @@ $(function () {
     const buildFileField = (index) => {
         const html =
             `<label id= "input_photo_field" data-index= "${index}">
-                <input class= "input_photo_file" type= "file"
+                <input class= "input_photo_file" type= "file", required= "false"
                 name= "item[images_attributes][${index}][image]"
                 id= "item_images_attributes_${index}_image photo_file_${index}"><br>
                 <img class= "fas fa-camera" src= "/assets/icon/icon_camera-24c5a3dec3f777b383180b053077a49d0416a4137a1c541d7dd3f5ce93194dee.png">
@@ -50,9 +50,13 @@ $(function () {
             fileIndex.shift();
             fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
             const countPreview = $("#input_photos_field #input_photo_preview").length;
-            
-            if (countPreview >= 10) $("label").hide();
-            if (countPreview >= 1) hideCautionMessage($(".items_new_form_photos"));
+
+            if (countPreview >= 10) $("#photos_input label").hide();
+            if (countPreview >= 1) {
+                hideCautionMessage($(".items_new_form_photos"))
+                $(".photos_input_text").html(``)
+                $(".input_photo_file").attr("required", false);
+            }
         }
     });
 
@@ -60,25 +64,39 @@ $(function () {
     $("#input_photos_field").on("click", ".input_photo_remove", function (e) {
 
         const targetIndex = $(this).parent().data("index");
+        const countPreview = $("#input_photos_field #input_photo_preview").length - 1
         const hiddenCheckbox = $(`input[data-index= "${targetIndex}"].hidden_destroy`);
-        const countPreview = $("#input_photos_field #input_photo_preview").length - 1;
         const lastFileField = $("#input_photos_field #input_photo_field").last();
 
         $(this).parent().remove();
         $(`label[data-index= "${targetIndex}"]`).remove();
 
-        if (countPreview == 0) showCautionMessage($(".items_new_form_photos"));
-        if (countPreview <= 9) (lastFileField).show();
+        if (countPreview == 0) {
+            showCautionMessage($(".items_new_form_photos"))
+            $(".photos_input_text").html(`クリックしてファイルをアップロード`)
+        }
+        if (countPreview <= 10) (lastFileField).show();
         if ($(".input_photo_file").length == 0)
-            $("#input_photos_field").append(buildFileField(fileIndex[0]));
+            $("#input_photos_field").append(buildFileField(fileIndex[0]))
+            $(".input_photo_file").attr("required", true);
     });
 
     //商品説明の文字数表示
     $(".items_new_detail").on("keyup change", "#item_detail", function () {
         let targetWordCount = $(this).val().length;
         $(".input_text_length").html(`${targetWordCount}`);
-
     });
+
+    //配送の方法表示・非表示
+    $("form").on("change", "#item_pay_side", function (e) {
+        if (e.target.selectedIndex == 0) {
+            $(".items_new_post_way").hide();
+            $("#item_post_way_id").val("");
+            hideCautionMessage($(".items_new_post_way"));
+        } else {
+            $(".items_new_post_way").show();
+        };
+    })
 
     //価格の表示(販売手数料、販売利益)
     $("#item_price").on("keyup change", function () {
@@ -123,6 +141,14 @@ $(function () {
             showCautionMessage($(".items_new_detail"));
         };
     });
+    $("form").on("change", "#item_category_id", function () {
+        let selectCategory = $(this).val();
+        if ( selectCategory > 0) {
+            hideCautionMessage($(".items_new_category"));
+        } else {
+            showCautionMessage($(".items_new_category"));
+        };
+    })
     $("form").on("change", "#item_status", function () {
         let selectStatus = this.selectedIndex;
         if (selectStatus > 0) {
@@ -162,5 +188,55 @@ $(function () {
         } else {
             showCautionMessage($(".items_new_form_price"));
         };
+    });
+    $("form").on("change", "#item_post_way_id", function () {
+        let inputPostWayLength = $(this).context.value.length;
+        if (inputPostWayLength > 0) {
+            hideCautionMessage($(".items_new_post_way"));
+        } else {
+            showCautionMessage($(".items_new_post_way"));
+        };
+    });
+
+    //送信ボタンクリック時、空のフォームにエラーメッセージ表示
+    $("form").on("click", ".item_submit", function () {
+
+        if ($("#input_photos_field #input_photo_preview").length == 0)
+            showCautionMessage($(".items_new_form_photos"))
+            $(window).scrollTop($("#photos_input").offset().top);
+        if ($("#item_name").val().length == 0)
+            showCautionMessage($(".items_new_name"));
+        if ($("#item_detail").val().length == 0)
+            showCautionMessage($(".items_new_detail"));
+        if ($("#item_category_id").val().length == 0)
+            showCautionMessage($(".items_new_category"));
+        if ($("#item_status").val().length == 0)
+            showCautionMessage($(".items_new_status"));
+        if ($("#item_pay_side").val().length == 0)
+            showCautionMessage($(".items_new_pay_side"));
+        if ($("#item_post_way_id").val().length == 0)
+            showCautionMessage($(".items_new_post_way"));
+        if ($("#item_prefecture_id").val().length == 0)
+            showCautionMessage($(".items_new_post_prefecture"));
+        if ($("#item_post_date").val().length == 0)
+            showCautionMessage($(".items_new_post_date"));
+        if ($("#item_price").val() == 0)
+            showCautionMessage($(".items_new_form_price"));
+        
+    });
+
+    //11枚以上登録時のnewアクションをrenderしたときfile_fieldが1つになるように
+    function reloadWindowPhotosField() {
+        do { $("#input_photo_field").remove(); }
+        while ($("#input_photos_field #input_photo_field").length >= 1 );
+        $("#input_photos_field").append(buildFileField(fileIndex[0]));
+        $(".input_photo_file").attr("required", true)
+        fileIndex.shift();
+        fileIndex.push(fileIndex[fileIndex.length - 1] + 1);;
+    }
+    //画面読み込み時の処理
+    $(window).on("load", function () {
+        if ($("#input_photos_field #input_photo_preview").length == 0 && $("#input_photos_field #input_photo_field").length > 1)
+            reloadWindowPhotosField();
     });
 });
