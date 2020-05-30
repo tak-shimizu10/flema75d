@@ -1,5 +1,5 @@
 .item-main
-  = render partial: 'header'
+  = render partial: 'templates/header'
   .item-main__container
     .item-main__container__item
       %h1.item-name
@@ -30,7 +30,7 @@
           %tr
             %th カテゴリー
             %td
-              = link_to @item.category do
+              = link_to @item.category.name do
                 = @item.category.name
               -# .sub-category
               -#   = link_to @item.category_child_category do
@@ -199,4 +199,4 @@
                 .item-like
                   %i.far.fa-heart
                   %span 10
-  = render partial: 'footer'
+  = render partial: 'templates/footer'
