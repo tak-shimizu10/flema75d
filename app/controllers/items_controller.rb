@@ -34,11 +34,28 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @brand = Brand.find(@item[:brand_id])
     @images = Image.where(item_id: params[:id])
-    # binding.pry
-    @categories = Category.where(id: Item.find(params[:id])[:category_id]).pluck(:name, :id)
+    @categories = Category.where(ancestry: nil).pluck(:name, :id)
+    @category = Category.find(@item.id)
+    if @category.parent.present?
+      @child_category = @category
+      @category = Category.find(@category.parent)
+      if @category.ancestry.present?
+        @grandchild_category = @child_category
+        @child_category = @category
+        @category = Category.find(@category.parent)
+      else
+      end
+    else
+    end
   end
 
   def update
+    binding.pry
+    if @item.save(item_parems)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   private

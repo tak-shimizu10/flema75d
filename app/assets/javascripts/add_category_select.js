@@ -16,7 +16,7 @@ $(function(){
     return html
   }
 
-  $(document).on("change",".category_list", function(event){
+  $(document).on("change", ".category_list", function(event){
     
     event.preventDefault();
 
