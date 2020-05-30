@@ -27,9 +27,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :categories, only: [:show]
-
-  resources :all_items, only: [:index]
+  resource :all_items, only: [:index] do
+    member do
+      get 'category'
+    end
+  end
 
 end
 
