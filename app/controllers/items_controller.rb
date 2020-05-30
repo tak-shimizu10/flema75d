@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :parent_category, only: [:index, :new, :create, :show]
+  before_action :set_params, only: [:edit, :update]
 
   def index
   end
@@ -31,28 +32,34 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
-    @brand = Brand.find(@item[:brand_id])
-    @images = Image.where(item_id: params[:id])
+    @brand = Brand.where(id: @item.brand_id)
+    @category = @item.category
     @categories = Category.where(ancestry: nil).pluck(:name, :id)
-    @category = Category.find(@item.id)
     if @category.parent.present?
       @child_category = @category
-      @category = Category.find(@category.parent)
-      if @category.ancestry.present?
+      @category = @child_category.parent
+      if @category.parent.present?
         @grandchild_category = @child_category
         @child_category = @category
-        @category = Category.find(@category.parent)
+        @category = @child_category.parent
       else
+        render :edit
       end
     else
+      render :edit
     end
   end
 
   def update
-    binding.pry
-    if @item.save(item_parems)
-      redirect_to root_path
+    @item = Item.find(params[:id])
+    if item_params[:images_attributes].present?
+      if @item.update(item_params)
+        brands = Brand.find_or_create_by(name: params[:item][:brand])
+        @item.update(brand_id: brands.id)
+        redirect_to root_path
+      else
+        render :edit
+      end
     else
       render :edit
     end
@@ -65,6 +72,10 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:id, :name, :detail, :price, :status, :pay_side, :post_date, :brand_id, :category_id, :prefecture_id, :post_way_id, images_attributes: [:image]).merge(user_id: current_user.id)
+    params.require(:item).permit(:id, :name, :detail, :price, :status, :pay_side, :post_date, :category_id, :prefecture_id, :post_way_id, images_attributes: [:id, :image, :item_id]).merge(user_id: current_user.id)
+  end
+
+  def set_params
+    @item = Item.find(params[:id])
   end
 end
