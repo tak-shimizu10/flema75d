@@ -33,6 +33,7 @@ $(function(){
       type: "GET",
       dataType: "json",
       context: this,
+      cache: false,
       data: {
 
         // 選択されたカテゴリーのidを取得

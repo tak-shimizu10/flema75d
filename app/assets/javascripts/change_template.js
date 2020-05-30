@@ -8,6 +8,7 @@ $(function(){
     $.ajax({
       url: path,
       dataType: 'json',
+      cache: false,
       type: 'get'
     }).done(function(result) {
 
