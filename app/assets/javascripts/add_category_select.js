@@ -3,7 +3,9 @@ $(function(){
 
   function buildHTML(data){
 
-    var html = `<div class="category_form">\n  <select name="category_id" class="category_list">\n`
+    var html = `<div class="category_form">\n`
+    
+    html += `  <p>　</p>\n  <select class="category_list" required="required" name="item[category_id]">\n`
 
     html += `    <option value="">選択してください</option>\n`  
     data.forEach(function(value){
@@ -25,14 +27,13 @@ $(function(){
     if(category_id == null){
       return true;
     }
-     
-    console.log($(this).val())
 
     $.ajax({
       url: "/api/selects",
       type: "GET",
       dataType: "json",
       context: this,
+      cache: false,
       data: {
 
         // 選択されたカテゴリーのidを取得
@@ -47,6 +48,7 @@ $(function(){
 
         // 選択したフォームの下に新たなフォームを追加
         var html = buildHTML(data)
+        
         $(this).parent().after(html)
       } 
     })

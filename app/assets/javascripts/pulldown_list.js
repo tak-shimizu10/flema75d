@@ -6,9 +6,10 @@ $(function(){
     var html = `<div class="categories_nav category-child">\n`
 
     data.forEach(function(value){
-      html += `  <a class="category_name" data-category-id="${value.id}" href="/categories/${value.id}"><p>${value.name}</p></a>\n`
+      html += `  <a class="category_name" data-category-id="${value.id}" href="/all_items/category?category_id=${value.id}"><p>${value.name}</p></a>\n`
     })
     html += `</div>`
+
     return html
   }
 
@@ -24,6 +25,7 @@ $(function(){
         type: "GET",
         dataType: "json",
         context: this,
+        cache: false,
         data: {
   
           // 選択されたカテゴリーのidを取得
@@ -41,21 +43,18 @@ $(function(){
           $(this).parent().nextAll(".category-child").remove()
           $(this).parent().after(html)
           $(".categories_nav").css("display","block");
-          
+
         } 
       })
       .fail(function(){
 
           console.log("error!")
           $(".category-child").remove()
-          $(".categories_nav").css("display","block");
           
       })
 
     },
-    'mouseleave' : function(){
-     
-    }
+    'mouseleave' : function(){}
 
     }, ".category_name");
 
@@ -69,18 +68,5 @@ $(function(){
         $(".category-child").remove()
       }
     },".category_lists")
-
-    // リスト全体からポインタが離れたら見えなくする
-    $(document).on({
-      'mouseenter' : function() {
-        $(".category_name_tab").css("display","block");
-      },
-      'mouseleave' : function(){
-        $(".categories_nav").css("display","none");
-        $(".category-child").remove()
-      }
-    },".category_name_tab")
-
-  
 
 })

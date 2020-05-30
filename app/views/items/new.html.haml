@@ -15,7 +15,7 @@
               #input_photos_field
                 = f.fields_for :images do |image|
                   %label#input_photo_field{data: {index: "#{image.index}"}, accept: ".jpeg jpg .png"}
-                    = image.file_field :image, class: "input_photo_file", id: "photo_file_#{image.index}"
+                    = image.file_field :image, class: "input_photo_file", id: "photo_file_#{image.index}", required: true
                     = image_tag "icon/icon_camera.png", class: "fas fa-camera"
                     %p.photos_input_text クリックしてファイルをアップロード
             .items_new_caution.photos_caution 画像がありません
@@ -72,11 +72,13 @@
               .items_new_form_style
                 %label 配送の方法
                 %p.items_new_mandatory_fields 必須
+              = f.collection_select :post_way_id, PostWay.all, :id, :name,{ autofocus: true, include_blank: "選択してください"}, { class: "post_way_setlect", required: true}
+              .items_new_caution.post_way_caution 選択してください
             .items_new_post.items_new_post_prefecture
               .items_new_form_style
                 %label 発送元の地域
                 %p.items_new_mandatory_fields 必須
-              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, autofocus: true, class: "items_prefecture_select", include_blank: "選択してください", required: true
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name,{ autofocus: true, include_blank: "選択してください"}, { class: "post_way_setlect", required: true}
               .items_new_caution#prefecture_caution 選択してください
             .items_new_post.items_new_post_date
               .items_new_form_style
@@ -106,7 +108,7 @@
 
           .items_new_form.items_new_form_submit
             .items_new_form_btn.items_new_form_submit_btn
-              %button{type: "submit", class: "items_new_btn_submit"} 出品する
+              %button{type: "submit", class: "items_new_btn_submit item_submit"} 出品する
             .items_new_btn_back
               = link_to "もどる", root_path
 

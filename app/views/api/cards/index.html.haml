@@ -1,16 +1,16 @@
 
 .api_cards_index{class:"api_cards_new"}
   %h2 登録カード一覧
-  - unless @user_cards.blank?
-    - @customer.cards.each do |card|
+  - unless user_cards.blank?
+    - customer.cards.each do |card|
       .buys_new-contents-block
         .buys_new-contents-method
           .buys_new-contents-method-top
-            - if @customer.default_card == card.id 
+            - if customer.default_card == card.id 
               %p デフォルトカード 
             =image_tag "card_logo/#{card.brand}.svg"
             %p="**********#{card.last4}"
             %p="有効期限 #{card.exp_month}/#{card.exp_year}" 
-          %p= link_to "削除", api_card_path(@user_cards.find_by(card_id:card.id).id) , method: :delete
+          %p= link_to "削除", api_card_path(user_cards.find_by(card_id:card.id).id) , method: :delete
   = button_to "カードを追加する" , new_api_card_path, method: :get
-      
+            
