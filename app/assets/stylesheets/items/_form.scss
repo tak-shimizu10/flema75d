@@ -1,5 +1,5 @@
 // 画面サイズ 共通
-.items {
+.items_new,.items_edit {
     background-color: lightgray;
     display: grid;
     grid-template:
@@ -408,6 +408,7 @@
             }
         }
         .items_footer {
+            text-align:      center;
             display:           grid;
             .items_privacy_policy {
                 grid-area:  privacy;
@@ -430,7 +431,7 @@
 
 // 画面サイズ 大
 @media screen and (min-width: 767px) {
-    .items {
+    .items_new,.items_edit {
         .items_body {
             margin:  auto;
             width:  700px;
@@ -500,7 +501,7 @@
 
 // 画面サイズ 小
 @media screen and (max-width: 766px) {
-    .items {
+    .items_new,.items_edit {
         .items_body {
             width:   100%;
             grid-template:
@@ -546,9 +547,8 @@
                 }
             }
             .items_footer {
-                width:        100%;
-                height:      220px;
-                text-align: center;
+                width:   100%;
+                height: 220px;
                 grid-template: 
                 "......  ......   ......"
                 "......  privacy  ......"

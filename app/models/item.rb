@@ -1,9 +1,13 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+
   has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
   belongs_to :user
   belongs_to :category
   belongs_to :brand, optional: true
+  belongs_to_active_hash :prefecture
+  belongs_to_active_hash :post_way
 
   enum pay_side: { seller: 1, buyer: 2 }
   enum post_date: { shortest: 1, normal: 2, longest: 3 }
