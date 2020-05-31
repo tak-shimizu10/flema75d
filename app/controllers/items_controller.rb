@@ -30,16 +30,20 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    @category = @item.category
+    @category = Category.find(@item.category_id)
     @categories = Category.where(ancestry: nil).pluck(:name, :id)
     if @category.parent.present?
-      @child_category = @category
+      @child_category = Category.find(@category.id)
       @category = @child_category.parent
       if @category.parent.present?
         @grandchild_category = @child_category
         @child_category = @category
         @category = @child_category.parent
+        child_category_list(ancestry: @child_category[:ancestry]).pluck(:name, :id)
+        grandchild_category_list(ancestry: @grandchild_category[:ancestry]).pluck(:name, :id)
+        # binding.pry
       else
+        child_category_list(ancestry: @child_category[:ancestry]).pluck(:name, :id)
         render :edit
       end
     else
@@ -72,5 +76,13 @@ class ItemsController < ApplicationController
     params.require(:item)
           .permit(:id, :name, :detail, :price, :status, :pay_side, :post_date, :category_id, :prefecture_id, :post_way_id, images_attributes: [:id, :image, :item_id, :_destroy])
           .merge(user_id: current_user.id)
+  end
+
+  def child_category_list(ancestry)
+    @child_categories = Category.where(ancestry)
+  end
+
+  def grandchild_category_list(ancestry)
+    @grandchild_categories = Category.where(ancestry)
   end
 end
