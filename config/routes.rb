@@ -33,5 +33,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :all_items, only: [:index]
+
 end
 
