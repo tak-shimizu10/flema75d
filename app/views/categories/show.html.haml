@@ -1,5 +1,5 @@
 
-= render partial: 'items/header'
+= render partial: 'templates/header'
 .categories_show
   .detail
     %h2= "#{@category.name}の商品一覧"
@@ -15,4 +15,4 @@
           .sentence
             %p= item.name
             %p= "#{item.price} 円"
-= render partial: 'items/footer'
+= render partial: 'templates/footer'
