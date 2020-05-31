@@ -59,13 +59,12 @@
       %ul.items
         - @items.each do |item|
           %li.item
-            
-            .image
-              = image_tag item.images.first.image.url,class:"item_pic"
-            .info
-              %h3="#{item.name}"
-              = "#{item.price} 円"
-  
+            = link_to item_path(item.id) do
+              .image
+                = image_tag item.images.first.image.url,class:"item_pic"
+              .info
+                %h3="#{item.name}"
+                = "#{item.price} 円" 
   .bottom_visual
     .content
       %h2.content__title だれでもかんたん、人生を変えるフリマアプリ

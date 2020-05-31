@@ -9,7 +9,7 @@
   .contents
     - @category.items.each do |item|
       .item
-        = link_to "#" do
+        = link_to item_path(item.id) do
           .image
             = image_tag item.images.first.image.url
           .sentence
@@ -19,7 +19,7 @@
       - @category.children.each do |child|
         - child.items.each do |childitem|
           .item
-            = link_to "#" do
+            = link_to item_path(childitem.id) do
               .image
                 = image_tag childitem.images.first.image.url
               .sentence
@@ -29,7 +29,7 @@
           - child.children.each do |grandchild|
             - grandchild.items.each do |granditem|
               .item
-                = link_to "#" do
+                = link_to item_path(granditem.id) do
                   .image
                     = image_tag granditem.images.first.image.url
                   .sentence
