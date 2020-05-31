@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(version: 2020_05_30_095735) do
     t.integer "brand_id"
     t.integer "category_id"
     t.integer "user_id"
-    t.integer "situation", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

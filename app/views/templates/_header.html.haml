@@ -16,7 +16,7 @@
           %p{class:"category_name"} カテゴリー
           .category_fields
             .categories_nav
-              - categories.each do |category|
+              - @categories.each do |category|
                 = link_to  category_all_items_path(category_id:category.id), class:"category_name", data:{category_id: "#{category.id}"} do
                   %p= category.name
       - if user_signed_in?

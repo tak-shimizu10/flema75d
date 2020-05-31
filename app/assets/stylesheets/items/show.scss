@@ -8,12 +8,15 @@
   clear: both;
 }
 
-.main {
+.text-center {
+  text-align: center;
+}
+
+.item-main {
   background: whitesmoke;
-  padding: 0 0 220px;
   &__container {
     width: 700px;
-    margin: 0 auto;
+    margin: 40px auto 0;
     background-color: white;
     &__item {
       padding: 25px 40px 40px;
@@ -33,29 +36,28 @@
 .item-photo {
   float: left;
   width: 300px;
-  height: 420px;
+  min-height: 360px;
+  background-color: whitesmoke;
   &__top {
     width: 100%;
     margin: auto;
+    object-fit: contain;
   }
   &__sub-box {
-    width: 300px;
-    height: 120px;
-    background-color: whitesmoke;
     &__photo {
       width: 60px;
       height: 60px;
       float: left;
       position: relative;
-      overflow: hidden;
+      object-fit: contain;
       .item-other-photo {
         position: absolute;
         top: 0;
         right: 0;
         bottom: 0;
         left: 0;
-        width: 60px;
-        height: auto;
+        width: 100%;
+        margin: auto;
       }
     }
   }
@@ -117,10 +119,39 @@
   }
   .item-tax {
     font-size: 12px;
+    margin-right: 10px;
   }
   .item-shipping-fee {
     font-size: 16px;
   }
+}
+
+.item-edit-btn {
+  margin: 16px 0 16px 0;
+  display: block;
+  width: 100%;
+  line-height: 48px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  background-color: red;
+  border: 1px solid red;
+  text-decoration: none;
+  color: #fff;
+}
+
+.item-action-btn {
+  margin: 16px 0 16px 0;
+  display: block;
+  width: 100%;
+  line-height: 48px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  background-color: darkgray;
+  border: 1px solid darkgray;
+  text-decoration: none;
+  color: #fff;
 }
 
 .item-buy-btn {
@@ -129,6 +160,7 @@
   width: 100%;
   line-height: 56px;
   font-size: 24px;
+  font-weight: bold;
   cursor: pointer;
   text-align: center;
   background-color: #3CCACE;
@@ -138,28 +170,40 @@
 }
 
 .item-explanation {
-  padding-top: 16px;
+  padding-top: 32px;
   &__box {
     font-size: 18px;
-    white-space: pre-wrap;
   }
 }
 
 .item-btn-container {
   margin-top: 16px;
-  .like-btn {
-    width: 150px;
-    font-size: 14px;
-    border: 1px solid whitesmoke;
-    border-radius: 40px;
-    background-color: whitesmoke;
-    padding: 8px 16px;
-    text-align: center;
-    i {
-      color: gray;
+  .item-btn-left {
+    float: left;
+    .like-report-btn {
+      font-size: 14px;
+      border: 1px solid whitesmoke;
+      border-radius: 40px;
+      background-color: whitesmoke;
+      padding: 8px 16px;
+      margin-right: 15px;
+      text-align: center;
+      text-decoration: none;
+      color: black;
+      i {
+        color: gray;
+      }
+      span {
+        margin-left: 4px;
+      }
     }
-    span {
-      margin-left: 4px;
+  }
+  .item-btn-right {
+    float: right;
+    font-size: 14px;
+    .like-report-btn {
+      text-decoration: none;
+      color: #3CCACE;
     }
   }
 }
@@ -329,11 +373,12 @@
           overflow: hidden;
           .item-other-photo {
             position: absolute;
-            // top: 0;
+            top: 0;
             right: 0;
             bottom: 0;
             left: 0;
             width: 100%;
+            margin: auto;
           }
         }
         .item-body {
