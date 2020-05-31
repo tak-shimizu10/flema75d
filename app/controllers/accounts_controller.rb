@@ -3,7 +3,7 @@ class AccountsController < ApplicationController
   before_action :parent_category
 
   def index
-    
+    @users = current_user.nickname
   end
   
   def show
