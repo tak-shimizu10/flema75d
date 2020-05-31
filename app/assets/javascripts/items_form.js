@@ -2,7 +2,7 @@ $(function () {
     //プレビュー生成の関数
     const buildPhotoPreview = (index, url) => {
         const html =
-            `<div data-index= "${index}" id= "input_photo_preview">
+            `<div data-index= "${index}" class= "input_photo_preview">
                 <img data-index= "${index}" src= "${url}" width= "100px" height= "100px">
                 <span class= "input_photo_remove">削除</span>
             </div>`;
@@ -11,7 +11,7 @@ $(function () {
     //file_field生成の関数
     const buildFileField = (index) => {
         const html =
-            `<label id= "input_photo_field" data-index= "${index}">
+            `<label class= "input_photo_field" data-index= "${index}">
                 <input class= "input_photo_file" type= "file", required= "false"
                 name= "item[images_attributes][${index}][image]"
                 id= "item_images_attributes_${index}_image photo_file_${index}"><br>
@@ -30,30 +30,31 @@ $(function () {
     }
 
     let fileIndex = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    lastIndex = $(".input_photo_file_group:last").data("index");
+    lastIndex = $(".input_photo_field:last").data("index");
     fileIndex.splice(0, lastIndex);
     $(".hidden_destroy").hide();
 
     //ファイル選択時新しいpreview, file_fieldを生成
     $("#input_photos_field").on("change", ".input_photo_file", function (e) {
-
+       
         const targetIndex = $(this).parent().data("index");
         const file = e.target.files[0];
         const blobUrl = window.URL.createObjectURL(file);
-
+        // debugger
         if (img = $(`img[data-index= "${targetIndex}"]`)[0]) {
             img.setAttribute("src", blobUrl);
         } else {
-            $("#photos_input #input_photo_field").hide();
+            $(".input_photo_field").hide();
             $("#input_photos_field").append(buildPhotoPreview(targetIndex, blobUrl));
-            $("#input_photos_field").append(buildFileField(fileIndex[targetIndex]));
+            $("#input_photos_field").append(buildFileField(fileIndex[0]));
+            // debugger
             fileIndex.shift();
             fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
-            $("#photos_input #input_photo_field").last().show();
-            const countPreview = $("#input_photos_field #input_photo_preview").length;
+            $(".input_photo_field").last().show();
+            const countPreview = $(".input_photo_preview").length;
 
             //画像が10枚登録されればfile_fieldを隠す。一枚以上登録されれば、pタグの文字を消して登録が通るように
-            if (countPreview >= 10) $("#photos_input label").hide();
+            if (countPreview >= 10) $(".input_photo_field").hide();
             if (countPreview >= 1) {
                 hideCautionMessage($(".items_form_photos"))
                 $(".photos_input_text").html(``)
@@ -68,8 +69,8 @@ $(function () {
         const targetIndex = $(this).parent().data("index");
         const countPreview = $("#input_photos_field #input_photo_preview").length - 1
         const hiddenCheckbox = $(".hidden_destroy")[targetIndex];
-        const lastFileField = $("#input_photos_field #input_photo_field").last();
-
+        const lastFileField = $("#input_photos_field .input_photo_field").last();
+        // debugger
         $(this).parent().remove();
         $(`label[data-index= "${targetIndex}"]`).remove();
 
@@ -78,7 +79,7 @@ $(function () {
             $(".photos_input_text").html(`クリックしてファイルをアップロード`)
         }
         if (countPreview <= 10) (lastFileField).show();
-        if ($("#photos_input #input_photo_preview").length == 0) {
+        if ($(".input_photo_preview").length == 0) {
             $("#input_photos_field").append(buildFileField(fileIndex[0]));
             $(".input_photo_file").attr("required", true);
         } else {
@@ -234,18 +235,18 @@ $(function () {
     //file_fieldが1つになるように
     function reloadWindowPhotosField() {
 
-        let existFileField = $("#input_photos_field #input_photo_field");
+        let existFileField = $("#input_photos_field .input_photo_field");
 
-        while (existFileField.length >= 11) $("#input_photo_field").remove();
+        while (existFileField.length >= 11) $(".input_photo_field").remove();
         existFileField.hide();
         if (existFileField.length <= 10)
-            $("#input_photos_field #input_photo_field").last().show();
+            $("#input_photos_field .input_photo_field").last().show();
         
     }
     //画面読み込み時の処理、ファイルがあれば送信を許可してfilefield制御に移動
     $(window).on("load", function () {
 
-        if ($("#input_photos_field #input_photo_preview").length > 0 && $("#input_photos_field #input_photo_field").length > 1)
+        if ($(".input_photo_preview").length > 0 && $(".input_photo_field").length > 1)
             $(".input_photo_file").attr("required", false);
         if ($("#item_pay_side").val().length > 0) $(".items_post_way").show();
         reloadWindowPhotosField();

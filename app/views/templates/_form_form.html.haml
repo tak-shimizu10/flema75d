@@ -8,20 +8,18 @@
       #input_photos_field
         - if @item.persisted?
           - @item.images.each_with_index do |image, i|
-            #input_photo_preview{data: {index: "#{i}"}}
+            .input_photo_preview{data: {index: "#{i}"}}
               = image_tag image.image.url
               %span.input_photo_remove 削除
         = f.fields_for :images do |image|
-          %label#input_photo_field{data: {index: "#{image.index}"}, accept: ".jpeg .jpg .png"}
+          %label.input_photo_field{data: {index: "#{image.index}"}, accept: ".jpeg .jpg .png"}
             = image.file_field :image, class: "input_photo_file", id: "photo_file_#{image.index}", required: true
             = image_tag "icon/icon_camera.png", class: "fas fa-camera"
             %p.photos_input_text クリックしてファイルをアップロード
           - if @item.persisted?
             = image.check_box :_destroy, data: {index: image.index}, class: "hidden_destroy"
-            -# = image.check_box :_destroy, {data:{ index: image.index }, class: "hidden_destroy"}, checked_value="1", unchecked_value="2"
-            -# = check_box_tag :_destroy, image.index, class: "hidden_destroy"
         -if @item.persisted?
-          %label#input_photo_field{data: { index: "#{@item.images.count}" }, accept: ".jpeg .jpg .png"}
+          %label.input_photo_field{data: { index: "#{@item.images.count}" }, accept: ".jpeg .jpg .png"}
             = file_field_tag :image, nam: "item[images_attributes][#{@item.images.count}][image]", class: "input_photo_file", id: "photo_file_#{@item.images.count}"
             = image_tag "icon/icon_camera.png", class: "fas fa-camera"
     .items_caution.photos_caution 画像がありません

@@ -71,7 +71,7 @@
                                 width:     100%;
                                 display:   flex;
                                 flex-wrap: wrap;
-                                #input_photo_preview {
+                                .input_photo_preview {
                                     width:    20%;
                                     height: 200px;
                                     display: none;
@@ -103,7 +103,7 @@
                                         }
                                     }
                                 }
-                                label#input_photo_field {
+                                label.input_photo_field {
                                     border: 1px dashed gray;
                                     text-align:        center;
                                     cursor: pointer;
@@ -345,7 +345,7 @@
                         .items_btn_draft {
                             background-color: lightgray;
                         }
-                        #item_situation {
+                        .item_situation {
                             display: none;
                         }
                         .items_btn_back {
