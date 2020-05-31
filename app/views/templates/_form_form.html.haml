@@ -114,7 +114,10 @@
 
   .items_form.items_form_submit
     .items_form_btn.items_form_submit_btn
-      %button{type: "submit", class: "items_btn_submit item_submit"} 出品する
+      - if @item.persisted?
+        %button{type: "submit", class: "items_btn_submit item_submit"} 編集する
+      - else
+        %button{type: "submit", class: "items_btn_submit item_submit"} 出品する
     .items_btn_back
       = link_to "もどる", root_path
   .items_form_notice
