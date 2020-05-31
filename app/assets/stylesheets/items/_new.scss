@@ -88,10 +88,16 @@
                                     .input_photo_remove{
                                         grid-area:  remove;
                                     }
+                                    img{
+                                        margin:       auto;
+                                    }
                                     .input_photo_remove{
                                         text-align: center;
                                         cursor:    pointer;
                                         color:      blue;
+                                        &:hover{
+                                            color:   red;
+                                        }
                                     }
                                 }
                                 label#input_photo_field {
@@ -101,7 +107,7 @@
                                     height:   200px;
                                     flex:    1 1 0%;
                                     display:   grid;
-                                    grid-template: 
+                                    grid-template:
                                     "..... ..... ....."
                                     "..... fas   ....."
                                     "..... text  ....."
@@ -232,7 +238,7 @@
                         }
                         .items_new_post_way {
                             grid-area: way;
-                            margin:10px 0 0 10px;
+                            margin: 0 0 20px;
                             display:  none;
                         }
                         .items_new_post_prefecture {
@@ -321,8 +327,8 @@
                         .items_new_form_submit_btn {
                             grid-area: submit;
                         }
-                        .items_new_form_save_btn {
-                            grid-area: save;
+                        .items_new_form_draft_btn {
+                            grid-area: draft;
                         }
                         .items_new_btn_back {
                             grid-area: back;
@@ -331,8 +337,11 @@
                             background-color: red;
                             color: white;
                         }
-                        .items_new_btn_save {
+                        .items_new_btn_draft {
                             background-color: lightgray;
+                        }
+                        #item_situation {
+                            display: none;
                         }
                         .items_new_btn_back {
                             text-align: center;
@@ -452,7 +461,7 @@
                         "...... ...... ......"
                         "...... submit ......"
                         "...... ...... ......"15px
-                        "...... save   ......"
+                        "...... draft  ......"
                         "...... ...... ......"15px
                         "...... back   ......"
                         "...... ...... ......"0/
@@ -513,7 +522,6 @@
                 width:     100%;
                 .items_new_form_photos {
                     .photos_input {
-                        height: 150px;
                         label {
                             .photos_input_text {
                                 display: none;
@@ -526,7 +534,7 @@
                     "...... ...... ......"
                     "...... submit ......"
                     "...... ...... ......"15px
-                    "...... save   ......"
+                    "...... draft  ......"
                     "...... ...... ......"15px
                     "...... back   ......"
                     "...... ...... ......"0/

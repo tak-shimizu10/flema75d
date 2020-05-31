@@ -6,7 +6,7 @@ $(function(){
     var html = `<div class="categories_nav category-child">\n`
 
     data.forEach(function(value){
-      html += `  <a class="category_name" data-category-id="${value.id}" href="/categories/${value.id}"><p>${value.name}</p></a>\n`
+      html += `  <a class="category_name" data-category-id="${value.id}" href="/all_items/category?category_id=${value.id}"><p>${value.name}</p></a>\n`
     })
     html += `</div>`
 
@@ -25,6 +25,7 @@ $(function(){
         type: "GET",
         dataType: "json",
         context: this,
+        cache: false,
         data: {
   
           // 選択されたカテゴリーのidを取得

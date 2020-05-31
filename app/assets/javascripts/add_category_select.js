@@ -1,17 +1,18 @@
 
 $(function(){ 
 
-  function buildHTML(data){
+  function buildHTML(data,it){
 
-    var html = `<div class="category_form">\n`
-    
-    html += `  <p>　</p>\n  <select name="category_id" class="category_list">\n`
+    var select = $(it).clone().removeAttr("id").empty();
+    var option = $("<option>",{value:""}).text("選択してください");
+    select.append(option);
 
-    html += `    <option value="">選択してください</option>\n`  
     data.forEach(function(value){
-      html += `    <option value="${value.id}">${value.name}</option>\n`
+      option = $("<option>",{value:value.id}).text(value.name);
+      select.append(option);
     })
-    html += `  </select>\n</div>`
+
+    var html = $(it).parent().clone().removeAttr("id").html(select);
 
     return html
   }
@@ -19,7 +20,7 @@ $(function(){
   $(document).on("change",".category_list", function(event){
     
     event.preventDefault();
-
+    
     // 選択したフォームより下にある選択肢を削除する
     $(this).parent().nextAll('.category_form').remove()
 
@@ -27,14 +28,13 @@ $(function(){
     if(category_id == null){
       return true;
     }
-     
-    console.log($(this).val())
 
     $.ajax({
       url: "/api/selects",
       type: "GET",
       dataType: "json",
       context: this,
+      cache: false,
       data: {
 
         // 選択されたカテゴリーのidを取得
@@ -48,7 +48,7 @@ $(function(){
       if( data.length != 0 ){
 
         // 選択したフォームの下に新たなフォームを追加
-        var html = buildHTML(data)
+        var html = buildHTML(data,this)
         $(this).parent().after(html)
       } 
     })

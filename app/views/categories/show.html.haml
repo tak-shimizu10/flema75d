@@ -9,7 +9,7 @@
   .contents
     - @category.items.each do |item|
       .item
-        = link_to "#" do
+        = link_to item_path(item.id) do
           .image
             = image_tag item.images.first.image.url
           .sentence

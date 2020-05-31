@@ -1,5 +1,5 @@
 .mains_index
-  = render partial: 'header'
+  = render partial: 'templates/header',locals: {categories:@categories}
   .top_visual
     .content
       %h2.content__title 人生を変えるフリマアプリ
@@ -70,6 +70,6 @@
     .content
       %h2.content__title だれでもかんたん、人生を変えるフリマアプリ
       %p.content__text 今すぐ無料ダウンロード！
-  = render partial: 'items/purchase'
-  = render partial: 'footer'
+  = render partial: 'templates/purchase'
+  = render partial: 'templates/footer'
 
