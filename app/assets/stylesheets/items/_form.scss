@@ -141,7 +141,9 @@
                                     background-color: gray;
                                     opacity:             0.5;
                                 }
-                                
+                                input.hidden_destroy{
+                                    display: block;
+                                }
                             }
                         }
                     }

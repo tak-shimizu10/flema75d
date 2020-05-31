@@ -67,7 +67,7 @@ $(function () {
 
         const targetIndex = $(this).parent().data("index");
         const countPreview = $("#input_photos_field #input_photo_preview").length - 1
-        const hiddenCheckbox = $(`input[data-index= "${targetIndex}"].hidden_destroy`);
+        const hiddenCheckbox = $(".hidden_destroy")[targetIndex];
         const lastFileField = $("#input_photos_field #input_photo_field").last();
 
         $(this).parent().remove();
@@ -78,10 +78,13 @@ $(function () {
             $(".photos_input_text").html(`クリックしてファイルをアップロード`)
         }
         if (countPreview <= 10) (lastFileField).show();
-        if ($(".input_photo_file").length == 0)
-            $("#input_photos_field").append(buildFileField(fileIndex[0]))
+        if ($("#photos_input #input_photo_preview").length == 0) {
+            $("#input_photos_field").append(buildFileField(fileIndex[0]));
             $(".input_photo_file").attr("required", true);
-        if (hiddenCheck) hiddenCheck.prop("checked", true);
+        } else {
+            $(".input_photo_file").attr("required", false);
+        }
+        if (hiddenCheckbox) $(hiddenCheckbox).prop("checked", true);
     });
 
     //商品説明の文字数表示
@@ -232,9 +235,10 @@ $(function () {
     function reloadWindowPhotosField() {
 
         let existFileField = $("#input_photos_field #input_photo_field");
+
         while (existFileField.length >= 11) $("#input_photo_field").remove();
         existFileField.hide();
-        if (existFileField.length < 10)
+        if (existFileField.length <= 10)
             $("#input_photos_field #input_photo_field").last().show();
         
     }

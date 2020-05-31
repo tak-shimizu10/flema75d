@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
   before_action :parent_category, only: [:index, :new, :create, :show]
-  before_action :set_params, only: [:edit, :update]
 
   def index
   end
@@ -32,7 +31,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @brand = Brand.where(id: @item.brand_id)
+    @item = Item.find(params[:id])
     @category = @item.category
     @categories = Category.where(ancestry: nil).pluck(:name, :id)
     if @category.parent.present?
@@ -53,7 +52,7 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if item_params[:images_attributes].present?
-      if @item.update(item_params)
+      if @item.update_attributes(item_params)
         brands = Brand.find_or_create_by(name: params[:item][:brand])
         @item.update(brand_id: brands.id)
         redirect_to root_path
@@ -72,10 +71,8 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:id, :name, :detail, :price, :status, :pay_side, :post_date, :category_id, :prefecture_id, :post_way_id, images_attributes: [:id, :image, :item_id]).merge(user_id: current_user.id)
-  end
-
-  def set_params
-    @item = Item.find(params[:id])
+    params.require(:item)
+          .permit(:id, :name, :detail, :price, :status, :pay_side, :post_date, :category_id, :prefecture_id, :post_way_id, images_attributes: [:id, :image, :item_id, :_destroy])
+          .merge(user_id: current_user.id)
   end
 end
