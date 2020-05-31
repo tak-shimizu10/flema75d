@@ -442,13 +442,14 @@
             width:  700px;
             height:  100%;
             grid-template:
-            "....." 43px
-            "header"43px
-            "....." 43px
-            "main " 1fr
-            "....." 0
-            "footer"220px
-            "....." 0;
+            "..... .....  ....." 43px
+            "..... header ....."43px
+            "..... .....  ....." 43px
+            "..... main   ....." 1fr
+            "..... .....  ....."0
+            "..... footer ....." 220px
+            "..... .....  ....."0/
+            auto 700px auto;
             .items_header {
                 text-align: center;
                 .items_header_logo {
@@ -510,13 +511,14 @@
         .items_body {
             width:   100%;
             grid-template:
-            "....." 10px
-            "header"
-            "....." 10px
-            "main " 1fr
-            "....." 
-            "footer" 
-            "....."0;
+            "..... .....  ....." 10px
+            "..... header ....."
+            "..... .....  ....." 10px
+            "..... main   ....." 1fr
+            "..... .....  ....."
+            "..... footer ....." 
+            "..... .....  ....."0/
+            0 1fr 0;
             .items_header {
                 text-align: center;
                 .items_header_logo {
