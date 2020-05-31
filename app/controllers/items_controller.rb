@@ -18,12 +18,10 @@ class ItemsController < ApplicationController
         @item.update!(brand_id: brands.id)
         redirect_to root_path
       else
-        @categories = Category.where(ancestry: nil).pluck(:name, :id)
-        render :new
+        redirect_to new_item_path
       end
     else
-      @categories = @categories.pluck(:name, :id)
-      render :new
+      redirect_to new_item_path
     end
   end
 
@@ -52,7 +50,7 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if item_params[:images_attributes].present?
-      if @item.update_attributes(item_params)
+      if @item.update(item_params)
         brands = Brand.find_or_create_by(name: params[:item][:brand])
         @item.update(brand_id: brands.id)
         redirect_to root_path

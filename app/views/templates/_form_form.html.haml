@@ -20,7 +20,7 @@
             = image.check_box :_destroy, data: {index: image.index}, class: "hidden_destroy"
         -if @item.persisted?
           %label.input_photo_field{data: { index: "#{@item.images.count}" }, accept: ".jpeg .jpg .png"}
-            = file_field_tag :image, nam: "item[images_attributes][#{@item.images.count}][image]", class: "input_photo_file", id: "photo_file_#{@item.images.count}"
+            = file_field_tag :image, name: "item[images_attributes][#{@item.images.count}][image]", class: "input_photo_file"
             = image_tag "icon/icon_camera.png", class: "fas fa-camera"
     .items_caution.photos_caution 画像がありません
     

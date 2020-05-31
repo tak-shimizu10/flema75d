@@ -40,14 +40,14 @@ $(function () {
         const targetIndex = $(this).parent().data("index");
         const file = e.target.files[0];
         const blobUrl = window.URL.createObjectURL(file);
-        // debugger
+
         if (img = $(`img[data-index= "${targetIndex}"]`)[0]) {
             img.setAttribute("src", blobUrl);
         } else {
             $(".input_photo_field").hide();
             $("#input_photos_field").append(buildPhotoPreview(targetIndex, blobUrl));
             $("#input_photos_field").append(buildFileField(fileIndex[0]));
-            // debugger
+
             fileIndex.shift();
             fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
             $(".input_photo_field").last().show();
@@ -67,10 +67,10 @@ $(function () {
     $("#input_photos_field").on("click", ".input_photo_remove", function (e) {
 
         const targetIndex = $(this).parent().data("index");
-        const countPreview = $("#input_photos_field #input_photo_preview").length - 1
+        const countPreview = $(".input_photo_preview").length - 1
         const hiddenCheckbox = $(".hidden_destroy")[targetIndex];
-        const lastFileField = $("#input_photos_field .input_photo_field").last();
-        // debugger
+        const lastFileField = $(".input_photo_field").last();
+
         $(this).parent().remove();
         $(`label[data-index= "${targetIndex}"]`).remove();
 
@@ -208,7 +208,7 @@ $(function () {
     //送信ボタンクリック時、空のフォームにエラーメッセージ表示
     $("form").on("click", ".item_submit", function () {
 
-        if ($("#input_photos_field #input_photo_preview").length == 0)
+        if ($(".input_photo_preview").length == 0)
             showCautionMessage($(".items_form_photos"))
             $(window).scrollTop($("#photos_input").offset().top);
         if ($("#item_name").val().length == 0)
@@ -235,12 +235,11 @@ $(function () {
     //file_fieldが1つになるように
     function reloadWindowPhotosField() {
 
-        let existFileField = $("#input_photos_field .input_photo_field");
-
-        while (existFileField.length >= 11) $(".input_photo_field").remove();
-        existFileField.hide();
-        if (existFileField.length <= 10)
-            $("#input_photos_field .input_photo_field").last().show();
+        existFileField = $(".input_photo_field").length
+        while (existFileField > 11) $(".input_photo_field").last().remove();
+        $(".input_photo_field").hide();
+        if (existFileField <= 10)
+            $(".input_photo_field").last().show();
         
     }
     //画面読み込み時の処理、ファイルがあれば送信を許可してfilefield制御に移動
