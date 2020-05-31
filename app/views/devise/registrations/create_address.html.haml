@@ -10,7 +10,7 @@
         .complete-text
           %pありがとうございます。
           %p会員登録が完了しました。
-        = link_to accounts_path(current.user), class: "btn" do フリマをはじめる 
+        = link_to "フリマをはじめる", user_path(current_user.id), class: "btn"
     .image-box
   .footer
     .footer__lists
