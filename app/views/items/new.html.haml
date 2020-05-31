@@ -1,7 +1,7 @@
 .items_new
   .items_body
-    = render "items/form/header"
+    = render "templates/form_header"
     .items_main
       .items_form_list
-        = render "items/form/form", items: @item
-    = render "items/form/footer"
+        = render "templates/form_form", items: @item
+    = render "templates/form_footer"
