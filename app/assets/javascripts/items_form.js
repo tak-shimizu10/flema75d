@@ -56,8 +56,8 @@ $(function () {
             //画像が10枚登録されればfile_fieldを隠す。一枚以上登録されれば、pタグの文字を消して登録が通るように
             if (countPreview >= 10) $(".input_photo_field").hide();
             if (countPreview >= 1) {
-                hideCautionMessage($(".items_form_photos"))
-                $(".photos_input_text").html(``)
+                hideCautionMessage($(".items_form_photos"));
+                $(".photos_input_text").html(``);
                 $(".input_photo_file").attr("required", false);
             }
         }
@@ -148,7 +148,7 @@ $(function () {
             showCautionMessage($(".items_detail"));
         };
     });
-    $("form").on("change", "#item_category_id", function () {
+    $("form").on("change", "#category_base #item_category_id", function () {
         let selectCategory = $(this).val();
         if ( selectCategory > 0) {
             hideCautionMessage($(".items_category"));
@@ -215,7 +215,7 @@ $(function () {
             showCautionMessage($(".items_name"));
         if ($("#item_detail").val().length == 0)
             showCautionMessage($(".items_detail"));
-        if ($("#item_category_id").val().length == 0)
+        if ($("#category_base #item_category_id").val().length == 0)
             showCautionMessage($(".items_category"));
         if ($("#item_status").val().length == 0)
             showCautionMessage($(".items_status"));
@@ -251,4 +251,5 @@ $(function () {
         reloadWindowPhotosField();
         
     });
+
 });
