@@ -3,7 +3,7 @@
 
   &_show {
       background-color: whitesmoke;
-      padding:50px;
+      padding-top:50px;
     > .detail{
       width:700px;
       margin:0 auto;
@@ -36,14 +36,16 @@
         width:200px;
         display: inline-block;
         margin:10px;
+        background-color: white;
         > a {
           text-decoration: none;
         }
         & .image {
             width:200px;
             height:200px;
-            text-align: center;
-            vertical-align: middle;
+            display: flex;
+            justify-content: center;
+            align-items: center;
           > img {
             max-height: 100%;
             max-width: 100%;
