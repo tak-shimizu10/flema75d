@@ -253,4 +253,12 @@ $(function () {
         if ($("#item_price").val() > 0) inputPricePreview($("#item_price")[0]);
     });
 
+    function moveSelectCategory(index) {
+        const movePoint = $(".list_category")[index];
+        $("himl, body").animate({ scrollTop: $(movePoint).offset().top });
+    }
+    $(".categories_show").on("click", ".link", function () {
+        moveSelectCategory($(this).data("index"))
+    })
+
 });

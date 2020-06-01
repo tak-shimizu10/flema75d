@@ -1,9 +1,8 @@
 
 .categories {
-
   &_show {
       background-color: whitesmoke;
-      padding-top:50px;
+      padding-top: 50px;
     > .detail{
       width:700px;
       margin:0 auto;
@@ -19,59 +18,58 @@
         padding:20px 30px;
         > .link {
           display: inline;
-          > a{
-            display: inline-block;
-            margin:10px;
-            color:orange;
+          > a,.link_name{
             text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            color: orange;
+            margin:    10px;
             &:hover {
-              text-decoration:underline;
+              text-decoration: underline;
             }
           }
         }
       }
     } 
     .mains_index__body {
-      > .look{
+      > .look {
+        margin:     auto;
+        max-width: 700px;
         a {
           text-decoration: none;
           display: inline-block;
-          color:orange;
+          color: orange;
           &:hover {
             text-decoration: underline;
-            opacity: 0.5;
+            opacity:  0.5;
           }
         }
-        > .list_category {
-          background-color: white;
-          > .category_name {
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            background-color: red;
-            font-size: 24px;
-            color: white;
-          }
-          > .child_category_name {
-            color: black;
-          }
-          > .list_child {
-            margin: 5px 0 5px;
-            > .list_grandchild {
-              padding: 0 10px 0 10px;
-              margin: 5px 0 0 0;
-              display: flex;
-              flex-wrap: wrap;
-              > li {
-                white-space: nowrap;
-                width: 50%;
-                > a {
+        > .items{
+          > .list_category {
+            background-color: white;
+            > .category_name {
+              border-top-left-radius:  10px;
+              border-top-right-radius: 10px;
+              background-color:       red;
+              font-size: 24px;
+              color:  white;
+            }
+            > .child_category_name {
+              color:  black;
+            }
+            > .list_child {
+              margin:        5px 0 5px;
+              > .list_grandchild {
+                padding: 0 10px 0 10px;
+                margin:      5px 0 0 0;
+                display:   flex;
+                flex-wrap: wrap;
+                > li {
+                  white-space: nowrap;
+                  padding:  3px;
+                  width:    50%;
                 }
               }
-              > .link_child_category {
-
-              }
-              > .link_grandchild_category {
-              }  
             }
           }
         }
