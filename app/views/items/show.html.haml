@@ -6,7 +6,7 @@
         = @item.name
       .item-content.clearfix
         .item-photo
-          = image_tag @item.images.first.image.url, size: "300x300", class: "item-photo__top"
+          = image_tag @item.images.first.image.url, class: "item-photo__top"
           .item-photo__sub-box
             - @item.images.each do |image|
               .item-photo__sub-box__photo
@@ -38,9 +38,6 @@
               = link_to "#" do
                 = @item.brand.name
           %tr
-            %th 商品のサイズ
-            %td 30cm
-          %tr
             %th 商品の状態
             %td
               = @item.status_i18n
@@ -50,7 +47,8 @@
               = @item.pay_side_i18n
           %tr
             %th 配送料の方法
-            %td らくらくフリマ便
+            %td
+              = @item.post_way.name
           %tr
             %th 配送元地域
             %td
@@ -74,11 +72,27 @@
         %p.text-center
           or
         = link_to "出品を一旦停止する", "#", class: "item-action-btn"
-        = link_to "この商品を削除する", item_path, method: :delete, class: "item-action-btn"
-      - elsif  user_signed_in?
-        = link_to "購入画面に進む", new_item_buy_path(@item), class: "item-buy-btn"
-      - else
+        %button.item-action-btn この商品を削除する
+      - elsif user_signed_in?
         = link_to "購入画面に進む", new_user_session_path, class: "item-buy-btn"
+        .item-explanation
+          %p.item-explanation__box
+            = @item.detail
+        .item-btn-container.clearfix
+          .item-btn-left
+            =link_to "#", class: "like-report-btn" do
+              %i.far.fa-heart
+              %span いいね！
+              %span 315
+            =link_to "#", class: "like-report-btn" do
+              %i.far.fa-flag
+              %span 不適切な商品の報告
+          .item-btn-right
+            =link_to "#", class: "like-report-btn" do
+              %i.fas.fa-lock
+              %span あんしん・あんぜんへの取り組み
+      - else 
+        = link_to "購入画面に進む", new_item_buy_path(@item), class: "item-buy-btn"
         .item-explanation
           %p.item-explanation__box
             = @item.detail
@@ -192,3 +206,16 @@
                   %i.far.fa-heart
                   %span 10
   = render partial: 'templates/footer'
+
+-# 商品削除のモーダル
+.modal.js-modal
+  .modal__bg.js-modal-close
+  .modal__content
+    .delete-content
+      %p.modal-head 確認
+      %p 削除すると二度と復活できません。
+      %p 削除する代わりに停止することもできます。
+      %br 本当に削除しますか？
+    .button-box.clearfix
+      %button.cancel-btn.js-modal-close キャンセル
+      = link_to "削除する", item_path, method: :delete, class: "delete-btn"

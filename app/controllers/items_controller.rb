@@ -32,6 +32,12 @@ class ItemsController < ApplicationController
     @items = Item.where(user_id: @item.user_id).order('created_at DESC').limit(6)
   end
 
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    redirect_to user_path(current_user.id)
+  end
+
   private
 
   def parent_category
