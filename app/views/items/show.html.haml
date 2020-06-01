@@ -74,26 +74,8 @@
           or
         = link_to "出品を一旦停止する", "#", class: "item-action-btn"
         %button.item-delete-btn この商品を削除する
-      - elsif user_signed_in?
-        = link_to "購入画面に進む", new_user_session_path, class: "item-buy-btn"
-        .item-explanation
-          %p.item-explanation__box
-            = @item.detail
-        .item-btn-container.clearfix
-          .item-btn-left
-            =link_to "#", class: "like-report-btn" do
-              %i.far.fa-heart
-              %span いいね！
-              %span 315
-            =link_to "#", class: "like-report-btn" do
-              %i.far.fa-flag
-              %span 不適切な商品の報告
-          .item-btn-right
-            =link_to "#", class: "like-report-btn" do
-              %i.fas.fa-lock
-              %span あんしん・あんぜんへの取り組み
-      - else 
-        = link_to "購入画面に進む", new_item_buy_path(@item), class: "item-buy-btn"
+      - else
+        = link_to "購入画面に進む", new_item_buy_path(@item.id), class: "item-buy-btn"
         .item-explanation
           %p.item-explanation__box
             = @item.detail
