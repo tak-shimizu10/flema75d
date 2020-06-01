@@ -16,24 +16,7 @@
         color:white;
       }
       > .link {
-          border: 1px solid lightgray;
-          border-radius:    5px;
-          margin:           5px;
-          display: inline-block;
-          cursor:       pointer;
-        > a {
-          text-decoration: none;
-          padding:  10px;
-          display: block;
-          color: black;
-        }
-        &:hover{
-          background-color: lightgray;
-          opacity: 0.5;
-        }
-      }
-      > .children {
-        padding:20px 30px;
+        display: inline;
         > a{
           display: inline-block;
           margin:10px;
@@ -41,6 +24,21 @@
           text-decoration: none;
           &:hover {
             text-decoration:underline;
+          }
+        }
+      }
+      > .children {
+        padding:20px 30px;
+        > .link {
+          display: inline;
+          > a{
+            display: inline-block;
+            margin:10px;
+            color:orange;
+            text-decoration: none;
+            &:hover {
+              text-decoration:underline;
+            }
           }
         }
       }
