@@ -1,7 +1,8 @@
+
+= render "templates/form_header"
 .items_edit
   .items_body
-    = render "templates/form_header"
     .items_main
       .items_form_list
-        = render "templates/form_form", locals: @item
+        = render "templates/form_form", items: @item
     = render "templates/form_footer"
