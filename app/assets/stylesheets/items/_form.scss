@@ -206,6 +206,9 @@
                         "...... ...... ......";
                         .items_category {
                             grid-area: category;
+                            > .category_form {
+                                margin:10px 0;
+                            }
                         }
                         .items_brand {
                             grid-area: brand;

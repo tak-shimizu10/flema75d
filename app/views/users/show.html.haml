@@ -1,0 +1,8 @@
+.users_show{class:"account_show"}
+  = render partial: 'templates/header', locals:{categories:@categories}
+  .body
+    = render partial: 'templates/side_bar'
+    .body__main
+      = render partial: "templates/top"
+  = render partial: 'templates/purchase'
+  = render partial: 'templates/footer'

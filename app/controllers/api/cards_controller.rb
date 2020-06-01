@@ -18,6 +18,8 @@ class Api::CardsController < ApplicationController
       customer_id = @user_cards.first[:customer_id]
       @customer = Payjp::Customer.retrieve(customer_id)
     end
+    partial = render_to_string(cards: "index.html.haml", locals: { categories: @categories, user_cards: @user_cards,customer: @customer })
+    render json:{html:partial}
   end
 
   def new
@@ -55,7 +57,10 @@ class Api::CardsController < ApplicationController
     end
 
     # データーベース上にpayjp上のカード情報を読み取るためのデータを保存
-    Card.create( customer_id: customer.id, card_id: card_id, user_id: card_info[:user_id])
+    card = Card.new( customer_id: customer.id, card_id: card_id, user_id: card_info[:user_id])
+    unless card.save
+      render "new"
+    end
   
   end
 

@@ -1,0 +1,40 @@
+
+= render partial: 'templates/header', locals: {categories:@categories}
+.categories_show
+  .detail
+    %h2= "#{@category.name}の商品一覧"
+    .children
+      - @category.children.each do |child|
+        = link_to child.name, category_all_items_path(category_id:child.id)
+  .mains_index__body
+    .look
+      %ul.items
+        - @category.items.each do |item|
+          %li.item
+            = link_to item_path(item.id),class:"item_link"  do
+              .image
+                = image_tag item.images.first.image.url,class:"item_pic"
+                .item_price= number_to_currency(item.price,format: "%u%n",unit:"¥",precision: 0)
+              .info
+                %h3= item.name
+        - if @category.children.present?
+          - @category.children.each do |child|
+            - child.items.each do |childitem|
+              %li.item
+                = link_to item_path(childitem.id),class:"item_link" do
+                  .image
+                    = image_tag childitem.images.first.image.url,class:"item_pic"
+                    .item_price= number_to_currency(childitem.price,format: "%u%n",unit:"¥",precision: 0)
+                  .info
+                    %h3= childitem.name
+            - if child.children.present?
+              - child.children.each do |grandchild|
+                - grandchild.items.each do |granditem|
+                  %li.item
+                    = link_to item_path(granditem.id),class:"item_link" do
+                      .image
+                        = image_tag granditem.images.first.image.url,class:"item_pic"
+                        .item_price= number_to_currency(granditem.price,format: "%u%n",unit:"¥",precision: 0)
+                      .info
+                        %h3= granditem.name
+= render partial: 'templates/footer'

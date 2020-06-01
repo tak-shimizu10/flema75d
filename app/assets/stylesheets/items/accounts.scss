@@ -235,23 +235,20 @@
       .content{
         margin: 0;
         background: #fff;
-        form{
-          padding: 64px;
-          border-top: 1px solid #f5f5f5;
-          .logout_btn{
-            max-width: 320px;
-            margin: 0 auto;
-            button{
-              margin: 0;
-              background: #3CCACE;
-              border: 1px solid #3CCACE;
-              color: #fff;
-              display: block;
-              width: 100%;
-              line-height: 48px;
-              font-size: 14px;
-              text-align: center;
-            }
+        .logout_btn{
+          max-width: 320px;
+          margin: 0 auto;
+          padding:20px;
+          a {
+            text-decoration: none;
+            background: #3CCACE;
+            border: 1px solid #3CCACE;
+            color: #fff;
+            display: block;
+            width: 100%;
+            line-height: 48px;
+            font-size: 14px;
+            text-align: center;
           }
         }
       }

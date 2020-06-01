@@ -1,37 +1,22 @@
-.main
-  .main__container
-    .main__container__item
-      %h1.item-name AIR JORDAN 11
+.item-main
+  = render partial: 'templates/header'
+  .item-main__container
+    .item-main__container__item
+      %h1.item-name
+        = @item.name
       .item-content.clearfix
         .item-photo
-          =image_tag 'https://image.rakuten.co.jp/noel-ange/cabinet/shoes/nike8/nike-378037-100-al-a.jpg', class: "item-photo__top"
+          = image_tag @item.images.first.image.url, size: "300x300", class: "item-photo__top"
           .item-photo__sub-box
-            .item-photo__sub-box__photo
-              =image_tag 'https://image.rakuten.co.jp/noel-ange/cabinet/shoes/nike8/nike-378037-100-al-a.jpg', class: "item-other-photo"
-            .item-photo__sub-box__photo
-              =image_tag 'https://shop.r10s.jp/ltd-sports/cabinet/cabinet15/378038-100_2.jpg', class: "item-other-photo"
-            .item-photo__sub-box__photo
-              =image_tag 'https://shop.r10s.jp/auc-shkuze/cabinet/00957880/05815105/imgrc0097046303.jpg', class: "item-other-photo"
-            .item-photo__sub-box__photo
-              =image_tag 'https://image.rakuten.co.jp/noel-ange/cabinet/shoes/nike8/nike-378037-100-b1.jpg', class: "item-other-photo"
-            .item-photo__sub-box__photo
-              =image_tag 'https://image.rakuten.co.jp/noel-ange/cabinet/shoes/nike8/nike-378037-100-b2.jpg', class: "item-other-photo"
-            .item-photo__sub-box__photo
-              =image_tag 'https://image.rakuten.co.jp/noel-ange/cabinet/shoes/nike8/nike-378037-100-c.jpg', class: "item-other-photo"
-            .item-photo__sub-box__photo
-              =image_tag 'https://image.rakuten.co.jp/noel-ange/cabinet/shoes/nike8/nike-378037-100-d.jpg', class: "item-other-photo"
-            .item-photo__sub-box__photo
-              =image_tag 'https://image.rakuten.co.jp/noel-ange/cabinet/shoes/nike8/nike-378037-100-e.jpg', class: "item-other-photo"
-            .item-photo__sub-box__photo
-              =image_tag 'https://stockx-360.imgix.net/Air-Jordan-11-Retro-Concord-2018/Images/Air-Jordan-11-Retro-Concord-2018/Lv2/img01.jpg?auto=format,compress&q=90&updated_at=1566585772&w=1000', class: "item-other-photo"
-            .item-photo__sub-box__photo
-              =image_tag 'https://stockx-360.imgix.net/Air-Jordan-11-Retro-Concord-2018/Images/Air-Jordan-11-Retro-Concord-2018/Lv2/img01.jpg?auto=format,compress&q=90&updated_at=1566585772&w=1000', class: "item-other-photo"
+            - @item.images.each do |image|
+              .item-photo__sub-box__photo
+                = image_tag image.image_url, class: "item-other-photo"
         %table.item-detail-table
           %tr
             %th 出品者
             %td
-              = link_to "#" do
-                Taro
+              = link_to @item.user do
+                = @item.user.nickname
               .evaluation
                 .eva-box
                   %i.fas.fa-smile-beam.fa-lg
@@ -45,55 +30,71 @@
           %tr
             %th カテゴリー
             %td
-              = link_to "#" do
-                メンズ
-              = link_to "#" do
-                %i.fa.fa-angle-right
-                靴
-              = link_to "#" do
-                %i.fa.fa-angle-right
-                スニーカー
+              = link_to category_all_items_path(category_id:@item.category.id) do
+                = @item.category.name
           %tr
             %th ブランド
             %td
               = link_to "#" do
-                NIKE
+                = @item.brand.name
           %tr
             %th 商品のサイズ
             %td 30cm
           %tr
             %th 商品の状態
-            %td ほぼ新品
+            %td
+              = @item.status_i18n
           %tr
             %th 配送料の負担
-            %td 送料込み(出品者負担)
+            %td
+              = @item.pay_side_i18n
           %tr
             %th 配送料の方法
             %td らくらくフリマ便
           %tr
             %th 配送元地域
-            %td 大阪府
+            %td
+              = @item.prefecture.name
           %tr
             %th 発送日の目安
-            %td 1~2日で発送
+            %td
+              = @item.post_date_i18n
       .item-price-box
         %span.item-price
-          ¥40,000
+          = number_to_currency(@item.price,format: "%u%n",unit:"¥",precision: 0)
         %span.item-tax
           (税込)
         %span.item-shipping-fee
-          (送料込み)
-      = link_to "#", class: "item-buy-btn" do
-        購入画面に進む
-      .item-explanation
-        %p.item-explanation__box
-          めっちゃええで!
-          誰か買ってー
-      .item-btn-container
-        .like-btn
-          %i.far.fa-heart
-          %span いいね！
-          %span 315
+          送料込み
+      - if user_signed_in? && current_user.id == @item.user_id
+        .item-explanation
+          %p.item-explanation__box
+            = @item.detail
+        = link_to "商品の編集", "edit_item_path", class: "item-edit-btn"
+        %p.text-center
+          or
+        = link_to "出品を一旦停止する", "#", class: "item-action-btn"
+        = link_to "この商品を削除する", item_path, method: :delete, class: "item-action-btn"
+      - elsif  user_signed_in?
+        = link_to "購入画面に進む", new_item_buy_path(@item), class: "item-buy-btn"
+      - else
+        = link_to "購入画面に進む", new_user_session_path, class: "item-buy-btn"
+        .item-explanation
+          %p.item-explanation__box
+            = @item.detail
+        .item-btn-container.clearfix
+          .item-btn-left
+            =link_to "#", class: "like-report-btn" do
+              %i.far.fa-heart
+              %span いいね！
+              %span 315
+            =link_to "#", class: "like-report-btn" do
+              %i.far.fa-flag
+              %span 不適切な商品の報告
+          .item-btn-right
+            =link_to "#", class: "like-report-btn" do
+              %i.fas.fa-lock
+              %span あんしん・あんぜんへの取り組み
   .item-detail-message
     .message-container
       .message-content
@@ -102,11 +103,11 @@
             .message-user__thumbnail
               =image_tag 'https://static.mercdn.net/images/member_photo_noimage_thumb.png'
             .user_name
-              Jiro
+              Taro
           %li.guest-message-item.clearfix
             .message-box
               .message-box__text
-                めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！
+                めっちゃ欲しいです！
         %ul.guest-message-box
           = link_to "#", class: "message-user" do
             .message-user__thumbnail
@@ -116,7 +117,7 @@
           %li.guest-message-item.clearfix
             .message-box
               .message-box__text
-                めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！
+                値下げできますか？
         %ul.guest-message-box
           = link_to "#", class: "message-user" do
             .message-user__thumbnail
@@ -126,7 +127,7 @@
           %li.guest-message-item.clearfix
             .message-box
               .message-box__text
-                めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！
+                もう少し細かい写真はありますか？
         %ul.guest-message-box
           = link_to "#", class: "message-user" do
             .message-user__thumbnail
@@ -136,7 +137,17 @@
           %li.guest-message-item.clearfix
             .message-box
               .message-box__text
-                めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！めっちゃ欲しいです！
+                いつ頃購入されましたか？
+        %ul.guest-message-box
+          = link_to "#", class: "message-user" do
+            .message-user__thumbnail
+              =image_tag 'https://images-na.ssl-images-amazon.com/images/I/71ffpermWIL._AC_SX522_.jpg'
+            .user_name
+              Jiro
+          %li.guest-message-item.clearfix
+            .message-box
+              .message-box__text
+                値下げはできません！写真はありません！購入日は覚えてません！
       .message-content
         = form_with(model: @item, local: true) do |f|
           %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
@@ -146,10 +157,10 @@
     %li.nav-prev-next-box__left
       = link_to "#" do
         %i.fa.fa-angle-left
-        '前の商品名'
+        前の商品名
     %li.nav-prev-next-box__right
       = link_to "#" do
-        '次の商品'
+        次の商品
         %i.fa.fa-angle-right
   .sns-content
     .sns-content__icon-box
@@ -163,123 +174,21 @@
         %i.fab.fa-pinterest-square
   .items-container
     %h2.item-box-head
-      = link_to "#" do
-        Taroさんのその他の出品
+      = link_to @item.user do
+        = link_to "#{@item.user.nickname}さんのその他の出品", @item.user
     .items-box-content.clearfix
-      .item-box
-        = link_to "#" do
-          .item-image
-            =image_tag 'https://d6vlq12fn2gvh.cloudfront.net/uploads/item_image/image/1892/Nike-Air-Jordan-5-Retro-OG-Fire-Red.jpg', class: "item-other-photo"
-          .item-body
-            %h3.item-name
-              AIR JORDAN 5 RETRO
-            .item-num
-              .item-price
-                ¥5,000
-              .item-like
-                %i.far.fa-heart
-                %span 10
-      .item-box
-        = link_to "#" do
-          .item-image
-            =image_tag 'https://cdn-images.farfetch-contents.com/13/12/32/45/13123245_21511207_1000.jpg', class: "item-other-photo"
-          .item-body
-            %h3.item-name
-              AIR JORDAN 1 RETRO
-            .item-num
-              .item-price
-                ¥6,000
-              .item-like
-                %i.far.fa-heart
-                %span 20
-      .item-box
-        = link_to "#" do
-          .item-image
-            =image_tag 'https://ic4-a.wowma.net/mis/gr/114/image.wowma.jp/46769741/ltd-online/wowma1/bv6281-006_2.jpg', class: "item-other-photo"
-          .item-body
-            %h3.item-name
-              AIR JORDAN 7 RETRO
-            .item-num
-              .item-price
-                ¥7,000
-              .item-like
-                %i.far.fa-heart
-                %span 30
-      .item-box
-        = link_to "#" do
-          .item-image
-            =image_tag 'https://item-shopping.c.yimg.jp/i/l/lowtex_384664-123', class: "item-other-photo"
-          .item-body
-            %h3.item-name
-              AIR JORDAN 6 RETRO
-            .item-num
-              .item-price
-                ¥4,000
-              .item-like
-                %i.far.fa-heart
-                %span 5
-      .item-box
-        = link_to "#" do
-          .item-image
-            =image_tag 'https://cdn.flightclub.com/1800/TEMPLATE/139813/2.jpg', class: "item-other-photo"
-          .item-body
-            %h3.item-name
-              AIR JORDAN 4 RETRO
-            .item-num
-              .item-price
-                ¥8,000
-              .item-like
-                %i.far.fa-heart
-                %span 50
-      .item-box
-        = link_to "#" do
-          .item-image
-            =image_tag 'https://uptodate.tokyo/wp-content/uploads/2020/04/BCD682E2-B5C0-4933-A420-38CD361B0197.jpeg', class: "item-other-photo"
-          .item-body
-            %h3.item-name
-              AIR JORDAN 11 RETRO
-            .item-num
-              .item-price
-                ¥500
-              .item-like
-                %i.far.fa-heart
-                %span 4
-      .item-box
-        = link_to "#" do
-          .item-image
-            =image_tag 'https://image.vector-park.jp/images/item/original2/047/2016/10/21/047-201610214238_1.jpg?t=1572379896', class: "item-other-photo"
-          .item-body
-            %h3.item-name
-              AIR JORDAN 2 RETRO
-            .item-num
-              .item-price
-                ¥23,000
-              .item-like
-                %i.far.fa-heart
-                %span 65
-      .item-box
-        = link_to "#" do
-          .item-image
-            =image_tag 'http://sneaker-baka.com/wp-content/uploads/2016/12/air-jordan9-white-e1480653783934-580x319.jpg', class: "item-other-photo"
-          .item-body
-            %h3.item-name
-              AIR JORDAN 9 RETRO
-            .item-num
-              .item-price
-                ¥18,000
-              .item-like
-                %i.far.fa-heart
-                %span 18
-      .item-box
-        = link_to "#" do
-          .item-image
-            =image_tag 'https://www.modescape.com/wp-content/uploads/JORDAN8_AJ8.jpg', class: "item-other-photo"
-          .item-body
-            %h3.item-name
-              AIR JORDAN 8 RETRO
-            .item-num
-              .item-price
-                ¥9,000
-              .item-like
-                %i.far.fa-heart
-                %span 23
+      - @items.each do |item|
+        .item-box
+          = link_to item_path(item.id) do
+            .item-image
+              =image_tag item.images.first.image.url, class: "item-other-photo"
+            .item-body
+              %h3.item-name
+                = item.name
+              .item-num
+                .item-price
+                  = number_to_currency(item.price,format: "%u%n",unit:"¥",precision: 0)
+                .item-like
+                  %i.far.fa-heart
+                  %span 10
+  = render partial: 'templates/footer'

@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :parent_category, only: [:index, :new, :create, :show]
 
   def index
+    @items = Item.all.order("created_at DESC").limit(8)
   end
 
   def new
@@ -26,6 +27,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
+    @items = Item.where(user_id: @item.user_id).order('created_at DESC').limit(6)
   end
 
   def edit

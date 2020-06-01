@@ -1,0 +1,16 @@
+= render partial: 'templates/header'
+.mains_index__body
+  %h2.head 商品一覧
+  .look
+    %ul.items
+      - @items.each do |item|
+        %li.item
+          - if item.situation == "purchase"
+            = image_tag 'pict/soldout.jpg',id:"soldout_img"
+          = link_to item_path(item.id),class:"item_link" do
+            .image
+              = image_tag item.images.first.image.url,class:"item_pic"
+              .item_price= number_to_currency(item.price,format: "%u%n",unit:"¥",precision: 0)
+            .info
+              %h3="#{item.name}"
+= render partial: 'templates/footer'

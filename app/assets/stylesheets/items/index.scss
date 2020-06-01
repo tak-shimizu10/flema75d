@@ -6,6 +6,7 @@
   width: 100%;
   
   &__header{
+    background-color: #ffffff;
     border-bottom: 1px solid #3CCACE;
 
     .contents{
@@ -308,9 +309,8 @@
     }  
   }
   &__body{
-    padding: 80px 0 0;
+    padding: 80px 250px 0;
     background-color: #f8f8f8;
-    
     h2.head{
       text-align: center;
       font-size: 28px;
@@ -321,48 +321,83 @@
       margin: 0;
       padding: 0;
       padding-bottom: 80px;
-      h3.title{
-        text-align: center;
-        font-size: 24px;
+      &__more{
+        display: block;
+        float: right;
+        text-decoration: none;
+        font-size: 16px;
         color:#3CCACE;
+        margin-right: 10px;
       }
       ul.items{
-        width: 780px;
-        margin: 26px auto;
+        width: 100%;
         display: flex;
-        justify-content: space-around;
+        justify-content: right;
+        left: 0px;
+        flex-wrap: wrap;
         li.item{
+          margin: 20px 7px;
+          height: 280px;
           width: 220px;
           background-color: #ffffff;
           display: inline-block;
           float: left;
-          .item_pic{
+          justify-content: left;
+          #soldout_img{
+            height: 280px;
             width: 220px;
-            height: 150px;
-            position: relative;
-            overflow: hidden;
-            margin: 0;
-            z-index: auto;
+            opacity: 0.75;
+            z-index: 2;
+            position: absolute;
           }
-          &__info{
-            background-color: white;
-            color: #333;
-            padding: 16px;
-            h3.name{
-              line-height: 1.5;
-              font-size: 16px;
-              text-align: left;
+          .item_link{
+            text-decoration: none;
+            .image{
+              width: 220px;
+              height: 220px;
+              margin: 0;
+              position: relative;
+              .item_pic{
+                max-width: 220px;
+                max-height: 220px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%)
+              }
+              .item_price{
+                align-items: center;
+                background: rgba(0,0,0,.4);
+                border-radius: 0 14px 14px 0;
+                bottom: 8px;
+                box-sizing: border-box;
+                color: #fff;
+                display: inline-flex;
+                font-size: 17px;
+                height: 28px;
+                letter-spacing: .02em;
+                margin: 0;
+                padding: 0 12px;
+                position: absolute;
+                z-index: 2;
+              }
             }
-            .details{
-              font-size: 16px;
-
-              p.tax{
-                font-size: 10px;
+            .info{
+              height: 30px;
+              padding: 16px;
+              
+              h3{
+                line-height: 30px;
+                font-size: 16px;
                 text-align: left;
+                color: black;  
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
               }
             }
           }
-        }       
+        }
       }
     }
   }

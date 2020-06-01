@@ -1,6 +1,6 @@
 .main
   .header
-    %a{ href: '/' }
+    = link_to "/" do
       = image_tag 'logo/logo.png', size: "185x49", class: "header__logo"
   .main__container
     .main__container__head
@@ -70,9 +70,9 @@
             = f.submit "次へ進む", class:'btn'
   .footer
     .footer__lists
-      %a{ href: '#' } プライバシーポリシー
-      %a{ href: '#' } 利用規約
-      %a{ href: '#' } 特定商取引に関する表記
-    %a{ href: '/' }
+      = link_to "プライバシーポリシー", "#"
+      = link_to "利用規約" , "#"
+      = link_to "特定商取引に関する表記" , "#"
+    = link_to "/" do
       = image_tag 'logo/logo.png', size: "185x49", class: "footer__logo"
     %p ©FURIMA
