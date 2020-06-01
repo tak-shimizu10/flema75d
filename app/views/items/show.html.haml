@@ -30,7 +30,7 @@
           %tr
             %th カテゴリー
             %td
-              = link_to category_all_items_path do
+              = link_to category_all_items_path(category_id:@item.category.id) do
                 = @item.category.name
           %tr
             %th ブランド
