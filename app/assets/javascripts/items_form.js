@@ -70,7 +70,6 @@ $(function () {
         const countPreview = $(".input_photo_preview").length - 1
         const hiddenCheckbox = $(".hidden_destroy")[targetIndex];
         const lastFileField = $(".input_photo_field").last();
-
         $(this).parent().remove();
         $(`label[data-index= "${targetIndex}"]`).remove();
 
@@ -80,7 +79,6 @@ $(function () {
         }
         if (countPreview <= 10) (lastFileField).show();
         if ($(".input_photo_preview").length == 0) {
-            $("#input_photos_field").append(buildFileField(fileIndex[0]));
             $(".input_photo_file").attr("required", true);
         } else {
             $(".input_photo_file").attr("required", false);
@@ -95,7 +93,7 @@ $(function () {
     });
 
     //配送の方法表示・非表示
-    $("form").on("change", "#item_pay_side", function (e) {
+    $(".items_form_list").on("change", "#item_pay_side", function (e) {
         if (e.target.selectedIndex == 0) {
             $(".items_post_way").hide();
             $("#item_post_way_id").val("");
@@ -135,7 +133,7 @@ $(function () {
     });
 
     //フォーム入力時空にするとエラーメッセージ表示・非表示
-    $("form").on("keyup", "#item_name", function () {
+    $(".items_form_list").on("keyup", "#item_name", function () {
         let inputNameLength = $(this).context.value.length;
         if (inputNameLength > 0) {
             hideCautionMessage($(".items_name"));
@@ -143,7 +141,7 @@ $(function () {
             showCautionMessage($(".items_name"));
         };
     });
-    $("form").on("keyup", "#item_detail", function () {
+    $(".items_form_list").on("keyup", "#item_detail", function () {
         let inputDetailLength = $(this).context.value.length;
         if (inputDetailLength > 0) {
             hideCautionMessage($(".items_detail"));
@@ -151,7 +149,7 @@ $(function () {
             showCautionMessage($(".items_detail"));
         };
     });
-    $("form").on("change", "#category_base #item_category_id", function () {
+    $(".items_form_list").on("change", "#category_base #item_category_id", function () {
         let selectCategory = $(this).val();
         if (selectCategory > 0) {
             hideCautionMessage($(".items_category"));
@@ -159,7 +157,7 @@ $(function () {
             showCautionMessage($(".items_category"));
         };
     })
-    $("form").on("change", "#item_status", function () {
+    $(".items_form_list").on("change", "#item_status", function () {
         let selectStatus = this.selectedIndex;
         if (selectStatus > 0) {
             hideCautionMessage($(".items_status"));
@@ -167,7 +165,7 @@ $(function () {
             showCautionMessage($(".items_status"));
         };
     });
-    $("form").on("change", "#item_pay_side", function () {
+    $(".items_form_list").on("change", "#item_pay_side", function () {
         let selectPaySide = this.selectedIndex;
         if (selectPaySide > 0) {
             hideCautionMessage($(".items_pay_side"));
@@ -175,7 +173,7 @@ $(function () {
             showCautionMessage($(".items_pay_side"));
         };
     });
-    $("form").on("change", "#item_prefecture_id", function () {
+    $(".items_form_list").on("change", "#item_prefecture_id", function () {
         let selectPrefecture = this.selectedIndex;
         if (selectPrefecture > 0) {
             hideCautionMessage($(".items_post_prefecture"));
@@ -183,7 +181,7 @@ $(function () {
             showCautionMessage($(".items_post_prefecture"));
         };
     });
-    $("form").on("change", "#item_post_date", function () {
+    $(".items_form_list").on("change", "#item_post_date", function () {
         let selectPostDate = this.selectedIndex;
         if (selectPostDate > 0) {
             hideCautionMessage($(".items_post_date"));
@@ -191,7 +189,7 @@ $(function () {
             showCautionMessage($(".items_post_date"));
         };
     });
-    $("form").on("keyup", "#item_price", function () {
+    $(".items_form_list").on("keyup", "#item_price", function () {
         let inputPriceLength = $(this).context.value.length;
         if (inputPriceLength > 0) {
             hideCautionMessage($(".items_form_price"));
@@ -199,7 +197,7 @@ $(function () {
             showCautionMessage($(".items_form_price"));
         };
     });
-    $("form").on("change", "#item_post_way_id", function () {
+    $(".items_form_list").on("change", "#item_post_way_id", function () {
         let inputPostWayLength = $(this).context.value.length;
         if (inputPostWayLength > 0) {
             hideCautionMessage($(".items_post_way"));
@@ -209,7 +207,7 @@ $(function () {
     });
 
     //送信ボタンクリック時、空のフォームにエラーメッセージ表示
-    $("form").on("click", ".item_submit", function () {
+    $(".items_form_list").on("click", ".item_submit", function () {
 
         if ($(".input_photo_preview").length == 0)
             showCautionMessage($(".items_form_photos"))
