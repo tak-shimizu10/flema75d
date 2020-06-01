@@ -1,6 +1,6 @@
 
+= render "templates/form_header"
 .buys_new
-  = image_tag "logo/logo.png"
   .buys_new-contents
     %h2 購入内容の確認
     .buys_new-contents-block
@@ -40,13 +40,7 @@
     - else
       .buys_new-contents-block
         = button_to "購入する" , item_buys_path(@item.id), method: :post
-  .buys_new-fotter
-    .buys_new-fotter-lists
-      %p プライバシーポリシー
-      %p 利用企画
-      %p 特定商取引に関する表記
-    = image_tag "logo/logo.png"
-    %p &copy; FURIMA
+= render "templates/form_footer"
     
 
 
