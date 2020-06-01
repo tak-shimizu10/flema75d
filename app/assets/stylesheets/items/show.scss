@@ -36,20 +36,23 @@
 .item-photo {
   float: left;
   width: 300px;
-  min-height: 360px;
+  height: 420px;
   background-color: whitesmoke;
   &__top {
     width: 100%;
+    height: 300px;
     margin: auto;
     object-fit: contain;
   }
   &__sub-box {
+    width: 100%;
+    height: 120px;
     &__photo {
       width: 60px;
       height: 60px;
       float: left;
       position: relative;
-      object-fit: contain;
+      overflow: hidden;
       .item-other-photo {
         position: absolute;
         top: 0;
@@ -58,6 +61,7 @@
         left: 0;
         width: 100%;
         margin: auto;
+        object-fit: contain;
       }
     }
   }
@@ -140,7 +144,7 @@
   color: #fff;
 }
 
-.item-action-btn {
+.item-action-btn,.item-delete-btn {
   margin: 16px 0 16px 0;
   display: block;
   width: 100%;
@@ -152,6 +156,68 @@
   border: 1px solid darkgray;
   text-decoration: none;
   color: #fff;
+  outline: 0;
+}
+
+// 商品削除のモーダル
+.modal {
+  display: none;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  .modal__bg{
+    background: rgba(0,0,0,0.8);
+    height: 100vh;
+    position: absolute;
+    width: 100%;
+  }
+  .modal__content{
+    background: #fff;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 25%;
+    left: 50%;
+    min-width: 600px;
+    .delete-content {
+      padding: 64px;
+      text-align: center;
+      background: white;
+      font-size: 14px;
+      .modal-head {
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+  }
+  .button-box {
+    border-top: 1px solid #ccc;
+    .cancel-btn {
+      float: left;
+      font-size: 14px;
+      border: 0;
+      width: 50%;
+      text-align: center;
+      line-height: 63px;
+      cursor: pointer;
+      background: white;
+      outline: 0;
+      padding: 0;
+    }
+    .delete-btn {
+      float: right;
+      font-size: 14px;
+      width: 50%;
+      text-align: center;
+      line-height: 63px;
+      cursor: pointer;
+      border-left: 1px solid #ccc;
+      text-decoration: none;
+      color: #3CCACE;
+      background: white;
+    }
+  }
 }
 
 .item-buy-btn {
