@@ -1,6 +1,6 @@
 // 商品削除のモーダル
 $(function(){
-  $('button').on('click',function(){
+  $('.item-main').on('click','.item-delete-btn',function(){
       $('.js-modal').fadeIn();
       return false;
   });

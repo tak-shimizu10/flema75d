@@ -73,7 +73,7 @@
         %p.text-center
           or
         = link_to "出品を一旦停止する", "#", class: "item-action-btn"
-        %button.item-action-btn この商品を削除する
+        %button.item-delete-btn この商品を削除する
       - elsif user_signed_in?
         = link_to "購入画面に進む", new_user_session_path, class: "item-buy-btn"
         .item-explanation
@@ -220,3 +220,4 @@
     .button-box.clearfix
       %button.cancel-btn.js-modal-close キャンセル
       = link_to "削除する", item_path, method: :delete, class: "delete-btn"
+

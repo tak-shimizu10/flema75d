@@ -144,7 +144,7 @@
   color: #fff;
 }
 
-.item-action-btn {
+.item-action-btn,.item-delete-btn {
   margin: 16px 0 16px 0;
   display: block;
   width: 100%;
@@ -167,56 +167,56 @@
   top: 0;
   width: 100%;
   z-index: 100;
-}
-.modal__bg{
-  background: rgba(0,0,0,0.8);
-  height: 100vh;
-  position: absolute;
-  width: 100%;
-}
-.modal__content{
-  background: #fff;
-  position: absolute;
-  transform: translate(-50%,-50%);
-  top: 25%;
-  left: 50%;
-  min-width: 600px;
-}
-.delete-content {
-  padding: 64px;
-  text-align: center;
-  background: white;
-  font-size: 14px;
-  .modal-head {
-    font-size: 16px;
-    font-weight: 600;
+  .modal__bg{
+    background: rgba(0,0,0,0.8);
+    height: 100vh;
+    position: absolute;
+    width: 100%;
   }
-}
-.button-box {
-  border-top: 1px solid #ccc;
-  .cancel-btn {
-    float: left;
-    font-size: 14px;
-    border: 0;
-    width: 50%;
-    text-align: center;
-    line-height: 63px;
-    cursor: pointer;
-    background: white;
-    outline: 0;
-    padding: 0;
+  .modal__content{
+    background: #fff;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 25%;
+    left: 50%;
+    min-width: 600px;
+    .delete-content {
+      padding: 64px;
+      text-align: center;
+      background: white;
+      font-size: 14px;
+      .modal-head {
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
   }
-  .delete-btn {
-    float: right;
-    font-size: 14px;
-    width: 50%;
-    text-align: center;
-    line-height: 63px;
-    cursor: pointer;
-    border-left: 1px solid #ccc;
-    text-decoration: none;
-    color: #3CCACE;
-    background: white;
+  .button-box {
+    border-top: 1px solid #ccc;
+    .cancel-btn {
+      float: left;
+      font-size: 14px;
+      border: 0;
+      width: 50%;
+      text-align: center;
+      line-height: 63px;
+      cursor: pointer;
+      background: white;
+      outline: 0;
+      padding: 0;
+    }
+    .delete-btn {
+      float: right;
+      font-size: 14px;
+      width: 50%;
+      text-align: center;
+      line-height: 63px;
+      cursor: pointer;
+      border-left: 1px solid #ccc;
+      text-decoration: none;
+      color: #3CCACE;
+      background: white;
+    }
   }
 }
 
