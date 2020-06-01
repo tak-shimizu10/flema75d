@@ -93,9 +93,24 @@
                 display:none;
                 z-index:3;
                 width:250px;
+                
                 > a {
                   text-decoration: none;
                   color:black;
+                 
+                  .category_box{
+                    &:hover {
+                      background-color: #3CCACE;
+                    }
+                    p {
+                      color: black;
+                      &:hover {
+                        color: white;
+                      }
+
+                    }
+                    
+                  }
                 }
             }
             
