@@ -209,9 +209,10 @@ $(function () {
     //送信ボタンクリック時、空のフォームにエラーメッセージ表示
     $(".items_form_list").on("click", ".item_submit", function () {
 
-        if ($(".input_photo_preview").length == 0)
-            showCautionMessage($(".items_form_photos"))
-        $(window).scrollTop($("#photos_input").offset().top);
+        if ($("#photos_input .input_photo_preview").length == 0) {
+            showCautionMessage($(".items_form_photos"));
+            $("html, body").scrollTop($("#photos_input").offset().top);
+        }
         if ($("#item_name").val().length == 0)
             showCautionMessage($(".items_name"));
         if ($("#item_detail").val().length == 0)
