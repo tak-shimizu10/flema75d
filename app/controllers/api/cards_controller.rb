@@ -22,7 +22,8 @@ class Api::CardsController < ApplicationController
     render json:{html:partial}
   end
 
-  def new
+  def new   
+
   end
 
   def create

@@ -30,7 +30,7 @@
           %tr
             %th カテゴリー
             %td
-              = link_to category_all_items_path do
+              = link_to category_all_items_path(category_id:@item.category.id) do
                 = @item.category.name
           %tr
             %th ブランド
@@ -68,7 +68,7 @@
         .item-explanation
           %p.item-explanation__box
             = @item.detail
-        = link_to "商品の編集", "edit_item_path", class: "item-edit-btn"
+        = link_to "商品の編集", edit_item_path(@item), class: "item-edit-btn"
         %p.text-center
           or
         = link_to "出品を一旦停止する", "#", class: "item-action-btn"

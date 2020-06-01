@@ -835,8 +835,8 @@ book7.children.create([
 ])
 
 
-# おもちゃ・ホビー。グッズ カテゴリー
-hobby = Category.create(name:"おもちゃ・ホビー。グッズ")
+# おもちゃ・ホビー・グッズ カテゴリー
+hobby = Category.create(name:"おもちゃ・ホビー・グッズ")
 
 hobby1= hobby.children.create(name:"おもちゃ")
 hobby2= hobby.children.create(name:"タレントグッズ")

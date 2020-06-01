@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :cards, only: [:index,:new,:create,:destroy]
     resource :templates, only: [] do
       member do
+        get 'top'
         get 'logout'
       end
     end
@@ -32,6 +33,8 @@ Rails.application.routes.draw do
       get 'category'
     end
   end
+
+  resources :all_items, only: [:index]
 
 end
 
