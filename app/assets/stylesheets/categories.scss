@@ -28,36 +28,6 @@
         }
       }
     } 
-    > .contents {
-        width:700px;
-        margin:20px auto;
-        text-align: center;
-      > .item {
-        width:200px;
-        display: inline-block;
-        margin:10px;
-        background-color: white;
-        > a {
-          text-decoration: none;
-        }
-        & .image {
-            width:200px;
-            height:200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          > img {
-            max-height: 100%;
-            max-width: 100%;
-          }
-        }
-        & .sentence {
-          background-color: white;
-          color:black;
-          padding:10px;
-        }
-      }
-    }
   }
 
 }
