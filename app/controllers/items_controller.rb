@@ -52,8 +52,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
-    if item.destroy!
+    if @item.destroy
       redirect_to user_path(current_user.id), notice: '削除が完了しました'
     else
       render :show, alert: '削除が失敗しました'
