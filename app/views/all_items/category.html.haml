@@ -4,8 +4,9 @@
   .detail
     - if @category.blank?
       %h2 カテゴリー一覧
-      - @categories.each do |category|
-        %label.link= link_to category.name, category_all_items_path(category_id: category.id)
+      .children
+        - @categories.each do |category|
+          %label.link= link_to category.name, category_all_items_path(category_id: category.id)
     - else
       %h2= "#{@category.name}の商品一覧"
       .children

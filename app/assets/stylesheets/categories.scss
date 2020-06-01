@@ -15,18 +15,6 @@
         background-color: lightseagreen;
         color:white;
       }
-      > .link {
-        display: inline;
-        > a{
-          display: inline-block;
-          margin:10px;
-          color:orange;
-          text-decoration: none;
-          &:hover {
-            text-decoration:underline;
-          }
-        }
-      }
       > .children {
         padding:20px 30px;
         > .link {
