@@ -59,12 +59,13 @@
       %ul.items
         - @items.each do |item|
           %li.item
-            = link_to item_path(item.id) do
+            = link_to item_path(item.id),class:"item_link" do
               .image
                 = image_tag item.images.first.image.url,class:"item_pic"
+                .item_price= number_to_currency(item.price,format: "%u%n",unit:"¥",precision: 0)
               .info
                 %h3="#{item.name}"
-                = "#{item.price} 円" 
+                
   .bottom_visual
     .content
       %h2.content__title だれでもかんたん、人生を変えるフリマアプリ
