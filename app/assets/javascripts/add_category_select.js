@@ -1,60 +1,90 @@
 
-// $(function(){ 
+$(function () {
 
-//   function buildHTML(data){
+    function buildHTML(data, it) {
 
-//     var html = `<div class="category_form">\n`
-    
-//     html += `  <p>　</p>\n  <select name="category_id" class="category_list">\n`
+        var select = $(it).clone().removeAttr("id").empty();
+        var option = $("<option>", { value: "" }).text("選択してください");
+        select.append(option);
 
-//     html += `    <option value="">選択してください</option>\n`  
-//     data.forEach(function(value){
-//       html += `    <option value="${value.id}">${value.name}</option>\n`
-//     })
-//     html += `  </select>\n</div>`
+        data.forEach(function (value) {
+            option = $("<option>", { value: value.id }).text(value.name);
+            select.append(option);
+        })
 
-//     return html
-//   }
+        var div = $(it).parent().clone().removeAttr("id").html(select);
 
-//   $(document).on("change", ".category_list", function(event){
-    
-//     event.preventDefault();
+        return div
+    }
 
-//     // 選択したフォームより下にある選択肢を削除する
-//     $(this).parent().nextAll('.category_form').remove()
+    $(document).on("change", ".category_list", function (event) {
 
-//     var category_id =  $(this).val();
-//     if(category_id == null){
-//       return true;
-//     }
-     
-//     console.log($(this).val())
+        event.preventDefault();
 
-//     $.ajax({
-//       url: "/api/selects",
-//       type: "GET",
-//       dataType: "json",
-//       context: this,
-//       data: {
+        // 選択したフォームより下にある選択肢を削除する
+        $(this).parent().nextAll('.category_form').remove()
 
-//         // 選択されたカテゴリーのidを取得
-//         // 表示は日本語だが、実際の値はidになる
-//         category_id: category_id
-//       }
-//     })
-//     .done(function(data){
+        var category_id = $(this).val();
+        if (category_id === null) {
+            return true;
+        }
 
-//       // 子要素がなければ選択肢を表示しない
-//       if( data.length != 0 ){
+        $.ajax({
+            url: "/api/selects",
+            type: "GET",
+            dataType: "json",
+            context: this,
+            cache: false,
+            data: {
 
-//         // 選択したフォームの下に新たなフォームを追加
-//         var html = buildHTML(data)
-//         $(this).parent().after(html)
-//       } 
-//     })
-//     .fail(function(){
-//       console.log("error!")
-//     })
+                // 選択されたカテゴリーのidを取得
+                // 表示は日本語だが、実際の値はidになる
+                category_id: category_id
+            }
+        })
+            .done(function (data) {
 
-//   })
-// })
+                // 子要素がなければ選択肢を表示しない
+                if (data.length != 0) {
+
+                    // 選択したフォームの下に新たなフォームを追加
+                    var html = buildHTML(data, this)
+                    $(this).parent().after(html)
+                }
+            })
+            .fail(function () {
+                console.log("error!")
+            })
+
+    })
+
+    $(window).on("load", function (e) {
+
+        if ($("#item_category_id").val() > 0) {
+
+            const selectedChildCategory = $(".category_list").last()[0];
+            const selectedValue = $(".category_list").last().val();
+            e.preventDefault();
+
+            $.ajax({
+                url: "/api/selects",
+                type: "GET",
+                dataType: "json",
+                context: selectedChildCategory,
+                data: { category_id: selectedValue }
+            })
+                .done(function (data) {
+                    // 子要素がなければ選択肢を表示しない
+                    if (data.length != 0) {
+                        // 選択したフォームの下に新たなフォームを追加
+                        html = buildHTML(data, selectedChildCategory);
+                        $(selectedChildCategory).parent().after(html);
+                    }
+                })
+                .fail(function () {
+                    console.log("error!");
+                });
+        }
+    });
+
+})

@@ -41,7 +41,6 @@ class ItemsController < ApplicationController
       if @item.update(item_params)
         brands = Brand.find_or_create_by(name: params[:item][:brand])
         @item.update(brand_id: brands.id)
-        binding.pry
         redirect_to root_path
       else
         render :edit
@@ -73,10 +72,8 @@ class ItemsController < ApplicationController
         @category = @child_category.parent
         @child_categories = Category.where(ancestry: @category.id).pluck(:name, :id)
         @grandchild_categories = Category.where(ancestry: @grandchild_category[:ancestry]).pluck(:name, :id)
-        # binding.pry
       else
         @child_categories = Category.where(ancestry: @category.id).pluck(:name, :id)
-        # @grandchild_categories = Category.where(ancestry: ).pluck(:name, :id)
         render :edit
       end
     else

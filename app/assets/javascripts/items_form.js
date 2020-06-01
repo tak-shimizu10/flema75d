@@ -106,13 +106,16 @@ $(function () {
     })
 
     //価格の表示(販売手数料、販売利益)入力時と決定時に変化
-    $("#item_price").on("keyup change", function () {
-        let targetPrice = $(this).val();
-        if (targetPrice >= 10000000) $(this).val(9999999);
+    function inputPricePreview(input) {
+        let targetPrice = $(input).val();
+        if (targetPrice >= 10000000) $(input).val(9999999);
         let calculateFee = Math.floor(targetPrice * 0.1);
         let calculateProfit = targetPrice - calculateFee;
         $(".display_fee_value").html(`¥${calculateFee.toLocaleString()}`);
         $(".display_profit_value").html(`¥${calculateProfit.toLocaleString()}`);
+    }
+    $("#item_price").on("keyup change", function () {
+        inputPricePreview(this);
     });
 
     //ドラッグ＆ドロップ操作しても画面が切り替わらないように
@@ -249,115 +252,7 @@ $(function () {
             $(".input_photo_file").attr("required", false);
         if ($("#item_pay_side").val().length > 0) $(".items_post_way").show();
         reloadWindowPhotosField();
-        
-    });
-
-    //Ajax通信でcategory選択
-    function buildHTML(data) {
-
-        var html = `<div class="category_form">\n`
-
-        html += `  <select name="category_id" class="category_list">\n`
-
-        html += `    <option value="">選択してください</option>\n`
-        data.forEach(function (value) {
-            html += `    <option value="${value.id}">${value.name}</option>\n`
-        })
-        html += `  </select>\n</div>`
-
-        return html;
-    }
-
-    $(document).on("change", ".category_list", function (event) {
-
-        event.preventDefault();
-
-        // 選択したフォームより下にある選択肢を削除する
-        $(this).parent().nextAll('.category_form').remove()
-
-        var category_id = $(this).val();
-        if (category_id == null) {
-            return true;
-        }
-
-        console.log($(this).val())
-
-        $.ajax({
-            url: "/api/selects",
-            type: "GET",
-            dataType: "json",
-            context: this,
-            data: {
-
-                // 選択されたカテゴリーのidを取得
-                // 表示は日本語だが、実際の値はidになる
-                category_id: category_id
-            }
-        })
-            .done(function (data) {
- 
-                // 子要素がなければ選択肢を表示しない
-                if (data.length != 0) {
-
-                    // 選択したフォームの下に新たなフォームを追加
-                    var html = buildHTML(data)
-                    $(this).parent().after(html)
-                }
-            })
-            .fail(function () {
-                console.log("error!")
-            })
-
-    })
-
-    // function appendCategoryList(e) {
-    //     e.preventDefault();
-    //     $.ajax({
-    //         url: "/api/selects",
-    //         type: "GET",
-    //         dataType: "json",
-    //         context: selectedChildCategory,
-    //         data: { category_id: selectedValue }
-    //     })
-    //         .done(function (data) {
-    //             // 子要素がなければ選択肢を表示しない
-    //             if (data.length != 0) {
-    //                 // 選択したフォームの下に新たなフォームを追加
-    //                 html = buildHTML(data);
-    //                 $(selectedChildCategory).parent().after(html);
-    //             }
-    //         })
-    //         .fail(function () {
-    //             console.log("error!");
-    //         });
-    // };
-    
-    $(window).on("load", function (e) {
-
-        if ($("#item_category_id").val() > 0) {
-
-            const selectedChildCategory = $(".category_list").last()[0];
-            const selectedValue = $(".category_list").last().val();
-            e.preventDefault();
-            $.ajax({
-                url: "/api/selects",
-                type: "GET",
-                dataType: "json",
-                context: selectedChildCategory,
-                data: { category_id: selectedValue }
-            })
-            .done(function (data) {
-                // 子要素がなければ選択肢を表示しない
-                if (data.length != 0) {
-                    // 選択したフォームの下に新たなフォームを追加
-                    html = buildHTML(data);
-                    $(selectedChildCategory).parent().after(html);
-                }
-            })
-            .fail(function () {
-                console.log("error!");
-            });          
-        }
+        if ($("#item_price").val() > 0) inputPricePreview($("#item_price")[0]);
     });
 
 });
