@@ -1,27 +1,27 @@
 // 画面サイズ 共通
-.items_new {
+.items_new,.items_edit {
     background-color: lightgray;
     display: grid;
     grid-template:
-    "body"1fr;
-    .items_new_body {
+    "body" 1fr;
+    .items_body {
         grid-area: body;
         height:    100%;
         display:   grid;
-        .items_new_header {
+        .items_header {
             grid-area: header;
         }
-        .items_new_main {
+        .items_main {
             grid-area:   main;
         }
-        .items_new_footer {
+        .items_footer {
             grid-area: footer;
         }
-        .items_new_main {
+        .items_main {
             display: grid;
             grid-template:
                 "list"1fr;
-            .items_new_form_list {
+            .items_form_list {
                 grid-area:   list;
                 form {
                     display: grid;
@@ -40,29 +40,29 @@
                     "submit"200px
                     "notice"50px
                     ".....";
-                    .items_new_form_photos {
+                    .items_form_photos {
                         grid-area: photos;
                     }
-                    .items_new_form_item {
+                    .items_form_item {
                         grid-area:   item;
                     }
-                    .items_new_form_info {
+                    .items_form_info {
                         grid-area:   info;
                     }
-                    .items_new_form_post {
+                    .items_form_post {
                         grid-area:   post;
                     }
-                    .items_new_form_price {
+                    .items_form_price {
                         grid-area:  price;
                     }
-                    .items_new_form_submit {
+                    .items_form_submit {
                         grid-area: submit;
                     }
-                    .items_new_form_notice {
+                    .items_form_notice {
                         grid-area: notice;
                     }
 
-                    .items_new_form_photos {
+                    .items_form_photos {
                         .photos_input {
                             width:       100%;
                             min-height: 200px;
@@ -71,9 +71,10 @@
                                 width:     100%;
                                 display:   flex;
                                 flex-wrap: wrap;
-                                #input_photo_preview {
+                                .input_photo_preview {
                                     width:    20%;
                                     height: 200px;
+                                    display: none;
                                     display: grid;
                                     grid-template:
                                     "...... ......  ......"
@@ -82,16 +83,18 @@
                                     "...... remove  ......"20px
                                     "...... ......  ......"/
                                         10px auto 10px;
-                                    img{
+                                    img {
                                         grid-area: preview;
                                     }
-                                    .input_photo_remove{
+                                    .input_photo_remove {
                                         grid-area:  remove;
                                     }
-                                    img{
+                                    img {
+                                        width:       100px;
+                                        height:      100px;
                                         margin:       auto;
                                     }
-                                    .input_photo_remove{
+                                    .input_photo_remove {
                                         text-align: center;
                                         cursor:    pointer;
                                         color:      blue;
@@ -100,7 +103,7 @@
                                         }
                                     }
                                 }
-                                label#input_photo_field {
+                                label.input_photo_field {
                                     border: 1px dashed gray;
                                     text-align:        center;
                                     cursor: pointer;
@@ -129,21 +132,20 @@
                                     .photos_input_text {
                                         font-size: 12px;
                                     }
-                                    &:hover{
+                                    &:hover {
                                         background-color: lightgray;
                                         opacity:                  0.5;
                                     }
                                 }
-                                .hover_photo_file{
+                                .hover_photo_file {
                                     background-color: gray;
                                     opacity:             0.5;
                                 }
-                                
                             }
                         }
                     }
 
-                    .items_new_form_item {
+                    .items_form_item {
                         display: grid;
                         grid-template:
                         "...... ...... ......"
@@ -151,22 +153,22 @@
                         "...... ...... ......"10px
                         "detail detail detail"
                         "...... ...... ......";
-                        .items_new_name {
+                        .items_name {
                             grid-area: name;
                         }
-                        .items_new_detail {
+                        .items_detail {
                             grid-area: detail;
                         }
-                        .items_new_name {
-                            .items_new_form_input {
+                        .items_name {
+                            .items_form_input {
                                 border-radius: 5px;
                                 padding:    0 16px;
                                 width:  100%;
                                 height: 48px;
                             }
                         }
-                        .items_new_detail {
-                            .items_new_form_text_area {
+                        .items_detail {
+                            .items_form_text_area {
                                 resize:       vertical;
                                 vertical-align: middle;
                                 overflow:       scroll;
@@ -192,7 +194,7 @@
                         }
                     }
 
-                    .items_new_form_info {
+                    .items_form_info {
                         display: grid;
                         grid-template:
                         "...... ...... ......"
@@ -202,17 +204,20 @@
                         "...... ...... ......"20px
                         "status status status"
                         "...... ...... ......";
-                        .items_new_category {
+                        .items_category {
                             grid-area: category;
+                            > .category_form {
+                                margin:10px 0;
+                            }
                         }
-                        .items_new_brand {
+                        .items_brand {
                             grid-area: brand;
                         }
-                        .items_new_status {
+                        .items_status {
                             grid-area: status;
                         }
-                        .items_new_brand {
-                            .items_new_form_input {
+                        .items_brand {
+                            .items_form_input {
                                 border-radius: 5px;
                                 padding:    0 16px;
                                 width:  100%;
@@ -221,7 +226,7 @@
                         }
                     }
 
-                    .items_new_form_post {
+                    .items_form_post {
                         display: grid;
                         grid-template:
                         "..... ..... ....."
@@ -233,23 +238,23 @@
                         "..... ..... ....."20px
                         "date  date  date "
                         "..... ..... .....";
-                        .items_new_pay_side {
+                        .items_pay_side {
                             grid-area: pay;
                         }
-                        .items_new_post_way {
+                        .items_post_way {
                             grid-area: way;
                             margin: 0 0 20px;
                             display:  none;
                         }
-                        .items_new_post_prefecture {
+                        .items_post_prefecture {
                             grid-area: pref;
                         }
-                        .items_new_post_date {
+                        .items_post_date {
                             grid-area: date;
                         }
                     }
 
-                    .items_new_form_price {
+                    .items_form_price {
                         display: grid;
                         grid-template: 
                         "..... ..... ....."
@@ -290,7 +295,7 @@
                             }
                         }
                         .input_selling_price {
-                            .price_items_new_form_style{
+                            .price_items_form_style{
                                 display: grid;
                                 grid-template: 
                                 "label fields ..... mark input"/
@@ -322,28 +327,28 @@
                         }
                     }
 
-                    .items_new_form_submit {
+                    .items_form_submit {
                         display: grid;
-                        .items_new_form_submit_btn {
+                        .items_form_submit_btn {
                             grid-area: submit;
                         }
-                        .items_new_form_draft_btn {
+                        .items_form_draft_btn {
                             grid-area: draft;
                         }
-                        .items_new_btn_back {
+                        .items_btn_back {
                             grid-area: back;
                         }
-                        .items_new_btn_submit {
+                        .items_btn_submit {
                             background-color: red;
                             color: white;
                         }
-                        .items_new_btn_draft {
+                        .items_btn_draft {
                             background-color: lightgray;
                         }
-                        #item_situation {
+                        .item_situation {
                             display: none;
                         }
-                        .items_new_btn_back {
+                        .items_btn_back {
                             text-align: center;
                             a{
                                 color: blue;
@@ -352,41 +357,41 @@
                         }
                     }
 
-                    .items_new_form_notice {
+                    .items_form_notice {
                         background-color: white;
-                        .notice_text{
+                        .notice_text {
                             margin:0 40px 64px;
                             font-size: 12px;
                         }
                     }
 
-                    .items_new_form {
+                    .items_form {
                         background-color: white;
                     }
-                    .items_new_form_price {
+                    .items_form_price {
                         background-color: white;
                         padding: 40px 40px 0;
                     }
-                    .items_new_form_style {
+                    .items_form_style {
                         display: flex;
                         label {
                             font-weight: bold;
                             margin: 0 5px 0 0;
                             flex-wrap: nowrap;
                         }
-                        .items_new_mandatory_fields {
+                        .items_mandatory_fields {
                             background-color: red;
                             border-radius: 5px;
                             flex-wrap:  nowrap;
                             color:     white;
                             max-width: 50px;
                         }
-                        .items_new_option_fields {
+                        .items_option_fields {
                             background-color: lightgray;
                             color: white;
                         }
                     }
-                    .items_new_caution {
+                    .items_caution {
                         text-align: end;
                         display:   none;
                         color:    red;
@@ -407,21 +412,22 @@
                 }
             }
         }
-        .items_new_footer {
+        .items_footer {
+            text-align:      center;
             display:           grid;
-            .items_new_privacy_policy  {
+            .items_privacy_policy {
                 grid-area:  privacy;
             }
-            .items_new_terms_of_service {
+            .items_terms_of_service {
                 grid-area:    terms;
             }
-            .items_new_notation {
+            .items_notation {
                 grid-area: notation;
             }
-            .items_new_footer_logo_to_index {
+            .items_footer_logo_to_index {
                 grid-area:     logo;
             }
-            .items_new_c_inc {
+            .items_c_inc {
                 grid-area:    c_inc;
             }
         }
@@ -430,33 +436,34 @@
 
 // 画面サイズ 大
 @media screen and (min-width: 767px) {
-    .items_new {
-        .items_new_body {
+    .items_new,.items_edit {
+        .items_body {
             margin:  auto;
             width:  700px;
             height:  100%;
             grid-template:
-            "....." 43px
-            "header"43px
-            "....." 43px
-            "main " 1fr
-            "....." 0
-            "footer"220px
-            "....." 0;
-            .items_new_header {
+            "..... .....  ....." 43px
+            "..... header ....."43px
+            "..... .....  ....." 43px
+            "..... main   ....." 1fr
+            "..... .....  ....."0
+            "..... footer ....." 220px
+            "..... .....  ....."0/
+            auto 700px auto;
+            .items_header {
                 text-align: center;
-                .items_new_header_logo {
+                .items_header_logo {
                     width:   185px;
                 }
             }
-            .items_new_main {
+            .items_main {
                 height:100%;
                 width: 100%;
-                .items_new_form_list {
-                    .items_new_form_photos {
+                .items_form_list {
+                    .items_form_photos {
                         min-height: 300px;
                     }
-                    .items_new_form_submit {
+                    .items_form_submit {
                         grid-template:
                         "...... ...... ......"
                         "...... submit ......"
@@ -469,7 +476,7 @@
                     }
                 }
             }
-            .items_new_footer {
+            .items_footer {
                 height: 220px;
                 width:   100%;
                 grid-template:
@@ -479,19 +486,19 @@
                 "...... ...... c_inc ...... ......" 12px
                 "...... ...... ...... ...... ......" 40px /
                 auto 150px 100px 150px auto;
-                .items_new_footer_logo_to_index {
-                    .items_new_footer_logo {
+                .items_footer_logo_to_index {
+                    .items_footer_logo {
                         width:  100%;
                     }
                 }
-                .items_new_footer_link{
+                .items_footer_link {
                     font-size:  12px;
                 }
-                .items_new_c_inc {
+                .items_c_inc {
                     font-size:   9px;
                 }
             }
-            .items_new_form {
+            .items_form {
                 padding: 40px;
             }
         }
@@ -500,27 +507,28 @@
 
 // 画面サイズ 小
 @media screen and (max-width: 766px) {
-    .items_new{
-        .items_new_body{
+    .items_new,.items_edit {
+        .items_body {
             width:   100%;
             grid-template:
-            "....." 10px
-            "header"
-            "....." 10px
-            "main " 1fr
-            "....." 
-            "footer" 
-            "....."0;
-            .items_new_header {
+            "..... .....  ....." 10px
+            "..... header ....."
+            "..... .....  ....." 10px
+            "..... main   ....." 1fr
+            "..... .....  ....."
+            "..... footer ....." 
+            "..... .....  ....."0/
+            0 1fr 0;
+            .items_header {
                 text-align: center;
-                .items_new_header_logo {
+                .items_header_logo {
                     width:   120px;
                 }
             }
-            .items_new_main {
+            .items_main {
                 height:    100%;
                 width:     100%;
-                .items_new_form_photos {
+                .items_form_photos {
                     .photos_input {
                         label {
                             .photos_input_text {
@@ -529,7 +537,7 @@
                         }
                     }
                 }
-                .items_new_form_submit {
+                .items_form_submit {
                     grid-template:
                     "...... ...... ......"
                     "...... submit ......"
@@ -545,10 +553,9 @@
                     }
                 }
             }
-            .items_new_footer {
-                width:        100%;
-                height:      220px;
-                text-align: center;
+            .items_footer {
+                width:   100%;
+                height: 220px;
                 grid-template: 
                 "......  ......   ......"
                 "......  privacy  ......"
@@ -558,19 +565,19 @@
                 "......  c_inc    ......" 
                 "......  ......   ......" 10px/
                 auto 150px auto;
-                .items_new_footer_link{
+                .items_footer_link {
                     font-size:  12px;
                 }
-                .items_new_footer_logo_to_index {
-                    .items_new_footer_logo {
+                .items_footer_logo_to_index {
+                    .items_footer_logo {
                         width:  100%;
                     }
                 }
-                .items_new_c_inc {
+                .items_c_inc {
                     font-size:   9px;
                 }
             }
-            .items_new_form {
+            .items_form {
                 padding: 10px;
             }
         }

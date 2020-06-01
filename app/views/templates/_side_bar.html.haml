@@ -1,7 +1,7 @@
 .body__side
   .mypage-nav
     %ul
-      %li= link_to "マイページ", user_path(current_user.id),  remote: true ,class: "link_page"   
+      %li= link_to "マイページ", top_api_templates_path,  remote: true ,class: "link_page"   
       %li= link_to "お知らせ","#",  remote: true ,class: "link_page"
       %li= link_to "やることリスト", "#",  remote: true ,class: "link_page"
       %li= link_to "いいね一覧", "#",  remote: true ,class: "link_page"

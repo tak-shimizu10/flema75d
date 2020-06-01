@@ -6,33 +6,35 @@
     .children
       - @category.children.each do |child|
         = link_to child.name, category_all_items_path(category_id:child.id)
-  .contents
-    - @category.items.each do |item|
-      .item
-        = link_to "#" do
-          .image
-            = image_tag item.images.first.image.url
-          .sentence
-            %p= item.name
-            %p= "#{item.price} 円"
-    - if @category.children.present?
-      - @category.children.each do |child|
-        - child.items.each do |childitem|
-          .item
-            = link_to "#" do
+  .mains_index__body
+    .look
+      %ul.items
+        - @category.items.each do |item|
+          %li.item
+            = link_to item_path(item.id),class:"item_link"  do
               .image
-                = image_tag childitem.images.first.image.url
-              .sentence
-                %p= childitem.name
-                %p= "#{childitem.price} 円"
-        - if child.children.present?
-          - child.children.each do |grandchild|
-            - grandchild.items.each do |granditem|
-              .item
-                = link_to "#" do
+                = image_tag item.images.first.image.url,class:"item_pic"
+                .item_price= number_to_currency(item.price,format: "%u%n",unit:"¥",precision: 0)
+              .info
+                %h3= item.name
+        - if @category.children.present?
+          - @category.children.each do |child|
+            - child.items.each do |childitem|
+              %li.item
+                = link_to item_path(childitem.id),class:"item_link" do
                   .image
-                    = image_tag granditem.images.first.image.url
-                  .sentence
-                    %p= granditem.name
-                    %p= "#{granditem.price} 円"
+                    = image_tag childitem.images.first.image.url,class:"item_pic"
+                    .item_price= number_to_currency(childitem.price,format: "%u%n",unit:"¥",precision: 0)
+                  .info
+                    %h3= childitem.name
+            - if child.children.present?
+              - child.children.each do |grandchild|
+                - grandchild.items.each do |granditem|
+                  %li.item
+                    = link_to item_path(granditem.id),class:"item_link" do
+                      .image
+                        = image_tag granditem.images.first.image.url,class:"item_pic"
+                        .item_price= number_to_currency(granditem.price,format: "%u%n",unit:"¥",precision: 0)
+                      .info
+                        %h3= granditem.name
 = render partial: 'templates/footer'

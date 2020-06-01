@@ -5,7 +5,8 @@
     %h2 購入内容の確認
     .buys_new-contents-block
       .buys_new-contents-product
-        =image_tag @item.images.first.image.url
+        .buys_new-contents-product-image
+          =image_tag @item.images.first.image.url
         .items-index-contents-product-sentence
           %p=@item.name
           %p=@item.status_i18n
