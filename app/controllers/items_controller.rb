@@ -32,23 +32,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @category = Category.find(@item.category_id)
     @categories = Category.where(ancestry: nil).pluck(:name, :id)
-    if @category.parent.present?
-      @child_category = Category.find(@category.id)
-      @category = @child_category.parent
-      if @category.parent.present?
-        @grandchild_category = @child_category
-        @child_category = @category
-        @category = @child_category.parent
-        child_category_list(ancestry: @child_category[:ancestry]).pluck(:name, :id)
-        grandchild_category_list(ancestry: @grandchild_category[:ancestry]).pluck(:name, :id)
-        # binding.pry
-      else
-        child_category_list(ancestry: @child_category[:ancestry]).pluck(:name, :id)
-        render :edit
-      end
-    else
-      render :edit
-    end
+    select_category_and_serch_ancestry
   end
 
   def update
@@ -57,6 +41,7 @@ class ItemsController < ApplicationController
       if @item.update(item_params)
         brands = Brand.find_or_create_by(name: params[:item][:brand])
         @item.update(brand_id: brands.id)
+        binding.pry
         redirect_to root_path
       else
         render :edit
@@ -78,11 +63,25 @@ class ItemsController < ApplicationController
           .merge(user_id: current_user.id)
   end
 
-  def child_category_list(ancestry)
-    @child_categories = Category.where(ancestry)
-  end
-
-  def grandchild_category_list(ancestry)
-    @grandchild_categories = Category.where(ancestry)
+  def select_category_and_serch_ancestry
+    if @category.parent.present?
+      @child_category = Category.find(@category.id)
+      @category = @child_category.parent
+      if @category.parent.present?
+        @grandchild_category = @child_category
+        @child_category = @category
+        @category = @child_category.parent
+        @child_categories = Category.where(ancestry: @category.id).pluck(:name, :id)
+        @grandchild_categories = Category.where(ancestry: @grandchild_category[:ancestry]).pluck(:name, :id)
+        # binding.pry
+      else
+        @child_categories = Category.where(ancestry: @category.id).pluck(:name, :id)
+        # @grandchild_categories = Category.where(ancestry: ).pluck(:name, :id)
+        render :edit
+      end
+    else
+      @child_categories = Category.where(ancestry: @category.id).pluck(:name, :id)
+      render :edit
+    end
   end
 end

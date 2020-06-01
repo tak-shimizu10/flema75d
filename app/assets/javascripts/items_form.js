@@ -150,7 +150,7 @@ $(function () {
     });
     $("form").on("change", "#category_base #item_category_id", function () {
         let selectCategory = $(this).val();
-        if ( selectCategory > 0) {
+        if (selectCategory > 0) {
             hideCautionMessage($(".items_category"));
         } else {
             showCautionMessage($(".items_category"));
@@ -210,7 +210,7 @@ $(function () {
 
         if ($(".input_photo_preview").length == 0)
             showCautionMessage($(".items_form_photos"))
-            $(window).scrollTop($("#photos_input").offset().top);
+        $(window).scrollTop($("#photos_input").offset().top);
         if ($("#item_name").val().length == 0)
             showCautionMessage($(".items_name"));
         if ($("#item_detail").val().length == 0)
@@ -250,6 +250,114 @@ $(function () {
         if ($("#item_pay_side").val().length > 0) $(".items_post_way").show();
         reloadWindowPhotosField();
         
+    });
+
+    //Ajax通信でcategory選択
+    function buildHTML(data) {
+
+        var html = `<div class="category_form">\n`
+
+        html += `  <select name="category_id" class="category_list">\n`
+
+        html += `    <option value="">選択してください</option>\n`
+        data.forEach(function (value) {
+            html += `    <option value="${value.id}">${value.name}</option>\n`
+        })
+        html += `  </select>\n</div>`
+
+        return html;
+    }
+
+    $(document).on("change", ".category_list", function (event) {
+
+        event.preventDefault();
+
+        // 選択したフォームより下にある選択肢を削除する
+        $(this).parent().nextAll('.category_form').remove()
+
+        var category_id = $(this).val();
+        if (category_id == null) {
+            return true;
+        }
+
+        console.log($(this).val())
+
+        $.ajax({
+            url: "/api/selects",
+            type: "GET",
+            dataType: "json",
+            context: this,
+            data: {
+
+                // 選択されたカテゴリーのidを取得
+                // 表示は日本語だが、実際の値はidになる
+                category_id: category_id
+            }
+        })
+            .done(function (data) {
+ 
+                // 子要素がなければ選択肢を表示しない
+                if (data.length != 0) {
+
+                    // 選択したフォームの下に新たなフォームを追加
+                    var html = buildHTML(data)
+                    $(this).parent().after(html)
+                }
+            })
+            .fail(function () {
+                console.log("error!")
+            })
+
+    })
+
+    // function appendCategoryList(e) {
+    //     e.preventDefault();
+    //     $.ajax({
+    //         url: "/api/selects",
+    //         type: "GET",
+    //         dataType: "json",
+    //         context: selectedChildCategory,
+    //         data: { category_id: selectedValue }
+    //     })
+    //         .done(function (data) {
+    //             // 子要素がなければ選択肢を表示しない
+    //             if (data.length != 0) {
+    //                 // 選択したフォームの下に新たなフォームを追加
+    //                 html = buildHTML(data);
+    //                 $(selectedChildCategory).parent().after(html);
+    //             }
+    //         })
+    //         .fail(function () {
+    //             console.log("error!");
+    //         });
+    // };
+    
+    $(window).on("load", function (e) {
+
+        if ($("#item_category_id").val() > 0) {
+
+            const selectedChildCategory = $(".category_list").last()[0];
+            const selectedValue = $(".category_list").last().val();
+            e.preventDefault();
+            $.ajax({
+                url: "/api/selects",
+                type: "GET",
+                dataType: "json",
+                context: selectedChildCategory,
+                data: { category_id: selectedValue }
+            })
+            .done(function (data) {
+                // 子要素がなければ選択肢を表示しない
+                if (data.length != 0) {
+                    // 選択したフォームの下に新たなフォームを追加
+                    html = buildHTML(data);
+                    $(selectedChildCategory).parent().after(html);
+                }
+            })
+            .fail(function () {
+                console.log("error!");
+            });          
+        }
     });
 
 });

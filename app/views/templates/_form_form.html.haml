@@ -53,10 +53,12 @@
           = f.select :category_id, options_for_select(@categories, selected: @category.id), { include_blank: "選択してください"}, class: "category_list", required: true
         .category_form
           - if @child_category.present?
-            = f.select :category_id, options_for_select(@child_categories.map{ |c| [ c[:name], c[:id] ] }, selected: @child_category.id), { include_blank: "選択してください"}, class: "category_list"
+            = f.select :category_id, options_for_select(@child_categories.map{ |c| [ c[0], c[1] ] }, selected: @child_category.id), { include_blank: "選択してください"}, class: "category_list", required: true
+          - else
+            = f.select :category_id, options_for_select(@child_categories.map{ |c| [ c[0], c[1] ] }), { include_blank: "選択してください"}, class: "category_list", required: true
         .category_form
           - if @grandchild_category.present?
-            = f.select :category_id, options_for_select(@grandchild_categories.map{ |g| [ g[:name], g[:id] ] }, selected: @grandchild_category.id), { include_blank: "選択してください"}, class: "category_list"
+            = f.select :category_id, options_for_select(@grandchild_categories.map{ |g| [ g[0], g[1] ] }, selected: @grandchild_category.id), { include_blank: "選択してください"}, class: "category_list", required: true
       - else
         .category_form#category_base
           = f.select :category_id, options_for_select(@categories), { include_blank: "選択してください" }, class: "category_list", required: true
