@@ -34,15 +34,29 @@
         display:flex;
         justify-content: space-between;   
         text-align: left;
-        & img {
-          width:60px;
+        &-top {
+          > img {
+            width:60px;
+            margin:5px;
+          }
+          
+        }
+        &-image {
+          width:100px;
+          height:100px;
           margin:5px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          > img {
+            height:100%;
+          }
         }
       }
       &-product {
         &-img {
-          height:100px;
-          width:100px;
+          height:60px;
+          width:60px;
           border:1px solid;    
         }
       }     
