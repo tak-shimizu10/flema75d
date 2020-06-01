@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :parent_category, only: [:index, :new, :create, :show]
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :parent_category, only: [:index, :new, :create, :show, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :user_items, only: [:show, :destroy]
 
   def index
     @items = Item.all.order("created_at DESC").limit(8)
@@ -28,7 +29,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @items = Item.where(user_id: @item.user_id).order("created_at DESC").limit(6)
   end
 
   def edit
@@ -51,6 +51,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    if @item.destroy
+      redirect_to user_path(current_user.id), notice: '削除が完了しました'
+    else
+      render :show, alert: '削除が失敗しました'
+    end
+  end
+
   private
 
   def parent_category
@@ -64,7 +72,7 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:id])   
   end
 
   def select_category_and_serch_ancestry
@@ -85,5 +93,9 @@ class ItemsController < ApplicationController
       @child_categories = Category.where(ancestry: @category.id).pluck(:name, :id)
       render :edit
     end
+  end
+
+  def user_items
+    @items = Item.where(user_id: @item.user_id).order("created_at DESC").limit(6)
   end
 end
