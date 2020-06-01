@@ -34,8 +34,11 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find(params[:id])
-    item.destroy
-    redirect_to user_path(current_user.id)
+    if item.destroy
+      redirect_to user_path(current_user.id), notice: '削除が完了しました'
+    else
+      redirect_to root_path, alert: '削除が失敗しました'
+    end
   end
 
   private

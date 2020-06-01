@@ -1,3 +1,4 @@
+// 商品削除のモーダル
 $(function(){
   $('button').on('click',function(){
       $('.js-modal').fadeIn();
