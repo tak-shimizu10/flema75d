@@ -18,7 +18,6 @@ class ItemsController < ApplicationController
       if @item.save
         brands = Brand.find_or_create_by(name: params[:item][:brand])
         @item.update!(brand_id: brands.id)
-        binding.pry
         redirect_to root_path
       else
         redirect_to new_item_path
