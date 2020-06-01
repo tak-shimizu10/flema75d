@@ -1,11 +1,16 @@
 class AllItemsController < ApplicationController
-  before_action :parent_category, only: [:index,:category]
+  before_action :parent_category, only: [:index, :category]
+
   def index
     @items = Item.all.order("created_at DESC")
   end
-  
+
   def category
-    @category = Category.find(params[:category_id])
+    if params[:category_id].blank?
+      @category = nil
+    else
+      @category = Category.find(params[:category_id])
+    end
   end
 
   private
