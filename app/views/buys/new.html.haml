@@ -3,43 +3,47 @@
 .buys_new
   .buys_new-contents
     %h2 購入内容の確認
-    .buys_new-contents-block
-      .buys_new-contents-product
-        .buys_new-contents-product-image
-          =image_tag @item.images.first.image.url
-        .items-index-contents-product-sentence
-          %p=@item.name
-          %p=@item.status_i18n
-          %p=@item.post_date_i18n
-    .buys_new-contents-block
-      .buys_new-contents-price
-        .buys_new-contents-price-top
-          %p 支払い金額
-        %p="#{@item.price} 円"
-    .buys_new-contents-block
-      .buys_new-contents-method
-        .buys_new-contents-method-top
-          - unless @card_data.blank?
-            %p 支払い方法
-            %p クレジットカード
-            %p="**********#{@card_data.last4}"
-            %p="有効期限 #{@card_data.exp_month}/#{@card_data.exp_year}"
-            =image_tag "card_logo/#{@card_data.brand}.svg"
-          - else
-            %p カードが登録されていません。
-            = link_to "カードを登録する", new_api_card_path
-    .buys_new-contents-block
-      .buys_new-contents-post
-        .buys_new-contents-post-top
-          %p 配送先
-          %p="〒#{@address.zipcode.insert(3, " - ")}"
-          %p="#{@address.prefecture.name}#{@address.city}#{@address.build_name}"
-          %p="#{current_user.first_name} #{current_user.last_name}"
-    - if current_user.cards.blank?
-      %h2 カードを登録してから、ご購入ください。
-    - else
+    - unless @error.blank?
+      %h2 以下の内容でエラーが発生しました
+      %h2= @error[:message]
+    - else 
       .buys_new-contents-block
-        = button_to "購入する" , item_buys_path(@item.id), method: :post
+        .buys_new-contents-product
+          .buys_new-contents-product-image
+            =image_tag @item.images.first.image.url
+          .items-index-contents-product-sentence
+            %p=@item.name
+            %p=@item.status_i18n
+            %p=@item.post_date_i18n
+      .buys_new-contents-block
+        .buys_new-contents-price
+          .buys_new-contents-price-top
+            %p 支払い金額
+          %p="#{@item.price} 円"
+      .buys_new-contents-block
+        .buys_new-contents-method
+          .buys_new-contents-method-top
+            - unless @card_data.blank?
+              %p 支払い方法
+              %p クレジットカード
+              %p="**********#{@card_data.last4}"
+              %p="有効期限 #{@card_data.exp_month}/#{@card_data.exp_year}"
+              =image_tag "card_logo/#{@card_data.brand}.svg"
+            - else
+              %p カードが登録されていません。
+              = link_to "カードを登録する", new_api_card_path
+      .buys_new-contents-block
+        .buys_new-contents-post
+          .buys_new-contents-post-top
+            %p 配送先
+            %p="〒#{@address.zipcode.insert(3, " - ")}"
+            %p="#{@address.prefecture.name}#{@address.city}#{@address.build_name}"
+            %p="#{current_user.first_name} #{current_user.last_name}"
+      - if current_user.cards.blank?
+        %h2 カードを登録してから、ご購入ください。
+      - else
+        .buys_new-contents-block
+          = button_to "購入する" , item_buys_path(@item.id), method: :post
 = render "templates/form_footer"
     
 
