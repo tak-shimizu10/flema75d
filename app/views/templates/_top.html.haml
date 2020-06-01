@@ -3,7 +3,8 @@
   .user-icon__top
     .figre
       = image_tag src="icon/member_photo_noimage_thumb.png",class:"figre__img",size: "60x60"
-    %h2.name チームD
+    %h2.name
+      = current_user.nickname
     .number
       .number__left 評価
       .number__right 出品数
