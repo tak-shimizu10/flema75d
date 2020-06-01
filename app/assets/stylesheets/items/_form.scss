@@ -1,6 +1,6 @@
 // 画面サイズ 共通
 .items_new,.items_edit {
-    background-color: lightgray;
+    background-color: whitesmoke;
     display: grid;
     grid-template:
     "body" 1fr;
@@ -440,17 +440,9 @@
         .items_body {
             margin:  auto;
             width:  700px;
-            height:  100%;
             grid-template:
-            "..... .....  ....." 43px
-            "..... header ....."43px
-            "..... .....  ....." 43px
-            "..... main   ....." 1fr
-            "..... .....  ....."0
-            "..... footer ....." 220px
-            "..... .....  ....."0/
-            auto 700px auto;
-            .items_header {
+            "main " 1fr;
+            .items_new_header {
                 text-align: center;
                 .items_header_logo {
                     width:   185px;

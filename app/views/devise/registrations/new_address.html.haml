@@ -1,7 +1,6 @@
+
+= render "templates/form_header"
 .main
-  .header
-    = link_to "/" do
-      = image_tag 'logo/logo.png', size: "185x49", class: "header__logo"
   .main__container
     .main__container__head
       %h2 住所情報入力
@@ -42,11 +41,4 @@
           %p.field-info-text ※本人情報は正しく入力してください。会員登録後、修正するにはお時間をいただく場合があります。
           .actions
             = f.submit "登録する", class:'btn'
-  .footer
-    .footer__lists
-      = link_to "プライバシーポリシー", "#"
-      = link_to "利用規約" , "#"
-      = link_to "特定商取引に関する表記" , "#"
-    = link_to "/" do
-      = image_tag 'logo/logo.png', size: "185x49", class: "footer__logo"
-    %p ©FURIMA
+= render "templates/form_footer"

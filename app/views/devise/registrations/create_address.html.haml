@@ -1,22 +1,14 @@
+
+= render "templates/form_header"
 .main
-  .header
-    = link_to "/" do
-      = image_tag 'logo/logo.png', size: "185x49", class: "header__logo"
   .main__container
     .main__container__head
       %h2 会員登録完了
     .main__container__form
       .content-wrap
         .complete-text
-          %pありがとうございます。
-          %p会員登録が完了しました。
-        = link_to "フリマをはじめる", user_path(current_user.id), class: "btn"
+          %p ありがとうございます。
+          %p 会員登録が完了しました。
+        = link_to "フリマをはじめる ", user_path(current_user.id), class: "btn" 
     .image-box
-  .footer
-    .footer__lists
-      = link_to "プライバシーポリシー", "#"
-      = link_to "利用規約" , "#"
-      = link_to "特定商取引に関する表記" , "#"
-    = link_to "/" do
-      = image_tag 'logo/logo.png', size: "185x49", class: "footer__logo"
-    %p ©FURIMA
+= render "templates/form_footer"

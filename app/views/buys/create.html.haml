@@ -1,21 +1,11 @@
 
-.main
-  .header
-    = link_to root_path do
-      = image_tag 'logo/logo.png', size: "185x49", class: "header__logo"
-  .main__container
-    .main__container__form
-      .content-wrap
-        .complete-text
-          %p 購入手続きが完了いたしました！
-          %p{style: "width:360px;"} 出品者からの連絡をお待ちください。
-        %a{ href: root_path, class: "btn" } トップページへ戻る
-    .image-box
-  .footer
-    .footer__lists
-      %a{ href: '#' } プライバシーポリシー
-      %a{ href: '#' } 利用規約
-      %a{ href: '#' } 特定商取引に関する表記
-    %a{ href: '/' }
-      = image_tag 'logo/logo.png', size: "185x49", class: "footer__logo"
-    %p ©FURIMA
+= render "templates/form_header"
+.main__container
+  .main__container__form
+    .content-wrap
+      .complete-text
+        %p 購入手続きが完了いたしました！
+        %p{style: "width:360px;"} 出品者からの連絡をお待ちください。
+      %a{ href: root_path, class: "btn" } トップページへ戻る
+  .image-box
+= render "templates/form_footer"

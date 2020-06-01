@@ -8,10 +8,7 @@ h2 {
 }
 
 .main {
-  display: block;
-  background: whitesmoke;
-  position: relative;
-  padding: 0 0 220px;
+  background-color: whitesmoke;
 }
 
 .header {
@@ -173,7 +170,6 @@ h2 {
   width: 456px;
   height: 220px;
   margin: 0 auto;
-  position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
@@ -181,6 +177,8 @@ h2 {
   height: 250px;
   padding: 40px 0;
   text-align: center;
+  width:100%;
+  background-color: whitesmoke;
   &__lists {
     margin-top: 10px;
     a {
