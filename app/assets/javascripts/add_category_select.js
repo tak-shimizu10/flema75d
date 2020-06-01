@@ -12,9 +12,9 @@ $(function(){
       select.append(option);
     })
 
-    var html = $(it).parent().clone().removeAttr("id").html(select);
+    var div = $(it).parent().clone().removeAttr("id").html(select);
 
-    return html
+    return div
   }
 
   $(document).on("change",".category_list", function(event){
@@ -25,7 +25,7 @@ $(function(){
     $(this).parent().nextAll('.category_form').remove()
 
     var category_id =  $(this).val();
-    if(category_id == null){
+    if(category_id === null){
       return true;
     }
 
