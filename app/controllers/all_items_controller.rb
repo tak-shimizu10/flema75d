@@ -7,7 +7,6 @@ class AllItemsController < ApplicationController
 
   def category
     if params[:category_id].blank?
-      @category = nil
     else
       @category = Category.find(params[:category_id])
     end
