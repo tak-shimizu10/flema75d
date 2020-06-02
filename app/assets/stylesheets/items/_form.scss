@@ -77,14 +77,17 @@
                                     display: none;
                                     display: grid;
                                     grid-template:
-                                    "...... ......  ......"
-                                    "...... preview ......"100px
-                                    "...... ......  ......"
-                                    "...... remove  ......"20px
-                                    "...... ......  ......"/
-                                        10px auto 10px;
+                                    "...... ......  ......  ......  ......"
+                                    "...... preview preview preview ......"100px
+                                    "...... ......  ......  ......  ......"
+                                    "...... edit    ......  remove  ......"20px
+                                    "...... ......  ......  ......  ......"/
+                                        10px auto 0 auto 10px;
                                     img {
                                         grid-area: preview;
+                                    }
+                                    .input_photo_edit {
+                                        grid-area:    edit;
                                     }
                                     .input_photo_remove {
                                         grid-area:  remove;
@@ -94,11 +97,22 @@
                                         height:      100px;
                                         margin:       auto;
                                     }
+                                    .input_photo_edit {
+                                        font-size: 15px;
+                                        text-align: center;
+                                        cursor:    pointer;
+                                        &:hover {
+                                            transform: scale(1.5);
+                                            color: blue;
+                                        }
+                                    }
                                     .input_photo_remove {
+                                        font-size: 12px;
                                         text-align: center;
                                         cursor:    pointer;
                                         color:      blue;
                                         &:hover{
+                                            transform: scale(1.5);
                                             color:   red;
                                         }
                                     }
@@ -510,7 +524,7 @@
             "..... .....  ....."
             "..... footer ....." 
             "..... .....  ....."0/
-            0 1fr 0;
+            0 minmax(580px, 1fr) 0;
             .items_header {
                 text-align: center;
                 .items_header_logo {

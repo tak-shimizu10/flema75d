@@ -4,12 +4,14 @@ $(function () {
         const html =
             `<div data-index= "${index}" class= "input_photo_preview">
                 <img data-index= "${index}" src= "${url}" width= "100px" height= "100px">
+                <span class= "input_photo_edit">変更</span>
                 <span class= "input_photo_remove">削除</span>
             </div>`;
         return html;
     }
     //file_field生成の関数
     const buildFileField = (index) => {
+
         const html =
             `<label class= "input_photo_field" data-index= "${index}">
                 <input class= "input_photo_file" type= "file", required= "false"
@@ -36,16 +38,19 @@ $(function () {
 
     //ファイル選択時新しいpreview, file_fieldを生成
     $("#input_photos_field").on("change", ".input_photo_file", function (e) {
-       
         const targetIndex = $(this).parent().data("index");
         const file = e.target.files[0];
         const blobUrl = window.URL.createObjectURL(file);
-
         if (img = $(`img[data-index= "${targetIndex}"]`)[0]) {
             img.setAttribute("src", blobUrl);
         } else {
             $(".input_photo_field").hide();
-            $("#input_photos_field").append(buildPhotoPreview(targetIndex, blobUrl));
+            const searchPreview = $(".input_photo_preview").filter(`[data-index= "${targetIndex}"]`)[0];
+            if (searchPreview) {
+                $(searchPreview).replaceWith(buildPhotoPreview(targetIndex, blobUrl));
+            } else {
+                $("#input_photos_field").append(buildPhotoPreview(targetIndex, blobUrl));
+            };
             $("#input_photos_field").append(buildFileField(fileIndex[0]));
 
             fileIndex.shift();
@@ -62,10 +67,10 @@ $(function () {
             }
         }
     });
-
+    
     //削除ボタンクリックで選択されたpreviewとfilefieldの削除
     $("#input_photos_field").on("click", ".input_photo_remove", function (e) {
-
+        
         const targetIndex = $(this).parent().data("index");
         const countPreview = $(".input_photo_preview").length - 1
         const hiddenCheckbox = $(".hidden_destroy")[targetIndex];
@@ -265,5 +270,10 @@ $(function () {
     $(".categories_show").on("click", ".link", function () {
         moveSelectCategory($(this).data("index"))
     })
-
+    //プレビュー編集ボタンをクリックしたとき、相対するFileFieldのクリックを実行
+    $(".input_photo_preview").on("click", ".input_photo_edit", function () {
+        const targetIndex = $(this).parent().data("index");
+        const targetFileField = $(".input_photo_field").filter(`[data-index= "${targetIndex}"]`)[0];
+        $(targetFileField).click();
+    });
 });
