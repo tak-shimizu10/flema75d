@@ -1,4 +1,10 @@
 
+
+- if @item.category.parent.parent.present?
+  - breadcrumb :show_grandchild_item, @item
+- else
+  - breadcrumb :show_child_item, @item
+  
 = render partial: 'templates/header'
 .item-main
   .item-main__container

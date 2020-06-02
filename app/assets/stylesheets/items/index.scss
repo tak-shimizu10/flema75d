@@ -68,7 +68,6 @@
         font-size: 14px;
         display: flex;
         margin-bottom: 10px;
-
         &__left {
           position: relative;
           display: flex;
@@ -141,6 +140,11 @@
           }
         }
       }
+    }
+    .breadcrumbs {
+      width:100%;
+      padding:5px calc( (100% - 1040px)/2 );
+      border-top:1px solid whitesmoke;
     }
   }
   .top_visual {
