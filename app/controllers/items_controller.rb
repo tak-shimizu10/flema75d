@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :user_items, only: [:show, :destroy]
   before_action :select_category_and_serch_ancestry, only: [:edit, :update]
+  before_action :set_categories, only: [:edit, :update]
   def index
     @items = Item.all.order("created_at DESC").limit(8)
   end
@@ -32,7 +33,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @categories = @categories.pluck(:name, :id)
   end
 
   def update
@@ -42,9 +42,11 @@ class ItemsController < ApplicationController
         @item.update(brand_id: brands.id)
         redirect_to item_path(@item)
       else
+        set_item
         render :edit
       end
     else
+      set_item
       render :edit
     end
   end
@@ -65,7 +67,7 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item)
-          .permit(:id, :name, :detail, :price, :status, :pay_side, :post_date, :category_id, :prefecture_id, :post_way_id, :image, images_attributes: [:id, :image, :item_id, :_destroy])
+          .permit(:id, :name, :detail, :price, :status, :pay_side, :post_date, :category_id, :prefecture_id, :post_way_id, images_attributes: [:id, :image, :item_id, :_destroy])
           .merge(user_id: current_user.id)
   end
 
@@ -96,5 +98,9 @@ class ItemsController < ApplicationController
 
   def user_items
     @items = Item.where(user_id: @item.user_id).order("created_at DESC").limit(6)
+  end
+
+  def set_categories
+    @categories = @categories.pluck(:name, :id)
   end
 end
