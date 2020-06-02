@@ -34,7 +34,7 @@
             %th カテゴリー
             %td
               = link_to category_all_items_path(category_id:@item.category.id) do
-                = @item.category.parent.parent.name
+                = @item.category.parent.parent&.name
               .sub-category
                 = link_to category_all_items_path(category_id:@item.category.id) do
                   %i.fa.fa-angle-right
