@@ -45,7 +45,6 @@ $(function () {
             img.setAttribute("src", blobUrl);
         } else {
             $(".input_photo_field").hide();
-            debugger
             const searchPreview = $(".input_photo_preview").filter(`[data-index= "${targetIndex}"]`)[0];
             if (searchPreview) {
                 $(searchPreview).replaceWith(buildPhotoPreview(targetIndex, blobUrl));
@@ -276,7 +275,5 @@ $(function () {
         const targetIndex = $(this).parent().data("index");
         const targetFileField = $(".input_photo_field").filter(`[data-index= "${targetIndex}"]`)[0];
         $(targetFileField).click();
-        console.log(targetIndex, targetFileField);
-
     });
 });
