@@ -51,7 +51,8 @@ class ItemsController < ApplicationController
         else
           render :edit
         end
-          render :edit
+      else
+        render :edit
       end
     else
       render :edit
@@ -83,7 +84,7 @@ class ItemsController < ApplicationController
   end
 
   def select_category_and_serch_ancestry
-    @category = Category.find(@item.category_id)
+    @category = @item.category
     if @category.parent.present?
       @child_category = Category.find(@category.id)
       @category = @child_category.parent
