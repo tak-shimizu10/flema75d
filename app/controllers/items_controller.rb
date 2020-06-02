@@ -29,6 +29,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @other_items = Item.where.not(id: params[:id])
   end
 
   def edit
