@@ -17,14 +17,10 @@ class ItemsController < ApplicationController
   def create
     if item_params[:images_attributes].present?
       @item = Item.new(item_params)
-      if@item.images.length <= 10
-        if @item.save
-          brands = Brand.find_or_create_by(name: params[:item][:brand])
-          @item.update!(brand_id: brands.id)
-          redirect_to root_path
-        else
-          redirect_to new_item_path
-        end
+      if @item.save
+        brands = Brand.find_or_create_by(name: params[:item][:brand])
+        @item.update!(brand_id: brands.id)
+        redirect_to root_path
       else
         redirect_to new_item_path
       end
@@ -41,14 +37,10 @@ class ItemsController < ApplicationController
 
   def update
     if item_params[:images_attributes].present?
-      if @item.images.length <= 10
-        if @item.update(item_params)
-          brands = Brand.find_or_create_by(name: params[:item][:brand])
-          @item.update(brand_id: brands.id)
-          redirect_to item_path(@item)
-        else
-          render :edit
-        end
+      if @item.update(item_params)
+        brands = Brand.find_or_create_by(name: params[:item][:brand])
+        @item.update(brand_id: brands.id)
+        redirect_to item_path(@item)
       else
         render :edit
       end
