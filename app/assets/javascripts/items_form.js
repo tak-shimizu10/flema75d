@@ -38,7 +38,6 @@ $(function () {
 
     //ファイル選択時新しいpreview, file_fieldを生成
     $("#input_photos_field").on("change", ".input_photo_file", function (e) {
-       
         const targetIndex = $(this).parent().data("index");
         const file = e.target.files[0];
         const blobUrl = window.URL.createObjectURL(file);
@@ -46,7 +45,8 @@ $(function () {
             img.setAttribute("src", blobUrl);
         } else {
             $(".input_photo_field").hide();
-            const searchPreview = $(".input_photo_preview")[targetIndex]
+            debugger
+            const searchPreview = $(".input_photo_preview").filter(`[data-index= "${targetIndex}"]`)[0];
             if (searchPreview) {
                 $(searchPreview).replaceWith(buildPhotoPreview(targetIndex, blobUrl));
             } else {
@@ -68,10 +68,10 @@ $(function () {
             }
         }
     });
-
+    
     //削除ボタンクリックで選択されたpreviewとfilefieldの削除
     $("#input_photos_field").on("click", ".input_photo_remove", function (e) {
-
+        
         const targetIndex = $(this).parent().data("index");
         const countPreview = $(".input_photo_preview").length - 1
         const hiddenCheckbox = $(".hidden_destroy")[targetIndex];
@@ -270,8 +270,9 @@ $(function () {
     //プレビュー編集ボタンをクリックしたとき、相対するFileFieldのクリックを実行
     $(".input_photo_preview").on("click", ".input_photo_edit", function () {
         const targetIndex = $(this).parent().data("index");
-        const hiddenCheckbox = $(".hidden_destroy")[targetIndex];
-        const targetFileField = $(".input_photo_field")[targetIndex];
+        const targetFileField = $(".input_photo_field").filter(`[data-index= "${targetIndex}"]`)[0];
         $(targetFileField).click();
+        console.log(targetIndex, targetFileField);
+
     });
 });
