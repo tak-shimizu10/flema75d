@@ -54,7 +54,7 @@ $(function () {
             const countPreview = $(".input_photo_preview").length;
 
             //画像が10枚登録されればfile_fieldを隠す。一枚以上登録されれば、pタグの文字を消して登録が通るように
-            if (countPreview >= 10) $(".input_photo_field").hide();
+            if (countPreview >= 10) reloadWindowPhotosField();
             if (countPreview >= 1) {
                 hideCautionMessage($(".items_form_photos"));
                 $(".photos_input_text").html(``);
@@ -238,7 +238,10 @@ $(function () {
     function reloadWindowPhotosField() {
 
         existFileField = $(".input_photo_field").length
-        while (existFileField > 11) $(".input_photo_field").last().remove();
+        while (existFileField > 11) {
+            $(".input_photo_preview").last().remove();
+            $(".input_photo_field").last().remove();
+        }
         $(".input_photo_field").hide();
         if (existFileField <= 10)
             $(".input_photo_field").last().show();
@@ -247,6 +250,7 @@ $(function () {
     //画面読み込み時の処理、ファイルがあれば送信を許可してfilefield制御に移動
     $(window).on("load", function () {
 
+        if ($(".input_photo_field").length > 10) reloadWindowPhotosField();
         if ($(".input_photo_preview").length > 0 && $(".input_photo_field").length > 1)
             $(".input_photo_file").attr("required", false);
         if ($("#item_pay_side").val().length > 0) $(".items_post_way").show();

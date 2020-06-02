@@ -3,13 +3,13 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :user_items, only: [:show, :destroy]
   before_action :select_category_and_serch_ancestry, only: [:edit, :update]
-  before_action :set_categories, only: [:edit, :update]
+  before_action :set_categories, only: [:new, :create, :edit, :update]
+
   def index
     @items = Item.all.order("created_at DESC").limit(8)
   end
 
   def new
-    @categories = @categories.pluck(:name, :id)
     @item = Item.new
     @item.images.new
   end
