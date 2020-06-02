@@ -1,14 +1,15 @@
 class ItemsController < ApplicationController
-  before_action :parent_category, only: [:index, :new, :create, :show, :destroy]
+  before_action :parent_category
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :user_items, only: [:show, :destroy]
+  before_action :select_category_and_serch_ancestry, only: [:edit, :update]
+  before_action :set_categories, only: [:new, :create, :edit, :update]
 
   def index
     @items = Item.all.order("created_at DESC").limit(8)
   end
 
   def new
-    @categories = @categories.pluck(:name, :id)
     @item = Item.new
     @item.images.new
   end
@@ -30,12 +31,11 @@ class ItemsController < ApplicationController
 
   def show
     @other_items = Item.where.not(id: params[:id])
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user)
   end
 
   def edit
-    @category = Category.find(@item.category_id)
-    @categories = Category.where(ancestry: nil).pluck(:name, :id)
-    select_category_and_serch_ancestry
   end
 
   def update
@@ -43,7 +43,7 @@ class ItemsController < ApplicationController
       if @item.update(item_params)
         brands = Brand.find_or_create_by(name: params[:item][:brand])
         @item.update(brand_id: brands.id)
-        redirect_to root_path
+        redirect_to item_path(@item)
       else
         render :edit
       end
@@ -54,7 +54,7 @@ class ItemsController < ApplicationController
 
   def destroy
     if @item.destroy
-      redirect_to user_path(current_user.id), notice: '削除が完了しました'
+      redirect_to user_path(current_user.id), error_check: '削除が完了しました'
     else
       render :show, alert: '削除が失敗しました'
     end
@@ -77,6 +77,7 @@ class ItemsController < ApplicationController
   end
 
   def select_category_and_serch_ancestry
+    @category = Category.find(@item.category_id)
     if @category.parent.present?
       @child_category = Category.find(@category.id)
       @category = @child_category.parent
@@ -98,5 +99,9 @@ class ItemsController < ApplicationController
 
   def user_items
     @items = Item.where(user_id: @item.user_id).order("created_at DESC").limit(6)
+  end
+
+  def set_categories
+    @categories = @categories.pluck(:name, :id)
   end
 end
