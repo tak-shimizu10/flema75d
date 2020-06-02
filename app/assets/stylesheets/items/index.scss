@@ -1,6 +1,12 @@
 * {
   box-sizing: border-box;
 }
+
+.header_flash {
+  background-color: red;
+  color: white;
+  text-align: center;
+}
 .mains_index {
   height: 100vh;
   width: 100%;
@@ -8,6 +14,7 @@
   &__header {
     background-color: #ffffff;
     border-bottom: 1px solid #3ccace;
+    
 
     .contents {
       max-width: 1040px;

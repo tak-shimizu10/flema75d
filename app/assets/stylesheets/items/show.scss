@@ -16,7 +16,7 @@
   background: whitesmoke;
   &__container {
     width: 700px;
-    margin: 40px auto 0;
+    margin: 40px auto;
     background-color: white;
     &__item {
       padding: 25px 40px 40px;
@@ -65,6 +65,13 @@
         object-fit: contain;
       }
     }
+  }
+  #soldout_img {
+    height: 420px;
+    width: 300px;
+    opacity: 0.75;
+    z-index: 2;
+    position: absolute;
   }
 }
 
@@ -235,6 +242,10 @@
   text-decoration: none;
   color: #fff;
 }
+.disabled {
+  background-color: gray;
+  border: 1px solid gray;
+}
 
 .item-explanation {
   padding-top: 32px;
@@ -281,6 +292,13 @@
   background-color: white;
   .message-content {
     padding: 20px;
+    .message_error {
+      background-color: red;
+      width:100%;
+      margin:20px 0;
+      padding:10px;
+      color: white;
+    }
     .guest-message-box {
       .message-user{
         text-decoration: none;
