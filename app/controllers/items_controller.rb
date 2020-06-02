@@ -33,6 +33,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user)
   end
 
   def edit
@@ -59,7 +61,7 @@ class ItemsController < ApplicationController
 
   def destroy
     if @item.destroy
-      redirect_to user_path(current_user.id), notice: '削除が完了しました'
+      redirect_to user_path(current_user.id), error_check: '削除が完了しました'
     else
       render :show, alert: '削除が失敗しました'
     end
