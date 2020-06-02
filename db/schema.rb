@@ -78,11 +78,6 @@ ActiveRecord::Schema.define(version: 2020_06_02_022229) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "post_ways", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "nickname", null: false
     t.string "email", null: false

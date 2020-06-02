@@ -281,6 +281,13 @@
   background-color: white;
   .message-content {
     padding: 20px;
+    .message_error {
+      background-color: red;
+      width:100%;
+      margin:20px 0;
+      padding:10px;
+      color: white;
+    }
     .guest-message-box {
       .message-user{
         text-decoration: none;
