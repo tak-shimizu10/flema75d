@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
   end
 
   def comment_error_check(event)
-    redirect_to item_path(params[:item_id]), notice: event.message
+    redirect_to item_path(params[:item_id]), flash: { error: event.message}
   end
 
 end
