@@ -7,6 +7,8 @@
         = @item.name
       .item-content.clearfix
         .item-photo
+          - if @item.situation == "transaction"
+            = image_tag 'pict/soldout.jpg', id:"soldout_img"
           = image_tag @item.images.first.image.url, class: "item-photo__top"
           .item-photo__sub-box
             - @item.images.each do |image|
@@ -32,7 +34,15 @@
             %th カテゴリー
             %td
               = link_to category_all_items_path(category_id:@item.category.id) do
-                = @item.category.name
+                = @item.category.parent.parent.name
+              .sub-category
+                = link_to category_all_items_path(category_id:@item.category.id) do
+                  %i.fa.fa-angle-right
+                  = @item.category.parent.name
+              .sub-sub-category
+                = link_to category_all_items_path(category_id:@item.category.id) do
+                  %i.fa.fa-angle-right
+                  = @item.category.name
           %tr
             %th ブランド
             %td
@@ -61,10 +71,14 @@
       .item-price-box
         %span.item-price
           = number_to_currency(@item.price,format: "%u%n",unit:"¥",precision: 0)
-        %span.item-tax
-          (税込)
-        %span.item-shipping-fee
-          送料込み
+        - if @item.pay_side == "seller"
+          %span.item-tax
+            (税込)
+          %span.item-shipping-fee
+            送料込み
+        - else @item.pay_side == "buyer"
+          %span.item-tax
+            (税込)
       - if user_signed_in? && current_user.id == @item.user_id
         .item-explanation
           %p.item-explanation__box
@@ -74,8 +88,10 @@
           or
         = link_to "出品を一旦停止する", "#", class: "item-action-btn"
         %button.item-delete-btn この商品を削除する
-      - else
+      - elsif @item.situation == "exhibition"
         = link_to "購入画面に進む", new_item_buy_path(@item.id), class: "item-buy-btn"
+      - else @item.situation == "transaction"
+        .item-buy-btn.disabled 売り切れました
         .item-explanation
           %p.item-explanation__box
             = @item.detail
@@ -140,7 +156,7 @@
       = link_to @item.user do
         = link_to "#{@item.user.nickname}さんのその他の出品", @item.user
     .items-box-content.clearfix
-      - @items.each do |item|
+      - @other_items.each do |item|
         .item-box
           = link_to item_path(item.id) do
             .item-image
@@ -168,4 +184,3 @@
     .button-box.clearfix
       %button.cancel-btn.js-modal-close キャンセル
       = link_to "削除する", item_path(@item.id), method: :delete, class: "delete-btn"
-

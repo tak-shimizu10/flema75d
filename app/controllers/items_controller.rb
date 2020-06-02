@@ -30,6 +30,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @other_items = Item.where.not(id: params[:id])
     @comment = Comment.new
     @comments = @item.comments.includes(:user)
   end

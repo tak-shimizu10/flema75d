@@ -66,6 +66,13 @@
       }
     }
   }
+  #soldout_img {
+    height: 420px;
+    width: 300px;
+    opacity: 0.75;
+    z-index: 2;
+    position: absolute;
+  }
 }
 
 .item-detail-table {
@@ -234,6 +241,10 @@
   border: 1px solid #3CCACE;
   text-decoration: none;
   color: #fff;
+}
+.disabled {
+  background-color: gray;
+  border: 1px solid gray;
 }
 
 .item-explanation {
