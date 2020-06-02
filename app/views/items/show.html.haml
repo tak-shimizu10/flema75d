@@ -92,83 +92,49 @@
             =link_to "#", class: "like-report-btn" do
               %i.fas.fa-lock
               %span あんしん・あんぜんへの取り組み
-  .item-detail-message
-    .message-container
-      .message-content
-        %ul.guest-message-box
-          = link_to "#", class: "message-user" do
-            .message-user__thumbnail
-              =image_tag 'https://static.mercdn.net/images/member_photo_noimage_thumb.png'
-            .user_name
-              Taro
-          %li.guest-message-item.clearfix
-            .message-box
-              .message-box__text
-                めっちゃ欲しいです！
-        %ul.guest-message-box
-          = link_to "#", class: "message-user" do
-            .message-user__thumbnail
-              =image_tag 'https://static.mercdn.net/images/member_photo_noimage_thumb.png'
-            .user_name
-              Saburo
-          %li.guest-message-item.clearfix
-            .message-box
-              .message-box__text
-                値下げできますか？
-        %ul.guest-message-box
-          = link_to "#", class: "message-user" do
-            .message-user__thumbnail
-              =image_tag 'https://static.mercdn.net/images/member_photo_noimage_thumb.png'
-            .user_name
-              Siro
-          %li.guest-message-item.clearfix
-            .message-box
-              .message-box__text
-                もう少し細かい写真はありますか？
-        %ul.guest-message-box
-          = link_to "#", class: "message-user" do
-            .message-user__thumbnail
-              =image_tag 'https://static.mercdn.net/images/member_photo_noimage_thumb.png'
-            .user_name
-              Goro
-          %li.guest-message-item.clearfix
-            .message-box
-              .message-box__text
-                いつ頃購入されましたか？
-        %ul.guest-message-box
-          = link_to "#", class: "message-user" do
-            .message-user__thumbnail
-              =image_tag 'https://images-na.ssl-images-amazon.com/images/I/71ffpermWIL._AC_SX522_.jpg'
-            .user_name
-              Jiro
-          %li.guest-message-item.clearfix
-            .message-box
-              .message-box__text
-                値下げはできません！写真はありません！購入日は覚えてません！
-      .message-content
-        = form_with(model: @item, local: true) do |f|
-          %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-          = f.text_area :message, class: "message_text_area", maxlength: "100", cols: "60", required: true
-          = f.submit "コメントする", class: "message-btn"
-  %ul.nav-prev-next-box.clearfix
-    %li.nav-prev-next-box__left
-      = link_to "#" do
-        %i.fa.fa-angle-left
-        前の商品名
-    %li.nav-prev-next-box__right
-      = link_to "#" do
-        次の商品
-        %i.fa.fa-angle-right
-  .sns-content
-    .sns-content__icon-box
-      = link_to "#", class: "icon-btn icon-btn__facebook" do
-        %i.fab.fa-facebook-square
-      = link_to "#", class: "icon-btn icon-btn__twitter" do
-        %i.fab.fa-twitter-square
-      = link_to "#", class: "icon-btn icon-btn__line" do
-        %i.fab.fa-line
-      = link_to "#", class: "icon-btn icon-btn__pinterest" do
-        %i.fab.fa-pinterest-square
+    - if user_signed_in?
+      .item-detail-message
+        .message-container
+          - if @comments.present?
+            .message-content
+              - @comments.each do |comment_info|
+                %ul.guest-message-box
+                  = link_to "#", class: "message-user" do
+                    .message-user__thumbnail
+                      - if comment_info.user.image.present?
+                        = image_tag comment_info.user.image.url
+                      - else 
+                        = image_tag "icon/member_photo_noimage_thumb.png"
+                    .user_name
+                      = comment_info.user.nickname
+                  %li.guest-message-item.clearfix
+                    .message-box
+                      .message-box__text
+                        = comment_info.comment
+          .message-content
+            = form_with(model:[@item,@comment], local: true) do |f|
+              %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+              = f.text_area :comment, class: "message_text_area", maxlength: "100", cols: "60", required: true
+              = f.submit "コメントする", class: "message-btn"
+    %ul.nav-prev-next-box.clearfix
+      %li.nav-prev-next-box__left
+        = link_to "#" do
+          %i.fa.fa-angle-left
+          前の商品名
+      %li.nav-prev-next-box__right
+        = link_to "#" do
+          次の商品
+          %i.fa.fa-angle-right
+    .sns-content
+      .sns-content__icon-box
+        = link_to "#", class: "icon-btn icon-btn__facebook" do
+          %i.fab.fa-facebook-square
+        = link_to "#", class: "icon-btn icon-btn__twitter" do
+          %i.fab.fa-twitter-square
+        = link_to "#", class: "icon-btn icon-btn__line" do
+          %i.fab.fa-line
+        = link_to "#", class: "icon-btn icon-btn__pinterest" do
+          %i.fab.fa-pinterest-square
   .items-container
     %h2.item-box-head
       = link_to @item.user do

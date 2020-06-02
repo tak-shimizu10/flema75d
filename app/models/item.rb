@@ -8,6 +8,7 @@ class Item < ApplicationRecord
   belongs_to :brand, optional: true
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :post_way
+  has_many :comments
 
   enum pay_side: { seller: 1, buyer: 2 }
   enum post_date: { shortest: 1, normal: 2, longest: 3 }
