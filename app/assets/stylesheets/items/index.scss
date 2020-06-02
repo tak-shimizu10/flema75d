@@ -8,6 +8,11 @@
   &__header {
     background-color: #ffffff;
     border-bottom: 1px solid #3ccace;
+    .header_flash {
+      background-color: red;
+      color: white;
+      text-align: center;
+    }
 
     .contents {
       max-width: 1040px;

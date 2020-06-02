@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   # 購入確認ページに飛ぶ
   resources :items do
     resources :buys, only: [:new,:create]
+    resources :comments, only: [:create]
   end
 
   # カテゴリ機能に使用
