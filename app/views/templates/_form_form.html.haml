@@ -11,6 +11,7 @@
             .input_photo_preview{data: {index: "#{i}"}}
               = image_tag image.image.url
               %span.input_photo_remove 削除
+            -break if i == 10
         = f.fields_for :images do |image|
           %label.input_photo_field{data: {index: "#{image.index}"}, accept: ".jpeg .jpg .png"}
             = image.file_field :image, class: "input_photo_file", id: "photo_file_#{image.index}", required: true
@@ -22,6 +23,7 @@
           %label.input_photo_field{data: { index: "#{@item.images.count}" }, accept: ".jpeg .jpg .png"}
             = file_field_tag :image, name: "item[images_attributes][#{@item.images.count}][image]", class: "input_photo_file"
             = image_tag "icon/icon_camera.png", class: "fas fa-camera"
+            
     .items_caution.photos_caution 画像がありません
     
   .items_form.items_form_item
@@ -128,8 +130,12 @@
         %button{type: "submit", class: "items_btn_submit item_submit"} 編集する
       - else
         %button{type: "submit", class: "items_btn_submit item_submit"} 出品する
-    .items_btn_back
-      = link_to "もどる", root_path
+    - if @item.persisted?
+      .items_btn_back
+        = link_to "キャンセル", item_path(@item)
+    - else
+      .items_btn_back
+        = link_to "もどる", root_path
   .items_form_notice
     %p.notice_text 
       禁止されている"行為"および"出品物"を必ずご確認ください。
