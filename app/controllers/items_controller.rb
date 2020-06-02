@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :parent_category, only: [:index, :new, :create, :show, :destroy]
+  before_action :parent_category
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :user_items, only: [:show, :destroy]
-
+  before_action :select_category_and_serch_ancestry, only: [:edit, :update]
   def index
     @items = Item.all.order("created_at DESC").limit(8)
   end
@@ -32,9 +32,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @category = Category.find(@item.category_id)
-    @categories = Category.where(ancestry: nil).pluck(:name, :id)
-    select_category_and_serch_ancestry
+    @categories = @categories.pluck(:name, :id)
   end
 
   def update
@@ -67,7 +65,7 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item)
-          .permit(:id, :name, :detail, :price, :status, :pay_side, :post_date, :category_id, :prefecture_id, :post_way_id, images_attributes: [:id, :image, :item_id, :_destroy])
+          .permit(:id, :name, :detail, :price, :status, :pay_side, :post_date, :category_id, :prefecture_id, :post_way_id, :image, images_attributes: [:id, :image, :item_id, :_destroy])
           .merge(user_id: current_user.id)
   end
 
@@ -76,6 +74,7 @@ class ItemsController < ApplicationController
   end
 
   def select_category_and_serch_ancestry
+    @category = Category.find(@item.category_id)
     if @category.parent.present?
       @child_category = Category.find(@category.id)
       @category = @child_category.parent
