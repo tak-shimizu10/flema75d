@@ -126,6 +126,7 @@
 
         &__right {
           margin-left: auto;
+          padding: 0 10px 0 0;
           display: flex;
           li {
             a {
@@ -312,8 +313,7 @@
     }
   }
   &__body {
-    padding: 100px;
-    background-color: #f8f8f8;
+    margin: auto;
     h2.head {
       text-align: center;
       font-size: 28px;
@@ -321,31 +321,42 @@
       font-weight: bold;
     }
     .look {
-      margin: 0;
-      padding: 0;
+      margin: auto;
+      max-width: 1000px;
       padding-bottom: 80px;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      padding: 10px 0 0 0;
       &__more {
         display: block;
-        float: right;
+        right: 0;
+        top:   0;
         text-decoration: none;
         font-size: 16px;
         color: #3ccace;
         margin-right: 10px;
+        position: absolute;
+        &:hover{
+          text-decoration: underline;
+        }
       }
       ul.items {
         width: 100%;
         display: flex;
-        justify-content: right;
-        left: 0px;
+        justify-content: center;
         flex-wrap: wrap;
         li.item {
-          margin: 20px 7px;
+          margin: 20px 5px;
           height: 280px;
           width: 220px;
           background-color: #ffffff;
           display: inline-block;
           float: left;
           justify-content: left;
+          &:hover { 
+            box-shadow: 0 3px 3px 0;
+          }
           #soldout_img {
             height: 280px;
             width: 220px;
@@ -483,26 +494,64 @@
       font-size: 14px;
     }
   }
-  .purchase {
-    &__btn {
-      width: 120px;
-      background: #3ccace;
-      text-align: center;
-      border-radius: 4%;
-      bottom: 32px;
-      right: 32px;
-      position: fixed;
-      padding: 15px;
-      .text {
-        color: #fff;
-        display: block;
-        font-size: 18px;
-        text-decoration: none;
-        margin-bottom: 5px;
+}
+@media screen and (min-width: 767px) { 
+  .mains_index {
+    &__body {
+      padding: 80px 50px 0;
+      background-color: #f8f8f8;
+    }
+    .purchase {
+      &__btn {
+        width: 120px;
+        background: #3ccace;
+        text-align: center;
+        border-radius: 4%;
+        bottom: 32px;
+        right: 32px;
+        position: fixed;
+        padding: 15px;
+        .text {
+          color: #fff;
+          display: block;
+          font-size: 18px;
+          text-decoration: none;
+          margin-bottom: 5px;
+        }
+        .image {
+          width: 60%;
+          vertical-align: bottom;
+        }
       }
-      .image {
-        width: 60%;
-        vertical-align: bottom;
+    }
+  }
+}
+@media screen and (max-width: 766px) {
+  .mains_index {
+    &__body {
+      padding:80px 0;
+    }
+    .purchase {
+      &__btn {
+        background: #3ccace;
+        white-space: nowrap;
+        text-align: center;
+        border-radius: 4%;
+        position: fixed;
+        right: 20px;
+        bottom:20px;
+        width: 80px;
+        .text {
+          color: #fff;
+          display: block;
+          font-size: 9px;
+          text-decoration: none;
+          margin-bottom: 5px;
+        }
+        .image {
+          width: 60px;
+          vertical-align: bottom;
+        }
       }
     }
   }
