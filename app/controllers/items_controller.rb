@@ -42,11 +42,9 @@ class ItemsController < ApplicationController
         @item.update(brand_id: brands.id)
         redirect_to item_path(@item)
       else
-        set_item
         render :edit
       end
     else
-      set_item
       render :edit
     end
   end
