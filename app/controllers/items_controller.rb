@@ -42,7 +42,7 @@ class ItemsController < ApplicationController
       if @item.update(item_params)
         brands = Brand.find_or_create_by(name: params[:item][:brand])
         @item.update(brand_id: brands.id)
-        redirect_to root_path
+        redirect_to item_path(@item)
       else
         render :edit
       end

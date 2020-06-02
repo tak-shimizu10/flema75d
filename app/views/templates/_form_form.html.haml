@@ -128,8 +128,12 @@
         %button{type: "submit", class: "items_btn_submit item_submit"} 編集する
       - else
         %button{type: "submit", class: "items_btn_submit item_submit"} 出品する
-    .items_btn_back
-      = link_to "もどる", root_path
+    - if @item.persisted?
+      .items_btn_back
+        = link_to "キャンセル", item_path(@item)
+    - else
+      .items_btn_back
+        = link_to "もどる", root_path
   .items_form_notice
     %p.notice_text 
       禁止されている"行為"および"出品物"を必ずご確認ください。
