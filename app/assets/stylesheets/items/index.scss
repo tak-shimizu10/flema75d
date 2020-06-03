@@ -152,6 +152,16 @@
       width:100%;
       padding:5px calc( (100% - 1040px)/2 );
       border-top:1px solid whitesmoke;
+      > a {
+        color: black;
+        text-decoration: none;
+        &:hover {
+          color:orange;
+        }
+      }
+      & .current {
+        font-weight: bold;
+      }
     }
   }
   .top_visual {
