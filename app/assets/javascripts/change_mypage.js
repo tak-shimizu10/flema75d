@@ -4,7 +4,6 @@ $(function () {
 
     //リクエストを取得
     var path = $(this).attr("href");
-    debugger
     $.ajax({
       url: path,
       dataType: 'json',

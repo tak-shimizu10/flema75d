@@ -1,8 +1,9 @@
 .mylike
   %ul.lists
     - @like_items.each do |item|
-      %li.item_list
+      %li.item_box
+        = link_to "", item_path(item.id), class: "item_link"
         .item_image= image_tag(item.images.first.image.url)
         .item_name= item.name
-        .item_price= item.price
-        
+        .item_price= "¥ #{item.price.to_s(:delimited, delimiter: ",",format: "%u%n", unit: "¥", precision: 0)}"
+    =paginate @like_items

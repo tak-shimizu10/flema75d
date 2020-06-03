@@ -11,9 +11,9 @@ class Api::TemplatesController < ApplicationController
 
   def mylike
     mylike_items
+    @like_items = Kaminari.paginate_array(@like_items).page(1).per(10)
     partial = render_to_string(partial: "templates/mylike")
     render json: { html: partial }
-    binding.pry
   end
 
   private
@@ -22,7 +22,7 @@ class Api::TemplatesController < ApplicationController
     @item_ids = Like.where(user_id: current_user.id).pluck(:item_id).sort!
     @like_items = []
     @item_ids.each do |id|
-      item = Item.find_by(id.to_s)
+      item = Item.find(id.to_s)
       @like_items << item
     end
   end
