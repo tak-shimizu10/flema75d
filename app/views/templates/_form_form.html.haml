@@ -126,16 +126,19 @@
       %span.display_value.display_profit_value
 
   .items_form.items_form_submit
-    .items_form_btn.items_form_submit_btn
+    .items_form_btn.item_submit_btn
       - if @item.persisted?
-        %button{type: "submit", class: "items_btn_submit item_submit"} 変更する
+        %button{type: "submit", id: "submit_btn"} 変更する
       - else
-        %button{type: "submit", class: "items_btn_submit item_submit"} 出品する
+        %button{type: "submit", id: "submit_btn"} 出品する
     - if @item.persisted?
-      .items_btn_back
+      .item_back_btn
         = link_to "キャンセル", item_path(@item)
     - else
-      .items_btn_back
+      .items_form_btn.item_draft_btn
+        %button{type: "submit", id: "draft_btn"} 下書き保存
+        = f.hidden_field :situation, value: 3, id: "hidden_situation"
+      .item_back_btn
         = link_to "もどる", root_path
   .items_form_notice
     %p.notice_text 

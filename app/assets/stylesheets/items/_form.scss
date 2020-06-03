@@ -343,30 +343,39 @@
 
                     .items_form_submit {
                         display: grid;
-                        .items_form_submit_btn {
+                        .item_submit_btn {
                             grid-area: submit;
                         }
-                        .items_form_draft_btn {
-                            grid-area: draft;
+                        .item_draft_btn {
+                            grid-area:  draft;
                         }
-                        .items_btn_back {
-                            grid-area: back;
+                        .item_back_btn {
+                            grid-area:   back;
                         }
-                        .items_btn_submit {
+                        #submit_btn {
                             background-color: red;
                             color: white;
+                            &:hover{
+                                box-shadow: 0 3px 3px 0  black;
+                            }
                         }
-                        .items_btn_draft {
+                        #draft_btn {
                             background-color: lightgray;
+                            &:hover{
+                                box-shadow: 0 3px 3px 0  black;
+                            }
                         }
                         .item_situation {
                             display: none;
                         }
-                        .items_btn_back {
+                        .item_back_btn {
                             text-align: center;
                             a{
-                                color: blue;
-                                text-decoration: none;
+                                color: rgb(0, 0, 255);
+                                text-decoration:   none;
+                                &:hover{
+                                    text-decoration: underline;
+                                }
                             }
                         }
                     }
