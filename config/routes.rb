@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   # カテゴリ機能に使用
   namespace :api do
-    resources :selects, only: [:index]
+    resources :categories, only: [:show]
     resources :cards, only: [:index,:new,:create,:destroy]
     resource :templates, only: [] do
       member do
