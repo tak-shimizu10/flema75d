@@ -103,25 +103,7 @@
             = safe_join(@item.detail.split("\n"),tag(:br))
       .item-btn-container.clearfix
         .item-btn-left
-          - if current_user.id == @item.user_id
-            .report-btn
-              %label#like_btn
-                %i.far.fa-heart
-                %span.text いいね！
-                %span.count=@item.likes.count
-          - else
-            - if @item.liked_by?(current_user)
-              = link_to item_likes_path(@item.id), class: "report-btn", method: :delete do
-                %label#like_btn
-                  %i.far.fa-heart
-                  %span.text いいね！
-                  %span.count=@item.likes.count
-            - else
-              = link_to item_likes_path(@item.id), class: "report-btn", method: :post do
-                %label#like_btn
-                  %i.far.fa-heart
-                  %span.text いいね！
-                  %span.count=@item.likes.count
+          = render "templates/like_item"
           = link_to "#", class: "report-btn" do
             %label#improper_btn
               %i.far.fa-flag
@@ -192,7 +174,7 @@
                   = number_to_currency(item.price,format: "%u%n",unit:"¥",precision: 0)
                 .item-like
                   %i.far.fa-heart
-                  %span 10
+                  %span.count=@item.likes.count
   = render partial: 'templates/footer'
 
 -# 商品削除のモーダル

@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   before_action :set_categories, only: [:new, :create, :edit, :update]
 
   def index
-    @items = Item.all.order("created_at DESC").limit(8)
+    @items = Item.all.limit(8)
   end
 
   def new
