@@ -9,10 +9,8 @@ class Api::CategoriesController < ApplicationController
       @categories = Category.find(params[:id]).children
     end
 
-
     respond_to do |format|
       format.html{
-       
         if params[:id] == "0"
           redirect_to category_all_items_path
         else
