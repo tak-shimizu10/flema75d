@@ -258,28 +258,30 @@
   margin-top: 16px;
   .item-btn-left {
     float: left;
-    .like-report-btn {
-      font-size: 14px;
-      border: 1px solid whitesmoke;
-      border-radius: 40px;
+    .report-btn {
       background-color: whitesmoke;
-      padding: 8px 16px;
-      margin-right: 15px;
-      text-align: center;
+      border-radius:   40px;
+      font-size:       14px;
+      padding:     8px 16px;
+      margin:    0 15px 0 0;
+      text-align:    center;
       text-decoration: none;
-      color: black;
+      color:        black;
       i {
-        color: gray;
+        color:       gray;
       }
       span {
         margin-left: 4px;
       }
     }
+    label {
+      cursor: pointer;
+    }
   }
   .item-btn-right {
     float: right;
     font-size: 14px;
-    .like-report-btn {
+    .report-btn {
       text-decoration: none;
       color: #3CCACE;
     }
