@@ -14,7 +14,7 @@ class Api::CategoriesController < ApplicationController
       format.html{
        
         if params[:id] == "0"
-          redirect_to all_items_path
+          redirect_to category_all_items_path
         else
           redirect_to category_all_items_path(category_id: params[:id])
         end
