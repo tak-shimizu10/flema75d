@@ -255,12 +255,14 @@ $(function () {
     //画面読み込み時の処理、ファイルがあれば送信を許可してfilefield制御に移動
     $(window).on("load", function () {
 
-        if ($(".input_photo_field").length > 10) reloadWindowPhotosField();
-        if ($(".input_photo_preview").length > 0 && $(".input_photo_field").length > 1)
-            $(".input_photo_file").attr("required", false);
-        if ($("#item_pay_side").val().length > 0) $(".items_post_way").show();
-        reloadWindowPhotosField();
-        if ($("#item_price").val() > 0) inputPricePreview($("#item_price")[0]);
+        if ($(".items_form").length != 0) {
+            if ($(".input_photo_field").length > 10) reloadWindowPhotosField();
+            if ($(".input_photo_preview").length > 0 && $(".input_photo_field").length > 1)
+                $(".input_photo_file").attr("required", false);
+            if ($("#item_pay_side").val().length > 0) $(".items_post_way").show();
+            reloadWindowPhotosField();
+            if ($("#item_price").val() > 0) inputPricePreview($("#item_price")[0]);
+        }
     });
 
     function moveSelectCategory(index) {
