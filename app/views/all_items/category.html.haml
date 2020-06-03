@@ -1,4 +1,13 @@
 
+- if @category.blank?
+  - breadcrumb :all_category
+- elsif @category.parent.blank?
+  - breadcrumb :parent_category, @category
+- elsif @category.parent.parent.blank?
+  - breadcrumb :child_category, @category
+- elsif @category.parent.parent.parent.blank?
+  - breadcrumb :grandchild_category, @category
+
 = render partial: 'templates/header', locals: {categories: @categories}
 .categories_show
   .detail
