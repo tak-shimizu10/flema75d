@@ -256,8 +256,11 @@
 
 .item-btn-container {
   margin-top: 16px;
+  height:     40px;
+  display:    flex;
+  justify-content: space-between;
   .item-btn-left {
-    float: left;
+    display: flex;
     .report-btn {
       background-color: whitesmoke;
       border-radius:   40px;
@@ -271,7 +274,7 @@
         color:       gray;
       }
       span {
-        margin-left: 4px;
+        margin-left:    4px;
       }
     }
     label {
@@ -279,8 +282,8 @@
     }
   }
   .item-btn-right {
-    float: right;
-    font-size: 14px;
+    font-size:   14px;
+    line-height: 40px;
     .report-btn {
       text-decoration: none;
       color: #3CCACE;

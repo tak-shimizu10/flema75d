@@ -103,20 +103,25 @@
             = safe_join(@item.detail.split("\n"),tag(:br))
       .item-btn-container.clearfix
         .item-btn-left
-          - if @item.liked_by?(current_user)
-            = link_to item_likes_path(@item.id), class: "report-btn", method: :delete do
+          - if current_user.id == @item.user_id
+            .report-btn
               %label#like_btn
                 %i.far.fa-heart
                 %span.text いいね！
-                %span.count 315 
-                -# %span.count=@item.likes.count
+                %span.count=@item.likes.count
           - else
-            = link_to item_likes_path(@item.id), class: "report-btn", method: :post do
-              %label#like_btn
-                %i.far.fa-heart
-                %span.text いいね！
-                %span.count 315
-                -# %span.count=@item.likes.count
+            - if @item.liked_by?(current_user)
+              = link_to item_likes_path(@item.id), class: "report-btn", method: :delete do
+                %label#like_btn
+                  %i.far.fa-heart
+                  %span.text いいね！
+                  %span.count=@item.likes.count
+            - else
+              = link_to item_likes_path(@item.id), class: "report-btn", method: :post do
+                %label#like_btn
+                  %i.far.fa-heart
+                  %span.text いいね！
+                  %span.count=@item.likes.count
           = link_to "#", class: "report-btn" do
             %label#improper_btn
               %i.far.fa-flag
