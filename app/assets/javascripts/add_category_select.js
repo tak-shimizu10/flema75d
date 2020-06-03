@@ -58,7 +58,7 @@ $(function () {
             e.preventDefault();
 
             $.ajax({
-                url: "/api/selects",
+                url: "/api/categories/" + selectedValue,
                 type: "GET",
                 dataType: "json",
                 context: selectedChildCategory,
