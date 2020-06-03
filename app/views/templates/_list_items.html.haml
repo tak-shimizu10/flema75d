@@ -9,6 +9,11 @@
           .item_price= number_to_currency(item.price,format: "%u%n",unit:"¥",precision: 0)
         .info
           .name= item.name.truncate(22)
-          .like
-            %i.far.fa-heart
-            %span.count= item.likes.count
+          - if item.liked_by?(current_user)
+            .like.liked
+              %i.far.fa-heart
+              %span.count= item.likes.count
+          - else
+            .like.no_like
+              %i.far.fa-heart
+              %span.count= item.likes.count
