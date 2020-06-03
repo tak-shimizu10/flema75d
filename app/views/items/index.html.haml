@@ -52,11 +52,12 @@
         = image_tag src="icon/icon-04.png",class:"mid_pic"
         %h3.mid_subtitle 様々な支払いに対応
         %p お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
-  .mains_index__body
-    %h2.head 新規投稿商品
-    .look
-      = link_to "もっと見る",all_items_path,class:"look__more"
-      = render "templates/list_items"
+  - if @items.present?
+    .mains_index__body
+      %h2.head 新規投稿商品   
+      .look
+        = link_to "もっと見る",all_items_path,class:"look__more"
+        = render "templates/list_items"
                 
   .bottom_visual
     .content
