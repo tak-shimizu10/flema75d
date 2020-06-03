@@ -339,6 +339,17 @@
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
+        text-align: center;
+        li.category_name, li.child_category_name {    
+          padding:5px 0;
+          > a {
+            color:white;
+          }
+          border-bottom:1px solid black;
+        }
+        li.child_category_name > a {
+          color:black;
+        }
         li.item {
           margin: 20px 5px;
           height: 280px;

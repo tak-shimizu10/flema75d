@@ -29,14 +29,11 @@
           %ul.items
             - @categories.each_with_index do |category, i|
               %ul.list_category{data: {index: i}}
-                %li.category_name= category.name
-                %li.link_category= link_to "すべて", category_all_items_path(category_id: category.id)
+                %li.category_name= link_to category.name, category_all_items_path(category_id: category.id)
                 - category.children.each do |child|
                   %ul.list_child
-                    %li.child_category_name= child.name 
+                    %li.child_category_name= link_to child.name, category_all_items_path(category_id: child.id)
                     %ul.list_grandchild
-                      %li.link_child_category
-                        = link_to "すべて", category_all_items_path(category_id: child.id)
                       - child.children.each do |grandchild|
                         %li.link_grandchild_category=link_to grandchild.name, category_all_items_path(category_id: grandchild.id)
         - else
