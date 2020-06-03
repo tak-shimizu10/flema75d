@@ -88,7 +88,7 @@
       - if user_signed_in? && current_user.id == @item.user_id
         .item-explanation
           %p.item-explanation__box
-            = @item.detail
+            = safe_join(@item.detail.split("\n"),tag(:br))
         = link_to "商品の編集", edit_item_path(@item), class: "item-edit-btn"
         %p.text-center
           or
@@ -100,18 +100,18 @@
         .item-buy-btn.disabled 売り切れました
         .item-explanation
           %p.item-explanation__box
-            = @item.detail
-        .item-btn-container.clearfix
-          .item-btn-left
-            =link_to "#", class: "like-report-btn" do
-              %i.far.fa-heart
-              %span いいね！
-              %span 315
-            =link_to "#", class: "like-report-btn" do
+            = safe_join(@item.detail.split("\n"),tag(:br))
+      .item-btn-container
+        .item-btn-left
+          %label.report-btn.like_btn
+            = render "templates/like_item", locals: { item: @item }
+          %label.report-btn.improper_btn
+            = link_to "#", id: "improper_btn" do
               %i.far.fa-flag
               %span 不適切な商品の報告
-          .item-btn-right
-            =link_to "#", class: "like-report-btn" do
+        .item-btn-right
+          %label.report-btn
+            = link_to "#", id: "activities_btn" do
               %i.fas.fa-lock
               %span あんしん・あんぜんへの取り組み
   - if user_signed_in?
@@ -175,7 +175,7 @@
                   = number_to_currency(item.price,format: "%u%n",unit:"¥",precision: 0)
                 .item-like
                   %i.far.fa-heart
-                  %span 10
+                  %span.count= item.likes.count
   = render partial: 'templates/footer'
 
 -# 商品削除のモーダル

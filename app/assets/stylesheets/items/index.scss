@@ -351,19 +351,17 @@
           color:black;
         }
         li.item {
+          background-color: #ffffff;
           margin: 20px 5px;
           height: 280px;
-          width: 220px;
-          background-color: #ffffff;
+          width:  220px;
           display: inline-block;
-          float: left;
-          justify-content: left;
           &:hover { 
             box-shadow: 0 3px 3px 0;
           }
           #soldout_img {
             height: 280px;
-            width: 220px;
+            width:  220px;
             opacity: 0.75;
             z-index: 2;
             position: absolute;
@@ -400,17 +398,37 @@
               }
             }
             .info {
-              height: 30px;
-              padding: 16px;
-
-              h3 {
-                line-height: 30px;
-                font-size: 16px;
-                text-align: left;
-                color: black;
+              width:   100%;
+              height:  50px;
+              position: relative;
+              .name {
                 text-overflow: ellipsis;
-                overflow: hidden;
+                overflow:        hidden;
+                padding: 5px 20px 0 20px;
+                text-align: left;
+                color:   black;
+                font-size:  16px;
+                height:     50px;
+              }
+              .like,.no_like,.liked {
+                position:  absolute;
                 white-space: nowrap;
+                right:     0;
+                bottom:    0;
+                flex: 1 1 0%;
+                width:  40px;
+                height: 20px;
+                .fa-heart {
+                  color: lightgray;
+                }
+                .count {
+                  color: black;
+                }
+              }
+              .liked {
+                .fa-heart {
+                  color: red;
+                }
               }
             }
           }

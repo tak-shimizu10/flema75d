@@ -256,30 +256,53 @@
 
 .item-btn-container {
   margin-top: 16px;
-  .item-btn-left {
-    float: left;
-    .like-report-btn {
-      font-size: 14px;
-      border: 1px solid whitesmoke;
-      border-radius: 40px;
+  width:      100%;
+  height:     40px;
+  display:    flex;
+  justify-content: space-between;
+  .item-btn-left{
+    display: flex;
+    .report-btn {
       background-color: whitesmoke;
-      padding: 8px 16px;
-      margin-right: 15px;
-      text-align: center;
-      text-decoration: none;
-      color: black;
+      border-radius:   40px;
+      cursor: pointer;
+      a {
+        padding:  0 10px 0 10px;
+        text-decoration: none;
+        text-align:    center;
+        font-size:       14px;
+        color:        black;
+        display:        block;
+      }
+    }
+    .report-btn.improper_btn {
+      margin:    0 0 0 20px;
+    }
+    .like_btn {
       i {
-        color: gray;
+        color:       gray;
       }
       span {
-        margin-left: 4px;
+        margin-left:    4px;
+      }
+    }
+    .liked {
+      background-color: white;
+      border:   1px solid red;
+      border-radius:       40px;
+      padding:      0 9px 0 9px;
+      i {
+        color: red;
+      }
+      span {
+        color: red;
       }
     }
   }
-  .item-btn-right {
-    float: right;
-    font-size: 14px;
-    .like-report-btn {
+  .report-btn {
+    font-size:   14px;
+    line-height: 40px;
+    #activities_btn {
       text-decoration: none;
       color: #3CCACE;
     }

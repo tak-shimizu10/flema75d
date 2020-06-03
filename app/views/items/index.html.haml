@@ -56,17 +56,7 @@
     %h2.head 新規投稿商品
     .look
       = link_to "もっと見る",all_items_path,class:"look__more"
-      %ul.items
-        - @items.each do |item|
-          %li.item
-            - if item.situation == "transaction"
-              = image_tag 'pict/soldout.jpg',id:"soldout_img"
-            = link_to item_path(item.id),class:"item_link" do
-              .image
-                = image_tag item.images.first.image.url,class:"item_pic"
-                .item_price= number_to_currency(item.price,format: "%u%n",unit:"¥",precision: 0)
-              .info
-                %h3="#{item.name}"
+      = render "templates/list_items"
                 
   .bottom_visual
     .content
