@@ -87,7 +87,7 @@ class ItemsController < ApplicationController
   def select_category_and_serch_ancestry
     @category = @item.category
     if @category.parent.present?
-      @child_category = Category.find(@category.id)
+      @child_category = @category
       @category = @child_category.parent
       if @category.parent.present?
         @grandchild_category = @child_category
@@ -97,11 +97,9 @@ class ItemsController < ApplicationController
         @grandchild_categories = Category.where(ancestry: @grandchild_category[:ancestry]).pluck(:name, :id)
       else
         @child_categories = Category.where(ancestry: @category.id).pluck(:name, :id)
-        render :edit
       end
     else
       @child_categories = Category.where(ancestry: @category.id).pluck(:name, :id)
-      render :edit
     end
   end
 
