@@ -1,0 +1,8 @@
+.mylike
+  %ul.lists
+    - @like_items.each do |item|
+      %li.item_list
+        .item_image= image_tag(item.images.first.image.url)
+        .item_name= item.name
+        .item_price= item.price
+        

@@ -1,12 +1,12 @@
 %ul.items
   - @items.each do |item|
     %li.item
-      - if item.situation == "transaction"
-        = image_tag 'pict/soldout.jpg',id:"soldout_img"
-      = link_to item_path(item.id),class:"item_link" do
+      = link_to item_path(item.id), class: "item_link" do
+        - if item.situation == "transaction"
+          = image_tag 'pict/soldout.jpg', id: "soldout_img"
         .image
-          = image_tag item.images.first.image.url,class:"item_pic"
-          .item_price= number_to_currency(item.price,format: "%u%n",unit:"¥",precision: 0)
+          = image_tag item.images.first.image.url, class: "item_pic"
+          .item_price= number_to_currency(item.price,format: "%u%n", unit: "¥", precision: 0)
         .info
           .name= item.name.truncate(22)
           - if item.liked_by?(current_user)
