@@ -101,16 +101,16 @@
         .item-explanation
           %p.item-explanation__box
             = safe_join(@item.detail.split("\n"),tag(:br))
-      .item-btn-container.clearfix
+      .item-btn-container
         .item-btn-left
-          = render "templates/like_item"
-          = link_to "#", class: "report-btn" do
-            %label#improper_btn
+          = render "templates/like_item", locals: { item: @item }
+          %label.report-btn.improper_btn
+            = link_to "#", id: "improper_btn" do
               %i.far.fa-flag
               %span 不適切な商品の報告
         .item-btn-right
-          =link_to "#", class: "report-btn" do
-            %label#activities_btn
+          %label.report-btn
+            = link_to "#", id: "activities_btn" do
               %i.fas.fa-lock
               %span あんしん・あんぜんへの取り組み
   - if user_signed_in?

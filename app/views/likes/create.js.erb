@@ -1,0 +1,2 @@
+
+$("#like-btn_<%= @item.id %>").replaceWith("<%= j(render partial: 'templates/like_item.html.haml', locals: { item: @item }) %>");
