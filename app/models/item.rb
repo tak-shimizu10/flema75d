@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :post_way
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   enum pay_side: { seller: 1, buyer: 2 }
   enum post_date: { shortest: 1, normal: 2, longest: 3 }
@@ -34,6 +35,11 @@ class Item < ApplicationRecord
 
   def draft_item?
     item.situation == 3
+  end
+
+  ##
+  def liked_by?(user)
+    likes.where(user_id: user&.id).exists?
   end
 
   class << self

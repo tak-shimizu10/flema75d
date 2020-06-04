@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   before_action :set_categories, only: [:new, :create, :edit, :update]
 
   def index
-    @items = Item.all.order("created_at DESC").limit(8)
+    @items = Item.all.limit(8)
   end
 
   def new
@@ -34,7 +34,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @other_items = Item.where.not(id: params[:id])
+    @other_items = Item.where(user_id: @item.user_id).where.not(id: params[:id])
     @comment = Comment.new
     @comments = @item.comments.includes(:user)
   end
@@ -87,7 +87,7 @@ class ItemsController < ApplicationController
   def select_category_and_serch_ancestry
     @category = @item.category
     if @category.parent.present?
-      @child_category = Category.find(@category.id)
+      @child_category = @category
       @category = @child_category.parent
       if @category.parent.present?
         @grandchild_category = @child_category
@@ -97,11 +97,9 @@ class ItemsController < ApplicationController
         @grandchild_categories = Category.where(ancestry: @grandchild_category[:ancestry]).pluck(:name, :id)
       else
         @child_categories = Category.where(ancestry: @category.id).pluck(:name, :id)
-        render :edit
       end
     else
       @child_categories = Category.where(ancestry: @category.id).pluck(:name, :id)
-      render :edit
     end
   end
 

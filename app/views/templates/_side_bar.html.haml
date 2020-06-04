@@ -1,26 +1,26 @@
 .body__side
   .mypage-nav
     %ul
-      %li= link_to "マイページ", top_api_templates_path,  remote: true ,class: "link_page"   
-      %li= link_to "お知らせ","#",  remote: true ,class: "link_page"
+      %li= link_to "マイページ",    top_api_templates_path,  remote: true , class: "link_page"   
+      %li= link_to "お知らせ",      "#",  remote: true ,class: "link_page"
       %li= link_to "やることリスト", "#",  remote: true ,class: "link_page"
-      %li= link_to "いいね一覧", "#",  remote: true ,class: "link_page"
-      %li= link_to "出品する", new_item_path,class: "link_page"
-      %li= link_to "下書き一覧", "#",  remote: true ,class: "link_page"
-      %li= link_to "出品した商品", "#",  remote: true ,class: "link_page"
-      %li= link_to "購入した商品", "#",  remote: true ,class: "link_page"
-      %li= link_to "ニュース一覧", "#",  remote: true ,class: "link_page"
-      %li= link_to "評価一覧", "#",  remote: true ,class: "link_page"
-      %li= link_to "ガイド", "#",  remote: true ,class: "link_page"
-      %li= link_to "お問い合わせ", "#",  remote: true ,class: "link_page"  
+      %li= link_to "いいね一覧",    mylike_api_templates_path, remote: true, class: "link_page"
+      %li= link_to "出品する",      new_item_path,class: "link_page"
+      %li= link_to "下書き一覧",    "#",  remote: true ,class: "link_page"
+      %li= link_to "出品した商品",  "#",  remote: true ,class: "link_page"
+      %li= link_to "購入した商品",  "#",  remote: true ,class: "link_page"
+      %li= link_to "ニュース一覧",  "#",  remote: true ,class: "link_page"
+      %li= link_to "評価一覧",     "#",  remote: true ,class: "link_page"
+      %li= link_to "ガイド",       "#",  remote: true ,class: "link_page"
+      %li= link_to "お問い合わせ",  "#",  remote: true ,class: "link_page"  
 
     %h3 設定
     %ul
-      %li= link_to "プロフィール", "#",  remote: true ,class: "link_page"  
+      %li= link_to "プロフィール",  "#",  remote: true ,class: "link_page"  
       %li= link_to "発送元・お届け先住所変更", "#",  remote: true ,class: "link_page"  
       %li= link_to "支払い方法管理", api_cards_path,  remote: true ,class: "link_page"  
       %li= link_to "メール・パスワード", "#",  remote: true ,class: "link_page"  
-      %li= link_to "本人情報", "#",  remote: true ,class: "link_page"   
+      %li= link_to "本人情報",      "#",  remote: true ,class: "link_page"   
       %li= link_to "電話番号の確認", "#",  remote: true ,class: "link_page"    
-      %li= link_to "ログアウト", logout_api_templates_path,  remote: true ,class: "link_page"   
+      %li= link_to "ログアウト",    logout_api_templates_path,  remote: true ,class: "link_page"   
           
