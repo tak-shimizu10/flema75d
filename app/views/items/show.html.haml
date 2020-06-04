@@ -173,9 +173,14 @@
               .item-num
                 .item-price
                   = number_to_currency(item.price,format: "%u%n",unit:"¥",precision: 0)
-                .item-like
-                  %i.far.fa-heart
-                  %span.count= item.likes.count
+                - if item.liked_by?(current_user) 
+                  .item-like.liked
+                    %i.far.fa-heart
+                    %span.count= item.likes.count
+                - else
+                  .item-like.liked
+                    %i.far.fa-heart
+                    %span.count= item.likes.count
   = render partial: 'templates/footer'
 
 -# 商品削除のモーダル
