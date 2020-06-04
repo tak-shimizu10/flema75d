@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   before_action :set_categories, only: [:new, :create, :edit, :update]
 
   def index
-    @items = Item.all.order("created_at DESC").limit(8)
+    @items = Item.all.limit(8)
   end
 
   def new
@@ -17,10 +17,14 @@ class ItemsController < ApplicationController
   def create
     if item_params[:images_attributes].present?
       @item = Item.new(item_params)
-      if @item.save
-        brands = Brand.find_or_create_by(name: params[:item][:brand])
-        @item.update!(brand_id: brands.id)
-        redirect_to root_path
+      if@item.images.length <= 10
+        if @item.save
+          brands = Brand.find_or_create_by(name: params[:item][:brand])
+          @item.update!(brand_id: brands.id)
+          redirect_to root_path
+        else
+          redirect_to new_item_path
+        end
       else
         redirect_to new_item_path
       end
@@ -30,7 +34,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @other_items = Item.where.not(id: params[:id])
+    @other_items = Item.where(user_id: @item.user_id).where.not(id: params[:id])
     @comment = Comment.new
     @comments = @item.comments.includes(:user)
   end
@@ -40,10 +44,14 @@ class ItemsController < ApplicationController
 
   def update
     if item_params[:images_attributes].present?
-      if @item.update(item_params)
-        brands = Brand.find_or_create_by(name: params[:item][:brand])
-        @item.update(brand_id: brands.id)
-        redirect_to item_path(@item)
+      if @item.images.length <= 10
+        if @item.update(item_params)
+          brands = Brand.find_or_create_by(name: params[:item][:brand])
+          @item.update(brand_id: brands.id)
+          redirect_to item_path(@item)
+        else
+          render :edit
+        end
       else
         render :edit
       end
@@ -77,9 +85,9 @@ class ItemsController < ApplicationController
   end
 
   def select_category_and_serch_ancestry
-    @category = Category.find(@item.category_id)
+    @category = @item.category
     if @category.parent.present?
-      @child_category = Category.find(@category.id)
+      @child_category = @category
       @category = @child_category.parent
       if @category.parent.present?
         @grandchild_category = @child_category
@@ -89,11 +97,9 @@ class ItemsController < ApplicationController
         @grandchild_categories = Category.where(ancestry: @grandchild_category[:ancestry]).pluck(:name, :id)
       else
         @child_categories = Category.where(ancestry: @category.id).pluck(:name, :id)
-        render :edit
       end
     else
       @child_categories = Category.where(ancestry: @category.id).pluck(:name, :id)
-      render :edit
     end
   end
 

@@ -158,5 +158,88 @@ RSpec.describe Item, type: :model do
     end
 
   end
+  
+  describe "#update" do
+    
+    it "全ての要素の更新ができること" do
+      user = create(:user)
+      category = create(:category)
+      item = build(:item, category_id: category.id, user_id: user.id)
+      item.save(name: "更新", detail: "更新する", price: 9999, situation: 0, pay_side: 2, post_date: 2, status: 2, post_way_id: 2, brand_id: 2, prefecture_id: 22, category_id: 222)
+      expect(item).to be_valid
+    end
+
+    it "name(名前)の更新ができること" do
+      user = create(:user)
+      category = create(:category)
+      item = build(:item, category_id: category.id, user_id: user.id)
+      item.save(name: "更新")
+      expect(item).to be_valid
+    end
+    
+    it "detail(商品説明の更新ができること" do
+      user = create(:user)
+      category = create(:category)
+      item = build(:item, category_id: category.id, user_id: user.id)
+      item.save(detail: "更新する")
+      expect(item).to be_valid
+    end
+    
+    it "price(価格)の更新ができること" do
+      user = create(:user)
+      category = create(:category)
+      item = build(:item, category_id: category.id, user_id: user.id)
+      item.save(price: 9999)
+      expect(item).to be_valid
+    end
+    
+    it "pay_side(送料負担)更新ができること" do
+      user = create(:user)
+      category = create(:category)
+      item = build(:item, category_id: category.id, user_id: user.id)
+      item.save(pay_side: 2)
+      expect(item).to be_valid
+    end
+    
+    it "post_date(配送日数)の更新ができること" do
+      user = create(:user)
+      category = create(:category)
+      item = build(:item, category_id: category.id, user_id: user.id)
+      item.save(post_date: 2)
+      expect(item).to be_valid
+    end
+
+    it "post_way_id(配送方法)の更新ができること" do
+      user = create(:user)
+      category = create(:category)
+      item = build(:item, category_id: category.id, user_id: user.id)
+      item.save(post_way_id: 2)
+      expect(item).to be_valid
+    end
+    
+    it "prefecture_id(配送場所)の更新ができること" do
+      user = create(:user)
+      category = create(:category)
+      item = build(:item, category_id: category.id, user_id: user.id)
+      item.save(prefecture_id: 2)
+      expect(item).to be_valid
+    end
+
+    it "category_id(カテゴリー)の更新ができること" do
+      user = create(:user)
+      category = create(:category)
+      item = build(:item, category_id: category.id, user_id: user.id)
+      item.save(category_id: 2)
+      expect(item).to be_valid
+    end
+
+    it "brand_id(ブランド)の更新ができること" do
+      user = create(:user)
+      category = create(:category)
+      item = build(:item, category_id: category.id, user_id: user.id)
+      item.save(brand_id: 2)
+      expect(item).to be_valid
+    end
+  end
 
 end

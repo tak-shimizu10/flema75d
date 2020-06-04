@@ -4,13 +4,13 @@ FactoryBot.define do
     detail         { "商品詳細コメント" }
     price          { 999 }
     situation      { 0 }
-    user_id        { 1 }
-    pay_side       { 2 }
-    post_date      { 3 }
-    status         { 4 }
-    prefecture_id  { 5 }
-    category_id    { 6 }
-    post_way_id    { 7 }
+    pay_side       { 1 }
+    post_date      { 1 }
+    status         { 1 }
+    post_way_id    { 1 }
     brand_id       { 1 }
+    user_id        { 1 }
+    prefecture_id  { 20 }
+    category_id    { 100 }
   end
 end

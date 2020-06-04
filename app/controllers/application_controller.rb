@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
       return true
     elsif params[:controller] == "users" && params[:action].include?("new")
       return true
-    elsif params[:controller].include?("api/selects") || params[:controller].include?("all_items")
+    elsif params[:controller].include?("api/categories") || params[:controller].include?("all_items")
       return true
     else
       return false

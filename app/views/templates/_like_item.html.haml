@@ -1,0 +1,17 @@
+
+- if current_user&.id == @item.user_id
+  %a
+    %i.far.fa-heart
+    %span.text いいね！
+    %span.count= @item.likes.count
+- else
+  - if @item.liked_by?(current_user)
+    = link_to item_likes_path(@item.id), class: "liked", id: "like-btn_#{@item.id}", method: :delete, remote: true do
+      %i.far.fa-heart
+      %span.text いいね！
+      %span.count= @item.likes.count
+  - else
+    = link_to item_likes_path(@item.id), class: "no_like", id: "like-btn_#{@item.id}", method: :post, remote: true do
+      %i.far.fa-heart
+      %span.text いいね！
+      %span.count= @item.likes.count
