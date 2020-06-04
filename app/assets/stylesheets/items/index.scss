@@ -335,11 +335,11 @@
         }
       }
       ul.items {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
+        width:        100%;
         text-align: center;
+        display:      flex;
+        flex-wrap:    wrap;
+        justify-content: center;
         li.category_name, li.child_category_name {    
           padding:5px 0;
           > a {
@@ -353,18 +353,22 @@
         li.item {
           background-color: #ffffff;
           margin: 20px 5px;
-          height: 280px;
-          width:  220px;
+          height:    280px;
+          width:     220px;
           display: inline-block;
+          position:    relative;
           &:hover { 
             box-shadow: 0 3px 3px 0;
           }
           #soldout_img {
+            transform: translate(-50%, -50%);
+            position:  absolute;
+            z-index:    2;
+            top:      50%;
+            left:     50%;
+            opacity: 0.75;
             height: 280px;
             width:  220px;
-            opacity: 0.75;
-            z-index: 2;
-            position: absolute;
           }
           .item_link {
             text-decoration: none;
@@ -377,7 +381,7 @@
                 max-width: 220px;
                 max-height: 220px;
                 position: absolute;
-                top: 50%;
+                top:  50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
               }
@@ -402,8 +406,8 @@
               height:  50px;
               position: relative;
               .name {
-                text-overflow: ellipsis;
-                overflow:        hidden;
+                text-overflow:  ellipsis;
+                overflow:         hidden;
                 padding: 5px 20px 0 20px;
                 text-align: left;
                 color:   black;
@@ -418,17 +422,15 @@
                 flex: 1 1 0%;
                 width:  40px;
                 height: 20px;
-                .fa-heart {
-                  color: lightgray;
-                }
                 .count {
-                  color: black;
+                  color:  black;
                 }
               }
-              .liked {
-                .fa-heart {
-                  color: red;
-                }
+              .liked .fa-heart {
+                color:      red;
+              } 
+              .no_like .fa-heart {
+                color:lightgray;
               }
             }
           }
@@ -438,63 +440,62 @@
   }
   .bottom_visual {
     background-image: image-url("pict/bg-appBanner-pict.jpg");
-    padding: 100px 40px;
-    position: relative;
-    background-size: cover;
     background-position: center;
+    background-size:      cover;
+    position:  relative;
+    padding: 100px 40px;
     .content {
-      color: #fff;
+      color:      #fff;
       text-align: center;
       &__title {
         text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
-        font-size: 24px;
+        font-size:   24px;
         font-weight: bold;
-        line-height: 1.4;
+        line-height:  1.4;
       }
       &__text {
-        font-size: 35px;
         text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+        font-size:   35px;
       }
     }
   }
   &__footer {
-    padding: 60px 0;
-    color: #fff;
     background-color: #272727;
+    padding:    60px 0;
+    color:      #fff;
     text-align: center;
 
     ul.contents {
       max-width: 840px;
-      margin: 0 auto;
-      display: flex;
-
+      margin:   0 auto;
+      display:    flex;
       li.content {
-        display: flex;
-        flex-direction: column;
+        margin:          0 2% 0 0;
         width: calc(1 / 3 * 100%);
-        margin: 0 2% 0 0;
+        display:             flex;
+        flex-direction:    column;
 
         h2.content__head {
-          margin: 0 0 20px;
-          font-size: 16px;
+          margin:  0 0 20px;
+          font-size:   16px;
           font-weight: bold;
         }
         ul {
-          list-style: none;
-          color: #fff;
           text-decoration: none;
-          font-size: 12px;
+          list-style:  none;
+          color:     #fff;
           line-height: 32px;
+          font-size:   12px;
           li {
-            margin: 0;
-            padding: 0;
-            color: #fff;
             text-decoration: none;
-            font-size: 12px;
             line-height: 32px;
+            font-size:   12px;
+            margin:     0;
+            padding:    0;
+            color: #fff;
             a {
               text-decoration: none;
-              color: white;
+              color:        white;
               &:hover {
                 text-decoration: underline;
               }
@@ -504,41 +505,42 @@
       }
     }
     .footer__logo {
+      margin:   0 auto;
       max-width: 160px;
-      width: 100%;
-      margin: 0 auto;
+      width:      100%;
       .logo_img {
-        width: 100%;
         vertical-align: bottom;
+        width:    100%;
       }
     }
     p {
-      font-size: 14px;
+      font-size:  14px;
     }
   }
 }
 @media screen and (min-width: 767px) { 
   .mains_index {
     &__body {
-      padding: 80px 50px 0;
+      padding:        80px 50px 0;
       background-color: #f8f8f8;
     }
     .purchase {
       &__btn {
-        width: 120px;
         background: #3ccace;
+        border-radius:  4%;
         text-align: center;
-        border-radius: 4%;
-        bottom: 32px;
-        right: 32px;
-        position: fixed;
+        position:    fixed;
         padding: 15px;
+        right:   32px;
+        bottom:  32px;
+        width:  120px;
+        z-index: 3;
         .text {
-          color: #fff;
-          display: block;
+          text-decoration:  none;
+          margin-bottom:     5px;
           font-size: 18px;
-          text-decoration: none;
-          margin-bottom: 5px;
+          color:   #fff;
+          display:  block;
         }
         .image {
           width: 60%;
@@ -551,28 +553,28 @@
 @media screen and (max-width: 766px) {
   .mains_index {
     &__body {
-      padding:80px 0;
+      padding:     80px 0;
     }
     .purchase {
       &__btn {
         background: #3ccace;
-        white-space: nowrap;
-        text-align: center;
+        white-space:   nowrap;
+        text-align:    center;
         border-radius: 4%;
-        position: fixed;
-        right: 20px;
-        bottom:20px;
-        width: 80px;
+        position:   fixed;
+        right:  20px;
+        bottom: 20px;
+        width:  80px;
         .text {
-          color: #fff;
-          display: block;
-          font-size: 9px;
-          text-decoration: none;
-          margin-bottom: 5px;
+          text-decoration:  none;
+          margin-bottom:     5px;
+          font-size:         9px;
+          color:          #fff;
+          display:         block;
         }
         .image {
-          width: 60px;
           vertical-align: bottom;
+          width:            60px;
         }
       }
     }
