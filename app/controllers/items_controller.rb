@@ -43,9 +43,16 @@ class ItemsController < ApplicationController
 
   def update
     if item_params[:images_attributes].present?
-        brand = Brand.find_or_create_by(name:params[:item][:brand])
-        @item.brand_id = brand&.id
+
+      brand = Brand.find_or_create_by(name:params[:item][:brand])
+      brand_id = @item.brand&.id if brand.name.blank?
+      @item.brand_id = brand&.id
+        
       if @item.images.length <= 10 && @item.update(item_params)
+        if brand_id.present?
+          brand = Brand.find(brand_id)
+          brand.destroy if brand.items.blank?
+        end
         redirect_to item_path(@item.id)
       else
         render :edit
