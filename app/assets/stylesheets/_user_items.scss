@@ -70,6 +70,7 @@
             }
         }
     }
+
     a, .item_link {
         text-decoration: none;
         color:        black;
@@ -130,35 +131,63 @@
         }
 
     }
-    .item_box {
-        .item_info {
-            display: grid;
-            grid-template:
-            "liked ..... comment ..... situation ....."
-            /auto 5px auto 5px auto 1fr;
-            .item_liked {
-                grid-area:     liked;
-            }
-            .item_comment {
-                grid-area:   comment;
-            }
-            .item_situation {
-                grid-area: situation;
-            }
-            .item_liked,.item_comment {
+    a,.item_link {
+        .item_box {
+            .item_info {
                 display: grid;
                 grid-template:
-                "..... ..... ..... ..... ....."3px
-                "..... icon  ..... count ....."14px
-                "..... ..... ..... ..... ....."3px
-                /5px auto 5px auto 5px;
-                i {
-                    grid-area:  icon;
+                "liked ..... comment ..... situation ....."
+                /auto 5px auto 5px auto 1fr;
+                .item_liked {
+                    grid-area:     liked;
                 }
-                p {
-                    grid-area: count;
+                .item_comment {
+                    grid-area:   comment;
+                }
+                .item_situation {
+                    grid-area: situation;
+                }
+                .item_liked,.item_comment {
+                    display: grid;
+                    grid-template:
+                    "..... ..... ..... ..... ....."3px
+                    "..... icon  ..... count ....."14px
+                    "..... ..... ..... ..... ....."3px
+                    /5px auto 5px auto 5px;
+                    i {
+                        grid-area:  icon;
+                    }
+                    p {
+                        grid-area: count;
+                    }
                 }
             }
+        }
+    }
+    .item_empty {
+        background-color: white;
+        color:        lightgray;
+        display: grid;
+        grid-template:
+        "..... ..... ..... ..... ....."30px
+        "..... ..... image ..... ....."
+        "..... ..... ..... ..... ....."10px
+        "..... text  text  text  ....."
+        "..... ..... ..... ..... ....."30px
+        /1fr 1fr 100px 1fr 1fr;
+        .empty_img {
+            grid-area: image;
+        }
+        p.empty_text {
+            grid-area:  text;
+        }
+        .empty_img img {
+            width:      80px;
+        }
+        p.empty_text {
+            white-space: nowrap;
+            text-align:  center;
+            font-size:     18px;
         }
     }
 }
