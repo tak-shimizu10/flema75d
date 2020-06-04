@@ -2,25 +2,27 @@ Rails.application.routes.draw do
 
   root "items#index"
   devise_for :users, controllers: {
-                       registrations: "users/registrations",
-                     }
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    registrations: "users/registrations"
+  }
   devise_scope :user do
     get "addresses", to: "users/registrations#new_address"
     post "addresses", to: "users/registrations#create_address"
+    # delete :sign_out, to: 'devise/sessions#destroy', as: :destroy_user_session
   end
 
-  resources :users, only: [:show]
+  resources :users, only: [:new, :show]
 
   # 購入確認ページに飛ぶ
   resources :items do
-    resources :buys, only: [:new,:create]
+    resources :buys, only: [:new, :create]
     resources :comments, only: [:create]
   end
 
   # カテゴリ機能に使用
   namespace :api do
     resources :selects, only: [:index]
-    resources :cards, only: [:index,:new,:create,:destroy]
+    resources :cards, only: [:index, :new, :create, :destroy]
     resource :templates, only: [] do
       member do
         get 'top'
@@ -38,4 +40,3 @@ Rails.application.routes.draw do
   resources :all_items, only: [:index]
 
 end
-
