@@ -1,4 +1,5 @@
-.mylike, .exhibition_items {
+//共通部分
+.mylike,.exhibition_items {
     .lists {
         height:  100%;
         grid-template-columns: 100px;
@@ -14,50 +15,63 @@
         &__header {
             grid-area: header;
         }
-        li.item_box {
+        a, .item_link {
             grid-area: list;
         }
         .pagination {
             grid-area: page;
         }
+
         &__header {
             background-color: white;
-            font-size:    30px;
-            text-align: center;
-        }
-        .item_box {
-            background-color: white;
-            border: 1px solid whitesmoke;
             display: grid;
-            grid-template: 
-            "..... ..... ..... ..... ..... ....."10px
-            "..... img   ..... ..... ..... ....."10px
-            "..... img   ..... name  name  ....."40px
-            "..... img   ..... ..... ..... ....."10px
-            "..... img   ..... info  info  ....."20px
-            "..... ..... ..... ..... ..... ....."10px
-            /0 100px 5px 1fr 1fr 0;
-            .item_image {
-                grid-area:   img;
+            grid-template:
+            "..... ..... ....."20px
+            "..... title ....."
+            "..... ..... ....."20px;
+            h2 {
+                grid-area:   title;
             }
-            .item_name {
-                grid-area:  name;
-            }
-            .item_info {
-                grid-area:  info;
-            }
-            .item_name {
-                font-size:  14px;
-            }
-            .item_info {
-                font-size:  14px;
-            }
-            &:hover {
-                background-color: whitesmoke;
+            h2 {
+                text-align:  center;
+                white-space: nowrap;
+                font-size:     20px;
             }
         }
-        li.item_box {
-            .item_image {
+        a, .item_link {
+            text-decoration: none;
+            color:        black;
+            .item_box {
+                background-color: white;
+                border: 1px solid whitesmoke;
+                display: grid;
+                grid-template: 
+                "..... ..... ..... ..... ..... ....."10px
+                "..... img   ..... ..... ..... ....."10px
+                "..... img   ..... name  name  ....."40px
+                "..... img   ..... ..... ..... ....."10px
+                "..... img   ..... info  info  ....."20px
+                "..... ..... ..... ..... ..... ....."10px
+                /0 100px 5px 1fr 1fr 0;
+                .item_image {
+                    grid-area:   img;
+                }
+                .item_name {
+                    grid-area:  name;
+                }
+                .item_info {
+                    grid-area:  info;
+                }
+                .item_name {
+                    font-size:  14px;
+                }
+                .item_info {
+                    font-size:  14px;
+                }
+                &:hover {
+                    background-color: whitesmoke;
+                }
+                .item_image {
                 background-color: white;
                 text-align:        center;
                 margin: auto;
@@ -68,23 +82,48 @@
                     max-height: 80px;
                 }
             }
-        }
-    }
-
-    a, .item_link {
-        text-decoration: none;
-        color:        black;
-    }
-    .pagination {
-        .page.current {
-            color: red;
-        }
-        a {
-            &:hover {
-            text-decoration: underline;
             }
         }
+        .pagination {
+            .page.current {
+                color: red;
+            }
+            a {
+                &:hover {
+                text-decoration: underline;
+                }
+            }
+        }
+        .item_empty {
+        background-color: white;
+        color:        lightgray;
+        display: grid;
+        grid-template:
+        "..... ..... ..... ..... ....."30px
+        "..... ..... image ..... ....."
+        "..... ..... ..... ..... ....."10px
+        "..... text  text  text  ....."
+        "..... ..... ..... ..... ....."30px
+        /1fr 1fr 100px 1fr 1fr;
+        .empty_img {
+            grid-area: image;
+        }
+        p.empty_text {
+            grid-area:  text;
+        }
+        .empty_img img {
+            width:      80px;
+        }
+        p.empty_text {
+            white-space: nowrap;
+            text-align:  center;
+            font-size:     18px;
+        }
     }
+    }
+}
+//出品一覧、
+.exhibition_items {
     .lists__header {
         display: grid;
         grid-template:
@@ -162,32 +201,6 @@
                     }
                 }
             }
-        }
-    }
-    .item_empty {
-        background-color: white;
-        color:        lightgray;
-        display: grid;
-        grid-template:
-        "..... ..... ..... ..... ....."30px
-        "..... ..... image ..... ....."
-        "..... ..... ..... ..... ....."10px
-        "..... text  text  text  ....."
-        "..... ..... ..... ..... ....."30px
-        /1fr 1fr 100px 1fr 1fr;
-        .empty_img {
-            grid-area: image;
-        }
-        p.empty_text {
-            grid-area:  text;
-        }
-        .empty_img img {
-            width:      80px;
-        }
-        p.empty_text {
-            white-space: nowrap;
-            text-align:  center;
-            font-size:     18px;
         }
     }
 }
