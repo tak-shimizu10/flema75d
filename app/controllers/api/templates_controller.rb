@@ -11,8 +11,12 @@ class Api::TemplatesController < ApplicationController
 
   def mylike
     mylike_item_ids
-    page = params[:page]
-    @like_items = Kaminari.paginate_array(@like_items).page(page).per(8)
+    @like_items = Kaminari.paginate_array(@like_items).page(params[:page]).per(8)
+  end
+
+  def exhibition
+    @myitems = Item.where(user_id: current_user.id).where(situation: 0)
+    @exhibition_items = Kaminari.paginate_array(@myitems).page(params[:page]).per(8)
   end
 
   private

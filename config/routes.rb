@@ -26,6 +26,7 @@ Rails.application.routes.draw do
         get "top"
         get "logout"
         get "mylike"
+        get "exhibition"
       end
     end
   end
