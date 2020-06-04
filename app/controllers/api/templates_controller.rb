@@ -10,15 +10,17 @@ class Api::TemplatesController < ApplicationController
   end
 
   def mylike
-    mylike_items
-    @like_items = Kaminari.paginate_array(@like_items).page(1).per(10)
-    partial = render_to_string(partial: "templates/mylike")
-    render json: { html: partial }
+    mylike_item_ids
+    page = params[:page]
+    @like_items = Kaminari.paginate_array(@like_items).page(page).per(5)
   end
 
   private
 
-  def mylike_items
+  ##Likeテーブルからログインユーザーと一致するitem_idを取得して、昇順に
+  ##→取得したitem_idsを一つずつItemテーブルから検索
+  ##→検索結果を@like_itemsに配列として代入
+  def mylike_item_ids
     @item_ids = Like.where(user_id: current_user.id).pluck(:item_id).sort!
     @like_items = []
     @item_ids.each do |id|

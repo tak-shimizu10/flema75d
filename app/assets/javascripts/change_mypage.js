@@ -12,7 +12,6 @@ $(function () {
     }).done(function (result) {
 
       //今呼び出しているパーシャルを消して、受け取ったパーシャルを表示
-      $('.body__main').children().remove();
       $('.body__main').html(result.html);
     }).fail(function (err) {
       console.log(err);

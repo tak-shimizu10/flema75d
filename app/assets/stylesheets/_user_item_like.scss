@@ -68,16 +68,20 @@
                     max-height: 80px;
                 }
             }
-            .item_name {
-
-            }
-            .item_price {
-
-            }
         }
     }
-    a.item_link {
+    a, .item_link {
         text-decoration: none;
         color:        black;
+    }
+    .pagination {
+        .page.current {
+            color: red;
+        }
+        a {
+            &:hover {
+            text-decoration: underline;
+            }
+        }
     }
 }

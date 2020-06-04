@@ -1,10 +1,11 @@
+
 .mylike
   %ul.lists
     %h2.like_header いいね！ 一覧
-    - @like_items.each do |item|
+    - mylike.each do |item|
       = link_to item_path(item.id), class: "item_link" do
         %li.item_box
           .item_image= image_tag(item.images.first.image.url)
           .item_name= item.name
           .item_price= "¥ #{item.price.to_s(:delimited, delimiter: ",",format: "%u%n", unit: "¥", precision: 0)}"
-    =paginate @like_items, remote: true
+    = paginate mylike, remote: true
