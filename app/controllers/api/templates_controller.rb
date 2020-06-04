@@ -12,7 +12,7 @@ class Api::TemplatesController < ApplicationController
   def mylike
     mylike_item_ids
     page = params[:page]
-    @like_items = Kaminari.paginate_array(@like_items).page(page).per(5)
+    @like_items = Kaminari.paginate_array(@like_items).page(page).per(8)
   end
 
   private
