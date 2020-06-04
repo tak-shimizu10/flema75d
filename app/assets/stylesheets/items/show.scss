@@ -505,15 +505,18 @@
             display: flex;
             justify-content: space-between;
             .item-price {
-              font-size: 14px;
+              font-size:  14px;
               font-weight: 600;
             }
             .item-like {
-              font-size: 14px;
+              font-size:  14px;
               font-weight: 400;
               i {
-                color: gray;
+                color:  gray;
               }
+            }
+            .liked .fa-heart{
+              color:     red;
             }
           }
         }

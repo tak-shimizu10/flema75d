@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       member do
         get "top"
         get "logout"
+        get "mylike"
       end
     end
   end
