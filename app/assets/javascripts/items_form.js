@@ -14,7 +14,7 @@ $(function () {
 
         const html =
             `<label class= "input_photo_field" data-index= "${index}">
-                <input class= "input_photo_file" type= "file", required= "false"
+                <input class= "input_photo_file input_form" type= "file", required= "false"
                 name= "item[images_attributes][${index}][image]"
                 id= "item_images_attributes_${index}_image photo_file_${index}"><br>
                 <img class= "fas fa-camera" src= "/assets/icon/icon_camera-24c5a3dec3f777b383180b053077a49d0416a4137a1c541d7dd3f5ce93194dee.png">
@@ -278,4 +278,9 @@ $(function () {
         const targetFileField = $(".input_photo_field").filter(`[data-index= "${targetIndex}"]`)[0];
         $(targetFileField).click();
     });
+
+    $(".item_draft_btn").on("click", "#draft_btn", function () {
+        $("#hidden_situation").val("draft")
+        $(".input_form[required=required]").attr("required", false);
+    })
 });

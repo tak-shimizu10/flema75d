@@ -15,14 +15,14 @@
             -break if i == 10
         = f.fields_for :images do |image|
           %label.input_photo_field.input_file_base{data: {index: "#{image.index}"}, accept: ".jpeg .jpg .png"}
-            = image.file_field :image, class: "input_photo_file", id: "photo_file_#{image.index}", required: true
+            = image.file_field :image, class: "input_photo_file input_form", id: "photo_file_#{image.index}", required: true
             = image_tag "icon/icon_camera.png", class: "fas fa-camera"
             %p.photos_input_text クリックしてファイルをアップロード
           - if @item.persisted?
             = image.check_box :_destroy, data: {index: image.index}, class: "hidden_destroy"
         -if @item.persisted?
           %label.input_photo_field.input_file_add{data: { index: "#{@item.images.count}" }, accept: ".jpeg .jpg .png"}
-            = file_field_tag :image, name: "item[images_attributes][#{@item.images.count}][image]", class: "input_photo_file"
+            = file_field_tag :image, name: "item[images_attributes][#{@item.images.count}][image]", class: "input_photo_file input_form"
             = image_tag "icon/icon_camera.png", class: "fas fa-camera"
             
     .items_caution.photos_caution 画像がありません
@@ -32,13 +32,13 @@
       .items_form_style
         %label 商品名
         %p.items_mandatory_fields 必須
-      = f.text_field :name, class: "items_form_input items_form_name_input", placeholder: "４０文字まで", maxlength: "40", required: true
+      = f.text_field :name, class: "items_form_input items_form_name_input input_form", placeholder: "４０文字まで", maxlength: "40", required: true
       .items_caution.name_caution 入力してください
     .items_detail
       .items_form_style
         %label 商品の説明
         %p.items_mandatory_fields 必須
-      = f.text_area :detail, class: "items_form_text_area detail_text_area", 
+      = f.text_area :detail, class: "items_form_text_area detail_text_area input_form", 
         placeholder: "商品の説明(1000文字以内)\r\n(色、素材、重さ、定価、注意点...)\r\n例)2010年ごろに１万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", 
         maxlength: "1000", cols: "40", required: true
       .notice_text
@@ -53,19 +53,19 @@
         %p.items_mandatory_fields 必須
       - if @item.persisted?
         .category_form#category_base
-          = f.select :category_id, options_for_select(@categories, selected: @category.id), { include_blank: "選択してください"}, class: "category_list", required: true
+          = f.select :category_id, options_for_select(@categories, selected: @category.id), { include_blank: "選択してください"}, class: "category_list input_form", required: true
         - if @child_category.present?
           .category_form
-            = f.select :category_id, options_for_select(@child_categories.map{ |c| [ c[0], c[1] ] }, selected: @child_category.id), { include_blank: "選択してください"}, class: "category_list", required: true
+            = f.select :category_id, options_for_select(@child_categories.map{ |c| [ c[0], c[1] ] }, selected: @child_category.id), { include_blank: "選択してください"}, class: "category_list input_form", required: true
         - else
           .category_form
-            = f.select :category_id, options_for_select(@child_categories.map{ |c| [ c[0], c[1] ] }), { include_blank: "選択してください"}, class: "category_list", required: true
+            = f.select :category_id, options_for_select(@child_categories.map{ |c| [ c[0], c[1] ] }), { include_blank: "選択してください"}, class: "category_list input_form", required: true
         - if @grandchild_category.present?
           .category_form
-            = f.select :category_id, options_for_select(@grandchild_categories.map{ |g| [ g[0], g[1] ] }, selected: @grandchild_category.id), { include_blank: "選択してください"}, class: "category_list", required: true
+            = f.select :category_id, options_for_select(@grandchild_categories.map{ |g| [ g[0], g[1] ] }, selected: @grandchild_category.id), { include_blank: "選択してください"}, class: "category_list input_form", required: true
       - else
         .category_form#category_base
-          = f.select :category_id, options_for_select(@categories), { include_blank: "選択してください" }, class: "category_list", required: true
+          = f.select :category_id, options_for_select(@categories), { include_blank: "選択してください" }, class: "category_list input_form", required: true
       .items_caution#category_caution 選択してください
     .items_brand
       .items_form_style
@@ -77,7 +77,7 @@
       .items_form_style
         %label 商品の状態
         %p.items_mandatory_fields 必須
-      = f.select :status, Item.localed_statuses, { include_blank: "選択してください" }, class: "status_select", required: true
+      = f.select :status, Item.localed_statuses, { include_blank: "選択してください" }, class: "status_select input_form", required: true
       .items_caution#brand_caution 選択してください
 
   .items_form.items_form_post
@@ -86,25 +86,25 @@
       .items_form_style
         %label 配送料の負担
         %p.items_mandatory_fields 必須
-      = f.select :pay_side, Item.localed_pay_sides, { include_blank: "選択してください" }, class: "pay_side_select", required: true
+      = f.select :pay_side, Item.localed_pay_sides, { include_blank: "選択してください" }, class: "pay_side_select input_form", required: true
       .items_caution.pay_side_caution 選択してください
     .items_post.items_post_way
       .items_form_style
         %label 配送の方法
         %p.items_mandatory_fields 必須
-      = f.collection_select :post_way_id, PostWay.all, :id, :name,{ autofocus: true, include_blank: "選択してください"}, { class: "post_way_setlect", required: true}
+      = f.collection_select :post_way_id, PostWay.all, :id, :name,{ autofocus: true, include_blank: "選択してください"}, { class: "post_way_setlect input_form", required: true}
       .items_caution.post_way_caution 選択してください
     .items_post.items_post_prefecture
       .items_form_style
         %label 発送元の地域
         %p.items_mandatory_fields 必須
-      = f.collection_select :prefecture_id, Prefecture.all, :id, :name,{ autofocus: true, include_blank: "選択してください"}, { class: "post_way_setlect", required: true}
+      = f.collection_select :prefecture_id, Prefecture.all, :id, :name,{ autofocus: true, include_blank: "選択してください"}, { class: "post_way_setlect input_form", required: true}
       .items_caution#prefecture_caution 選択してください
     .items_post.items_post_date
       .items_form_style
         %label 発送までの日数
         %p.items_mandatory_fields 必須
-      = f.select :post_date, Item.localed_post_dates, { include_blank: "選択してください" }, class: "post_date_select", required: true
+      = f.select :post_date, Item.localed_post_dates, { include_blank: "選択してください" }, class: "post_date_select input_form", required: true
       .items_caution#post_date_caution 選択してください
 
   .items_form_price
@@ -117,7 +117,7 @@
         %label 販売価格
         %p.items_mandatory_fields 必須
         %p{ class: "¥mark" } ¥
-        = f.number_field :price, class: "price_input", min: "300", max: "9999999", placeholder: "0", required: true
+        = f.number_field :price, class: "price_input input_form", min: "300", max: "9999999", placeholder: "0", required: true
       .items_caution#input_price_caution 入力してください
     .price_display.display_fee
       %div 販売手数料(10%)
@@ -138,7 +138,7 @@
     - else
       .items_form_btn.item_draft_btn
         %button{type: "submit", id: "draft_btn"} 下書き保存
-        = f.hidden_field :situation, value: 3, id: "hidden_situation"
+        = f.hidden_field :situation, value: exhibition, id: "hidden_situation"
       .item_back_btn
         = link_to "もどる", root_path
   .items_form_notice
