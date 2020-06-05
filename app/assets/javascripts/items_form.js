@@ -43,28 +43,19 @@ $(function () {
 
     //fileIndexという配列を作成し、これを用いて番号を割り当てていく。
     let fileIndex = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    //ページ読み込み時に選択しているファイルの最後に割り当てられた番号を取得し、
-    //配列の０番目から最後の番号までを取り除く
-    //ex)lastIndex= 5 → fileIndex.splice(0, 5) → fileIndex=[7, 8, 9, 10]
     let lastIndex = $(".input_photo_field:last").data("index");
     fileIndex.splice(0, lastIndex);
     if (fileIndex.length < 1) fileIndex.push(lastIndex + 1);
     while (fileIndex.length <= 10) {
         fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
     }
-    //編集用の削除機能をつけた要素のクラスを隠す。
     $(".hidden_destroy").hide();
 
     //ファイル選択時新しいpreview, file_fieldを生成
     $("#input_photos_field").on("change", ".input_photo_file", function (e) {
-        //選択されたファイルの番号を取得
         const targetIndex = $(this).parent().data("index");
-        //選択されたファイルのFileオブジェクトを取得
         const file = e.target.files[0];
-        //url形式に変換
         const blobUrl = window.URL.createObjectURL(file);
-        //選択されたファイル番号と同じ番号のpreviewがないかで条件分岐
-        //同じ番号のものがあれば、imgタグのurlを差し替える。
         if (searchPreview = $(".input_photo_preview").filter(`[data-index= "${targetIndex}"]`)[0]) {
             const img = $(searchPreview).children("img")[0]
             img.setAttribute('src', blobUrl);
@@ -74,20 +65,11 @@ $(function () {
             $("#input_photos_field").append(buildPhotoPreview(targetIndex, blobUrl));
             $("#input_photos_field").append(buildFileField(fileIndex[0]));
             const countPreview = $(".input_photo_preview").length;
-
-            console.log("処理前")
-            console.log(fileIndex)
-            console.log(countPreview.length)
-            // if (fileIndex.length countPreview.length)
             fileIndex.shift();
             fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
             $(".input_photo_field").last().show();
-
-            console.log("処理あと")
-            console.log(fileIndex)
-            console.log(countPreview.length)
             //画像が10枚登録されればfile_fieldを隠す。一枚以上登録されれば、pタグの文字を消して登録が通るように
-            if (countPreview >= 10) reloadWindowPhotosField();
+            if (countPreview >= 10) showOnlyOneFileField();
             if (countPreview >= 1) {
                 hideCautionMessage($(".items_form_photos"));
                 $(".photos_input_text").html(``);
@@ -268,7 +250,7 @@ $(function () {
     });
 
     //file_fieldが1つになるように
-    function reloadWindowPhotosField() {
+    function showOnlyOneFileField() {
 
         existFileField = $(".input_photo_field").length
         while (existFileField > 11) {
@@ -284,11 +266,11 @@ $(function () {
     $(window).on("load", function () {
 
         if ($(".items_form").length != 0) {
-            if ($(".input_photo_field").length > 10) reloadWindowPhotosField();
+            if ($(".input_photo_field").length > 10) showOnlyOneFileField();
             if ($(".input_photo_preview").length > 0 && $(".input_photo_field").length > 1)
                 $(".input_photo_file").attr("required", false);
             if ($("#item_pay_side").val().length > 0) $(".items_post_way").show();
-            reloadWindowPhotosField();
+            showOnlyOneFileField();
             if ($("#item_price").val() > 0) inputPricePreview($("#item_price")[0]);
         }
     });
