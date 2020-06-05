@@ -60,7 +60,6 @@ $(function () {
             const img = $(searchPreview).children("img")[0]
             img.setAttribute('src', blobUrl);
         } else {
-            //
             $(".input_photo_field").hide();
             $("#input_photos_field").append(buildPhotoPreview(targetIndex, blobUrl));
             $("#input_photos_field").append(buildFileField(fileIndex[0]));
