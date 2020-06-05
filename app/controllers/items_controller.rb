@@ -15,13 +15,18 @@ class ItemsController < ApplicationController
   end
 
   def create
-    if item_params[:images_attributes].present?
-      @item = Item.new(item_params)
-      if@item.images.length <= 10
-        if @item.save
-          brands = Brand.find_or_create_by(name: params[:item][:brand])
-          @item.update!(brand_id: brands.id)
-          redirect_to root_path
+    unless item_params[:situation] == 3
+    binding.pry
+      if item_params[:images_attributes].present?
+        @item = Item.new(item_params)
+        if@item.images.length <= 10
+          if @item.save
+            brands = Brand.find_or_create_by(name: params[:item][:brand])
+            @item.update!(brand_id: brands.id)
+            redirect_to root_path
+          else
+            redirect_to new_item_path
+          end
         else
           redirect_to new_item_path
         end
@@ -29,7 +34,6 @@ class ItemsController < ApplicationController
         redirect_to new_item_path
       end
     else
-      redirect_to new_item_path
     end
   end
 
@@ -76,7 +80,7 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item)
-          .permit(:id, :name, :detail, :price, :status, :pay_side, :post_date, :category_id, :prefecture_id, :post_way_id, images_attributes: [:id, :image, :item_id, :_destroy])
+          .permit(:id, :name, :detail, :price, :status, :pay_side, :post_date, :category_id, :prefecture_id, :post_way_id, :situation, images_attributes: [:id, :image, :item_id, :_destroy])
           .merge(user_id: current_user.id)
   end
 
