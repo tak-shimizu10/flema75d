@@ -41,20 +41,17 @@ $(function () {
         const targetIndex = $(this).parent().data("index");
         const file = e.target.files[0];
         const blobUrl = window.URL.createObjectURL(file);
-        if (img = $(`img[data-index= "${targetIndex}"]`)[0]) {
-            img.setAttribute("src", blobUrl);
+
+        if (searchPreview = $(".input_photo_preview").filter(`[data-index= "${targetIndex}"]`)[0]) {
+            const img = $(searchPreview).children("img")[0]
+            img.setAttribute('src', blobUrl);
         } else {
             $(".input_photo_field").hide();
-            const searchPreview = $(".input_photo_preview").filter(`[data-index= "${targetIndex}"]`)[0];
-            if (searchPreview) {
-                $(searchPreview).replaceWith(buildPhotoPreview(targetIndex, blobUrl));
-            } else {
-                $("#input_photos_field").append(buildPhotoPreview(targetIndex, blobUrl));
-            };
+            $("#input_photos_field").append(buildPhotoPreview(targetIndex, blobUrl));
             $("#input_photos_field").append(buildFileField(fileIndex[0]));
-
             fileIndex.shift();
             fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+            }
             $(".input_photo_field").last().show();
             const countPreview = $(".input_photo_preview").length;
 
@@ -65,7 +62,7 @@ $(function () {
                 $(".photos_input_text").html(``);
                 $(".input_photo_file").attr("required", false);
             }
-        }
+        
     });
     
     //削除ボタンクリックで選択されたpreviewとfilefieldの削除
@@ -77,7 +74,6 @@ $(function () {
         const lastFileField = $(".input_photo_field").last();
         $(this).parent().remove();
         $(`label[data-index= "${targetIndex}"]`).remove();
-
         if (countPreview == 0) {
             showCautionMessage($(".items_form_photos"))
             $(".photos_input_text").html(`クリックしてファイルをアップロード`)
@@ -89,6 +85,14 @@ $(function () {
             $(".input_photo_file").attr("required", false);
         }
         if (hiddenCheckbox) $(hiddenCheckbox).prop("checked", true);
+        if (fileIndex.length < 10) {
+            if (fileIndex.length > 0) {
+                fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+            } else {
+                fileIndex.push(lastIndex + 1);
+            }
+        }
+        if ($(".input_photo_field").length == 0) $("#input_photos_field").append(buildFileField(fileIndex[0]));
     });
 
     //商品説明の文字数表示
