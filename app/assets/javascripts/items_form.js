@@ -1,5 +1,6 @@
 $(function () {
     //プレビュー生成の関数
+    //引数で番号と画像のURLを取得し、カスタムデータインデックス(data-index="${index}")を用いて番号を割り当てる。
     const buildPhotoPreview = (index, url) => {
         const html =
             `<div data-index= "${index}" class= "input_photo_preview">
@@ -10,6 +11,11 @@ $(function () {
         return html;
     }
     //file_field生成の関数
+    //引数で番号を取得し割り当てる
+    //nameやidはネストしたモデルに対して保存するために必要な記述
+    //name="item[images_attributes][${index}][image]" → item.images[番号].imageを表す。
+    //idも同様 photo_file_${index}は識別を容易にするためにidを与えた。
+    //labelのdata-index="${index}"のindexに割り当てられた番号を元に情報を取得するため与えている。
     const buildFileField = (index) => {
 
         const html =
@@ -24,6 +30,10 @@ $(function () {
     }
 
     //エラーメッセージの表示・非表示の関数宣言
+    //引数で与えられたクラスの中からclass="items_caution"を検索 
+    //show()がcssにdisplay: block; を付与
+    //hide()がcssにdisplay: none; を付与
+    //検証画面で確認してもらうと付与されているのが確認できます。
     function showCautionMessage(scopeClass) {
         scopeClass.find(".items_caution").show();
     }
@@ -31,33 +41,51 @@ $(function () {
         scopeClass.find(".items_caution").hide();
     }
 
+    //fileIndexという配列を作成し、これを用いて番号を割り当てていく。
     let fileIndex = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    lastIndex = $(".input_photo_field:last").data("index");
+    //ページ読み込み時に選択しているファイルの最後に割り当てられた番号を取得し、
+    //配列の０番目から最後の番号までを取り除く
+    //ex)lastIndex= 5 → fileIndex.splice(0, 5) → fileIndex=[7, 8, 9, 10]
+    let lastIndex = $(".input_photo_field:last").data("index");
     fileIndex.splice(0, lastIndex);
+    if (fileIndex.length < 1) fileIndex.push(lastIndex + 1);
+    while (fileIndex.length <= 10) {
+        fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+    }
+    //編集用の削除機能をつけた要素のクラスを隠す。
     $(".hidden_destroy").hide();
 
     //ファイル選択時新しいpreview, file_fieldを生成
     $("#input_photos_field").on("change", ".input_photo_file", function (e) {
+        //選択されたファイルの番号を取得
         const targetIndex = $(this).parent().data("index");
+        //選択されたファイルのFileオブジェクトを取得
         const file = e.target.files[0];
+        //url形式に変換
         const blobUrl = window.URL.createObjectURL(file);
-        if (img = $(`img[data-index= "${targetIndex}"]`)[0]) {
-            img.setAttribute("src", blobUrl);
+        //選択されたファイル番号と同じ番号のpreviewがないかで条件分岐
+        //同じ番号のものがあれば、imgタグのurlを差し替える。
+        if (searchPreview = $(".input_photo_preview").filter(`[data-index= "${targetIndex}"]`)[0]) {
+            const img = $(searchPreview).children("img")[0]
+            img.setAttribute('src', blobUrl);
         } else {
+            //
             $(".input_photo_field").hide();
-            const searchPreview = $(".input_photo_preview").filter(`[data-index= "${targetIndex}"]`)[0];
-            if (searchPreview) {
-                $(searchPreview).replaceWith(buildPhotoPreview(targetIndex, blobUrl));
-            } else {
-                $("#input_photos_field").append(buildPhotoPreview(targetIndex, blobUrl));
-            };
+            $("#input_photos_field").append(buildPhotoPreview(targetIndex, blobUrl));
             $("#input_photos_field").append(buildFileField(fileIndex[0]));
+            const countPreview = $(".input_photo_preview").length;
 
+            console.log("処理前")
+            console.log(fileIndex)
+            console.log(countPreview.length)
+            // if (fileIndex.length countPreview.length)
             fileIndex.shift();
             fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
             $(".input_photo_field").last().show();
-            const countPreview = $(".input_photo_preview").length;
 
+            console.log("処理あと")
+            console.log(fileIndex)
+            console.log(countPreview.length)
             //画像が10枚登録されればfile_fieldを隠す。一枚以上登録されれば、pタグの文字を消して登録が通るように
             if (countPreview >= 10) reloadWindowPhotosField();
             if (countPreview >= 1) {
@@ -273,7 +301,7 @@ $(function () {
         moveSelectCategory($(this).data("index"))
     })
     //プレビュー編集ボタンをクリックしたとき、相対するFileFieldのクリックを実行
-    $(".input_photo_preview").on("click", ".input_photo_edit", function () {
+    $("#input_photos_field").on("click", ".input_photo_edit", function () {
         const targetIndex = $(this).parent().data("index");
         const targetFileField = $(".input_photo_field").filter(`[data-index= "${targetIndex}"]`)[0];
         $(targetFileField).click();
