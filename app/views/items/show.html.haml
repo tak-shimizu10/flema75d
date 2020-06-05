@@ -53,7 +53,7 @@
             %th ブランド
             %td
               = link_to "#" do
-                = @item.brand.name
+                = @item.brand&.name
           %tr
             %th 商品の状態
             %td

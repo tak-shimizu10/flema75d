@@ -72,7 +72,7 @@
         %label ブランド
         %p.items_option_fields 任意
       %div
-        = f.text_field :brand, value: "#{@brand&.name}", class: "items_form_input brand_input", placeholder: "例）シャネル"
+        = f.text_field :brand, value: @item.brand&.name, class: "items_form_input brand_input", placeholder: "例）シャネル"
     .items_status
       .items_form_style
         %label 商品の状態
