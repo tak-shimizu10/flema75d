@@ -177,16 +177,23 @@ $(function () {
     
 
     //ドラッグ＆ドロップ操作しても画面が切り替わらないように(stopPropagation()がページ遷移を止める関数)
+    //ドラッグしたものが指定したエリアの上部に来た時実行
     $(".photos_input").on("dragover", "#input_photos_field", function (e) {
         e.stopPropagation();
         e.preventDefault();
+        //id="input_photos_field"にclass="hover_photo_file"を付与
+        //class="hover_photo_file"にcssを当てているため
+        //JavaScript上でcssの記述しないで済むようにクラスの付与削除で色付けを行っている。
         $(this).addClass("hover_photo_file");
     });
+    //ドラッグしたものが指定したエリアの上部から離れた時実行
     $(".photos_input").on("dragleave", "#input_photos_field", function (e) {
         e.stopPropagation();
         e.preventDefault();
+        //id="input_photos_field"のclass="hover_photo_file"を削除
         $(this).removeClass("hover_photo_file");
     });
+    //documentを指定することでページ全てに対して実行
     $(document).on("dragover drop", function (e) {
         e.stopPropagation();
         e.preventDefault();
