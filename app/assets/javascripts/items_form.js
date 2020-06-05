@@ -280,13 +280,21 @@ $(function () {
     });
     //ユーザー登録郵便番号の入力欄
     //
-    function inputOnlyNumber(e) {
+    function inputLimitNumber(e) {
         let string = String.fromCharCode(e.which);
         if ("0123456789-".indexOf(string, 0) < 0) return false;
         return true;
     };
-    $(".field-input").on("keypress", "#address_zipcode", function (e) {
+    function inputOnlyNumber(e) {
+        let string = String.fromCharCode(e.which);
+        if ("0123456789".indexOf(string, 0) < 0) return false;
+        return true;
+    };
+    $(".field-input").on("keypress", "#user_phone_number", function (e) {
         return inputOnlyNumber(e);
+    })
+    $(".field-input").on("keypress", "#address_zipcode", function (e) {
+        return inputLimitNumber(e);
     });
     function insertHyphen(input) {
         return input.slice(0, 3) + "-" + input.slice(3, input.length);
@@ -297,11 +305,9 @@ $(function () {
         if (key == 8 || key == 46) return false;
         if (input.length === 3) $(this).val(insertHyphen(input));
     });
-    $(".field-input").on("focusout", "#address_zipcode", function () {
+    $(".field-input").on("blur", "#address_zipcode", function () {
         let input = $(this).val();
-        if (input.length >= 3 && input.substr(3, 1 !== "-")) {
-            $(this).val(insertHyphen(input));
-        };
+        if (input.length >= 3 && input.substr(3, 1) != "-") $(this).val(insertHyphen(input));;
     });
     //マイページスクロール用
     $(".account_show").on("click", ".link_page", function () {
@@ -309,5 +315,5 @@ $(function () {
             top: 200,
             behavior: "smooth"
         });
-    })
+    });
 });

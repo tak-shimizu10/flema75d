@@ -25,7 +25,8 @@
   }
 }
 @media screen and (min-width: 767px){
-  .body{
+  .account_show {
+    .body {
     margin: 40px auto;
     padding: 0 0 40px;
     width:   100%;
@@ -54,9 +55,33 @@
       }
     }
   }
+  .purchase{
+    &__btn{
+      width: 120px;
+      background: #3CCACE;
+      text-align: center;
+      border-radius: 4%;
+      right: 32px;
+      position: fixed;
+      padding: 15px;
+      .text{
+        color: #fff;
+        display: block;
+        font-size: 18px;
+        text-decoration: none;
+        margin-bottom: 5px;
+      }
+      .image{
+        width: 60%;
+        vertical-align: bottom;
+      }
+    }
+  }
+  }
 }
 @media screen and (max-width: 766px){
-  .account_show .body {
+  .account_show {
+  .body {
       display: grid;
       grid-template:
       "..... ..... ....."
@@ -89,6 +114,31 @@
       }
     }
   }
+  .purchase {
+      &__btn {
+        background: #3ccace;
+        white-space:   nowrap;
+        text-align:    center;
+        border-radius: 4%;
+        position:   fixed;
+        right:  20px;
+        bottom: 20px;
+        width:  80px;
+        z-index: 3;
+        .text {
+          text-decoration:  none;
+          margin-bottom:     5px;
+          font-size:         9px;
+          color:          #fff;
+          display:         block;
+        }
+        .image {
+          vertical-align: bottom;
+          width:            60px;
+        }
+      }
+    }
+ }
 }
 
 .account_show{
@@ -294,28 +344,5 @@
         }
       }
     }    
-  }
-  .purchase{
-    &__btn{
-      width: 120px;
-      background: #3CCACE;
-      text-align: center;
-      border-radius: 4%;
-      bottom: 32px;
-      right: 32px;
-      position: fixed;
-      padding: 15px;
-      .text{
-        color: #fff;
-        display: block;
-        font-size: 18px;
-        text-decoration: none;
-        margin-bottom: 5px;
-      }
-      .image{
-        width: 60%;
-        vertical-align: bottom;
-      }
-    }
   }
 }
