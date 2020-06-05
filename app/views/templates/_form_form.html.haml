@@ -138,9 +138,9 @@
     - else
       .items_form_btn.item_draft_btn
         %button{type: "submit", id: "draft_btn"} 下書き保存
-        = f.hidden_field :situation, value: exhibition, id: "hidden_situation"
       .item_back_btn
         = link_to "もどる", root_path
+      = f.hidden_field :situation, value: "exhibition", id: "hidden_situation"
   .items_form_notice
     %p.notice_text 
       禁止されている"行為"および"出品物"を必ずご確認ください。

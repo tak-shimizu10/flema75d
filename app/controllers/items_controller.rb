@@ -15,11 +15,13 @@ class ItemsController < ApplicationController
   end
 
   def create
-    unless item_params[:situation] == 3
-    binding.pry
+    if item_params[:situation] == 3 && @item.save
+      redirect_to root_path
+    else
       if item_params[:images_attributes].present?
         @item = Item.new(item_params)
         if@item.images.length <= 10
+          binding.pry
           if @item.save
             brands = Brand.find_or_create_by(name: params[:item][:brand])
             @item.update!(brand_id: brands.id)
@@ -33,7 +35,7 @@ class ItemsController < ApplicationController
       else
         redirect_to new_item_path
       end
-    else
+    
     end
   end
 
