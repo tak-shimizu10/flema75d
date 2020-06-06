@@ -68,6 +68,15 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    @items = Item.all.order("created_at DESC")
+    @items = Item.search(params[:keyword])
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
   private
 
   def parent_category

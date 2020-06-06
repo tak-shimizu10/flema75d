@@ -1,0 +1,44 @@
+= render partial: 'templates/header'
+.mains_index__body
+  .look
+    .search-result
+      .side_bar
+        .side_bar__top
+          .form_group
+            並び替え
+        .side_bar__bottom
+          %h3 詳細検索
+          .form-group
+            %label
+              .icon
+                @
+              .name
+                キーワードを追加する
+            %input.input-default(placeholder="例）値下げ")
+          .form-group
+            %label
+              .icon
+                @
+              .name
+                カテゴリーを選択する
+            %input.input-default(placeholder="全て")
+          .form-group
+            %label
+              .icon
+                @
+              .name
+                ブランド名から探す
+            %input.input-default(placeholder="例）シャネル")
+      .main
+        %h2 検索結果
+        %ul.items
+          - @items.each do |item|
+            %li.item
+              = link_to item_path(item.id),class:"item_link" do
+                .item_box
+                  = image_tag item.images.first.image.url,class:"item_image"
+                  .item_price= number_to_currency(item.price,format: "%u%n",unit:"¥",precision: 0)
+                .item_info
+                  %h3="#{item.name}"
+
+= render partial: 'templates/footer'
