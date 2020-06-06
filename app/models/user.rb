@@ -20,11 +20,12 @@ class User < ApplicationRecord
   validates :first_kana, :last_kana, presence: true,
             # カナのみ可
             format: { with: /\A([ァ-ン]|ー)+\z/, message: "全角カナで入力してください" }
-
+  
   has_one :address, dependent: :destroy
   has_many :cards, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :items, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :like_items, through: :likes, source: :item
+  has_many :evaluates, dependent: :destroy
 end

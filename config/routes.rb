@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     post "addresses", to: "users/registrations#create_address"
   end
 
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    resources :evaluates
+  end
 
   # 購入確認ページに飛ぶ
   resources :items do

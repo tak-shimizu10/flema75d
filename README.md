@@ -23,6 +23,7 @@
 - has_many :likes, dependent: :destroy
 - has_many :addresses, dependent: :destroy
 - has_many :cards, dependent: :destroy
+- has_many :evaluates, dependent: :destroy
 
 ## Address テーブル
 
@@ -129,6 +130,18 @@
 | customer_id | string  | null: false              |
 | card_id     | string  | null: false, unique:true |
 | user_id     | integer | foreign_key:true         |
+
+### Association
+
+- belongs_to :user
+
+## Evaluats テーブル
+
+| Column      | Type    | Options     |
+| ----------- | ------- | ----------- |
+| evaluate_id | integer | null: false |
+| user_id     | integer | null: false |
+| rate        | integer | null: false |
 
 ### Association
 

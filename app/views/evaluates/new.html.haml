@@ -1,0 +1,21 @@
+= form_with(model: [@user, @evaluate], local: true) do |f|
+  .evaluate_box
+    .evaluate_box__radio_btn
+      .good
+        = f.radio_button  :rate, "good", class: "rate_btn", id: "rate_good"
+        .label_btn
+          = f.label :rate_good, "good", class: "text"
+          %i.far.fa-smile-beam
+      .normal
+        = f.radio_button  :rate, "normal", class: "rate_btn", id: "rate_normal"
+        .label_btn
+          = f.label :rate_normal, "normal"
+          %i.far.fa-meh
+      .bad
+        = f.radio_button  :rate, "bad", class: "rate_btn", id: "rate_bad"
+        .label_btn
+          = f.label :rate_bad, "bad"
+          %i.far.fa-dizzy
+    .evalutate_submit_btn
+      .submit_box
+        = f.submit "評価する"
