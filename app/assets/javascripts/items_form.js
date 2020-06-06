@@ -278,27 +278,21 @@ $(function () {
         const targetFileField = $(".input_photo_field").filter(`[data-index= "${targetIndex}"]`)[0];
         $(targetFileField).click();
     });
-    //ユーザー登録郵便番号の入力欄
-    //
-    function inputLimitNumber(e) {
-        let string = String.fromCharCode(e.which);
-        if ("0123456789-".indexOf(string, 0) < 0) return false;
-        return true;
-    };
-    function inputOnlyNumber(e) {
+    //電話番号入力
+    $(".field-input").on("keypress", "#user_phone_number", function (e) {
         let string = String.fromCharCode(e.which);
         if ("0123456789".indexOf(string, 0) < 0) return false;
         return true;
-    };
-    $(".field-input").on("keypress", "#user_phone_number", function (e) {
-        return inputOnlyNumber(e);
-    })
-    $(".field-input").on("keypress", "#address_zipcode", function (e) {
-        return inputLimitNumber(e);
     });
+    //ユーザー登録郵便番号の入力欄
     function insertHyphen(input) {
         return input.slice(0, 3) + "-" + input.slice(3, input.length);
     };
+    $(".field-input").on("keypress", "#address_zipcode", function (e) {
+        let string = String.fromCharCode(e.which);
+        if ("0123456789-".indexOf(string, 0) < 0) return false;
+        return true;
+    });
     $(".field-input").on("keyup", "#address_zipcode", function () {
         let input = $(this).val();
         let key = event.keyCode || event.charCode;
