@@ -23,6 +23,8 @@ class User < ApplicationRecord
   has_many :items, dependent: :destroy
   has_many :cards, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :like_items, through: :likes, source: :item
   has_many :sns_credentials, dependent: :destroy
 
   def self.from_omniauth(auth)

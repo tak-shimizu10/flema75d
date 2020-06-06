@@ -10,17 +10,18 @@
           - @item.images.each_with_index do |image, i|
             .input_photo_preview{data: {index: "#{i}"}}
               = image_tag image.image.url
+              %span.input_photo_edit 変更
               %span.input_photo_remove 削除
             -break if i == 10
         = f.fields_for :images do |image|
-          %label.input_photo_field{data: {index: "#{image.index}"}, accept: ".jpeg .jpg .png"}
+          %label.input_photo_field.input_file_base{data: {index: "#{image.index}"}, accept: ".jpeg .jpg .png"}
             = image.file_field :image, class: "input_photo_file", id: "photo_file_#{image.index}", required: true
             = image_tag "icon/icon_camera.png", class: "fas fa-camera"
             %p.photos_input_text クリックしてファイルをアップロード
           - if @item.persisted?
             = image.check_box :_destroy, data: {index: image.index}, class: "hidden_destroy"
         -if @item.persisted?
-          %label.input_photo_field{data: { index: "#{@item.images.count}" }, accept: ".jpeg .jpg .png"}
+          %label.input_photo_field.input_file_add{data: { index: "#{@item.images.count}" }, accept: ".jpeg .jpg .png"}
             = file_field_tag :image, name: "item[images_attributes][#{@item.images.count}][image]", class: "input_photo_file"
             = image_tag "icon/icon_camera.png", class: "fas fa-camera"
             
@@ -53,13 +54,14 @@
       - if @item.persisted?
         .category_form#category_base
           = f.select :category_id, options_for_select(@categories, selected: @category.id), { include_blank: "選択してください"}, class: "category_list", required: true
-        .category_form
-          - if @child_category.present?
+        - if @child_category.present?
+          .category_form
             = f.select :category_id, options_for_select(@child_categories.map{ |c| [ c[0], c[1] ] }, selected: @child_category.id), { include_blank: "選択してください"}, class: "category_list", required: true
-          - else
+        - else
+          .category_form
             = f.select :category_id, options_for_select(@child_categories.map{ |c| [ c[0], c[1] ] }), { include_blank: "選択してください"}, class: "category_list", required: true
-        .category_form
-          - if @grandchild_category.present?
+        - if @grandchild_category.present?
+          .category_form
             = f.select :category_id, options_for_select(@grandchild_categories.map{ |g| [ g[0], g[1] ] }, selected: @grandchild_category.id), { include_blank: "選択してください"}, class: "category_list", required: true
       - else
         .category_form#category_base
@@ -127,7 +129,7 @@
   .items_form.items_form_submit
     .items_form_btn.items_form_submit_btn
       - if @item.persisted?
-        %button{type: "submit", class: "items_btn_submit item_submit"} 編集する
+        %button{type: "submit", class: "items_btn_submit item_submit"} 変更する
       - else
         %button{type: "submit", class: "items_btn_submit item_submit"} 出品する
     - if @item.persisted?

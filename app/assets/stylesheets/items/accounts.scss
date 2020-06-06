@@ -8,18 +8,22 @@
 
 @mixin li_style{
   border-top: 1px solid #eee;
+  background-color: #fff;  
   height: 48px;
   width: 280px;
-  background-color: #fff;
-  padding: 16px;
-  
   p{
     font-size: 14px;
   }
   .link_page{
-
     text-decoration: none;
+    line-height:     48px;
+    padding: 0 0 0 30px;
     color: black;
+    display: block;
+    &:hover{
+      background-color: whitesmoke;
+      opacity: 0.8;
+    }
   }
 }
 .account_show{
