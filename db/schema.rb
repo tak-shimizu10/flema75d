@@ -55,12 +55,12 @@ ActiveRecord::Schema.define(version: 2020_06_05_232227) do
   end
 
   create_table "evaluates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "evaluate_user_id", null: false
     t.integer "user_id", null: false
+    t.integer "item_id", null: false
     t.integer "rate", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id", "evaluate_user_id"], name: "index_evaluates_on_user_id_and_evaluate_user_id", unique: true
+    t.index ["user_id", "item_id"], name: "index_evaluates_on_user_id_and_item_id", unique: true
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

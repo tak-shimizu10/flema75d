@@ -8,15 +8,14 @@ Rails.application.routes.draw do
     post "addresses", to: "users/registrations#create_address"
   end
 
-  resources :users, only: [:show] do
-    resources :evaluates
-  end
+  resources :users, only: [:show]
 
   # 購入確認ページに飛ぶ
   resources :items do
     resources :buys, only: [:new, :create]
     resources :comments, only: [:create]
     resource :likes, only: [:create, :destroy]
+    resource :evaluates, only: [:new, :create, :destroy]
   end
 
   # カテゴリ機能に使用
