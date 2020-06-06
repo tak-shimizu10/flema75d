@@ -2,7 +2,6 @@ class EvaluatesController < ApplicationController
   before_action :set_item, only: [:new, :create, :destroy]
 
   def new
-    @item = Item.find(params[:item_id])
     if @item.user[:id] != current_user.id && @item.evaluates.blank? && @item.buyer_id == current_user.id
       @evaluate = Evaluate.new
     else
