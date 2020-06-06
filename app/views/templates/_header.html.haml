@@ -5,11 +5,11 @@
         = link_to "/", class: "top_logo"  do
           = image_tag src="logo/logo.png",class:"top_logo__img"
       .contents__top__right
-        = form_for "#" do |f|
-          = f.text_field :search,placeholder:"キーワードから探す",class:"search_box"
-          %button
-            .search_btn
-              = image_tag src="icon/icon-search 1.png",class:"search_icon"
+        = form_with(url: search_items_path, local: true, method: :get, class: "search-form") do |f|
+          = f.text_field :keyword, placeholder: "キーワードから探す", class: "search_box"
+          %label
+            = image_tag src="icon/icon-search 1.png",class:"search_icon"
+            = f.submit "検索", class: "search-btn"
     .contents__bottom
       .header-bottom-left
         .header-bottom-left-category
