@@ -28,6 +28,7 @@ Rails.application.routes.draw do
         get "logout"
         get "mylike"
         get "exhibition"
+        get "purchased"
       end
     end
   end

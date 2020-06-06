@@ -2,7 +2,7 @@
   .evaluate_box
     .evaluate_box__radio_btn
       .good
-        = f.radio_button  :rate, "good", class: "rate_btn", id: "rate_good"
+        = f.radio_button  :rate, "good", class: "rate_btn", id: "rate_good", required: true
         .label_btn
           = f.label :rate_good, "good", class: "text"
           %i.far.fa-smile-beam
@@ -16,6 +16,8 @@
         .label_btn
           = f.label :rate_bad, "bad"
           %i.far.fa-dizzy
-    .evalutate_submit_btn
+    .evaluate_box__comment
+      = f.text_area :comment, maxlength: 1000, id: "rate_comment", required: true
+    .evaluate_box__submit_btn
       .submit_box
         = f.submit "評価する"

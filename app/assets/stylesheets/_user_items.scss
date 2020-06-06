@@ -1,5 +1,5 @@
 //共通部分
-.mylike,.exhibition_items {
+.mylike,.exhibition_items,.purchased_items {
     .lists {
         height:  100%;
         grid-template-columns: 100px;
@@ -123,7 +123,7 @@
     }
 }
 //出品一覧、
-.exhibition_items {
+.exhibition_items,.purchased_items {
     .lists__header {
         display: grid;
         grid-template:
@@ -168,8 +168,8 @@
                 border-top: 5px solid red;
             }
         }
-
     }
+    
     a,.item_link {
         .item_box {
             .item_info {
@@ -203,4 +203,44 @@
             }
         }
     }
+}
+.purchased_items .lists__header {
+        display: grid;
+        grid-template:
+        "..... ..... ..... ..... ....."10px
+        "..... title title title ....."
+        "..... ..... ..... ..... ....."10px
+        "..... list  list  list  ....."
+        "..... ..... ..... ..... ....."
+        /0 auto auto auto 0;
+    .purchased_header {
+        grid-area: title;
+    }
+    .item_purchased {
+        grid-area: list;
+    }
+    .item_purchased {
+        background-color: lightgray;
+        text-align: center;
+        font-size: 32px;
+        display: grid;
+        grid-template:
+        "..... ....."
+        "left  right"
+        "..... ....."/
+        1fr 1fr;
+        .purchased_transaction {
+            grid-area:  left;
+        }
+        .purchased_end {
+            grid-area: right;
+        }
+        p {
+            padding:     10px;
+        }
+        .selected {
+            background-color:   white;
+            border-top: 5px solid red;
+        }
+    }   
 }

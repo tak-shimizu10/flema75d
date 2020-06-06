@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2020_06_05_232227) do
     t.integer "user_id", null: false
     t.integer "item_id", null: false
     t.integer "rate", default: 0, null: false
+    t.string "comment", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "item_id"], name: "index_evaluates_on_user_id_and_item_id", unique: true
@@ -83,6 +84,7 @@ ActiveRecord::Schema.define(version: 2020_06_05_232227) do
     t.integer "category_id"
     t.integer "user_id"
     t.integer "situation", default: 0, null: false
+    t.integer "buyer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
