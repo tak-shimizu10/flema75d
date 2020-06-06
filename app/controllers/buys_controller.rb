@@ -30,7 +30,7 @@ class BuysController < ApplicationController
 
   # 商品の購入
   def create
-    if @item.user[:id] == current_user.id
+    if @item.user[:id] != current_user.id
       @customer_id = @user_cards.first[:customer_id]
 
       Payjp::Charge.create(
