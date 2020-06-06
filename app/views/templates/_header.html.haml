@@ -11,14 +11,10 @@
             = image_tag src="icon/icon-search 1.png",class:"search_icon"
             = f.submit "検索", class: "search-btn"
     .contents__bottom
-      .contents__bottom__left
-        .category_lists
-          %p{class:"category_name",id:"header_category_name"}= link_to "カテゴリー",  category_all_items_path
-          .category_fields
-            .categories_nav
-              - @categories.each do |category|
-                = link_to  category_all_items_path(category_id:category.id), class:"category_name", data:{category_id: "#{category.id}"} do
-                  %p= category.name
+      .header-bottom-left
+        .header-bottom-left-category
+          = link_to "カテゴリー", api_category_path(0) ,class:"category_name"
+          .header-bottom-left-category-field    
       - if user_signed_in?
         %ul.contents__bottom__right
           %li
@@ -29,6 +25,7 @@
           %li
             = link_to "ログイン", new_user_session_path
             = link_to "新規会員登録", new_user_registration_path
+  = breadcrumbs separator: " ＞ "
   .header_flash
     - if flash[:error]
       = flash[:error]

@@ -1,5 +1,6 @@
+- breadcrumb :mypage
+= render partial: 'templates/header', locals:{categories:@categories}
 .users_show{class:"account_show"}
-  = render partial: 'templates/header', locals:{categories:@categories}
   .body
     = render partial: 'templates/side_bar'
     .body__main

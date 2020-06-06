@@ -1,0 +1,29 @@
+
+.exhibition_items
+  %ul.lists
+    .lists__header
+      %h2.exhibition_header 出品した商品
+      .item_situation
+        %p.exhibition.selected 出品中
+        %p.transaction 取引中 
+        %p.purchase 売却済み
+    - if exhibition.present?
+      - exhibition.each do |item|
+        = link_to edit_item_path(item.id), class: "item_link" do
+          %li.item_box
+            .item_image= image_tag(item.images.first.image.url)
+            .item_name= item.name
+            .item_info
+              .item_liked
+                %i.far.fa-heart
+                %p.liked_count= item.likes.count
+              .item_comment
+                %i.far.fa-comment-alt
+                %p.comment_count= item.comments.count
+              .item_situation
+      = paginate exhibition, remote: true
+    - else
+      .item_link
+        .item_empty
+          .empty_img=image_tag "logo/no-text.png"
+          %p.empty_text 出品中の商品はありません。

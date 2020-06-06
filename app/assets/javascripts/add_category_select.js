@@ -25,22 +25,13 @@ $(function () {
         $(this).parent().nextAll('.category_form').remove()
 
         var category_id = $(this).val();
-        if (category_id === null) {
-            return true;
-        }
 
         $.ajax({
-            url: "/api/selects",
+            url: "/api/categories/" + category_id,
             type: "GET",
             dataType: "json",
             context: this,
-            cache: false,
-            data: {
-
-                // 選択されたカテゴリーのidを取得
-                // 表示は日本語だが、実際の値はidになる
-                category_id: category_id
-            }
+            cache: false
         })
             .done(function (data) {
 
@@ -67,7 +58,7 @@ $(function () {
             e.preventDefault();
 
             $.ajax({
-                url: "/api/selects",
+                url: "/api/categories/" + selectedValue,
                 type: "GET",
                 dataType: "json",
                 context: selectedChildCategory,

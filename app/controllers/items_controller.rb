@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   before_action :set_categories, only: [:new, :create, :edit, :update]
 
   def index
-    @items = Item.all.order("created_at DESC").limit(8)
+    @items = Item.all.limit(8)
   end
 
   def new
@@ -15,16 +15,15 @@ class ItemsController < ApplicationController
   end
 
   def create
-    if item_params[:images_attributes].present?
+    if item_params[:images_attributes].present? 
+      
       @item = Item.new(item_params)
-      if@item.images.length <= 10
-        if @item.save
-          brands = Brand.find_or_create_by(name: params[:item][:brand])
-          @item.update!(brand_id: brands.id)
-          redirect_to root_path
-        else
-          redirect_to new_item_path
-        end
+
+      brand = Brand.find_or_create_by(name:params[:item][:brand])
+      @item.brand_id = brand&.id
+
+      if @item.images.length <= 10 && @item.save
+        redirect_to root_path
       else
         redirect_to new_item_path
       end
@@ -34,7 +33,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @other_items = Item.where.not(id: params[:id])
+    @other_items = Item.where(user_id: @item.user_id).where.not(id: params[:id])
     @comment = Comment.new
     @comments = @item.comments.includes(:user)
   end
@@ -44,14 +43,17 @@ class ItemsController < ApplicationController
 
   def update
     if item_params[:images_attributes].present?
-      if @item.images.length <= 10
-        if @item.update(item_params)
-          brands = Brand.find_or_create_by(name: params[:item][:brand])
-          @item.update(brand_id: brands.id)
-          redirect_to item_path(@item)
-        else
-          render :edit
+
+      brand = Brand.find_or_create_by(name:params[:item][:brand])
+      brand_id = @item.brand&.id if brand.name.blank?
+      @item.brand_id = brand&.id
+        
+      if @item.images.length <= 10 && @item.update(item_params)
+        if brand_id.present?
+          brand = Brand.find(brand_id)
+          brand.destroy if brand.items.blank?
         end
+        redirect_to item_path(@item.id)
       else
         render :edit
       end
@@ -61,7 +63,12 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    brand_id = @item.brand&.id
     if @item.destroy
+      if brand_id.present?
+        brand = Brand.find(brand_id)
+        brand.destroy if brand.items.blank?
+      end
       redirect_to user_path(current_user.id), error_check: '削除が完了しました'
     else
       render :show, alert: '削除が失敗しました'
@@ -96,7 +103,7 @@ class ItemsController < ApplicationController
   def select_category_and_serch_ancestry
     @category = @item.category
     if @category.parent.present?
-      @child_category = Category.find(@category.id)
+      @child_category = @category
       @category = @child_category.parent
       if @category.parent.present?
         @grandchild_category = @child_category
@@ -106,11 +113,9 @@ class ItemsController < ApplicationController
         @grandchild_categories = Category.where(ancestry: @grandchild_category[:ancestry]).pluck(:name, :id)
       else
         @child_categories = Category.where(ancestry: @category.id).pluck(:name, :id)
-        render :edit
       end
     else
       @child_categories = Category.where(ancestry: @category.id).pluck(:name, :id)
-      render :edit
     end
   end
 

@@ -1,72 +1,67 @@
 
-$(function(){ 
-
+$(function(){
+  
+  // プルダウンのHTMLを生成
   function buildHTML(data){
 
-    var html = `<div class="categories_nav category-child">\n`
+    var html = $("<div>").addClass("header-bottom-left-category-field-nav")
+    var link
 
     data.forEach(function(value){
-      html += `  <a class="category_name" data-category-id="${value.id}" href="/all_items/category?category_id=${value.id}"><p>${value.name}</p></a>\n`
+      link = $("<a>", {
+        href: "/api/categories/" + value.id ,
+        "class":"category_name"
+      }).text(value.name)
+      link = $("<p>").append(link)
+
+      html.append(link)
     })
-    html += `</div>`
 
     return html
   }
 
+
   $(document).on({
+
+    // カーソルが乗ったときに起動
     'mouseenter' : function() {
 
-      // 触れたカテゴリーのidを取得
-      category_id = $(this).data("category-id")
+      // カテゴリーのパスを取得
+      var path = $(this).attr("href");
 
       // 触れたカテゴリーの子要素を取得
       $.ajax({
-        url: "/api/selects",
+        url: path,
         type: "GET",
         dataType: "json",
-        context: this,
+        context:this,
         cache: false,
-        data: {
-  
-          // 選択されたカテゴリーのidを取得
-          // 表示は日本語だが、実際の値はidになる
-          category_id: category_id
-        }
       })
-      .done(function(data){
+      .done(function(result){
   
         // 子要素がなければ選択肢を表示しない
-        if( data.length != 0 ){
+        if( result.length != 0 ){
   
           // 選択したフォームの下に新たなフォームを追加
-          var html = buildHTML(data)
-          $(this).parent().nextAll(".category-child").remove()
-          $(this).parent().after(html)
-          $(".categories_nav").css("display","block");
+          var html = buildHTML(result)
+
+          // 先に追加されていたリストがあれば削除
+          $(this).parent().parent().nextAll(".header-bottom-left-category-field-nav").remove()
+          $(".header-bottom-left-category-field").append(html)
 
         } 
-      })
-      .fail(function(){
 
-          console.log("error!")
-          $(".category-child").remove()
-          
       })
 
-    },
-    'mouseleave' : function(){}
+    },'mouseleave' : function(){}
+  }, ".category_name")
 
-    }, ".category_name");
-
-    // リスト全体からポインタが離れたら見えなくする
-    $(document).on({
-      'mouseenter' : function() {
-        $(".categories_nav").css("display","block");
-      },
-      'mouseleave' : function(){
-        $(".categories_nav").css("display","none");
-        $(".category-child").remove()
-      }
-    },".category_lists")
+  // マウスが離れた時に起動
+  $(document).on({
+    'mouseenter' : function(){},
+    'mouseleave' : function(){
+      $(".header-bottom-left-category-field-nav").remove()
+    }
+  }, ".header-bottom-left-category")
 
 })

@@ -1,0 +1,207 @@
+//共通部分
+.mylike,.exhibition_items {
+    .lists {
+        height:  100%;
+        grid-template-columns: 100px;
+        grid-template:
+        "..... ..... ..... ..... ....."0
+        "..... header header header ....."
+        "..... ..... ..... ..... ....."5px
+        "..... list  list  list  ....."1fr
+        "..... ..... ..... ..... ....."
+        "..... page  ..... ..... ....."20px
+        "..... ..... ..... ..... ....."0/
+        0 1fr 1fr 1fr 0;
+        &__header {
+            grid-area: header;
+        }
+        a, .item_link {
+            grid-area: list;
+        }
+        .pagination {
+            grid-area: page;
+        }
+
+        &__header {
+            background-color: white;
+            display: grid;
+            grid-template:
+            "..... ..... ....."20px
+            "..... title ....."
+            "..... ..... ....."20px;
+            h2 {
+                grid-area:   title;
+            }
+            h2 {
+                text-align:  center;
+                white-space: nowrap;
+                font-size:     20px;
+            }
+        }
+        a, .item_link {
+            text-decoration: none;
+            color:        black;
+            .item_box {
+                background-color: white;
+                border: 1px solid whitesmoke;
+                display: grid;
+                grid-template: 
+                "..... ..... ..... ..... ..... ....."10px
+                "..... img   ..... ..... ..... ....."10px
+                "..... img   ..... name  name  ....."40px
+                "..... img   ..... ..... ..... ....."10px
+                "..... img   ..... info  info  ....."20px
+                "..... ..... ..... ..... ..... ....."10px
+                /0 100px 5px 1fr 1fr 0;
+                .item_image {
+                    grid-area:   img;
+                }
+                .item_name {
+                    grid-area:  name;
+                }
+                .item_info {
+                    grid-area:  info;
+                }
+                .item_name {
+                    font-size:  14px;
+                }
+                .item_info {
+                    font-size:  14px;
+                }
+                &:hover {
+                    background-color: whitesmoke;
+                }
+                .item_image {
+                background-color: white;
+                text-align:        center;
+                margin: auto;
+                height: 80px;
+                width:  80px;
+                img {
+                    max-width:  80px;
+                    max-height: 80px;
+                }
+            }
+            }
+        }
+        .pagination {
+            .page.current {
+                color: red;
+            }
+            a {
+                &:hover {
+                text-decoration: underline;
+                }
+            }
+        }
+        .item_empty {
+        background-color: white;
+        color:        lightgray;
+        display: grid;
+        grid-template:
+        "..... ..... ..... ..... ....."30px
+        "..... ..... image ..... ....."
+        "..... ..... ..... ..... ....."10px
+        "..... text  text  text  ....."
+        "..... ..... ..... ..... ....."30px
+        /1fr 1fr 100px 1fr 1fr;
+        .empty_img {
+            grid-area: image;
+        }
+        p.empty_text {
+            grid-area:  text;
+        }
+        .empty_img img {
+            width:      80px;
+        }
+        p.empty_text {
+            white-space: nowrap;
+            text-align:  center;
+            font-size:     18px;
+        }
+    }
+    }
+}
+//出品一覧、
+.exhibition_items {
+    .lists__header {
+        display: grid;
+        grid-template:
+        "..... ..... ..... ..... ....."10px
+        "..... title title title ....."
+        "..... ..... ..... ..... ....."10px
+        "..... list  list  list  ....."
+        "..... ..... ..... ..... ....."
+        /0 auto auto auto 0;
+        .exhibition_header {
+            grid-area:  title;
+        }
+        .item_situation {
+            grid-area:   list;
+        }
+        .exhibition_header {
+            font-size:   24px;
+        }
+        .item_situation {
+            background-color: lightgray;
+            text-align: center;
+            font-size: 32px;
+            display: grid;
+            grid-template:
+            "..... .....  ....."
+            "left  center right"
+            "..... .....  .....";
+            .exhibition {
+                grid-area:   left;
+            }
+            .transaction {
+                grid-area: center;
+            }
+            .purchase {
+                grid-area:  right;
+            }
+            p {
+                padding:     10px;
+                cursor:   pointer;
+            }
+            .selected {
+                background-color:   white;
+                border-top: 5px solid red;
+            }
+        }
+
+    }
+    a,.item_link {
+        .item_box {
+            .item_info {
+                display: grid;
+                grid-template:
+                "liked ..... comment ..... situation ....."
+                /auto 5px auto 5px auto 1fr;
+                .item_liked {
+                    grid-area:     liked;
+                }
+                .item_comment {
+                    grid-area:   comment;
+                }
+                .item_situation {
+                    grid-area: situation;
+                }
+                .item_liked,.item_comment {
+                    display: grid;
+                    grid-template:
+                    "..... ..... ..... ..... ....."3px
+                    "..... icon  ..... count ....."14px
+                    "..... ..... ..... ..... ....."3px
+                    /5px auto 5px auto 5px;
+                    i {
+                        grid-area:  icon;
+                    }
+                    p {
+                        grid-area: count;
+                    }
+                }
+            }
+        }
+    }
+}

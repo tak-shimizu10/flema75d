@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   def free_access?
     if params[:controller] == "items" && params[:action].in?(["index", "show"])
       return true
-    elsif params[:controller].include?("api/selects") || params[:controller].include?("all_items")
+    elsif params[:controller].include?("api/categories") || params[:controller].include?("all_items")
       return true
     else
       return false
