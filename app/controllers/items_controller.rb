@@ -76,7 +76,6 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.all.order("created_at DESC")
     @items = Item.search(params[:keyword])
     respond_to do |format|
       format.html
