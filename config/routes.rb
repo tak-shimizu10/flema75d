@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   devise_scope :user do
     get "addresses", to: "users/registrations#new_address"
     post "addresses", to: "users/registrations#create_address"
-    # delete :sign_out, to: 'devise/sessions#destroy', as: :destroy_user_session
   end
 
   resources :users, only: [:new, :show]

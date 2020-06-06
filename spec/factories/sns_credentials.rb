@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :sns_credential do
-    provider { "MyString" }
-    uid { "MyString" }
-    user { nil }
+    provider { "facebook, google_oauth2" }
+    uid      { "MyString" }
+    user     { nil }
   end
 end
