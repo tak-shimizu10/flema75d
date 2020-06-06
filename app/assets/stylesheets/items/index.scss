@@ -14,7 +14,7 @@
   &__header {
     background-color: #ffffff;
     border-bottom: 1px solid #3ccace;
-    
+    padding: 0 20px 0 20px;
 
     .contents {
       max-width: 1040px;
@@ -524,6 +524,7 @@
     &__body {
       padding:        80px 50px 0;
       background-color: #f8f8f8;
+
     }
     .purchase {
       &__btn {
@@ -566,6 +567,7 @@
         right:  20px;
         bottom: 20px;
         width:  80px;
+        z-index: 3;
         .text {
           text-decoration:  none;
           margin-bottom:     5px;

@@ -6,8 +6,12 @@
     %h2.name
       = current_user.nickname
     .number
-      .number__left 評価
-      .number__right 出品数
+      .number__left
+        .text 評価
+        .count -
+      .number__right
+        .text 出品数
+        .count= @item.count
 .user-notice
   %ul.user-notice__tab
     %li.user-notice__tab__left
