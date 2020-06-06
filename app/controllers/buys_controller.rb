@@ -16,27 +16,40 @@ class BuysController < ApplicationController
 
   # 商品の購入確認
   def new
-    @address = current_user.address
-    unless @user_cards.blank?
-      @customer_id = @user_cards.first[:customer_id]
-      customer = Payjp::Customer.retrieve(@customer_id)
-      @card_data = customer.cards.retrieve(customer.default_card)
+    if @item.situation == "exhibition"
+      @address = current_user.address
+      unless @user_cards.blank?
+        @customer_id = @user_cards.first[:customer_id]
+        customer = Payjp::Customer.retrieve(@customer_id)
+        @card_data = customer.cards.retrieve(customer.default_card)
+      end
+    else
+      redirect_to root_path
     end
   end
 
   # 商品の購入
   def create
-    @customer_id = @user_cards.first[:customer_id]
+    if @item.user[:id] == current_user.id
+      @customer_id = @user_cards.first[:customer_id]
 
-    Payjp::Charge.create(
-      amount: @item[:price],
-      customer: @customer_id,
-      currency: "jpy",
-    )
-    binding.pry
-    # 出品中（0）を取引中（1）に変更
-    @item.situation_transaction!
-    @item.buyer_id = current_user.id
+      Payjp::Charge.create(
+        amount: @item[:price],
+        customer: @customer_id,
+        currency: "jpy",
+      )
+
+      # 出品中（0）を取引中（1）に変更
+      @item.situation_transaction!
+      @item.buyer_id = current_user.id
+      if @item.save
+        redirect_to root_path
+      else
+        redirect_to new_item_buy_path(@item)
+      end
+    else
+      redirect_to root_path
+    end
   end
 
   private

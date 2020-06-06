@@ -62,6 +62,7 @@
 - has_many :likes,dependent: :destroy
 - has_many :images, dependent: :destroy
 - has_many :comments, dependent: :destroy
+- has_many :evaluates, dependent: :destroy
 - belongs_to :category
 - belongs_to :user
 - belongs_to :brand, optional:true
@@ -135,14 +136,17 @@
 
 - belongs_to :user
 
-## Evaluats テーブル
+## Evaluates テーブル
 
 | Column      | Type    | Options     |
 | ----------- | ------- | ----------- |
 | evaluate_id | integer | null: false |
 | user_id     | integer | null: false |
+| item_id     | integer | null: false |
 | rate        | integer | null: false |
 
 ### Association
 
 - belongs_to :user
+- belongs_to :item
+
