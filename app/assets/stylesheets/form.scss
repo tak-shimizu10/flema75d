@@ -5,6 +5,7 @@
 h2 {
   display: block;
   font-weight: bold;
+  font-size: 18px;
 }
 
 .main {
@@ -38,29 +39,36 @@ h2 {
 .content-wrap {
   max-width: 343px;
   margin: 0 auto;
-  a {
-    display: block;
-    text-decoration: none;
-    margin-top: 40px;
-  }
 }
 
 .no_account-wrap {
   max-width: 343px;
   margin: 0 auto;
   font-size: 14px;
-  a {
-    display: block;
-    width: 100%;
-    line-height: 48px;
-    font-size: 14px;
-    cursor: pointer;
-    text-align: center;
-    background-color: red;
-    border: 1px solid red;
-    text-decoration: none;
-    color: #fff;
-    margin-top: 10px;
+}
+
+.btn-new_user {
+  display: block;
+  width: 100%;
+  line-height: 48px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  background-color: red;
+  border: 1px solid red;
+  margin-top: 10px;
+  position: relative;
+  text-decoration: none;
+  color: #fff;
+  i {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translate(0, -50%);
+  }
+  &__email {
+    margin-bottom: 16px;
   }
 }
 
@@ -83,6 +91,10 @@ h2 {
   border: 1px solid lightgray;
   background-color: white;
   font-size: 16px;
+}
+
+.input-default.half {
+  width: calc(50% - 6px);
 }
 
 .form-term {
@@ -163,6 +175,53 @@ h2 {
   color: #fff;
   &__complete {
     font-size: 18px;
+  }
+  &__facebook {
+    color: white;
+    background-color: #4169e1;
+    border: #4169e1;
+    position: relative;
+    margin: 0;
+    a {
+      text-decoration: none;
+      color: white;
+    }
+    i {
+      color: white;
+      position: absolute;
+      top: 50%;
+      left: 16px;
+      transform: translate(0, -50%);
+    }
+  }
+  &__google {
+    color: black;
+    background: white url(https://www.mercari.com/jp/assets/img/common/common/google.svg) no-repeat 3px top;
+    border: 1px solid darkgray;
+    position: relative;
+    margin-top: 16px;
+    a {
+      text-decoration: none;
+      color: black;
+    }
+    i {
+      color: crimson;
+      position: absolute;
+      top: 50%;
+      left: 16px;
+      transform: translate(0, -50%);
+    }
+  }
+}
+
+.login-help-message {
+  display: block;
+  font-size: 14px;
+  color: #3CCACE;
+  margin-top: 40px;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;  
   }
 }
 

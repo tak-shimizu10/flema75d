@@ -1,5 +1,8 @@
 class BuysController < ApplicationController
 
+  # ログインしてなければ、ログイン画面に映る
+  before_action :authenticate_user!
+
   # 商品情報を取得
   before_action :find_buys_info, only: [:new, :create]
 

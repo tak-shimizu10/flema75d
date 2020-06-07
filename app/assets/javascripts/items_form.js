@@ -1,5 +1,6 @@
 $(function () {
     //プレビュー生成の関数
+    //引数で番号と画像のURLを取得し、カスタムデータインデックス(data-index="${index}")を用いて番号を割り当てる。
     const buildPhotoPreview = (index, url) => {
         const html =
             `<div data-index= "${index}" class= "input_photo_preview">
@@ -10,6 +11,11 @@ $(function () {
         return html;
     }
     //file_field生成の関数
+    //引数で番号を取得し割り当てる
+    //nameやidはネストしたモデルに対して保存するために必要な記述
+    //name="item[images_attributes][${index}][image]" → item.images[番号].imageを表す。
+    //idも同様 photo_file_${index}は識別を容易にするためにidを与えた。
+    //labelのdata-index="${index}"のindexに割り当てられた番号を元に情報を取得するため与えている。
     const buildFileField = (index) => {
 
         const html =
@@ -24,6 +30,10 @@ $(function () {
     }
 
     //エラーメッセージの表示・非表示の関数宣言
+    //引数で与えられたクラスの中からclass="items_caution"を検索 
+    //show()がcssにdisplay: block; を付与
+    //hide()がcssにdisplay: none; を付与
+    //検証画面で確認してもらうと付与されているのが確認できます。
     function showCautionMessage(scopeClass) {
         scopeClass.find(".items_caution").show();
     }
@@ -31,9 +41,14 @@ $(function () {
         scopeClass.find(".items_caution").hide();
     }
 
+    //fileIndexという配列を作成し、これを用いて番号を割り当てていく。
     let fileIndex = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    lastIndex = $(".input_photo_field:last").data("index");
+    let lastIndex = $(".input_photo_field:last").data("index");
     fileIndex.splice(0, lastIndex);
+    if (fileIndex.length < 1) fileIndex.push(lastIndex + 1);
+    while (fileIndex.length <= 10) {
+        fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+    }
     $(".hidden_destroy").hide();
 
     //ファイル選択時新しいpreview, file_fieldを生成
@@ -41,25 +56,19 @@ $(function () {
         const targetIndex = $(this).parent().data("index");
         const file = e.target.files[0];
         const blobUrl = window.URL.createObjectURL(file);
-        if (img = $(`img[data-index= "${targetIndex}"]`)[0]) {
-            img.setAttribute("src", blobUrl);
+        if (searchPreview = $(".input_photo_preview").filter(`[data-index= "${targetIndex}"]`)[0]) {
+            const img = $(searchPreview).children("img")[0]
+            img.setAttribute('src', blobUrl);
         } else {
             $(".input_photo_field").hide();
-            const searchPreview = $(".input_photo_preview").filter(`[data-index= "${targetIndex}"]`)[0];
-            if (searchPreview) {
-                $(searchPreview).replaceWith(buildPhotoPreview(targetIndex, blobUrl));
-            } else {
-                $("#input_photos_field").append(buildPhotoPreview(targetIndex, blobUrl));
-            };
+            $("#input_photos_field").append(buildPhotoPreview(targetIndex, blobUrl));
             $("#input_photos_field").append(buildFileField(fileIndex[0]));
-
+            const countPreview = $(".input_photo_preview").length;
             fileIndex.shift();
             fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
             $(".input_photo_field").last().show();
-            const countPreview = $(".input_photo_preview").length;
-
             //画像が10枚登録されればfile_fieldを隠す。一枚以上登録されれば、pタグの文字を消して登録が通るように
-            if (countPreview >= 10) reloadWindowPhotosField();
+            if (countPreview >= 10) showOnlyOneFileField();
             if (countPreview >= 1) {
                 hideCautionMessage($(".items_form_photos"));
                 $(".photos_input_text").html(``);
@@ -240,7 +249,7 @@ $(function () {
     });
 
     //file_fieldが1つになるように
-    function reloadWindowPhotosField() {
+    function showOnlyOneFileField() {
 
         existFileField = $(".input_photo_field").length
         while (existFileField > 11) {
@@ -256,11 +265,11 @@ $(function () {
     $(window).on("load", function () {
 
         if ($(".items_form").length != 0) {
-            if ($(".input_photo_field").length > 10) reloadWindowPhotosField();
+            if ($(".input_photo_field").length > 10) showOnlyOneFileField();
             if ($(".input_photo_preview").length > 0 && $(".input_photo_field").length > 1)
                 $(".input_photo_file").attr("required", false);
             if ($("#item_pay_side").val().length > 0) $(".items_post_way").show();
-            reloadWindowPhotosField();
+            showOnlyOneFileField();
             if ($("#item_price").val() > 0) inputPricePreview($("#item_price")[0]);
         }
     });
@@ -273,9 +282,41 @@ $(function () {
         moveSelectCategory($(this).data("index"))
     })
     //プレビュー編集ボタンをクリックしたとき、相対するFileFieldのクリックを実行
-    $(".input_photo_preview").on("click", ".input_photo_edit", function () {
+    $("#input_photos_field").on("click", ".input_photo_edit", function () {
         const targetIndex = $(this).parent().data("index");
         const targetFileField = $(".input_photo_field").filter(`[data-index= "${targetIndex}"]`)[0];
         $(targetFileField).click();
+    });
+    //電話番号入力
+    $(".field-input").on("keypress", "#user_phone_number", function (e) {
+        let string = String.fromCharCode(e.which);
+        if ("0123456789".indexOf(string, 0) < 0) return false;
+        return true;
+    });
+    //ユーザー登録郵便番号の入力欄
+    function insertHyphen(input) {
+        return input.slice(0, 3) + "-" + input.slice(3, input.length);
+    };
+    $(".field-input").on("keypress", "#address_zipcode", function (e) {
+        let string = String.fromCharCode(e.which);
+        if ("0123456789-".indexOf(string, 0) < 0) return false;
+        return true;
+    });
+    $(".field-input").on("keyup", "#address_zipcode", function () {
+        let input = $(this).val();
+        let key = event.keyCode || event.charCode;
+        if (key == 8 || key == 46) return false;
+        if (input.length === 3) $(this).val(insertHyphen(input));
+    });
+    $(".field-input").on("blur", "#address_zipcode", function () {
+        let input = $(this).val();
+        if (input.length >= 3 && input.substr(3, 1) != "-") $(this).val(insertHyphen(input));;
+    });
+    //マイページスクロール用
+    $(".account_show").on("click", ".link_page", function () {
+        window.scroll({
+            top: 200,
+            behavior: "smooth"
+        });
     });
 });

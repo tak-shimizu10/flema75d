@@ -1,5 +1,3 @@
-
-
 - if @item.category.parent.parent.present?
   - breadcrumb :show_grandchild_item, @item
 - else
@@ -39,10 +37,10 @@
           %tr
             %th カテゴリー
             %td
-              = link_to category_all_items_path(category_id:@item.category.id) do
+              = link_to category_all_items_path(category_id:@item.category.parent&.parent&.id) do
                 = @item.category.parent&.parent&.name
               .sub-category
-                = link_to category_all_items_path(category_id:@item.category.id) do
+                = link_to category_all_items_path(category_id:@item.category.parent&.id) do
                   %i.fa.fa-angle-right
                   = @item.category.parent&.name
               .sub-sub-category
@@ -126,9 +124,11 @@
                     - if comment_info.user.image.present?
                       = image_tag comment_info.user.image.url
                     - else 
-                      = image_tag "icon/member_photo_noimage_thumb.png"
-                  .user_name
+                      = image_tag "icon/member_photo_noimage_thumb.png"  
+                  .user_name            
                     = comment_info.user.nickname
+                    - if comment_info.user == @item.user
+                      ( 出品者 )
                 %li.guest-message-item.clearfix
                   .message-box
                     .message-box__text
@@ -178,7 +178,7 @@
                     %i.far.fa-heart
                     %span.count= item.likes.count
                 - else
-                  .item-like.liked
+                  .item-like.no-like
                     %i.far.fa-heart
                     %span.count= item.likes.count
   = render partial: 'templates/footer'

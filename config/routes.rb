@@ -1,19 +1,23 @@
 Rails.application.routes.draw do
   root "items#index"
   devise_for :users, controllers: {
-                       registrations: "users/registrations",
-                     }
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    registrations: "users/registrations"
+  }
   devise_scope :user do
     get "addresses", to: "users/registrations#new_address"
     post "addresses", to: "users/registrations#create_address"
   end
 
-  resources :users, only: [:show]
+  resources :users, only: [:new, :show]
 
   # 購入確認ページに飛ぶ
   resources :items do
     resources :buys, only: [:new, :create]
     resources :comments, only: [:create]
+    collection do
+      get :search
+    end
     resource :likes, only: [:create, :destroy]
     resource :evaluates, only: [:new, :create, :destroy]
   end
@@ -40,4 +44,5 @@ Rails.application.routes.draw do
   end
 
   resources :all_items, only: [:index]
+
 end

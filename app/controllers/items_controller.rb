@@ -1,4 +1,8 @@
 class ItemsController < ApplicationController
+
+  # ログインしてなければ、ログイン画面に映る
+  before_action :authenticate_user!, except: [:index,:show,:search]
+
   before_action :parent_category
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :user_items, only: [:show, :destroy]
@@ -73,6 +77,14 @@ class ItemsController < ApplicationController
       redirect_to user_path(current_user.id), error_check: '削除が完了しました'
     else
       render :show, alert: '削除が失敗しました'
+    end
+  end
+
+  def search
+    @items = Item.search(params[:keyword])
+    respond_to do |format|
+      format.html
+      format.json
     end
   end
 
