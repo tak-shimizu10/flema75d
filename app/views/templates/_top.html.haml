@@ -8,10 +8,10 @@
     .number
       .number__left
         .text 評価
-        .count -
+        .count
       .number__right
         .text 出品数
-        .count= @item.count
+        .count= current_user.items.count
 .user-notice
   %ul.user-notice__tab
     %li.user-notice__tab__left
