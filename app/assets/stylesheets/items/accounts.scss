@@ -92,17 +92,18 @@
             margin-inline-end: 0px;
           }
           .number{
-            margin: 8px 0 0;
+            margin: 16px 0 0;
             font-size: 0;
+            font-weight: bold;
             &__left{
               display: inline-block;
-              font-size: 14px;
+              font-size: 18px;
               
             }
             &__right{
-              margin: 0 0 0 16px;
+              margin: 0 0 0 32px;
               display: inline-block;
-              font-size: 14px;
+              font-size: 18px;
             }
           }
         }

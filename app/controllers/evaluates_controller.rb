@@ -1,5 +1,6 @@
 class EvaluatesController < ApplicationController
   before_action :set_item, only: [:new, :create, :destroy]
+  before_action :authenticate_user!
 
   def new
     if @item.user[:id] != current_user.id && @item.evaluates.blank? && @item.buyer_id == current_user.id
@@ -14,7 +15,7 @@ class EvaluatesController < ApplicationController
       evaluate = @item.evaluates.build(evaluate_params)
       evaluate.user_id = @item.user[:id]
       if evaluate.save!
-        redirect_to root_path
+        redirect_to user_path(current_user.id)
       else
         set_item
         render :new

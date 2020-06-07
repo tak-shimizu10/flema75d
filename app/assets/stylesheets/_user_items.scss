@@ -201,6 +201,37 @@
                     }
                 }
             }
+            .item_info {
+                .item_rate {
+                    display: grid;
+                    grid-template:
+                    "..... ..... .... .....    ....."
+                    "..... rate  .... evaluate ....."30px
+                    "..... ..... .... .....    ....."
+                    / 20px 30px 20px 1fr 10px;
+                    i.fas {
+                        grid-area:     rate;
+                    }
+                    .evaluate_comment {
+                        grid-area: evaluate;
+                    }
+                    .fas.fa-smile-beam {
+                        color: hotpink;
+                    }
+                    .fas.fa-meh {
+                        color:  orange;
+                    }
+                    .fas.fa-sad-tear {
+                        color: skyblue;
+                    }
+                    i.fas {
+                        font-size:  20px;
+                    }
+                    p {
+                        font-size:  18px;
+                    }
+                }
+            }
         }
     }
 }

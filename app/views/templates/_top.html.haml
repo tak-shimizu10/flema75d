@@ -8,10 +8,10 @@
     .number
       .number__left
         %p.text 評価
-        %p.count= @user.evaluates.count
+        %p.count= current_user.evaluates.count
       .number__right 
         %p.text 出品数
-        %p.count= @user.items.count
+        %p.count= current_user.items.count
 .user-notice
   %ul.user-notice__tab
     %li.user-notice__tab__left

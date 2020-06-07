@@ -10,20 +10,27 @@
       - purchased.each do |item|
         = link_to new_item_evaluates_path(item.id), class: "item_link" do
           %li.item_box
-            .item_image= image_tag(item.images.first.image.url)
-            .item_name= item.name
+            .item_image
+              = image_tag(item.images.first.image.url)
+            .item_name
+              = item.name
             .item_info
-              .item_liked
-                %i.far.fa-heart
-                %p.liked_count= item.likes.count
-              .item_comment
-                %i.far.fa-comment-alt
-                %p.comment_count= item.comments.count
-              .item_situation
-              
+              .item_rate
+                - if item.evaluates.first.rate == "good"
+                  %i.fas.fa-smile-beam
+                  %p.evaluate_comment= item.evaluates.first.comment.truncate(20)
+                - elsif item.evaluates.first.rate == "normal"
+                  %i.fas.fa-meh
+                  %p.evaluate_comment= item.evaluates.first.comment.truncate(20)
+                - elsif item.evaluates.first.rate == "bad" 
+                  %i.fas.fa-sad-tear
+                  %p.evaluate_comment= item.evaluates.first.comment.truncate(20)
+                - else
+                  %p.no_evaluate 評価をしてください。
       = paginate purchased, remote: true
+
     - else
       .item_link
         .item_empty
-          .empty_img=image_tag "logo/no-text.png"
+          .empty_img= image_tag "logo/no-text.png"
           %p.empty_text 出品中の商品はありません。
