@@ -162,6 +162,18 @@
         line-height: 1.77778;
         margin: 16px 0 0 0;
       }
+      &__btn {
+        display: flex;
+        margin: 24px 0 0 0;
+        .a-btn,.g-btn {
+          text-decoration: none;
+          margin-right: 10px;
+          width: 180px;
+          img {
+            width: 100%;
+          }
+        }
+      }
     }
   }
   .top_intro {
@@ -454,6 +466,19 @@
       &__text {
         text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
         font-size:   35px;
+      }
+      &__btn {
+        display: flex;
+        margin: 24px 0 0 0;
+        justify-content: center;
+        .a-btn,.g-btn {
+          text-decoration: none;
+          margin-right: 10px;
+          width: 180px;
+          img {
+            width: 100%;
+          }
+        }
       }
     }
   }
