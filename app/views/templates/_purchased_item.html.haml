@@ -16,17 +16,18 @@
               = item.name
             .item_info
               .item_rate
-                - if item.evaluates.first.rate == "good"
-                  %i.fas.fa-smile-beam
-                  %p.evaluate_comment= item.evaluates.first.comment.truncate(20)
-                - elsif item.evaluates.first.rate == "normal"
-                  %i.fas.fa-meh
-                  %p.evaluate_comment= item.evaluates.first.comment.truncate(20)
-                - elsif item.evaluates.first.rate == "bad" 
-                  %i.fas.fa-sad-tear
-                  %p.evaluate_comment= item.evaluates.first.comment.truncate(20)
+                - if item.evaluates.present?
+                  - if item.evaluates.first.rate == "good"
+                    %i.fas.fa-smile-beam
+                    %p.evaluate_comment= item.evaluates.first.comment.truncate(20)
+                  - elsif item.evaluates.first.rate == "normal"
+                    %i.fas.fa-meh
+                    %p.evaluate_comment= item.evaluates.first.comment.truncate(20)
+                  - else item.evaluates.first.rate == "bad" 
+                    %i.fas.fa-sad-tear
+                    %p.evaluate_comment= item.evaluates.first.comment.truncate(20)
                 - else
-                  %p.no_evaluate 評価をしてください。
+                  %p.no_evaluate 評価がされていません!!
       = paginate purchased, remote: true
 
     - else

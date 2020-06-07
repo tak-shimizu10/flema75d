@@ -212,7 +212,7 @@
                     i.fas {
                         grid-area:     rate;
                     }
-                    .evaluate_comment {
+                    .evaluate_comment,.no_evaluate {
                         grid-area: evaluate;
                     }
                     .fas.fa-smile-beam {
@@ -229,6 +229,9 @@
                     }
                     p {
                         font-size:  18px;
+                    }
+                    .no_evaluate {
+                        color: red;
                     }
                 }
             }
