@@ -7,6 +7,11 @@
         FURIMAはだれでもかんたんに出品・購入できる 
         %br
         フリマアプリです
+      .content__btn
+        = link_to "#", class: "a-btn" do
+          = image_tag 'http://furima.tokyo/assets/app-store-9c5e28e8f81bd9912e0ded2f78821e04778a1356c05dc7c7bf1e88614be37c34.svg'
+        = link_to "#", class: "g-btn" do
+          = image_tag 'http://furima.tokyo/assets/google-play-469c63f1269e456307c4dde176b33cc3bbbbf142ac4d7369656010130149db1a.svg'
   .top_intro
     %h2.title FURIMAが選ばれる3つの理由
     %ul.top_pops
@@ -63,6 +68,10 @@
     .content
       %h2.content__title だれでもかんたん、人生を変えるフリマアプリ
       %p.content__text 今すぐ無料ダウンロード！
+      .content__btn
+        = link_to "#", class: "a-btn" do
+          = image_tag 'http://furima.tokyo/assets/app-store-9c5e28e8f81bd9912e0ded2f78821e04778a1356c05dc7c7bf1e88614be37c34.svg'
+        = link_to "#", class: "g-btn" do
+          = image_tag 'http://furima.tokyo/assets/google-play-469c63f1269e456307c4dde176b33cc3bbbbf142ac4d7369656010130149db1a.svg'
   = render partial: 'templates/purchase'
   = render partial: 'templates/footer'
-
