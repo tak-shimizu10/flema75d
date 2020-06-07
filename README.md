@@ -18,11 +18,12 @@
 
 ### Association
 
-- has_many :comments ,dependent: :destroy
-- has_many :items, dependent: :destory
-- has_many :likes, dependent: :destroy
-- has_many :addresses, dependent: :destroy
+- has_one  :address, dependent: :destroy
+- has_many :items, dependent: :destroy
 - has_many :cards, dependent: :destroy
+- has_many :comments ,dependent: :destroy
+- has_many :likes, dependent: :destroy
+- has_many :sns_credentials, dependent: :destroy
 
 ## Address テーブル
 
@@ -37,9 +38,10 @@
 
 ### Association
 
-- belongs_to :user
+- belongs_to :user, optional: true
+- belongs_to_active_hash :prefecture
 
-## items テーブル
+## Items テーブル
 
 | Column        | Type    | Options                       |
 | ------------- | ------- | ----------------------------- |
@@ -63,9 +65,11 @@
 - has_many :comments, dependent: :destroy
 - belongs_to :category
 - belongs_to :user
-- belongs_to :brand, optional:true
+- belongs_to :brand, optional: true
+- belongs_to_active_hash :prefecture
+- belongs_to_active_hash :post_way
 
-## comments テーブル
+## Comments テーブル
 
 | Column  | Type    | Options           |
 | ------- | ------- | ----------------- |
@@ -78,7 +82,7 @@
 - belongs_to :user
 - belongs_to :item
 
-## brands テーブル
+## Brands テーブル
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
@@ -88,7 +92,7 @@
 
 - has_many :items
 
-## images テーブル
+## Images テーブル
 
 | Column  | Type    | Options           |
 | ------- | ------- | ----------------- |
@@ -99,7 +103,7 @@
 
 - belongs_to :item
 
-## likes テーブル
+## Likes テーブル
 
 | Column  | Type    | Options           |
 | ------- | ------- | ----------------- |
@@ -111,7 +115,7 @@
 - belongs_to :item
 - belongs_to :user
 
-## categories テーブル
+## Categories テーブル
 
 | Column   | Type         | Options     |
 | -------- | ------------ | ----------- |
@@ -122,7 +126,7 @@
 
 - has_many :items
 
-## cards テーブル
+## Cards テーブル
 
 | Column      | Type    | Options                  |
 | ----------- | ------- | ------------------------ |
@@ -133,3 +137,15 @@
 ### Association
 
 - belongs_to :user
+
+## SnsCredentials テーブル
+
+| Column   | Type       | Options          |
+| -------- | ---------- | ---------------- |
+| provider | string     | null: false      |
+| uid      | string     | null: false      |
+| user_id  | references | foreign_key:true |
+
+### Association
+
+- belongs_to :user, optional: true
