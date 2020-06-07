@@ -13,7 +13,7 @@
     .contents__bottom
       .header-bottom-left
         .header-bottom-left-category
-          = link_to "カテゴリー", api_category_path(0) ,class:"category_name"
+          = link_to "カテゴリー", api_category_path(0) ,class: "category_name", id: "catroy_top_title"
           .header-bottom-left-category-field    
       - if user_signed_in?
         %ul.contents__bottom__right

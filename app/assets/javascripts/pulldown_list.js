@@ -20,6 +20,14 @@ $(function(){
     return html
   }
 
+  // カテゴリーのタイトルに触れたら、一から表示し直す
+  $(document).on({
+    'mouseenter' : function(){
+      $(".header-bottom-left-category-field-nav").remove()
+    },
+    'mouseleave' : function(){}
+  }, "#catroy_top_title")
+
 
   $(document).on({
 
