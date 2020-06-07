@@ -124,9 +124,11 @@
                     - if comment_info.user.image.present?
                       = image_tag comment_info.user.image.url
                     - else 
-                      = image_tag "icon/member_photo_noimage_thumb.png"
-                  .user_name
+                      = image_tag "icon/member_photo_noimage_thumb.png"  
+                  .user_name            
                     = comment_info.user.nickname
+                    - if comment_info.user == @item.user
+                      ( 出品者 )
                 %li.guest-message-item.clearfix
                   .message-box
                     .message-box__text
