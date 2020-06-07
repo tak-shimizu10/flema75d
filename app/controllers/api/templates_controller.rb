@@ -1,4 +1,8 @@
 class Api::TemplatesController < ApplicationController
+
+  # ログインしてなければ、ログイン画面に映る
+  before_action :authenticate_user!
+
   def top
     partial = render_to_string(partial: "templates/top")
     render json: { html: partial }
