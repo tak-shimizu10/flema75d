@@ -1,8 +1,6 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{7,100}+\z/i
   validates :nickname, :birthday, presence: true
@@ -20,11 +18,58 @@ class User < ApplicationRecord
   validates :first_kana, :last_kana, presence: true,
             # カナのみ可
             format: { with: /\A([ァ-ン]|ー)+\z/, message: "全角カナで入力してください" }
-
-  has_one :address, dependent: :destroy
+  
+  has_one  :address, dependent: :destroy
+  has_many :sns_credentials, dependent: :destroy
   has_many :cards, dependent: :destroy
-  has_many :comments, dependent: :destroy
   has_many :items, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :like_items, through: :likes, source: :item
+  has_many :evaluates, dependent: :destroy
+  has_many :evaluate_items, through: :evaluates, source: :item
+
+  def self.from_omniauth(auth)
+    sns = SnsCredential.where(provider: auth.provider, uid: auth.uid).first_or_create
+    # sns認証したことがあればアソシエーションで取得
+    # 無ければemailでユーザー検索して取得orビルド(保存はしない)
+    user = sns.user || User.where(email: auth.info.email).first_or_initialize(
+      nickname: auth.info.name,
+      email:    auth.info.email
+    )
+    # userが登録済みの場合はそのままログインの処理へ行くので、ここでsnsのuser_idを更新しておく
+    if user.persisted?
+      sns.user = user
+      sns.save
+    end
+    { user: user, sns: sns }
+  end
+
+  # def self.from_omniauth(auth)
+  #   user = User.where(email: auth.info.email).first
+  #   sns_credential_record = SnsCredential.where(provider: auth.provider, uid: auth.uid)
+  #   if user.present?
+  #     unless sns_credential_record.present?
+  #       SnsCredential.create(
+  #         user_id: user.id,
+  #         provider: auth.provider,
+  #         uid: auth.uid
+  #       )
+  #     end
+  #   elsif
+  #     user = User.new(
+  #       id: User.all.last.id + 1,
+  #       email: auth.info.email,
+  #       password: Devise.friendly_token[0, 20],
+  #       nickname: auth.info.name,
+  #     )
+  #     SnsCredential.new(
+  #       provider:auth.provider,
+  #       uid: auth.uid,
+  #       user_id: user.id
+  #     )
+  #   end
+  # user
+  # end
+
 end

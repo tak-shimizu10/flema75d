@@ -1,9 +1,14 @@
 class ItemsController < ApplicationController
+
+  # ログインしてなければ、ログイン画面に映る
+  before_action :authenticate_user!, except: [:index,:show,:search]
+
   before_action :parent_category
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :user_items, only: [:show, :destroy]
   before_action :select_category_and_serch_ancestry, only: [:edit, :update]
   before_action :set_categories, only: [:new, :create, :edit, :update]
+  helper Users
 
   def index
     @items = Item.all.limit(8)

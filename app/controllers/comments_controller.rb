@@ -1,5 +1,8 @@
 class CommentsController < ApplicationController
 
+  # ログインしてなければ、ログイン画面に映る
+  before_action :authenticate_user!
+
   rescue_from ActiveRecord::RecordInvalid , with: :comment_error_check
   
   def create

@@ -1,4 +1,8 @@
 class Api::TemplatesController < ApplicationController
+
+  # ログインしてなければ、ログイン画面に映る
+  before_action :authenticate_user!
+
   def top
     partial = render_to_string(partial: "templates/top")
     render json: { html: partial }
@@ -19,6 +23,10 @@ class Api::TemplatesController < ApplicationController
     @exhibition_items = Kaminari.paginate_array(@myitems).page(params[:page]).per(8)
   end
 
+  def purchased
+    @purchaseditems = Item.where(buyer_id: current_user.id)
+    @purchased_items = Kaminari.paginate_array(@purchaseditems).page(params[:page]).per(8)
+  end
   private
 
   ##Likeテーブルからログインユーザーと一致するitem_idを取得して、昇順に

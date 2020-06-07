@@ -1,5 +1,8 @@
 class Api::CardsController < ApplicationController
 
+  # ログインしてなければ、ログイン画面に映る
+  before_action :authenticate_user!
+
   # payjpを使用するための認証を行う
   before_action :payjp_sertification , only:[:index,:create,:destroy]
 
