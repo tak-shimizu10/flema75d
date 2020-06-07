@@ -34,7 +34,7 @@ class EvaluatesController < ApplicationController
   def evaluate_params
     params.require(:evaluate)
           .permit(:rate, :comment, :user_id)
-          .merge(item_id: params[:item_id], evaluate_user_id: current_user.id)
+          .merge(item_id: params[:item_id])
   end
 
   def set_item
