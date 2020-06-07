@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
   before_action :user_items, only: [:show, :destroy]
   before_action :select_category_and_serch_ancestry, only: [:edit, :update]
   before_action :set_categories, only: [:new, :create, :edit, :update]
+  helper Users
 
   def index
     @items = Item.all.limit(8)

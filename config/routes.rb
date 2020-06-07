@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       get :search
     end
     resource :likes, only: [:create, :destroy]
+    resource :evaluates, only: [:new, :create, :destroy]
   end
 
   # カテゴリ機能に使用
@@ -31,6 +32,7 @@ Rails.application.routes.draw do
         get "logout"
         get "mylike"
         get "exhibition"
+        get "purchased"
       end
     end
   end

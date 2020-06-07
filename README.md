@@ -23,6 +23,9 @@
 - has_many :cards, dependent: :destroy
 - has_many :comments ,dependent: :destroy
 - has_many :likes, dependent: :destroy
+- has_many :addresses, dependent: :destroy
+- has_many :cards, dependent: :destroy
+- has_many :evaluates, dependent: :destroy
 - has_many :sns_credentials, dependent: :destroy
 
 ## Address テーブル
@@ -57,12 +60,14 @@
 | category_id   | integer | foreign_key: true             |
 | brand_id      | integer |                               |
 | user_id       | integer | foreign_key: true             |
+| buyer_id      | integer |                               |
 
 ### Association
 
 - has_many :likes,dependent: :destroy
 - has_many :images, dependent: :destroy
 - has_many :comments, dependent: :destroy
+- has_many :evaluates, dependent: :destroy
 - belongs_to :category
 - belongs_to :user
 - belongs_to :brand, optional: true
@@ -137,6 +142,20 @@
 ### Association
 
 - belongs_to :user
+
+## Evaluates テーブル
+
+| Column      | Type    | Options     |
+| ----------- | ------- | ----------- |
+| evaluate_id | integer | null: false |
+| user_id     | integer | null: false |
+| item_id     | integer | null: false |
+| rate        | integer | null: false |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
 
 ## SnsCredentials テーブル
 
