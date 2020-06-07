@@ -86,7 +86,8 @@ gem "carrierwave"
 gem "active_hash"
 gem "enum_help"
 gem "rails-i18n"
+gem 'gretel'
+gem 'ransack'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
-gem 'gretel'

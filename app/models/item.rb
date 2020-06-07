@@ -55,4 +55,13 @@ class Item < ApplicationRecord
     return Item.all unless search
     Item.where('name LIKE(?)', "%#{search}%")
   end
+
+  def change
+    return Item.all unless search
+    Item.where('name LIKE(?)', "%#{search}%")
+    create_table :items do |t|
+      t.integer :price, null: false
+      t.timestamps
+    end
+  end
 end
