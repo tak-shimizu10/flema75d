@@ -18,14 +18,16 @@ class User < ApplicationRecord
   validates :first_kana, :last_kana, presence: true,
             # カナのみ可
             format: { with: /\A([ァ-ン]|ー)+\z/, message: "全角カナで入力してください" }
-
+  
   has_one  :address, dependent: :destroy
-  has_many :items, dependent: :destroy
+  has_many :sns_credentials, dependent: :destroy
   has_many :cards, dependent: :destroy
+  has_many :items, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :like_items, through: :likes, source: :item
-  has_many :sns_credentials, dependent: :destroy
+  has_many :evaluates, dependent: :destroy
+  has_many :evaluate_items, through: :evaluates, source: :item
 
   def self.from_omniauth(auth)
     sns = SnsCredential.where(provider: auth.provider, uid: auth.uid).first_or_create

@@ -10,6 +10,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :post_way
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :evaluates, dependent: :destroy
 
   enum pay_side: { seller: 1, buyer: 2 }
   enum post_date: { shortest: 1, normal: 2, longest: 3 }
@@ -23,6 +24,7 @@ class Item < ApplicationRecord
   validates :prefecture_id, :category_id, numericality: { greater_than: 0 }
   validates :price, numericality: { greater_than_or_equal_to: 300, less_than: 10000000 }
   validates :brand_id, numericality: { greater_than: 0 }, allow_blank: true
+
 
   ##
   def liked_by?(user)
@@ -52,5 +54,14 @@ class Item < ApplicationRecord
   def self.search(search)
     return Item.all unless search
     Item.where('name LIKE(?)', "%#{search}%")
+  end
+
+  def change
+    return Item.all unless search
+    Item.where('name LIKE(?)', "%#{search}%")
+    create_table :items do |t|
+      t.integer :price, null: false
+      t.timestamps
+    end
   end
 end

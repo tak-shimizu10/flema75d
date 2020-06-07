@@ -7,11 +7,11 @@
       = current_user.nickname
     .number
       .number__left
-        .text 評価
-        .count
-      .number__right
-        .text 出品数
-        .count= current_user.items.count
+        %p.text 評価
+        %p.count= current_user.evaluates.count
+      .number__right 
+        %p.text 出品数
+        %p.count= current_user.items.count
 .user-notice
   %ul.user-notice__tab
     %li.user-notice__tab__left

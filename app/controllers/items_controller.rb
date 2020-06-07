@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
   before_action :user_items, only: [:show, :destroy]
   before_action :select_category_and_serch_ancestry, only: [:edit, :update]
   before_action :set_categories, only: [:new, :create, :edit, :update]
+  helper Users
 
   def index
     @items = Item.all.limit(8)
@@ -80,13 +81,31 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.search(params[:keyword])
-    respond_to do |format|
-      format.html
-      format.json
+    if params[:q].present?
+    # 検索フォームからアクセスした時の処理
+      @search_result_items = Item.search(params[:q][:keyword])
+      @search = @search_result_items.ransack(search_params)
+      @items = @search.result
+      @keyword = params[:q][:keyword]
+    else
+    # 検索フォーム以外からアクセスした時の処理
+      params[:q] = { sorts: 'id desc' }
+      @search = Item.ransack()
+      @items = Item.search(params[:keyword])
+        @keyword = params[:keyword]
+        respond_to do |format|
+          format.html
+          format.json
+        end
     end
   end
 
+  def search_params
+    params.require(:q).permit(:sorts,:keyword)
+    
+    # 他のパラメーターもここに入れる
+  end
+  
   private
 
   def parent_category
