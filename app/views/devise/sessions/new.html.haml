@@ -1,12 +1,17 @@
-
 = render "templates/form_header"
 .main__container
   .main__container__head
     .no_account-wrap
       %p アカウントをお持ちでない方はこちら
-      %a{ href: new_user_registration_path } 新規会員登録
+      = link_to new_user_path, class: "btn-new_user" do
+        新規会員登録
   .main__container__form
     .content-wrap
+      = link_to user_facebook_omniauth_authorize_path, method: :post, class: "btn btn__facebook" do
+        %i.fab.fa-facebook-square.fa-2x
+        Facebookでログイン
+      = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: "btn btn__google" do
+        Googleでログイン
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .field
           = f.email_field :email, autofocus: true, autocomplete: "email", class: 'input-default', placeholder: 'メールアドレス'

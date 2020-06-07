@@ -1,0 +1,16 @@
+= render "templates/form_header"
+.main__container
+  .main__container__head
+    .no_account-wrap
+      %h2 新規会員登録
+  .main__container__form
+    .content-wrap
+      = link_to new_user_registration_path, class: "btn-new_user btn-new_user__email" do
+        %i.far.fa-envelope.fa-2x
+        メールアドレスで登録する
+      = link_to user_facebook_omniauth_authorize_path, method: :post, class: "btn btn__facebook" do
+        %i.fab.fa-facebook-square.fa-2x
+        Facebookで登録する
+      = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: "btn btn__google" do
+        Googleで登録する
+= render "templates/form_footer"

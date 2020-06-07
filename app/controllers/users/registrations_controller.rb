@@ -11,6 +11,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
+    if params[:sns_auth] == 'true'
+      pass = Devise.friendly_token
+      params[:user][:password] = pass
+      params[:user][:password_confirmation] = pass
+    end
     @user = User.new(sign_up_params)
     unless @user.valid?
       flash.now[:alert] = @user.errors.full_messages
@@ -63,11 +68,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :email, :password, :first_name, :last_name, :first_kana, :last_kana, :birthday])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :email, :password, :first_name, :last_name, :first_kana, :last_kana, :birthday, :phone_number])
   end
 
   def address_params
-    params.require(:address).permit(:zipcode, :prefecture_id, :city, :address)
+    params.require(:address).permit(:zipcode, :prefecture_id, :city, :address, :build_name)
   end
 
   # If you have extra params to permit, append them to the sanitizer.
