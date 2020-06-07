@@ -21,13 +21,14 @@ $(function(){
   }
 
   // カテゴリーのタイトルに触れたら、一から表示し直す
-  $(document).on({
-    'mouseenter' : function(){
-      $(".header-bottom-left-category-field-nav").remove()
-    },
-    'mouseleave' : function(){}
-  }, "#catroy_top_title")
+  $("#catroy_top_title").mouseenter(function(){
+    $(".header-bottom-left-category-field-nav").remove()
+  })
 
+   // マウスが離れた時に起動
+   $(".header-bottom-left-category").mouseleave(function(){
+    $(".header-bottom-left-category-field-nav").remove()
+  })
 
   $(document).on({
 
@@ -61,15 +62,23 @@ $(function(){
 
       })
 
-    },'mouseleave' : function(){}
+      // マウスが離れた時に起動
+      $(".header-bottom-left-category-field-nav").mouseenter(function(eo){ 
+        $(this).find("a").css("color","")
+      })
+
+    },'mouseleave' : function(){
+
+       // マウスが離れた時に起動
+      $(".header-bottom-left-category-field-nav").mouseleave(function(eo){
+        $(eo.fromElement).css("color","orange")
+      })
+     
+    }
   }, ".category_name")
 
-  // マウスが離れた時に起動
-  $(document).on({
-    'mouseenter' : function(){},
-    'mouseleave' : function(){
-      $(".header-bottom-left-category-field-nav").remove()
-    }
-  }, ".header-bottom-left-category")
+ 
+ 
 
 })
+
