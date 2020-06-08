@@ -22,18 +22,18 @@
           %tr
             %th 出品者
             %td
-              = link_to @item.user do
+              = link_to "#" do
                 = @item.user.nickname
               .evaluation
                 .eva-box
                   %i.fas.fa-smile-beam.fa-lg
-                  %span 2
+                  %span= good_count(@item.user.evaluates)
                 .eva-box
                   %i.fas.fa-meh.fa-lg
-                  %span 34
+                  %span= normal_count(@item.user.evaluates)
                 .eva-box
                   %i.fas.fa-sad-tear.fa-lg
-                  %span 153
+                  %span= bad_count(@item.user.evaluates)
           %tr
             %th カテゴリー
             %td
@@ -124,9 +124,11 @@
                     - if comment_info.user.image.present?
                       = image_tag comment_info.user.image.url
                     - else 
-                      = image_tag "icon/member_photo_noimage_thumb.png"
-                  .user_name
+                      = image_tag "icon/member_photo_noimage_thumb.png"  
+                  .user_name            
                     = comment_info.user.nickname
+                    - if comment_info.user == @item.user
+                      ( 出品者 )
                 %li.guest-message-item.clearfix
                   .message-box
                     .message-box__text

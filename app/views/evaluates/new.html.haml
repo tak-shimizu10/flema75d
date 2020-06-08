@@ -1,0 +1,30 @@
+= render "templates/form_header"
+.evaluate
+  = form_with(model: [@item, @evaluate], local: true) do |f|
+    .evaluate_boxes
+      .evaluate_box.title 評価をお願いします。
+      .evaluate_box.radio_btns
+        .good.radio_btn
+          = f.radio_button  :rate, "good", class: "rate_btn", id: "rate_good", required: true
+          %label.label_btn{for: "rate_good"}
+            %i.fas.fa-smile-beam
+            %p.text good
+        .normal.radio_btn
+          = f.radio_button  :rate, "normal", class: "rate_btn", id: "rate_normal"
+          %label.label_btn{for: "rate_normal"}
+            %i.fas.fa-meh
+            %p.text normal
+        .bad.radio_btn
+          = f.radio_button  :rate, "bad", class: "rate_btn", id: "rate_bad"
+          %label.label_btn{for: "rate_bad"}
+            %i.fas.fa-sad-tear
+            %p.text bad
+      .evaluate_box.comment
+        %p 感想をお聞かせください。
+        = f.text_area :comment, maxlength: 100, id: "rate_comment", cols: "40", required: true
+          
+      .evaluate_box.submit
+        .submit_box
+          = f.submit "評価する"
+.evaluate_footer
+  = render "templates/form_footer"
