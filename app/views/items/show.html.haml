@@ -112,51 +112,51 @@
             = link_to "#", id: "activities_btn" do
               %i.fas.fa-lock
               %span あんしん・あんぜんへの取り組み
-  - if user_signed_in?
-    .item-detail-message
-      .message-container
-        - if @comments.present?
-          .message-content
-            - @comments.each do |comment_info|
-              %ul.guest-message-box
-                = link_to "#", class: "message-user" do
-                  .message-user__thumbnail
-                    - if comment_info.user.image.present?
-                      = image_tag comment_info.user.image.url
-                    - else 
-                      = image_tag "icon/member_photo_noimage_thumb.png"  
-                  .user_name            
-                    = comment_info.user.nickname
-                    - if comment_info.user == @item.user
-                      ( 出品者 )
-                %li.guest-message-item.clearfix
-                  .message-box
-                    .message-box__text
-                      = comment_info.comment
+  .item-detail-message
+    .message-container
+      - if @comments.present?
         .message-content
-          %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-          = form_with(model:[@item,@comment], local: true) do |f|
-            = f.text_area :comment, class: "message_text_area", maxlength: "100", cols: "60"
-            = f.submit "コメントする", class: "message-btn"
-    %ul.nav-prev-next-box.clearfix
-      %li.nav-prev-next-box__left
-        = link_to "#" do
-          %i.fa.fa-angle-left
-          前の商品名
-      %li.nav-prev-next-box__right
-        = link_to "#" do
-          次の商品
-          %i.fa.fa-angle-right
-    .sns-content
-      .sns-content__icon-box
-        = link_to "#", class: "icon-btn icon-btn__facebook" do
-          %i.fab.fa-facebook-square
-        = link_to "#", class: "icon-btn icon-btn__twitter" do
-          %i.fab.fa-twitter-square
-        = link_to "#", class: "icon-btn icon-btn__line" do
-          %i.fab.fa-line
-        = link_to "#", class: "icon-btn icon-btn__pinterest" do
-          %i.fab.fa-pinterest-square
+          - @comments.each do |comment_info|
+            %ul.guest-message-box
+              = link_to "#", class: "message-user" do
+                .message-user__thumbnail
+                  - if comment_info.user.image.present?
+                    = image_tag comment_info.user.image.url
+                  - else 
+                    = image_tag "icon/member_photo_noimage_thumb.png"  
+                .user_name            
+                  = comment_info.user.nickname
+                  - if comment_info.user == @item.user
+                    ( 出品者 )
+              %li.guest-message-item.clearfix
+                .message-box
+                  .message-box__text
+                    = comment_info.comment
+          - if user_signed_in?
+            .message-content
+              %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+              = form_with(model:[@item,@comment], local: true) do |f|
+                = f.text_area :comment, class: "message_text_area", maxlength: "100", cols: "60"
+                = f.submit "コメントする", class: "message-btn"
+  %ul.nav-prev-next-box.clearfix
+    %li.nav-prev-next-box__left
+      = link_to "#" do
+        %i.fa.fa-angle-left
+        前の商品名
+    %li.nav-prev-next-box__right
+      = link_to "#" do
+        次の商品
+        %i.fa.fa-angle-right
+  .sns-content
+    .sns-content__icon-box
+      = link_to "#", class: "icon-btn icon-btn__facebook" do
+        %i.fab.fa-facebook-square
+      = link_to "#", class: "icon-btn icon-btn__twitter" do
+        %i.fab.fa-twitter-square
+      = link_to "#", class: "icon-btn icon-btn__line" do
+        %i.fab.fa-line
+      = link_to "#", class: "icon-btn icon-btn__pinterest" do
+        %i.fab.fa-pinterest-square
   .items-container
     %h2.item-box-head
       = link_to @item.user do
