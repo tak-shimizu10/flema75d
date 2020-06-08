@@ -36,13 +36,16 @@ h2 {
     border-bottom: 1px solid whitesmoke;
   }
   &__form {
-    padding: 40px 40px 64px;
+    padding: 20px 10px 30px;
   }
 }
 
 .content-wrap {
   max-width: 343px;
   margin: 0 auto;
+  &-omuniauth {
+    display: none;
+  }
 }
 
 .no_account-wrap {
