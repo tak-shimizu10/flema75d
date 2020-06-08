@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
   helper Users
 
   def index
-    @items = Item.all.limit(8)
+    @items = Item.all.limit(8).order("created_at DESC")
   end
 
   def new
