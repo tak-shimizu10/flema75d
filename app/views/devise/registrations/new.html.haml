@@ -42,16 +42,16 @@
             .field-label
               = f.label :name_kanji, "お名前(全角)"
               %span.form-term.form-term__require 必須
-            .field-input
-              = f.text_field :first_name, autofocus: true, class: 'input-default half required', placeholder: '例)山田', required: true
-              = f.text_field :last_name, autofocus: true, class: 'input-default half required', placeholder: '例)太郎', required: true
+            .field-input.name
+              = f.text_field :first_name, autofocus: true, class: 'input-default required', placeholder: '例)山田', required: true
+              = f.text_field :last_name, autofocus: true, class: 'input-default required', placeholder: '例)太郎', required: true
           .field
             .field-label
               = f.label :name_kana, "お名前カナ(全角)"
               %span.form-term.form-term__require 必須
-            .field-input
-              = f.text_field :first_kana, autofocus: true, class: 'input-default half required', placeholder: '例)ヤマダ', required: true
-              = f.text_field :last_kana, autofocus: true, class: 'input-default half required', placeholder: '例)タロウ', required: true
+            .field-input.name
+              = f.text_field :first_kana, autofocus: true, class: 'input-default required', placeholder: '例)ヤマダ', required: true
+              = f.text_field :last_kana, autofocus: true, class: 'input-default required', placeholder: '例)タロウ', required: true
           .field
             .field-label
               = f.label :birthday, "生年月日"
