@@ -276,7 +276,7 @@ $(function () {
     
     function moveSelectCategory(index) {
         const movePoint = $(".list_category")[index];
-        $("himl, body").animate({ scrollTop: $(movePoint).offset().top });
+        $("html, body").animate({ scrollTop: $(movePoint).offset().top });
     }
     $(".categories_show").on("click", ".link", function () {
         moveSelectCategory($(this).data("index"))

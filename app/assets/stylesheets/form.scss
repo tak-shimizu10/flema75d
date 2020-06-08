@@ -100,8 +100,20 @@ h2 {
   font-size: 16px;
 }
 
-.input-default.half {
-  width: calc(50% - 6px);
+.field-input.name {
+  display: grid;
+  grid-template:
+  "first ... last "
+  "error error error"/1fr 6px 1fr;
+  #user_first_name,#user_first_kana {
+    grid-area: first;
+  }
+  #user_last_name,#user_last_kana {
+    grid-area: last;
+  }
+  span {
+    grid-area: error;
+  }
 }
 
 .form-term {
