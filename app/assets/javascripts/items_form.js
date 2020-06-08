@@ -293,25 +293,6 @@ $(function () {
         if ("0123456789".indexOf(string, 0) < 0) return false;
         return true;
     });
-    //ユーザー登録郵便番号の入力欄
-    function insertHyphen(input) {
-        return input.slice(0, 3) + "-" + input.slice(3, input.length);
-    };
-    $(".field-input").on("keypress", "#address_zipcode", function (e) {
-        let string = String.fromCharCode(e.which);
-        if ("0123456789-".indexOf(string, 0) < 0) return false;
-        return true;
-    });
-    $(".field-input").on("keyup", "#address_zipcode", function () {
-        let input = $(this).val();
-        let key = event.keyCode || event.charCode;
-        if (key == 8 || key == 46) return false;
-        if (input.length === 3) $(this).val(insertHyphen(input));
-    });
-    $(".field-input").on("blur", "#address_zipcode", function () {
-        let input = $(this).val();
-        if (input.length >= 3 && input.substr(3, 1) != "-") $(this).val(insertHyphen(input));;
-    });
     //マイページスクロール用
     $(".account_show").on("click", ".link_page", function () {
         window.scroll({
