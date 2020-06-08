@@ -114,8 +114,8 @@
               %span あんしん・あんぜんへの取り組み
   .item-detail-message
     .message-container
-      - if @comments.present?
-        .message-content
+      .message-content
+        - if @comments.present?
           - @comments.each do |comment_info|
             %ul.guest-message-box
               = link_to "#", class: "message-user" do
@@ -132,12 +132,12 @@
                 .message-box
                   .message-box__text
                     = comment_info.comment
-          - if user_signed_in?
-            .message-content
-              %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-              = form_with(model:[@item,@comment], local: true) do |f|
-                = f.text_area :comment, class: "message_text_area", maxlength: "100", cols: "60"
-                = f.submit "コメントする", class: "message-btn"
+        - if user_signed_in?
+          .message-content
+            %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+            = form_with(model:[@item,@comment], local: true) do |f|
+              = f.text_area :comment, class: "message_text_area", maxlength: "100", cols: "60"
+              = f.submit "コメントする", class: "message-btn"
   %ul.nav-prev-next-box.clearfix
     %li.nav-prev-next-box__left
       = link_to "#" do
