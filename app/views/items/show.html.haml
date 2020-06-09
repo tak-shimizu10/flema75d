@@ -83,7 +83,7 @@
         - else @item.pay_side == "buyer"
           %span.item-tax
             (税込)
-      - if user_signed_in? && current_user.id == @item.user_id
+      - if user_signed_in? && current_user.id == @item.user_id && @item.situation == "exhibition"
         .item-explanation
           %p.item-explanation__box
             = safe_join(@item.detail.split("\n"),tag(:br))
