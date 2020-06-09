@@ -3,6 +3,8 @@ class BuysController < ApplicationController
   # ログインしてなければ、ログイン画面に映る
   before_action :authenticate_user!
 
+  # 商品が
+
   # 商品情報を取得
   before_action :find_buys_info, only: [:new, :create]
 
@@ -19,7 +21,7 @@ class BuysController < ApplicationController
 
   # 商品の購入確認
   def new
-    if @item.situation == "exhibition"
+    if @item.situation == "exhibition"  && @item.user.id != current_user.id
       @address = current_user.address
       unless @user_cards.blank?
         @customer_id = @user_cards.first[:customer_id]
@@ -33,7 +35,7 @@ class BuysController < ApplicationController
 
   # 商品の購入
   def create
-    if @item.user[:id] != current_user.id
+    if @item.situation == "exhibition" && @item.user.id != current_user.id
       @customer_id = @user_cards.first[:customer_id]
 
       Payjp::Charge.create(
