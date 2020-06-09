@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
   before_action :user_items, only: [:show, :destroy]
   before_action :select_category_and_serch_ancestry, only: [:edit, :update]
   before_action :set_categories, only: [:new, :create, :edit, :update]
+  before_action :return_not_equal_user, only: [:edit, :update]
   helper Users
 
   def index
@@ -23,11 +24,11 @@ class ItemsController < ApplicationController
     if item_params[:images_attributes].present? 
       
       @item = Item.new(item_params)
-
+      return redirect_to new_item_path if @item.images.length > 10
       brand = Brand.find_or_create_by(name:params[:item][:brand])
       @item.brand_id = brand&.id
 
-      if @item.images.length <= 10 && @item.save
+      if @item.save
         redirect_to root_path
       else
         redirect_to new_item_path
@@ -47,18 +48,16 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if item_params[:images_attributes].present?
-
+    if keep_or_update_images(item_params[:images_attributes]).present? && keep_or_update_images(item_params[:images_attributes]).length <= 10 
       brand = Brand.find_or_create_by(name:params[:item][:brand])
       brand_id = @item.brand&.id if brand.name.blank?
       @item.brand_id = brand&.id
-        
-      if @item.images.length <= 10 && @item.update(item_params)
+      if  @item.update(item_params)
         if brand_id.present?
           brand = Brand.find(brand_id)
           brand.destroy if brand.items.blank?
         end
-        redirect_to item_path(@item.id)
+        redirect_to item_path(@item)
       else
         render :edit
       end
@@ -119,6 +118,7 @@ class ItemsController < ApplicationController
   end
 
   def set_item
+    return redirect_to root_path unless Item.exists?(params[:id])
     @item = Item.find(params[:id])   
   end
 
@@ -147,5 +147,21 @@ class ItemsController < ApplicationController
 
   def set_categories
     @categories = @categories.pluck(:name, :id)
+  end
+
+  def keep_or_update_images(images)
+    result = []
+    images.each do |image|
+      if image[1][:image] || image[1][:_destroy] == "0"
+        result << image[1]
+      end
+    end
+    return result
+  end
+
+  def return_not_equal_user
+    if @item.user_id != current_user.id 
+      return redirect_to item_path(@item) 
+    end
   end
 end
