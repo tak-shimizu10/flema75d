@@ -48,7 +48,8 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if keep_or_update_images(item_params[:images_attributes]).present? && keep_or_update_images(item_params[:images_attributes]).length <= 10 
+    images = keep_or_update_images(item_params[:images_attributes])
+    if images.present? && images.length <= 10 
       brand = Brand.find_or_create_by(name:params[:item][:brand])
       brand_id = @item.brand&.id if brand.name.blank?
       @item.brand_id = brand&.id
