@@ -1,5 +1,8 @@
 # README
 
+## ER図
+![ER図](images/ER_diagram.png)
+
 ## Users テーブル
 
 | Column       | Type   | Options                  |
