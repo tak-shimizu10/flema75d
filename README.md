@@ -13,6 +13,7 @@
 ## 開発状況：Developmental status
 ### 開発体制:Development system
 * 人数：4名
+* 開発期間：5月19日 〜 6月11日（24日間）
 * スクラムを用いたアジャイル開発
 * Trelloによるタスク管理
 ### 使用ツール:Tools used
@@ -29,8 +30,12 @@
 * GitHub
 * Rspec / FactoryBot
 
+## 開発日程：Schedule
+* 開発期間：5月19日 〜 6月11日（24日間）
+* 1日あたりの平均作業時間：約9時間
+
 ## データベース設計:Database Design
-### ER図
+### ER図:Entity relationship diagram
 ![ER図](app/assets/images/ER_diagram.png)
 
 ## Users table
