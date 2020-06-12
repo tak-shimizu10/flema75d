@@ -1,7 +1,7 @@
 # README
 
 ## ER図
-![ER図](images/ER_diagram.png)
+![ER図](app/assets/images/ER_diagram.png)
 
 ## Users テーブル
 
