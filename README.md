@@ -34,9 +34,9 @@
 * 開発期間：5月19日 〜 6月11日（24日間）
 * 1日あたりの平均作業時間：約9時間
 
-## データベース設計:Database Design
+## データベース設計:Database design
 ### ER図:Entity relationship diagram
-![ER図](app/assets/images/ER_diagram.png)
+![ER図](app/assets/images/ER_diagram_1.png)
 
 ## Users table
 
