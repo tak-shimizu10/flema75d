@@ -1,9 +1,39 @@
 # README
 
-## ER図
+## 開発内容：Development content
+### フリマアプリのクローンサイトの開発
+-開発の目的-
+・チーム開発の経験を積むため
+  -定期的なミーティングの中で、各担当作業のアウトプットを行うこと
+  -GitHub の使い方に慣れること
+.困難に立ち向かう経験をするため
+  -カリキュラムの学習以外で必要な実装技術は、全て自分で調べて開発を進めること
+  -見たことがないエラーやロジックを経験し、自分で考え、チームで解決していくこと
+
+## 開発状況：Developmental status
+### 開発体制:Development system
+・人数：4名
+・スクラムを用いたアジャイル開発
+・Trelloによるタスク管理
+### 使用ツール:Tools used
+・Slack
+・Zoom
+・Lucidchart
+### 開発環境:Development environment
+・Visual Studio Code
+・Ruby
+・Ruby on Rails
+・Haml / SCSS / JavaScript / jQuery
+・MySQL
+・AWS
+・GitHub
+・Rspec / FactoryBot
+
+## データベース設計:Database Design
+### ER図
 ![ER図](app/assets/images/ER_diagram.png)
 
-## Users テーブル
+## Users table
 
 | Column       | Type   | Options                  |
 | ------------ | ------ | ------------------------ |
@@ -31,7 +61,7 @@
 - has_many :evaluates, dependent: :destroy
 - has_many :sns_credentials, dependent: :destroy
 
-## Address テーブル
+## Address table
 
 | Column        | Type    | Options                |
 | ------------- | ------- | ---------------------- |
@@ -47,7 +77,7 @@
 - belongs_to :user, optional: true
 - belongs_to_active_hash :prefecture
 
-## Items テーブル
+## Items table
 
 | Column        | Type    | Options                       |
 | ------------- | ------- | ----------------------------- |
@@ -77,7 +107,7 @@
 - belongs_to_active_hash :prefecture
 - belongs_to_active_hash :post_way
 
-## Comments テーブル
+## Comments table
 
 | Column  | Type    | Options           |
 | ------- | ------- | ----------------- |
@@ -90,7 +120,7 @@
 - belongs_to :user
 - belongs_to :item
 
-## Brands テーブル
+## Brands table
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
@@ -100,7 +130,7 @@
 
 - has_many :items
 
-## Images テーブル
+## Images table
 
 | Column  | Type    | Options           |
 | ------- | ------- | ----------------- |
@@ -111,7 +141,7 @@
 
 - belongs_to :item
 
-## Likes テーブル
+## Likes table
 
 | Column  | Type    | Options           |
 | ------- | ------- | ----------------- |
@@ -123,7 +153,7 @@
 - belongs_to :item
 - belongs_to :user
 
-## Categories テーブル
+## Categories table
 
 | Column   | Type         | Options     |
 | -------- | ------------ | ----------- |
@@ -134,7 +164,7 @@
 
 - has_many :items
 
-## Cards テーブル
+## Cards table
 
 | Column      | Type    | Options                  |
 | ----------- | ------- | ------------------------ |
@@ -146,7 +176,7 @@
 
 - belongs_to :user
 
-## Evaluates テーブル
+## Evaluates table
 
 | Column      | Type    | Options     |
 | ----------- | ------- | ----------- |
@@ -160,7 +190,7 @@
 - belongs_to :user
 - belongs_to :item
 
-## SnsCredentials テーブル
+## SnsCredentials table
 
 | Column   | Type       | Options          |
 | -------- | ---------- | ---------------- |
